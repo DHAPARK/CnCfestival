@@ -1,0 +1,21 @@
+{
+  "name": "webpage_comppython",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.5",
+    "ejs": "^3.1.8",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "firebase-admin": "^11.0.0"
+  }
+}

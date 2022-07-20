@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            width:100%;
+            height:100%;
+            background-color:black;
+            margin:0px;
+        }
+        #container{
+            width:100%;
+            height:100%;
+        }
+        #middleContainer{
+            width: 400px;
+            height: 600px;
+            border:1px solid white;
+            margin:0 auto;
+        }
+        #middleLogo{
+            width:180px;
+            height:180px;
+            background-color:white;
+            margin:0 auto;
+            margin-top : 100px;
+        }
+        #middleForm{
+            width:100%;
+            height:260px;
+            background-color:white;
+        }
+        #middleFormInnerForm{
+            width: 100%;
+            height:260px;
+            margin-top:60px;
+            background-color:blue;
+        }
+        #middleFormInnerForm input{
+            width:100%;
+            height:40px;
+            padding:0px;
+            border-width:0px;
+        }
+
+        #middleFormInnerForm input[type="text"]{
+            border:0px;
+            border-bottom:1px solid white;
+            background:transparent;
+            background-color: none;
+        }
+
+        #middleFormInnerForm input[type="password"]{
+            border:0px;
+            border-bottom:1px solid white;
+            background:transparent;
+            background-color: none;
+        }
+
+        #middleFormInnerForm input[type="button"]{
+            background-color: red;
+        }
+
+        #middleFormInnerFormMenuList{
+            width:100%;
+            text-align: center;
+        }
+
+        #middleFormInnerFormMenuList a{
+            color:white;
+            text-decoration: none;
+            font-size:8px;
+        }
+        #middleFormInnerFormMenuList {
+            color:white;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        
+        <div id="middleContainer">
+
+            <div id="middleLogo">
+                
+            </div>
+            <!--div id : middleLogo 끝-->
+
+            <div id="middleForm">
+
+                <form id="middleFormInnerForm">
+                    <p><input type="text" id="userid" name="userid"/></p>
+                    <p><input type="password" id="userpw" name="userpw"/></p>
+                    <p><input type="button" value="로그인"/></p>
+                    
+                    <div id="middleFormInnerFormMenuList">
+                        <a href="#">비밀번호 찾기</a> /
+                        <a href="#">아이디 찾기</a> /
+                        <a href="#">회원가입</a>
+                    </div>
+                    <!-- form id : middleFormInnerFormMenuList 끝 -->
+                </form>
+                <!--form id : middleFormInnerForm 끝-->
+            </div>
+            <!--div id : middleForm 끝-->
+        </div>
+        <!--div id : middleContainer 끝-->
+    </div>
+    <!--div id : Container 끝-->
+</body>
+</html>
