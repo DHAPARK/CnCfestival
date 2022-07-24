@@ -1,0 +1,141 @@
+
+html,body {
+    width:100%;
+    height:100%;
+    background-color:white;
+    margin:0px;
+}
+#container {
+    width:100%;
+    height:100%;
+}
+/*topLongContainer은 width100% height200px로 고정하자*/
+#topLongContainer {
+    width:100%;
+    height:100px;
+    background-color:white;
+    display:flex;
+    justify-content: space-between;
+    /* 얘 나중에 문제생길것같은데.. topLongContainer 줄어드는거 막아놨긴한데.. 화면사이즈마다 다르게 작용할듯하다*/
+    min-width:1400px;
+}
+/* 맨위 왼쪽 로고이미지 둘 div*/
+#topLongContainerInnerLeftLogoImg {
+    width:130px;
+    height:50px;
+    background-color:white;
+    margin-left:80px;
+    margin-top:30px;
+}
+/* 맨위 왼쪽 로고이미지*/
+#topLongContainerInnerLeftLogoImg_Img{
+    width:100%;
+    height:100%;
+}
+
+/* 맨위 오른쪽 메뉴들 (홈페이지, 로그인/회원가입 , 학습 , 메뉴 등) */
+#topLongContainerInnerRightMenuList {
+    width: 600px;
+    height: 50px;
+    background-color:white;
+    margin-right:40px;
+    margin-top:40px;
+    font-weight: bold;
+}
+#topLongContainerInnerRightMenuList a {
+    margin-right:40px;
+    text-decoration: none;
+}
+a:link { color: black; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: black; text-decoration: underline;}
+
+#contentsContainer{
+    height:900px;
+    min-width: 1400px;
+    margin-left:160px;
+    margin-right:160px;
+}
+
+#contentContainerTopInfoDesk{
+    margin: 0 auto;
+    width: 99.5%;
+    height: 30%;
+    border: 4px solid #95B3D7;
+    border-bottom:none;
+    border-radius:20px;
+    background-color : #95B3D7;
+}
+
+#contentContainerTopInfoDesk_Contents{
+    width:99.5%;
+    height:40%;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color : rgba(67,92,124);
+}
+#solvedQuestionList{
+    margin-top:50px;
+    width:100%;
+    height:60%;
+}
+ul{
+    display:flex;
+    padding-left: 0;
+}
+ul,li{
+    
+    list-style: none;   
+}
+li{
+    width:25%;
+    height:60px;
+}
+.ListInnerTopTitle{
+    width:90%;
+    height:100%;
+    border-radius:11px;
+    margin: 0 auto;
+    background-color: #95B3D7;
+    text-align:center;
+    font-weight: bold;
+    font-size:20px;
+    line-height: 60px;
+    vertical-align: top;
+}
+#solvedQuestionList_Title{
+    margin-bottom:40px;
+}
+
+#solvedQuestionList_each_question{
+    width: 100%;
+    height:100%;
+    
+    border-collapse : collapse;
+}
+td{
+    width:25%;
+    height:10%;
+}
+tr,td{
+    text-align: center;
+    line-height: 60px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.tb_left_bd{
+    border-bottom:1px solid black;
+    border-right:1px solid black;
+}
+.tb_left2_bd{
+    border-bottom:1px solid black;
+    border-left:1px solid black;
+}
+.tb_left3_bd{
+    border-bottom:1px solid black;
+    border-left:1px solid black;
+    border-right:1px solid black;
+}
+.tb_left4_bd{
+    border-bottom:1px solid black;
+}
