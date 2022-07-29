@@ -1,7 +1,7 @@
-const { RETURN_CODE, DB_COLLECTION } = require('./utils/constant');
-const { accountList, web3, db } = require('./config/envConfig');
+const { RETURN_CODE, DB_COLLECTION } = require('./constant');
+const { accountList, web3, db } = require('../config/envConfig');
 
-const { transferETH, transferHSC } = require('../utils/transaction');
+const { transferETH, transferHSC } = require('./transaction');
 
 /////////////////////////////////////////
 // 유효성 검사 함수

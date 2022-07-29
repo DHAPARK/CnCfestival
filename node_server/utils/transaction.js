@@ -1,10 +1,9 @@
-const { RETURN_CODE, DB_COLLECTION, TRANSACTION_TYPE } = require('./utils/constant');
-const { hsContract, web3 } = require('./config/envConfig');
+const { RETURN_CODE, DB_COLLECTION, TRANSACTION_TYPE } = require('./constant');
+const { hsContract, web3 } = require('../config/envConfig');
 
-const { putItemToDB } = require('../utils/DB');
-const { balanceInquiry, getUserId, getAccountPassword } = require('../utils/inquiry');
-const { transferHSC } = require('../utils/transaction');
-const { isAddressInDB } = require('../utils/validation');
+const { putItemToDB } = require('./DB');
+const { balanceInquiry, getUserId, getAccountPassword } = require('./inquiry');
+const { isAddressInDB } = require('./validation');
 
 /////////////////////////////////////////
 // 트랜잭션 관련 함수

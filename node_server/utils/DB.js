@@ -1,6 +1,6 @@
-const { RETURN_CODE, DB_COLLECTION } = require('./utils/constant');
-const { db } = require('./config/envConfig');
-const { getUserInfo } = require('../utils/inquiry');
+const { RETURN_CODE, DB_COLLECTION } = require('./constant');
+const { db } = require('../config/envConfig');
+const { getUserInfo } = require('./inquiry');
 
 /////////////////////////////////////////
 // DB 관련 함수

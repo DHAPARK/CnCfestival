@@ -1,6 +1,5 @@
-const { DB_COLLECTION } = require('./utils/constant');
-const { hsContract, web3, db } = require('./config/envConfig');
-const { balanceInquiry, getTransactionLog } = require('../utils/inquiry');
+const { DB_COLLECTION } = require('./constant');
+const { hsContract, web3, db } = require('../config/envConfig');
 
 /////////////////////////////////////////
 // 정보 조회 관련 함수
