@@ -28,12 +28,11 @@ const login = auth.getAuth();
 const db = firestore.getFirestore();
 
 module.exports = {
-    firestore: firestore,
-    login: login,
-    db: db,
-
-    initWeb3 : initWeb3,
-    accountList: accountList,
     hsContract: hsContract,
     web3: web3,
+    db: db,
+    firestore: firestore,
+    login: login,
+    initWeb3 : initWeb3,
+    accountList: accountList,
 }
