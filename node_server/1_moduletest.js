@@ -24,9 +24,6 @@ const exRouter = require('./router/module1');
 app.use('/', exRouter);
 envConfig.initWeb3();
 
-
-
-
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(logger('dev'));
 app.use(express.json());

@@ -1,6 +1,7 @@
 const { DB_COLLECTION } = require('./constant');
 const { hsContract, web3, db } = require('../config/envConfig');
 
+console.log(hsContract, typeof(hsContract));
 /////////////////////////////////////////
 // 정보 조회 관련 함수
 
