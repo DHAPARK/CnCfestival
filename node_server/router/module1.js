@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const userAgentModel = require('./models/userAgentModel'); //유저모델
 const { suppressDeprecationWarnings } = require("moment");
 
 const constant = require('../utils/constant');
