@@ -20,6 +20,7 @@ async function initWeb3() {
     console.log("### Web3 Init");
 }
 
+initWeb3();
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
