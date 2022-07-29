@@ -158,3 +158,12 @@ async function userSignUp(userid,userpw,username,useremail,userphone,year,month,
 
 // 유효성 검사, 회원 관련 함수
 /////////////////////////////////////////
+
+module.exports = {
+    isAddressInDB: isAddressInDB,
+    isIdInDb: isIdInDb, 
+    isPasswordRight: isPasswordRight, 
+    checkIdDuplicate: checkIdDuplicate, 
+    userlogin: userlogin, 
+    userSignUp: userSignUp 
+}

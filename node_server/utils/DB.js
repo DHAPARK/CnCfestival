@@ -118,3 +118,12 @@ async function getFaviconList(userId) {
 
 // DB 관련 함수
 /////////////////////////////////////////
+
+module.exports = {
+    putItemToDB: putItemToDB, 
+    removetemToDB: removetemToDB, 
+    modifyDBItem: modifyDBItem, 
+    addFavicon: addFavicon, 
+    removeFavicon: removeFavicon, 
+    getFaviconList: getFaviconList 
+}

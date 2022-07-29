@@ -181,3 +181,14 @@ async function getUserFaviconList(userId) {
 
 // 정보 조회 관련 함수
 /////////////////////////////////////////
+
+module.exports = {
+    balanceInquiry: balanceInquiry, 
+    getFranchise: getFranchise, 
+    getTransactionLog: getTransactionLog, 
+    getAllUserBalance: getAllUserBalance, 
+    getUserInfo: getUserInfo, 
+    getUserId: getUserId, 
+    getAccountPassword: getAccountPassword, 
+    getRecentTransferAccount: getRecentTransferAccount 
+}

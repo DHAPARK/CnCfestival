@@ -146,3 +146,10 @@ async function paymentCoin(senderAddress, receiverAddress, amount) {
 
 // 트랜잭션 관련 함수
 /////////////////////////////////////////
+
+module.exports = {
+    transferETH: transferETH, 
+    transferHSC: transferHSC,
+    remittanceCoin: remittanceCoin,
+    paymentCoin: paymentCoin 
+}
