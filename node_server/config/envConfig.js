@@ -4,7 +4,7 @@ const firestore = require("firebase-admin/firestore");
 const serviceAccount = require("../hscoin-d8ff7-firebase-adminsdk-unmpe-a6a77a60b5.json");
 const Web3 = require('web3');
 
-const constant = require('../utils/constant');
+const { HSCOIN_ABI, HSCOIN_ADDRESS } = require('../utils/constant');
 
 let accountList;
 let hsContract;
@@ -16,7 +16,7 @@ let web3;
 async function initWeb3() {
     web3 = new Web3('http://127.0.0.1:8545');
     accountList = await web3.eth.getAccounts();
-    hsContract = new web3.eth.Contract(constant.HSCOIN_ABI, constant.HSCOIN_ADDRESS);
+    hsContract = new web3.eth.Contract(HSCOIN_ABI, HSCOIN_ADDRESS);
     console.log("### Web3 Init");
 }
 

@@ -3,14 +3,11 @@ const router = express.Router();
 const userAgentModel = require('../models/userAgentModel'); //유저모델
 const { suppressDeprecationWarnings } = require("moment");
 
-const constant = require('../utils/constant');
-
-() => {
-    var RETURN_CODE = envConfig.RETURN_CODE;
-    var DB_COLLECTION = envConfig.DB_COLLECTION;
-    console.log('init lambda');
-};
-
+const { RETURN_CODE, DB_COLLECTION } = require('../utils/constant');
+const { putItemToDB, removetemToDB, modifyDBItem, addFavicon, removeFavicon, getFaviconList } = require('../utils/DB');
+const { balanceInquiry, getFranchise, getTransactionLog, getAllUserBalance, getUserInfo, getUserId, getAccountPassword, getRecentTransferAccount } = require('../utils/inquiry');
+const { transferETH, transferHSC, remittanceCoin, paymentCoin } = require('../utils/transaction');
+const { isAddressInDB, isIdInDb, isPasswordRight, checkIdDuplicate, userlogin, userSignUp } = require('../utils/validation');
 const SUCCESS_CODE = "SUCCESS_CODE";
 
 /**
