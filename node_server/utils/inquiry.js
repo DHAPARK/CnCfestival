@@ -1,7 +1,6 @@
 const { DB_COLLECTION } = require('./constant');
 const { hsContract, web3, db } = require('../config/envConfig');
 
-console.log(hsContract, typeof(hsContract));
 /////////////////////////////////////////
 // 정보 조회 관련 함수
 
@@ -11,6 +10,7 @@ console.log(hsContract, typeof(hsContract));
  * @returns {float} ETH 값으로 리턴
  */
  async function balanceInquiry(inquiryAddress) {
+    console.log(hsContract, typeof(hsContract));
     let hsBalanceWei = await hsContract.methods.balanceOf(inquiryAddress).call();
     let hsBalanceEth = web3.utils.fromWei(hsBalanceWei, 'ether');
     console.log(`### hsBalance = ${hsBalanceEth}`);
