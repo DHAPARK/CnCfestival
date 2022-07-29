@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
 const fs = require('fs');
-
+const cors = require('cors');
+const Iconv = require('iconv').Iconv;
+const jschardet = require('jschardet');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended:false}));
@@ -26,23 +28,31 @@ function isAlphaNumCheck(str) {
     return Flag;
 }
 
+app.use(cors());
+
 app.post('/makeAndCompilePythonFile',async (req,res)=>{
     //파일을 만들어야함 먼저
     //1. 코드가 제대로 넘어오는지를 확인
     
     //코드가 제대로 넘어오니 넘어오는코드로 .py 파일을 새로만들어야함
     var code = req.body.code;
-    
-    //내가볼때 문자열을 하나하나 탐색해서 싹다 " "공백으로 바꿔놔야한다
-    //진짜 죽겠네 ;;하..
-    
-    for(var i=0; i < code.length ; i++){
-        if(!isAlphaNumCheck(code[i])){
-            code = code.replace(code[i]," ");
-        }
-    }
+    var codeType = jschardet.detect(code)
+    console.log(codeType.encoding)
+    var iconv = new Iconv('Windows-1252', "utf-8");
+    var temp = iconv.convert(code);
+    console.log(temp);
+    var transCode = temp.toString('utf-8');
+    console.log(transCode);
 
-    fs.writeFileSync(`pf${cnt++}.py`,code,"utf8",(err)=>{
+    //var code = decodeURIComponent(req.body.code);
+    
+    // for(var i=0; i < code.length ; i++){
+    //     if(!isAlphaNumCheck(code[i])){
+    //         code = code.replace(code[i]," ");
+    //     }
+    // }
+
+    fs.writeFileSync(`pf${cnt++}.py`,transCode,"utf8",(err)=>{
         if(err){
             console.log(`${err}\npython 파일생성에 문제발생`);
         }

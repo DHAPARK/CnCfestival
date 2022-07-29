@@ -2,20 +2,18 @@ const asyncify = require('express-asyncify');
 const express = require('express');
 const app = asyncify(express());
 const fs = require('fs');
+
 const bodyParser = require('body-parser');
-const Web3 = require('web3');
+
 const BigNumber = require('bignumber.js');
 const moment = require('moment');
 const momentTimezone = require('moment-timezone');
 const dateUtils = require('date-utils');
+
 const createError = require('http-errors');
-const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const admin = require("firebase-admin");
-const firestore = require("firebase-admin/firestore");
-const auth = require("firebase-admin/auth");
-const serviceAccount = require("./hscoin-d8ff7-firebase-adminsdk-unmpe-a6a77a60b5.json");
+
 const { send, allowedNodeEnvironmentFlags, getMaxListeners } = require('process');
 const { json } = require('express');
 const PORT = 80;
@@ -23,47 +21,11 @@ const PORT = 80;
 //유저모델
 const userAgentModel = require('./models/userAgentModel');
 
-//Hscoin 관련 정보
-const HSCOIN_ADDRESS = '0xF2487613e9a890B6AaC89cDcEDBA8aa62A7Dd380'; // hscoin 컨트랙트 주소
-const HSCOIN_JSON_FILE = '../hscoin-contract/build/contracts/Hscoin.json';
-const HSCOIN_JSON_PARSED = JSON.parse(fs.readFileSync(HSCOIN_JSON_FILE));
-const HSCOIN_ABI = HSCOIN_JSON_PARSED.abi;
+const constant = require('./utils/constant');
+const envConfig = require('./config/envConfig');
+const exRouter = require('./router/module1');
 
-const RETURN_CODE = {
-    'SUCCESS':100,
-    'NONE_ADDRESS':200,
-    'NOT_ENOUGH_MONEY':201,
-    'PASSWORD_ERR':202,
-    'ALREADY_EXIST':203,
-    'NONE_ID':204,
-};
-
-const DB_COLLECTION = {
-    'USERS':'users',
-    'FRANCHISE':'franchise',
-    'TRANSACTION_LOG':'transaction_log',
-    'TRANSACTION_HASH':'transaction_hash',
-    'FAVICON':'favicon'
-};
-
-const TRANSACTION_TYPE = {
-    'PAYMENT':'payment',
-    'REMITTANCE':'remittance',
-};
-
-let accountList;
-let hsContract;
-let web3;
-
-/**
- * Web3, HsContract 객체 생성
- */
-async function initWeb3() {
-    web3 = new Web3('http://127.0.0.1:8545');
-    accountList = await web3.eth.getAccounts();
-    hsContract = new web3.eth.Contract(HSCOIN_ABI, HSCOIN_ADDRESS);
-    console.log("### Web3 Init");
-}
+app.use('/', exRouter);
 
 /////////////////////////////////////////
 // DB 관련 함수
@@ -108,7 +70,7 @@ async function modifyDBItem(collectionName, documentName, dataObject) {
             userphone:dataObject['userphone']
         });
         console.log(`### DB ${documentName} update`);
-        resolve(RETURN_CODE['SUCCESS']);
+        resolve(constant.RETURN_CODE['SUCCESS']);
     })
 }
 
@@ -118,7 +80,7 @@ async function modifyDBItem(collectionName, documentName, dataObject) {
  * @param {obj} faviconObject 
  */
 async function addFavicon(userId, faviconObject) {
-    let userFaviconRef = await db.collection(DB_COLLECTION['FAVICON']);
+    let userFaviconRef = await db.collection(constant.DB_COLLECTION['FAVICON']);
     let faviconName = await getUserInfo(faviconObject['userId']);
     faviconObject.userName = faviconName['username'];
     let ownerRef = await userFaviconRef.where('owner', '==', userId)
@@ -128,10 +90,10 @@ async function addFavicon(userId, faviconObject) {
         if(ownerRef.size == 0) {
             userFaviconRef.add(faviconObject);
             console.log(`### DB ${faviconObject} save`);
-            resolve(RETURN_CODE['SUCCESS']);
+            resolve(constant.RETURN_CODE['SUCCESS']);
         } else {
             console.log(`### DB ${faviconObject} not save`);
-            resolve(RETURN_CODE['ALREADY_EXIST']);
+            resolve(constant.RETURN_CODE['ALREADY_EXIST']);
         }
     });
 }
@@ -142,7 +104,7 @@ async function addFavicon(userId, faviconObject) {
  * @param {string} faviconName 
  */
 async function removeFavicon(userId, faviconName) {
-    let userFaviconRef = await db.collection(DB_COLLECTION['FAVICON']);
+    let userFaviconRef = await db.collection(constant.DB_COLLECTION['FAVICON']);
     let ownerRef = await userFaviconRef.where('owner', '==', userId)
     .where('userId', '==', faviconObject['userId']).get();
     
@@ -150,10 +112,10 @@ async function removeFavicon(userId, faviconName) {
         if(ownerRef.size == 0) {
             userFaviconRef.add(faviconObject);
             console.log(`### DB ${faviconObject} save`);
-            resolve(RETURN_CODE['SUCCESS']);
+            resolve(constant.RETURN_CODE['SUCCESS']);
         } else {
             console.log(`### DB ${faviconObject} not save`);
-            resolve(RETURN_CODE['ALREADY_EXIST']);
+            resolve(constant.RETURN_CODE['ALREADY_EXIST']);
         }
     })
 }
@@ -164,7 +126,7 @@ async function removeFavicon(userId, faviconName) {
  * @return {list}
  */
 async function getFaviconList(userId) {
-    let faviconList = await db.collection(DB_COLLECTION['FAVICON']).where('owner', '==', userId).get();
+    let faviconList = await db.collection(constant.DB_COLLECTION['FAVICON']).where('owner', '==', userId).get();
     return new Promise(resolve => {
         let faviconObj = {};
         faviconList.forEach(doc => {
@@ -219,7 +181,7 @@ async function getFaviconList(userId) {
     console.log(`${transactionObj['transactionHash']}`);
     let transactionHash = transactionObj['transactionHash'];
     let currTimeMilli = moment().format('x');
-    putItemToDB(DB_COLLECTION['TRANSACTION_HASH'], currTimeMilli, {hash:transactionHash});
+    putItemToDB(constant.DB_COLLECTION['TRANSACTION_HASH'], currTimeMilli, {hash:transactionHash});
     await web3.eth.getTransaction(transactionHash).then(console.log);
 }
 
@@ -242,7 +204,7 @@ async function remittanceCoin(senderAddress, receiverAddress, amount) {
         receiverAddress:receiverAddress,
         receiverId:receiverId,
         amount:amount,
-        transactionType:TRANSACTION_TYPE['REMITTANCE'],
+        transactionType:constant.TRANSACTION_TYPE['REMITTANCE'],
         transactionTime:moment().format('YYYY-MM-DD HH:mm:ss')
     };
 
@@ -255,18 +217,18 @@ async function remittanceCoin(senderAddress, receiverAddress, amount) {
             console.log("### remittance balance check true");
             await web3.eth.personal.unlockAccount(senderAddress, accountPassword);
             await transferHSC(senderAddress, receiverAddress, amount);
-            putItemToDB(DB_COLLECTION['TRANSACTION_LOG'], currTimeMilli, remitInfo);
-            resultCode = RETURN_CODE['SUCCESS'];
-            console.log(`### remittance return code SUCCESS(${RETURN_CODE['SUCCESS']})`);
+            putItemToDB(constant.DB_COLLECTION['TRANSACTION_LOG'], currTimeMilli, remitInfo);
+            resultCode = constant.RETURN_CODE['SUCCESS'];
+            console.log(`### remittance return code SUCCESS(${constant.RETURN_CODE['SUCCESS']})`);
         } else {
             console.log("### remittance balance check false");
-            resultCode = RETURN_CODE['NOT_ENOUGH_MONEY'];
-            console.log(`### remittance return code NOT_ENOUGH_MONEY(${RETURN_CODE['NOT_ENOUGH_MONEY']})`);
+            resultCode = constant.RETURN_CODE['NOT_ENOUGH_MONEY'];
+            console.log(`### remittance return code NOT_ENOUGH_MONEY(${constant.RETURN_CODE['NOT_ENOUGH_MONEY']})`);
         }         
     } else {
         console.log("### remittance balance check false");
-        resultCode = RETURN_CODE['NONE_ADDRESS'];
-        console.log(`### remittance return code NONE_ADDRESS(${RETURN_CODE['NONE_ADDRESS']})`);
+        resultCode = constant.RETURN_CODE['NONE_ADDRESS'];
+        console.log(`### remittance return code NONE_ADDRESS(${constant.RETURN_CODE['NONE_ADDRESS']})`);
     }
 
     return resultCode;
@@ -292,7 +254,7 @@ async function paymentCoin(senderAddress, receiverAddress, amount) {
         receiverAddress:receiverAddress,
         receiverId:receiverId,
         amount:amount,
-        transactionType:TRANSACTION_TYPE['PAYMENT'],
+        transactionType:constant.TRANSACTION_TYPE['PAYMENT'],
         transactionTime:moment().format('YYYY-MM-DD HH:mm:ss')
     };
 
@@ -305,18 +267,18 @@ async function paymentCoin(senderAddress, receiverAddress, amount) {
             console.log("### payment balance check true");
             await web3.eth.personal.unlockAccount(senderAddress, accountPassword);
             await transferHSC(senderAddress, receiverAddress, amount);
-            putItemToDB(DB_COLLECTION['TRANSACTION_LOG'], currTimeMilli, remitInfo);
-            resultCode = RETURN_CODE['SUCCESS'];
-            console.log(`### payment return code SUCCESS(${RETURN_CODE['SUCCESS']})`);
+            putItemToDB(constant.DB_COLLECTION['TRANSACTION_LOG'], currTimeMilli, remitInfo);
+            resultCode = constant.RETURN_CODE['SUCCESS'];
+            console.log(`### payment return code SUCCESS(${constant.RETURN_CODE['SUCCESS']})`);
         } else {
             console.log("### payment balance check false");
-            resultCode = RETURN_CODE['NOT_ENOUGH_MONEY'];
-            console.log(`### payment return code NOT_ENOUGH_MONEY(${RETURN_CODE['NOT_ENOUGH_MONEY']})`);
+            resultCode = constant.RETURN_CODE['NOT_ENOUGH_MONEY'];
+            console.log(`### payment return code NOT_ENOUGH_MONEY(${constant.RETURN_CODE['NOT_ENOUGH_MONEY']})`);
         }         
     } else {
         console.log("### payment balance check false");
-        resultCode = RETURN_CODE['NONE_ADDRESS'];
-        console.log(`### payment return code NONE_ADDRESS(${RETURN_CODE['NONE_ADDRESS']})`);
+        resultCode = constant.RETURN_CODE['NONE_ADDRESS'];
+        console.log(`### payment return code NONE_ADDRESS(${constant.RETURN_CODE['NONE_ADDRESS']})`);
     }
 
     console.log(resultCode);
@@ -336,7 +298,7 @@ async function paymentCoin(senderAddress, receiverAddress, amount) {
  */
  async function isAddressInDB(inquiryAddress) {
     let result = false;
-    let userInfoRef = await db.collection(DB_COLLECTION['USERS']);
+    let userInfoRef = await db.collection(constant.DB_COLLECTION['USERS']);
     let snapShot = await userInfoRef.where('accountAddress', '==', inquiryAddress).get();
     console.log(`### ${inquiryAddress} isAddressInDB ${!snapShot.empty}`);
     return !snapShot.empty;
@@ -349,7 +311,7 @@ async function paymentCoin(senderAddress, receiverAddress, amount) {
  * @returns {boolean} 일치 여부
  */
 async function isIdInDb(userId) {
-    let userInfoRef = await db.collection(DB_COLLECTION['USERS']);
+    let userInfoRef = await db.collection(constant.DB_COLLECTION['USERS']);
     let snapShot = await userInfoRef.where('userid', '==', userId).get();
     console.log(`### ${userId} isAddressInDB ${!snapShot.empty}`);
     return !snapShot.empty;
@@ -362,7 +324,7 @@ async function isIdInDb(userId) {
  * @returns {boolean} 일치 여부
  */
  async function isPasswordRight(userId, userPassword) {
-    let ps = await db.collection(DB_COLLECTION['USERS']).doc(userId).get();
+    let ps = await db.collection(constant.DB_COLLECTION['USERS']).doc(userId).get();
     let password = ps.data().userpw;
     let isSuccess = false;
     isSuccess = (password == userPassword ? true : false);
@@ -423,12 +385,12 @@ function userlogin(id,pw) {
                         "password":`${password}`,
                         "userAccount":`${userAccount}`
                     }
-                    console.log(`### return code = ${RETURN_CODE['SUCCESS']}`);
-                    res(RETURN_CODE['SUCCESS']);
+                    console.log(`### return code = ${constant.RETURN_CODE['SUCCESS']}`);
+                    res(constant.RETURN_CODE['SUCCESS']);
                 }
                 else{
-                    console.log(`### return code = ${RETURN_CODE['PASSWORD_ERR']}`);
-                    res(RETURN_CODE['PASSWORD_ERR']);
+                    console.log(`### return code = ${constant.RETURN_CODE['PASSWORD_ERR']}`);
+                    res(constant.RETURN_CODE['PASSWORD_ERR']);
                 }
             }catch(e){
                 console.log(`1_moduletest.js userlogin 메서드에서 ${e} 오류발생`);
@@ -455,7 +417,7 @@ async function userSignUp(userid,userpw,username,useremail,userphone,year,month,
     let accountAddress = await web3.eth.personal.newAccount(userpw);
     await transferHSC(accountList[0], accountAddress, 100);
     await transferETH(accountList[0], accountAddress, 1000);
-    db.collection(DB_COLLECTION["USERS"]).doc(userid).set({
+    db.collection(constant.DB_COLLECTION["USERS"]).doc(userid).set({
         userid: userid,
         userpw: userpw,
         username: username,
@@ -504,7 +466,7 @@ async function userSignUp(userid,userpw,username,useremail,userphone,year,month,
  */
  async function getFranchise() {
     let franchiseObj = {};
-    let ps = await db.collection(DB_COLLECTION['FRANCHISE']).get();
+    let ps = await db.collection(constant.DB_COLLECTION['FRANCHISE']).get();
     return new Promise(resolve => {
         ps.forEach(doc => {
             franchiseObj[doc.id] = doc.data();
@@ -520,7 +482,7 @@ async function userSignUp(userid,userpw,username,useremail,userphone,year,month,
  */
  async function getTransactionLog(inquiryAddress) {
     let logObj = {};
-    let transactionRef = await db.collection(DB_COLLECTION["TRANSACTION_LOG"]);
+    let transactionRef = await db.collection(constant.DB_COLLECTION["TRANSACTION_LOG"]);
     return new Promise(async (resolve) => {
         await transactionRef.where('receiverAddress', 'in', [inquiryAddress])
         .get()
@@ -554,7 +516,7 @@ async function userSignUp(userid,userpw,username,useremail,userphone,year,month,
  async function getAllUserBalance() {
     let userRank = [];
     let userInfo = {};
-    let allUserInfoRef = await db.collection(DB_COLLECTION['USERS']).get();
+    let allUserInfoRef = await db.collection(constant.DB_COLLECTION['USERS']).get();
     allUserInfoRef.forEach(doc => {
         console.log(doc.id, doc.data());
         userInfo[doc.id] = doc.data();
@@ -589,7 +551,7 @@ async function userSignUp(userid,userpw,username,useremail,userphone,year,month,
  * @returns {object} 유저 정보 객체
  */
 async function getUserInfo(userId) {
-    let userInfoRef = await db.collection(DB_COLLECTION["USERS"]);
+    let userInfoRef = await db.collection(constant.DB_COLLECTION["USERS"]);
     let snapShot = await userInfoRef.where('userid', '==', userId).get();
     return new Promise(resolve => {
         snapShot.forEach(doc => {
@@ -604,7 +566,7 @@ async function getUserInfo(userId) {
  * @returns 유저 아이디
  */
  async function getUserId(inquiryAddress) {
-    let userInfoRef = await db.collection(DB_COLLECTION["USERS"]);
+    let userInfoRef = await db.collection(constant.DB_COLLECTION["USERS"]);
     let snapShot = await userInfoRef.where('accountAddress', '==', inquiryAddress).get();
     return new Promise(resolve => {
             snapShot.forEach(doc => {
@@ -619,7 +581,7 @@ async function getUserInfo(userId) {
  * @returns 유저 아이디
  */
  async function getAccountPassword(inquiryAddress) {
-    let userInfoRef = await db.collection(DB_COLLECTION["USERS"]);
+    let userInfoRef = await db.collection(constant.DB_COLLECTION["USERS"]);
     let snapShot = await userInfoRef.where('accountAddress', '==', inquiryAddress).get();
     return new Promise(resolve => {
             snapShot.forEach(doc => {
@@ -670,40 +632,15 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
 
-initWeb3();
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-});
+envConfig.initWeb3();
 
-const login = auth.getAuth();
-const db = firestore.getFirestore();
-const module1 = require('./router/module1')(
-    RETURN_CODE,
-    DB_COLLECTION,
-    app,
-    fs,
-    admin,
-    moment,
-    firestore,
-    serviceAccount,
-    userSignUp,
-    userlogin,
-    checkIdDuplicate,
-    remittanceCoin,
-    paymentCoin,
-    balanceInquiry,
-    getTransactionLog,
-    isIdInDb,
-    isPasswordRight,
-    getFranchise,
-    getUserInfo,
-    getAllUserBalance,
-    modifyDBItem,
-    getRecentTransferAccount,
-    addFavicon,
-    getFaviconList,
-    userAgentModel
-    )
+() => {
+    var accountList = envConfig.accountList;
+    var hsContract = envConfig.hsContract;
+    var web3 = envConfig.web3;
+    var db = envConfig.db;
+    console.log('init lambda');
+};
 
 app.listen(PORT, () => {
     moment.tz.setDefault('Asia/Seoul');
