@@ -24,10 +24,12 @@ const { hsContract, accountList } = require('./config/envConfig');
 
 app.use('/', exRouter);
 
-() => {
+const test = () => {
     console.log(`### ${hsContract}`);
     console.log(`### ${accountList}`);
-}
+};
+
+test();
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(logger('dev'));
