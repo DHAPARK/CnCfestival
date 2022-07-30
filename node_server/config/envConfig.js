@@ -6,21 +6,22 @@ const Web3 = require('web3');
 
 const { HSCOIN_ABI, HSCOIN_ADDRESS } = require('../utils/constant');
 
-let accountList;
-let hsContract;
-let web3;
+let test = {
+    a:'a',
+    b:'b'
+}
 
 /**
  * Web3, HsContract 객체 생성
  */
 async function initWeb3() {
-    web3 = new Web3('http://127.0.0.1:8545');
-    accountList = await web3.eth.getAccounts();
-    hsContract = new web3.eth.Contract(HSCOIN_ABI, HSCOIN_ADDRESS);
+    global.web3 = new Web3('http://127.0.0.1:8545');
+    global.accountList = await web3.eth.getAccounts();
+    global.hsContract = await new web3.eth.Contract(HSCOIN_ABI, HSCOIN_ADDRESS);
     console.log(`### Web3 Init web3`);
+    console.log(typeof(accountList), typeof(hsContract));
 }
 
-initWeb3();
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
@@ -29,11 +30,9 @@ const login = auth.getAuth();
 const db = firestore.getFirestore();
 
 module.exports = {
-    hsContract: hsContract,
-    web3: web3,
-    db: db,
-    firestore: firestore,
-    login: login,
-    initWeb3 : initWeb3,
-    accountList: accountList,
+    db,
+    firestore,
+    login,
+    initWeb3,
+    test
 }
