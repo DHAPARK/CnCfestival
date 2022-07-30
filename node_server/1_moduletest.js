@@ -27,6 +27,8 @@ app.use('/', exRouter);
 const test = () => {
     console.log(`### ${hsContract}`);
     console.log(`### ${accountList}`);
+    console.log(`### ${envConfig.hsContract}`);
+    console.log(`### ${envConfig.accountList}`);
 };
 
 app.use(bodyParser.urlencoded({extended:false}));
