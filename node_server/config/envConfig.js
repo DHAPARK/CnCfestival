@@ -27,6 +27,5 @@ module.exports = {
     db,
     firestore,
     login,
-    initWeb3,
-    test
+    initWeb3
 }
