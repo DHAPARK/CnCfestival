@@ -22,10 +22,12 @@ const envConfig = require('./config/envConfig');
 const exRouter = require('./router/module1');
 const { hsContract, accountList } = require('./config/envConfig');
 
-console.log(hsContract);
-console.log(accountList);
-
 app.use('/', exRouter);
+
+() => {
+    console.log(`### ${hsContract}`);
+    console.log(`### ${accountList}`);
+}
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(logger('dev'));
