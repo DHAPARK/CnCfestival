@@ -17,7 +17,7 @@ async function initWeb3() {
     web3 = new Web3('http://127.0.0.1:8545');
     accountList = await web3.eth.getAccounts();
     hsContract = new web3.eth.Contract(HSCOIN_ABI, HSCOIN_ADDRESS);
-    console.log(`### Web3 Init web3 = ${hsContract}, acc_list = ${accountList}`);
+    console.log(`### Web3 Init web3`);
 }
 
 initWeb3();
