@@ -1,5 +1,5 @@
 const { RETURN_CODE, DB_COLLECTION } = require('./constant');
-const { accountList, web3, db } = require('../config/envConfig');
+const { db } = require('../config/envConfig');
 
 const { transferETH, transferHSC } = require('./transaction');
 
@@ -128,10 +128,10 @@ function userlogin(id,pw) {
  * @param {string} day 
  */
 async function userSignUp(userid,userpw,username,useremail,userphone,year,month,day) {
-    //let accountAddress = await web3.eth.personal.newAccount(userpw);
-    let accountAddress = await web3.eth.personal.newAccount(userpw);
-    await transferHSC(accountList[0], accountAddress, 100);
-    await transferETH(accountList[0], accountAddress, 1000);
+    //let accountAddress = await global.web3.eth.personal.newAccount(userpw);
+    let accountAddress = await global.web3.eth.personal.newAccount(userpw);
+    await transferHSC(global.accountList[0], accountAddress, 100);
+    await transferETH(global.accountList[0], accountAddress, 1000);
     db.collection(DB_COLLECTION["USERS"]).doc(userid).set({
         userid: userid,
         userpw: userpw,
@@ -160,10 +160,10 @@ async function userSignUp(userid,userpw,username,useremail,userphone,year,month,
 /////////////////////////////////////////
 
 module.exports = {
-    isAddressInDB: isAddressInDB,
-    isIdInDb: isIdInDb, 
-    isPasswordRight: isPasswordRight, 
-    checkIdDuplicate: checkIdDuplicate, 
-    userlogin: userlogin, 
-    userSignUp: userSignUp 
+    isAddressInDB,
+    isIdInDb, 
+    isPasswordRight, 
+    checkIdDuplicate, 
+    userlogin, 
+    userSignUp 
 }

@@ -6,11 +6,6 @@ const Web3 = require('web3');
 
 const { HSCOIN_ABI, HSCOIN_ADDRESS } = require('../utils/constant');
 
-let test = {
-    a:'a',
-    b:'b'
-}
-
 /**
  * Web3, HsContract 객체 생성
  */
@@ -19,7 +14,6 @@ async function initWeb3() {
     global.accountList = await web3.eth.getAccounts();
     global.hsContract = await new web3.eth.Contract(HSCOIN_ABI, HSCOIN_ADDRESS);
     console.log(`### Web3 Init web3`);
-    console.log(typeof(accountList), typeof(hsContract));
 }
 
 admin.initializeApp({

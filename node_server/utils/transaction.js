@@ -1,5 +1,4 @@
 const { RETURN_CODE, DB_COLLECTION, TRANSACTION_TYPE } = require('./constant');
-const { hsContract, web3 } = require('../config/envConfig');
 
 const { putItemToDB } = require('./DB');
 const { balanceInquiry, getUserId, getAccountPassword } = require('./inquiry');
@@ -15,9 +14,9 @@ const { isAddressInDB } = require('./validation');
  * @param {int} amount 보낼 금액 (1ETH 단위)
  */
  async function transferETH(senderAddress, receiverAddress, amount) {
-    let decimals = await hsContract.methods.decimals().call();
+    let decimals = await global.hsContract.methods.decimals().call();
     decimals = parseInt(decimals);
-    await web3.eth.sendTransaction({
+    await global.web3.eth.sendTransaction({
         from:senderAddress,
         to:receiverAddress,
         value: new BigNumber(amount * 10 ** decimals)
@@ -31,9 +30,9 @@ const { isAddressInDB } = require('./validation');
  * @param {int} amount 보낼 금액(1HSC 단위)
  */
  async function transferHSC(senderAddress, receiverAddress, amount) {
-    let decimals = await hsContract.methods.decimals().call();
+    let decimals = await global.hsContract.methods.decimals().call();
     decimals = parseInt(decimals);
-    let transactionObj = await hsContract.methods.transfer(
+    let transactionObj = await global.hsContract.methods.transfer(
         receiverAddress,
         new BigNumber(amount * 10 ** decimals)
     ).send({from:senderAddress});
@@ -41,7 +40,7 @@ const { isAddressInDB } = require('./validation');
     let transactionHash = transactionObj['transactionHash'];
     let currTimeMilli = moment().format('x');
     putItemToDB(DB_COLLECTION['TRANSACTION_HASH'], currTimeMilli, {hash:transactionHash});
-    await web3.eth.getTransaction(transactionHash).then(console.log);
+    await global.web3.eth.getTransaction(transactionHash).then(console.log);
 }
 
 /**
@@ -74,7 +73,7 @@ async function remittanceCoin(senderAddress, receiverAddress, amount) {
         amount = parseInt(amount);
         if(senderBalance >= amount) {
             console.log("### remittance balance check true");
-            await web3.eth.personal.unlockAccount(senderAddress, accountPassword);
+            await global.web3.eth.personal.unlockAccount(senderAddress, accountPassword);
             await transferHSC(senderAddress, receiverAddress, amount);
             putItemToDB(DB_COLLECTION['TRANSACTION_LOG'], currTimeMilli, remitInfo);
             resultCode = RETURN_CODE['SUCCESS'];
@@ -124,7 +123,7 @@ async function paymentCoin(senderAddress, receiverAddress, amount) {
         amount = parseInt(amount);
         if(senderBalance >= amount) {
             console.log("### payment balance check true");
-            await web3.eth.personal.unlockAccount(senderAddress, accountPassword);
+            await global.web3.eth.personal.unlockAccount(senderAddress, accountPassword);
             await transferHSC(senderAddress, receiverAddress, amount);
             putItemToDB(DB_COLLECTION['TRANSACTION_LOG'], currTimeMilli, remitInfo);
             resultCode = RETURN_CODE['SUCCESS'];
@@ -148,8 +147,8 @@ async function paymentCoin(senderAddress, receiverAddress, amount) {
 /////////////////////////////////////////
 
 module.exports = {
-    transferETH: transferETH, 
-    transferHSC: transferHSC,
-    remittanceCoin: remittanceCoin,
-    paymentCoin: paymentCoin 
+    transferETH, 
+    transferHSC,
+    remittanceCoin,
+    paymentCoin 
 }

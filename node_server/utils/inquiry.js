@@ -1,5 +1,5 @@
 const { DB_COLLECTION } = require('./constant');
-const { hsContract, web3, db } = require('../config/envConfig');
+const { db } = require('../config/envConfig');
 const env = require('../config/envConfig');
 
 /////////////////////////////////////////
@@ -12,8 +12,8 @@ const env = require('../config/envConfig');
  */
  async function balanceInquiry(inquiryAddress) {
     console.log(hsContract, typeof(hsContract));
-    let hsBalanceWei = await env.hsContract.methods.balanceOf(inquiryAddress).call();
-    let hsBalanceEth = web3.utils.fromWei(hsBalanceWei, 'ether');
+    let hsBalanceWei = await global.hsContract.methods.balanceOf(inquiryAddress).call();
+    let hsBalanceEth = global.web3.utils.fromWei(hsBalanceWei, 'ether');
     console.log(`### hsBalance = ${hsBalanceEth}`);
     return hsBalanceEth;
 }
@@ -185,12 +185,13 @@ async function getUserFaviconList(userId) {
 /////////////////////////////////////////
 
 module.exports = {
-    balanceInquiry: balanceInquiry, 
-    getFranchise: getFranchise, 
-    getTransactionLog: getTransactionLog, 
-    getAllUserBalance: getAllUserBalance, 
-    getUserInfo: getUserInfo, 
-    getUserId: getUserId, 
-    getAccountPassword: getAccountPassword, 
-    getRecentTransferAccount: getRecentTransferAccount 
+    balanceInquiry, 
+    getFranchise, 
+    getTransactionLog, 
+    getAllUserBalance, 
+    getUserInfo, 
+    getUserId, 
+    getAccountPassword,
+    getAccountPassword, 
+    getRecentTransferAccount 
 }
