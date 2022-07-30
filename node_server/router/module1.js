@@ -26,7 +26,7 @@ router.post('/joinMember/:userid',(req,res)=>{
     //요청온 컴퓨터의 사양
     userAgentModel.printUserAgent(req.header('user-agent'),"/joinMember/:userid");
 
-    console.log(`### ${req.body}`);
+    console.log(`### ${req} ${JSON.stringify(req)}, ${req.body}`);
     const userid = req.params.userid;
     const userpw = req.body["password"];
     const username = req.body["name"];
