@@ -1,0 +1,93 @@
+html,body {
+    width:100%;
+    height:100%;
+    background-color:white;
+    margin:0px;
+}
+#container {
+    width:100%;
+    height:100%;
+}
+        /*topLongContainer은 width100% height200px로 고정하자*/
+#topLongContainer {
+    width:100%;
+    height:100px;
+    background-color:white;
+    display:flex;
+    justify-content: space-between;
+    /* 얘 나중에 문제생길것같은데.. topLongContainer 줄어드는거 막아놨긴한데.. 화면사이즈마다 다르게 작용할듯하다*/
+    min-width:1400px;
+}
+/* 맨위 왼쪽 로고이미지 둘 div*/
+#topLongContainerInnerLeftLogoImg {
+    width:130px;
+    height:50px;
+    background-color:white;
+    margin-left:80px;
+    margin-top:30px;
+}
+/* 맨위 왼쪽 로고이미지*/
+#topLongContainerInnerLeftLogoImg_Img{
+    width:100%;
+    height:100%;
+}
+/* 맨위 오른쪽 메뉴들 (홈페이지, 로그인/회원가입 , 학습 , 메뉴 등) */
+#topLongContainerInnerRightMenuList {
+    width: 600px;
+    height: 50px;
+    background-color:white;
+    margin-right:40px;
+    margin-top:40px;
+    font-weight: bold;
+}
+#topLongContainerInnerRightMenuList a {
+    margin-right:40px;
+    text-decoration: none;
+    color:black;
+}
+a:link { color: white; text-decoration: none;}
+a:visited { color: white; text-decoration: none;}
+a:hover { color: white; text-decoration: underline;}
+
+#contentsContainer{
+    width:100%;
+    height:100%;
+    min-width:1400px;
+}
+/*"동영상 강의"텍스트*/
+#topText{
+    padding-top:20px;
+    padding-left:140px;
+}
+#topTextInnerText{
+    font-size:30px;
+    font-weight: bold;
+}
+#videoContainer{
+    width : 78%;
+    height: 80%;
+    
+    margin:0 auto;
+    padding-left:120px;
+    padding-right:120px;
+    padding-top:20px;
+    border-top : 4px solid #95B3D7;
+}
+
+
+.videoSpace{
+    width:450px;
+    height:300px;
+    
+    margin:30px;
+}
+.eachVideo{
+    width : 100%;
+    height: 80%;
+    background-color:black;
+}
+
+
+.videoSemiContainer{
+    display:flex;
+}
