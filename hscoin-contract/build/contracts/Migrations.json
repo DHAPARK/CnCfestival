@@ -671,7 +671,7 @@
   "sourceMap": "66:398:5:-:0;;;92:33;;;-1:-1:-1;;;;;;92:33:5;115:10;92:33;;;66:398;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "66:398:5:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;131:39;;;;;;;;;160:25:6;;;148:2;133:18;131:39:5;;;;;;;;92:33;;;;;-1:-1:-1;;;;;92:33:5;;;;;;-1:-1:-1;;;;;360:32:6;;;342:51;;330:2;315:18;92:33:5;196:203:6;350:112:5;;;;;;:::i;:::-;;:::i;:::-;;;244:5;;-1:-1:-1;;;;;244:5:5;230:10;:19;209:117;;;;-1:-1:-1;;;209:117:5;;791:2:6;209:117:5;;;773:21:6;830:2;810:18;;;803:30;869:34;849:18;;;842:62;-1:-1:-1;;;920:18:6;;;913:49;979:19;;209:117:5;;;;;;;;419:24:::1;:36:::0;350:112::o;404:180:6:-;463:6;516:2;504:9;495:7;491:23;487:32;484:52;;;532:1;529;522:12;484:52;-1:-1:-1;555:23:6;;404:180;-1:-1:-1;404:180:6:o",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.9.0;\n\ncontract Migrations {\n    address public owner = msg.sender;\n    uint256 public last_completed_migration;\n\n    modifier restricted() {\n        require(\n            msg.sender == owner,\n            \"This function is restricted to the contract's owner\"\n        );\n        _;\n    }\n\n    function setCompleted(uint256 completed) public restricted {\n        last_completed_migration = completed;\n    }\n}\n",
-  "sourcePath": "/home/fkb/hscoin/test/Capstone-Design/hscoin-contract/contracts/Migrations.sol",
+  "sourcePath": "/home/fkb/cncFestival/tttes/CnCfestival/hscoin-contract/contracts/Migrations.sol",
   "ast": {
     "absolutePath": "project:/contracts/Migrations.sol",
     "exportedSymbols": {
@@ -1157,10 +1157,16 @@
       "links": {},
       "address": "0x2E858F6baf9aAc19505D67B6D5D962A6D19E5891",
       "transactionHash": "0x8228057a52039ca28b891c179374ac9b6f1d2f69ac81a7f4f8b30af7b43c74e9"
+    },
+    "1659435082965": {
+      "events": {},
+      "links": {},
+      "address": "0x7218A9bc5E84DEC06EBc0f80D7FD84649599390b",
+      "transactionHash": "0x30189db4bb21ac32a79eb33b59a542fac1942fda171e9e2c05891a41d850e814"
     }
   },
   "schemaVersion": "3.4.7",
-  "updatedAt": "2022-06-02T07:36:16.924Z",
+  "updatedAt": "2022-08-02T10:12:42.676Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

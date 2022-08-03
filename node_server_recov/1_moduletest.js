@@ -28,7 +28,7 @@ const PORT = 80;
 const userAgentModel = require("./models/userAgentModel");
 
 //Hscoin 관련 정보
-const HSCOIN_ADDRESS = "0xF2487613e9a890B6AaC89cDcEDBA8aa62A7Dd380"; // hscoin 컨트랙트 주소
+const HSCOIN_ADDRESS = "0x4551899d1ef9cE15E2bD06589d7a9F7d3df9dc3f"; // hscoin 컨트랙트 주소
 const HSCOIN_JSON_FILE = "../hscoin-contract/build/contracts/Hscoin.json";
 const HSCOIN_JSON_PARSED = JSON.parse(fs.readFileSync(HSCOIN_JSON_FILE));
 const HSCOIN_ABI = HSCOIN_JSON_PARSED.abi;
@@ -514,7 +514,6 @@ async function userSignUp(userid, userpw, username, useremail, userphone) {
   console.log(`userphone = ${userphone}`);
   console.log(`year.month.day = ${year}.${month}.${day}`);
   console.log(`accountAddress = ${accountAddress}`);
-  console.log(`accountPassword = ${accountPassword}`);
   console.log(`### userSignUp Complete`);
 }
 
