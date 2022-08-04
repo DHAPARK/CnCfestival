@@ -24,10 +24,6 @@ const { json } = require('express');
 const PORT = 80;
 
 const envConfig = require('./config/envConfig');
-const exRouter = require('./router/module1');
-const { test } = require('./config/envConfig');
-
-app.use('/', exRouter);
 
 app.use(logger('dev'));
 app.use(cookieParser());
@@ -35,6 +31,10 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 // app.use(express.json());
 // app.use(express.urlencoded({extended:false}));
+
+const exRouter = require('./router/module1');
+
+app.use('/', exRouter);
 
 app.listen(PORT, async () => {
     await envConfig.initWeb3();
