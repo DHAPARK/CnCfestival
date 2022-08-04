@@ -20,12 +20,10 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
 
-const login = auth.getAuth();
-const db = firestore.getFirestore();
+global.login = auth.getAuth();
+global.db = firestore.getFirestore();
 
 module.exports = {
-    db,
     firestore,
-    login,
     initWeb3
 }

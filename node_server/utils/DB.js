@@ -1,5 +1,9 @@
+<<<<<<< HEAD
+const { RETURN_CODE, DB_COLLECTION } = require('./constant')
+=======
 const { RETURN_CODE, DB_COLLECTION } = require('./constant');
 const { db } = require('../config/envConfig');
+>>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
 const { getUserInfo } = require('./inquiry');
 
 /////////////////////////////////////////
@@ -12,7 +16,11 @@ const { getUserInfo } = require('./inquiry');
  * @param {object} dataObject 저장될 객체(JSON)
  */
  async function putItemToDB(collectionName, documentName, dataObject) {
+<<<<<<< HEAD
+    let ps = await global.db.collection(collectionName);
+=======
     let ps = await db.collection(collectionName);
+>>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
     ps.doc(documentName).set(dataObject);
     console.log(`### DB ${documentName} save`);
 }
@@ -23,7 +31,11 @@ const { getUserInfo } = require('./inquiry');
  * @param {*} documentName 
  */
 async function removetemToDB(collectionName, documentName) {
+<<<<<<< HEAD
+    let ps = await global.db.collection(collectionName);
+=======
     let ps = await db.collection(collectionName);
+>>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
     ps.doc(documentName).delete();
     console.log(`### DB ${documentName} delete`);
 }
@@ -35,7 +47,11 @@ async function removetemToDB(collectionName, documentName) {
  * @param {obejct} dataObject 
  */
 async function modifyDBItem(collectionName, documentName, dataObject) {
+<<<<<<< HEAD
+    let userRef = await global.db.collection(collectionName).doc(documentName);
+=======
     let userRef = await db.collection(collectionName).doc(documentName);
+>>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
    
     return new Promise(resolve => {
         userRef.update({
@@ -55,7 +71,11 @@ async function modifyDBItem(collectionName, documentName, dataObject) {
  * @param {obj} faviconObject 
  */
 async function addFavicon(userId, faviconObject) {
+<<<<<<< HEAD
+    let userFaviconRef = await global.db.collection(DB_COLLECTION['FAVICON']);
+=======
     let userFaviconRef = await db.collection(DB_COLLECTION['FAVICON']);
+>>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
     let faviconName = await getUserInfo(faviconObject['userId']);
     faviconObject.userName = faviconName['username'];
     let ownerRef = await userFaviconRef.where('owner', '==', userId)
@@ -79,7 +99,11 @@ async function addFavicon(userId, faviconObject) {
  * @param {string} faviconName 
  */
 async function removeFavicon(userId, faviconName) {
+<<<<<<< HEAD
+    let userFaviconRef = await global.db.collection(DB_COLLECTION['FAVICON']);
+=======
     let userFaviconRef = await db.collection(DB_COLLECTION['FAVICON']);
+>>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
     let ownerRef = await userFaviconRef.where('owner', '==', userId)
     .where('userId', '==', faviconObject['userId']).get();
     
@@ -101,7 +125,11 @@ async function removeFavicon(userId, faviconName) {
  * @return {list}
  */
 async function getFaviconList(userId) {
+<<<<<<< HEAD
+    let faviconList = await global.db.collection(DB_COLLECTION['FAVICON']).where('owner', '==', userId).get();
+=======
     let faviconList = await db.collection(DB_COLLECTION['FAVICON']).where('owner', '==', userId).get();
+>>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
     return new Promise(resolve => {
         let faviconObj = {};
         faviconList.forEach(doc => {
