@@ -32,6 +32,7 @@ import RemittanceOneThree from './pages/RemittanceOneThree';
 import Notice from './pages/Notice';
 import ModifyMyInfo from './pages/ModifyMyInfo';
 import UsageHistory from './pages/UsageHistory';
+import Franchisee from './pages/Franchisee';
 //스플래시 스크린
 import SplashScreen from 'react-native-splash-screen';
 //스플래시 스크린
@@ -93,6 +94,11 @@ const App: () => Node = () => {
           name="ModifyMyInfo"
           component={ModifyMyInfo}
           options={{title: '정보 수정', headerShown: false}}></Stack.Screen>
+
+        <Stack.Screen
+          name="Franchisee"
+          component={Franchisee}
+          options={{title: '가맹점', headerShown: false}}></Stack.Screen>
         <Stack.Screen
           name="UsageHistory"
           component={UsageHistory}
