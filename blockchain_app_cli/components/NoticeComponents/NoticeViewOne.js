@@ -20,7 +20,6 @@ function NoticeViewOne(props) {
   const [accountAddress, setAccountAddress] = React.useState('');
   AsyncStorage.getItem('userinformation', (err, result) => {
     const UserInfo = JSON.parse(result);
-
     setAccountAddress(UserInfo.userAccount);
   });
 

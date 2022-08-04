@@ -1,3 +1,4 @@
+import React from 'react';
 import {Platform, StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 

@@ -1,11 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
+import QRCode from 'react-native-qrcode-svg';
 
-//import SvgQRCode from 'react-native-qrcode-svg';
-//import SvgQRCode from 'react-native-qr-generator';
-//import QRCode from 'react-native-qrcode-svg';
-//import QRCode from 'react-native-qrcode';
 const MyView = styled.SafeAreaView`
   align-items: center;
   background-color: #ecf0f1;
@@ -16,12 +13,19 @@ const MyView = styled.SafeAreaView`
 `;
 
 function Simple(props) {
-  return {
-    /*<QRCode value={JSON.stringify(props.props.value)} size={70} />*/
-  };
+  return (
+    <QRCode
+      value={JSON.stringify(props.props.value)}
+      size={70}
+      color="white"
+      backgroundColor="black"
+    />
+  );
 }
 function QRarea(props) {
-  console.log(`props체크 ${props}`);
+  console.log(`props체크1 ${props}`);
+  console.log(`props체크2 ${JSON.stringify(props)}`);
+  console.log(`props체크3 ${props.value}`);
   return (
     <MyView style={styles.container}>
       <View
@@ -32,6 +36,7 @@ function QRarea(props) {
           backgroundColor: 'yellow',
           alignItems: 'center',
         }}>
+        <Simple props={props} />
         {/*<Simple props={props} />*/}
       </View>
 
