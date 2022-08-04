@@ -1,5 +1,6 @@
+/*
 import React, {Component} from 'react';
-import DatePicker from 'react-native-datepicker';
+//import DatePicker from 'react-native-datepicker';
 import styled from 'styled-components/native';
 import {StyleSheet, Text} from 'react-native';
 
@@ -50,3 +51,4 @@ function Test(props) {
 }
 
 export default Test;
+*/
