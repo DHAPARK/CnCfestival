@@ -10,7 +10,6 @@ const env = require('../config/envConfig');
  * @returns {float} ETH 값으로 리턴
  */
  async function balanceInquiry(inquiryAddress) {
-    console.log(hsContract, typeof(hsContract));
     let hsBalanceWei = await global.hsContract.methods.balanceOf(inquiryAddress).call();
     let hsBalanceEth = global.web3.utils.fromWei(hsBalanceWei, 'ether');
     console.log(`### hsBalance = ${hsBalanceEth}`);
