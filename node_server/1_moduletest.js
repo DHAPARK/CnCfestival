@@ -29,11 +29,12 @@ const { test } = require('./config/envConfig');
 
 app.use('/', exRouter);
 
-app.use(bodyParser.urlencoded({extended:false}));
 app.use(logger('dev'));
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 // app.use(express.json());
 // app.use(express.urlencoded({extended:false}));
-app.use(cookieParser());
 
 app.listen(PORT, async () => {
     await envConfig.initWeb3();
