@@ -1,8 +1,4 @@
 const { RETURN_CODE, DB_COLLECTION } = require('./constant');
-<<<<<<< HEAD
-=======
-const { db } = require('../config/envConfig');
->>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
 
 const { transferETH, transferHSC } = require('./transaction');
 
@@ -16,11 +12,7 @@ const { transferETH, transferHSC } = require('./transaction');
  */
  async function isAddressInDB(inquiryAddress) {
     let result = false;
-<<<<<<< HEAD
     let userInfoRef = await global.db.collection(DB_COLLECTION['USERS']);
-=======
-    let userInfoRef = await db.collection(DB_COLLECTION['USERS']);
->>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
     let snapShot = await userInfoRef.where('accountAddress', '==', inquiryAddress).get();
     console.log(`### ${inquiryAddress} isAddressInDB ${!snapShot.empty}`);
     return !snapShot.empty;
@@ -33,11 +25,7 @@ const { transferETH, transferHSC } = require('./transaction');
  * @returns {boolean} 일치 여부
  */
 async function isIdInDb(userId) {
-<<<<<<< HEAD
     let userInfoRef = await global.db.collection(DB_COLLECTION['USERS']);
-=======
-    let userInfoRef = await db.collection(DB_COLLECTION['USERS']);
->>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
     let snapShot = await userInfoRef.where('userid', '==', userId).get();
     console.log(`### ${userId} isAddressInDB ${!snapShot.empty}`);
     return !snapShot.empty;
@@ -50,11 +38,7 @@ async function isIdInDb(userId) {
  * @returns {boolean} 일치 여부
  */
  async function isPasswordRight(userId, userPassword) {
-<<<<<<< HEAD
     let ps = await global.db.collection(DB_COLLECTION['USERS']).doc(userId).get();
-=======
-    let ps = await db.collection(DB_COLLECTION['USERS']).doc(userId).get();
->>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
     let password = ps.data().userpw;
     let isSuccess = false;
     isSuccess = (password == userPassword ? true : false);
@@ -69,11 +53,7 @@ async function isIdInDb(userId) {
  function checkIdDuplicate(userid){
     var password = "";
     return new Promise((resolve,reject)=>{
-<<<<<<< HEAD
         let ps = global.db.collection('users').doc(userid);
-=======
-        let ps = db.collection('users').doc(userid);
->>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
         ps.onSnapshot(docSnapshot => {
             try{
                 password = docSnapshot["_fieldsProto"]["userpw"]["stringValue"];
@@ -103,11 +83,7 @@ async function isIdInDb(userId) {
  */
 function userlogin(id,pw) {
     return new Promise((res,rej)=>{
-<<<<<<< HEAD
         let ps = global.db.collection('users').doc(id);
-=======
-        let ps = db.collection('users').doc(id);
->>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
         let password= "";
         let member = {};
     
@@ -155,11 +131,7 @@ async function userSignUp(userid,userpw,username,useremail,userphone,year,month,
     let accountAddress = await global.web3.eth.personal.newAccount(userpw);
     await transferHSC(global.accountList[0], accountAddress, 100);
     await transferETH(global.accountList[0], accountAddress, 1000);
-<<<<<<< HEAD
     global.db.collection(DB_COLLECTION["USERS"]).doc(userid).set({
-=======
-    db.collection(DB_COLLECTION["USERS"]).doc(userid).set({
->>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
         userid: userid,
         userpw: userpw,
         username: username,

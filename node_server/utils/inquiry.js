@@ -1,8 +1,4 @@
 const { DB_COLLECTION } = require('./constant');
-<<<<<<< HEAD
-=======
-const { db } = require('../config/envConfig');
->>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
 const env = require('../config/envConfig');
 
 /////////////////////////////////////////
@@ -27,11 +23,7 @@ const env = require('../config/envConfig');
  */
  async function getFranchise() {
     let franchiseObj = {};
-<<<<<<< HEAD
     let ps = await global.db.collection(DB_COLLECTION['FRANCHISE']).get();
-=======
-    let ps = await db.collection(DB_COLLECTION['FRANCHISE']).get();
->>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
     return new Promise(resolve => {
         ps.forEach(doc => {
             franchiseObj[doc.id] = doc.data();
@@ -47,11 +39,7 @@ const env = require('../config/envConfig');
  */
  async function getTransactionLog(inquiryAddress) {
     let logObj = {};
-<<<<<<< HEAD
     let transactionRef = await global.db.collection(DB_COLLECTION["TRANSACTION_LOG"]);
-=======
-    let transactionRef = await db.collection(DB_COLLECTION["TRANSACTION_LOG"]);
->>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
     return new Promise(async (resolve) => {
         await transactionRef.where('receiverAddress', 'in', [inquiryAddress])
         .get()
@@ -85,11 +73,7 @@ const env = require('../config/envConfig');
  async function getAllUserBalance() {
     let userRank = [];
     let userInfo = {};
-<<<<<<< HEAD
     let allUserInfoRef = await global.db.collection(DB_COLLECTION['USERS']).get();
-=======
-    let allUserInfoRef = await db.collection(DB_COLLECTION['USERS']).get();
->>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
     allUserInfoRef.forEach(doc => {
         console.log(doc.id, doc.data());
         userInfo[doc.id] = doc.data();
@@ -124,11 +108,7 @@ const env = require('../config/envConfig');
  * @returns {object} 유저 정보 객체
  */
 async function getUserInfo(userId) {
-<<<<<<< HEAD
     let userInfoRef = await global.db.collection(DB_COLLECTION["USERS"]);
-=======
-    let userInfoRef = await db.collection(DB_COLLECTION["USERS"]);
->>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
     let snapShot = await userInfoRef.where('userid', '==', userId).get();
     return new Promise(resolve => {
         snapShot.forEach(doc => {
@@ -143,11 +123,7 @@ async function getUserInfo(userId) {
  * @returns 유저 아이디
  */
  async function getUserId(inquiryAddress) {
-<<<<<<< HEAD
     let userInfoRef = await global.db.collection(DB_COLLECTION["USERS"]);
-=======
-    let userInfoRef = await db.collection(DB_COLLECTION["USERS"]);
->>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
     let snapShot = await userInfoRef.where('accountAddress', '==', inquiryAddress).get();
     return new Promise(resolve => {
             snapShot.forEach(doc => {
@@ -162,11 +138,7 @@ async function getUserInfo(userId) {
  * @returns 유저 아이디
  */
  async function getAccountPassword(inquiryAddress) {
-<<<<<<< HEAD
     let userInfoRef = await global.db.collection(DB_COLLECTION["USERS"]);
-=======
-    let userInfoRef = await db.collection(DB_COLLECTION["USERS"]);
->>>>>>> 59c535fb923fdeb0c2a4b41eb137fd295806445d
     let snapShot = await userInfoRef.where('accountAddress', '==', inquiryAddress).get();
     return new Promise(resolve => {
             snapShot.forEach(doc => {
