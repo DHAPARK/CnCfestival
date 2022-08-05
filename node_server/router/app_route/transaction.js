@@ -89,3 +89,5 @@ router.post('/hscRemittance', async (req, res)=> {
         }
     });
 })
+
+module.exports = router;
