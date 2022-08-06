@@ -57,6 +57,7 @@ a:hover { color: black; text-decoration: underline;}
     margin:0 auto;
 }
 
+
 /* 가운데 내용들 중 Form을 감싸는 div */
 #contentsContainerInnerRegisterForm{
     margin-top:80px;

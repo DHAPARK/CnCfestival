@@ -74,6 +74,11 @@ a:hover { color: black; text-decoration: underline;}
     position: relative;
 }
 
+#mypage{
+    font-weight: bold;
+    font-size: larger;
+}
+
 #total_point{
     font-size: 30px;
     font-weight: bold;

@@ -43,9 +43,15 @@ html,body {
     text-decoration: none;
     color:white;
 }
+
+#learning{
+    font-weight: bold;
+    font-size: larger;
+}
 a:link { color: white; text-decoration: none;}
 a:visited { color: white; text-decoration: none;}
 a:hover { color: white; text-decoration: underline;}
+
 #contentsContainer{
     padding-top:100px;
     width:100%;

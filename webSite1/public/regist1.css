@@ -75,6 +75,11 @@ a:hover { color: black; text-decoration: underline;}
     padding-inline: 10%;
 }
 
+#login{
+    font-weight: bold;
+    font-size: larger;
+}
+
 /* 가입하기 버튼 */
 #under_innerForm_registBtn{
     margin-top:2%;

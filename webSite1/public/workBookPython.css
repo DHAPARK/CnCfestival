@@ -49,7 +49,7 @@ html,body {
     font-size: larger;
 }
 
-a:link { color: black; text-decoration: none;}
+a:link { text-decoration: none;}
 a:visited { color: black; text-decoration: none;}
 a:hover { color: black; text-decoration: underline;}
 
@@ -68,7 +68,6 @@ a:hover { color: black; text-decoration: underline;}
 #topTextRightMenu{
     display: flex;
     justify-content: right;
-    color: black;
 }
 
 #topTextRightMenu p{
@@ -78,7 +77,7 @@ a:hover { color: black; text-decoration: underline;}
     padding-bottom: 20px;
 }
 
-a[id="lecture"]:link{
+a[id="workbook"]{
     color: rgb(91, 160, 194);
     font-size: larger;
     border-bottom: 2px solid rgb(91, 160, 194);
@@ -96,30 +95,62 @@ a[id="lecture"]:link{
     padding-inline: 20px;
     text-decoration: none;
 }
-#videoContainer{
+#workbookContainer{
     width : 78%;
     height: 80%;
-    
     margin:0 auto;
     padding-left:120px;
     padding-right:120px;
     padding-top:20px;
 }
 
-
-.videoSpace{
-    width:450px;
-    height:300px;
-    
-    margin:30px;
-}
-.eachVideo{
-    width : 100%;
-    height: 80%;
-    background-color:black;
+#menuTitle p{   
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 0;
+    display: inline-block;
 }
 
-
-.videoSemiContainer{
-    display:flex;
+#workbookSpace p{
+    font-weight: lighter;
+    font-size: 20px;
+    display: inline-block;
 }
+
+#number, #_number{
+    padding-right: 8%;
+    width: auto;
+    margin-right: 0;
+}
+#title{
+    padding-right: 40%;
+    margin-right: 0;
+}
+
+#_title{
+    margin-right: 0;
+    width: auto;
+    padding-right: 10%;
+}
+
+#workbook_div{
+    display: inline-block;
+    width: 25%;
+    margin-right: 15%;
+    line-height: 10px;
+}
+
+#progress_bar{
+    display: inline-block;
+    position: relative;
+    background-color: #ababab;
+    width: 45%;
+    margin-left: 22px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#_progress{
+    display: inline-block;
+}
+
