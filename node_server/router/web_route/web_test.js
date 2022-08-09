@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userAgentModel = require('../../models/userAgentModel');
 
-router.get('/',(req,res)=>{
+router.get('/index',(req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/");
 
     res.render('index');
@@ -26,17 +26,17 @@ router.get('/regist',(req,res)=>{
  * @param {string} month
  * @param {string} day
 */
-router.post('/joinMember/:userid', async (req,res)=>{
+router.post('/registUser', async (req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/joinMember/:userid");
     
-    const userid = req.params.userid;
+    const userid = req.body['userid'];
     const userpw = req.body["password"];
     const username = req.body["name"];
     const useremail = req.body["useremail"];
     const userphone = req.body["userphone"];
-    const year = req.body["year"];
-    const month = req.body["month"];
-    const day = req.body["day"];
+    const year = 1;
+    const month = 2;
+    const day = 3;
 
     console.log(`### /joinMember/${userid} : data`);
     console.log(`userid = ${userid}`);
@@ -51,6 +51,7 @@ router.post('/joinMember/:userid', async (req,res)=>{
     result["success"] = 200
     result["msg"] = "join success";
     res.json(result);
+    res.render('index');
 })
 
 /**
@@ -59,7 +60,7 @@ router.post('/joinMember/:userid', async (req,res)=>{
  * @param {string} userid
  * @param {string} userpw
  */
-router.get('/getMember/:userid/:userpw', async (req,res)=>{
+router.get('/login/:userid/:userpw', async (req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/getMember/:userid/:userpw");
 
     const userid = req.params.userid;
