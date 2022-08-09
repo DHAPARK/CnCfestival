@@ -3,7 +3,7 @@ const router = express.Router();
 const userAgentModel = require('../../models/userAgentModel');
 
 router.get('/index',(req,res)=>{
-    userAgentModel.printUserAgent(req.header('user-agent'),"/");
+    userAgentModel.printUserAgent(req.header('user-agent'),"/index");
 
     res.render('index');
 })
