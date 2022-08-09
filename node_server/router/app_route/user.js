@@ -61,7 +61,7 @@ router.get('/getMember/:userid/:userpw', async (req,res)=>{
     const userid = req.params.userid;
     const userpw = req.params.userpw;
 
-    if(await isIdInDb(userid)) {
+    if (await isIdInDb(userid)) {
         const userInfo = await getUserInfo(userid);    
         console.log(`### /getMember/${userid}/${userpw} : data`);
         console.log(`userid = ${userid}`);
@@ -72,7 +72,7 @@ router.get('/getMember/:userid/:userpw', async (req,res)=>{
             console.log(`member = ${member}`);  
             member == 100 ? res.json(userInfo) : res.json(member);
         });
-    } else{
+    } else {
         res.json(RETURN_CODE['NONE_ID']);
     }
 });

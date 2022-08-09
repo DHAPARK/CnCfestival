@@ -34,8 +34,8 @@ app.use(bodyParser.json());
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
-app.use(express.static('img'));
+app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/img'));
 
 const appUtilRouter = require('./router/app_route/util');
 const appUserRouter = require('./router/app_route/user');
