@@ -32,6 +32,9 @@ app.use(bodyParser.json());
 // app.use(express.json());
 // app.use(express.urlencoded({extended:false}));
 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
 const appUtilRouter = require('./router/app_route/util');
 const appUserRouter = require('./router/app_route/user');
 const appTransactionRouter = require('./router/app_route/transaction');
