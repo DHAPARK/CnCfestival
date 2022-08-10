@@ -9,6 +9,7 @@ import {
   StyleSheet,
   Vibration,
   View,
+  Platform,
 } from 'react-native';
 import PaymentOneContainer from '../components/PaymentOneComponents/PaymentOneContainer';
 import PaymentOneTopSmallContainer from '../components/PaymentOneComponents/PaymentOneTopSmallContainer';
@@ -18,6 +19,7 @@ import PaymentOneBottomMyInfo from '../components/PaymentOneComponents/PaymentOn
 
 //import {BarCodeScanner} from 'expo-barcode-scanner';
 import {Camera, CameraType} from 'react-native-camera-kit';
+//import QRScanner from 'react-native-camera';
 
 //index.js 에 쓰인 Text
 const Text = styled.Text`
@@ -97,12 +99,13 @@ function PaymentOne({navigation}) {
   return (
     <PaymentOneContainer>
       <PaymentOneTopSmallContainer />
+
       <Camera
         style={styles.scanner}
         ref={ref}
         cameraType={CameraType.Back} // Front/Back(default)
-        zoomMode
-        focusMode
+        //zoomMode
+        //focusMode
         // Barcode Scanner Props
         scanBarcode
         showFrame={false}
