@@ -27,7 +27,7 @@ const envConfig = require('./config/envConfig');
 
 app.use(logger('dev'));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 // app.use(express.json());
 // app.use(express.urlencoded({extended:false}));
@@ -70,7 +70,7 @@ const webUserRouter = require('./router/web_route/user');
 const webTransactionRouter = require('./router/web_route/transaction');
 
 // 웹 요청 url 변경해야함
-app.use('/web', webTestRouter);
+app.use('/', webTestRouter);
 
 // app.use('/web/util', webUtilRouter);
 // => /checkIdDuplicate/:userid
