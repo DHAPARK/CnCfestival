@@ -1,4 +1,6 @@
-const BigNumber = require('big-number');
+const BigNumber = require('bignumber.js');
+const moment = require('moment');
+
 const { RETURN_CODE, DB_COLLECTION, TRANSACTION_TYPE } = require('./constant');
 const { putItemToDB } = require('./DB');
 const { balanceInquiry, getUserId, getAccountPassword } = require('./inquiry');
@@ -19,7 +21,7 @@ const { isAddressInDB } = require('./validation');
     await global.web3.eth.sendTransaction({
         from:senderAddress,
         to:receiverAddress,
-        value: BigNumber(amount * 10 ** decimals)
+        value: new BigNumber(amount * 10 ** decimals)
     });
 }
 
@@ -34,7 +36,7 @@ const { isAddressInDB } = require('./validation');
     decimals = parseInt(decimals);
     let transactionObj = await global.hsContract.methods.transfer(
         receiverAddress,
-        BigNumber(amount * 10 ** decimals)
+        new BigNumber(amount * 10 ** decimals)
     ).send({from:senderAddress});
     console.log(`${transactionObj['transactionHash']}`);
     let transactionHash = transactionObj['transactionHash'];
