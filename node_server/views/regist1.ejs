@@ -20,14 +20,14 @@
                 'useremail':useremail,
                 'userphone':userphone,
             }
-
-            console.log(`### ${Qs.stringify(data)}`);
+            let qsData = Qs.stringify(data);
+            console.log(`### ${qsData}`);
 
             axios({
                 url: '/registUser',
                 method: 'POST',
                 baseURL: `http://220.67.231.91:80`,
-                data: Qs.stringify(data)
+                data: qsData
                 // params: { // 이 부분 다시 확인하기
                 //     userid: data.id,
                 //     password: data.password,
