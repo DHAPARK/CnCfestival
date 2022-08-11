@@ -27,7 +27,7 @@
                 url: '/web/registUser',
                 method: 'POST',
                 baseURL: `http://220.67.231.91:80`,
-                data: qs.stringify(data),
+                data: Qs.stringify(data),
                 params: { // 이 부분 다시 확인하기
                     userid: data.id,
                     password: data.password,
