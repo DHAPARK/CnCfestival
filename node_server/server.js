@@ -4,8 +4,6 @@ const app = asyncify(express());
 const fs = require('fs');
 
 const bodyParser = require('body-parser');
-
-const BigNumber = require('bignumber.js');
 const moment = require('moment');
 const momentTimezone = require('moment-timezone');
 const dateUtils = require('date-utils');
@@ -70,7 +68,7 @@ const webUserRouter = require('./router/web_route/user');
 const webTransactionRouter = require('./router/web_route/transaction');
 
 // 웹 요청 url 변경해야함
-app.use('/', webTestRouter);
+app.use('/web', webTestRouter);
 
 // app.use('/web/util', webUtilRouter);
 // => /checkIdDuplicate/:userid
