@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/regist1.css"/>
     <script>
         function join() {
+            var qs = require('querystring');
             var [userid,userpw,username,useremail,userphone] = document.getElementsByClassName("innerForm_input");
             var [userid,userpw,username,useremail,userphone] = [userid.value,userpw.value,username.value,useremail.value,userphone.value];
 
