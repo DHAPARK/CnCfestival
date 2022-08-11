@@ -25,10 +25,10 @@ const PORT = 80;
 
 const envConfig = require('./config/envConfig');
 
-app.use(logger('dev'));
-app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.use(logger('dev'));
+app.use(cookieParser());
 // app.use(express.json());
 // app.use(express.urlencoded({extended:false}));
 
