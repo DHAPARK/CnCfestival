@@ -141,7 +141,6 @@ async function userSignUp(userid,userpw,username,useremail,userphone,year,month,
     console.log(`userphone = ${userphone}`);
     console.log(`year.month.day = ${year}.${month}.${day}`);
     console.log(`accountAddress = ${accountAddress}`);
-    console.log(`accountPassword = ${accountPassword}`);
     console.log(`### userSignUp Complete`);
 }
 
