@@ -23,10 +23,10 @@ router.get('/checkIdDuplicate/:userid',(req,res)=>{
         var checkUserid = await checkIdDuplicate(userid);
         console.log(`checkUserId res = ${checkUserid}`);
         
-        if(checkUserid === '200'){
+        if(checkUserid === '200') {
             //중복이 없을때 (회원가입 해도될때) 200을 보냄
             res.json('200');
-        }else{
+        } else{
             //중복이 있을때 (회원가입 하면 안될때) 100을 보냄
             res.json('100');
         }   
@@ -39,7 +39,7 @@ router.get('/checkIdDuplicate/:userid',(req,res)=>{
  * @method get
  * @param {string} userAccount
  */
-router.get('/getMyBalance/:userAccount',(req,res)=>{
+router.get('/getBalance/:userAccount',(req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/getMyBalance/:userAccount");
     
     const userAccount = req.params.userAccount;
@@ -50,10 +50,10 @@ router.get('/getMyBalance/:userAccount',(req,res)=>{
     var value;
     const getBalance = async ()=>{
         value =  await balanceInquiry(userAccount);
-        const userValance = {
-            'userValance': value,
+        const userBalance = {
+            'userBalance': value,
         }
-        res.json(userValance);
+        res.json(userBalance);
     }
     getBalance();
 })

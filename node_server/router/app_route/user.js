@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const userAgentModel = require('../../models/userAgentModel'); //유저모델
+const userAgentModel = require('../../models/userAgentModel');
 const { suppressDeprecationWarnings } = require("moment");
 
 const { RETURN_CODE, DB_COLLECTION } = require('../../utils/constant');

@@ -36,7 +36,7 @@ async function removetemToDB(collectionName, documentName) {
  */
 async function modifyDBItem(collectionName, documentName, dataObject) {
     let userRef = await global.db.collection(collectionName).doc(documentName);
-   
+    
     return new Promise(resolve => {
         userRef.update({
             username:dataObject['username'],
@@ -120,10 +120,10 @@ async function getFaviconList(userId) {
 /////////////////////////////////////////
 
 module.exports = {
-    putItemToDB: putItemToDB, 
-    removetemToDB: removetemToDB, 
-    modifyDBItem: modifyDBItem, 
-    addFavicon: addFavicon, 
-    removeFavicon: removeFavicon, 
-    getFaviconList: getFaviconList 
+    putItemToDB, 
+    removetemToDB, 
+    modifyDBItem, 
+    addFavicon, 
+    removeFavicon, 
+    getFaviconList 
 }

@@ -5,8 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="/regist1.css"/>
+    <script>
+        function join() {
+            var [userid,userpw,username,useremail,userphone] = document.getElementsByClassName("innerForm_input");
+            var [userid,userpw,username,useremail,userphone] = [userid.value,userpw.value,username.value,useremail.value,userphone.value];
+
+            const data = {
+                'id':userid,
+                'password':userpw,
+                'name':username,
+                'useremail':useremail,
+                'userphone':userphone,
+            }
+
+            console.log(data)
+
+            axios({
+                url: '/web/regist',
+                method: 'GET',
+                baseURL: `http://220.67.231.91:80`,
+                data: qs.stringify(data),
+                params: { // 이 부분 다시 확인하기
+                    userid: data.id,
+                    password: data.password,
+                    name: data.name,
+                    useremail: data.useremail,
+                    userphone: data.userphone
+                }
+            }).then((res)=>{
+                console.log(`서버와 연결 성공 ${JSON.stringify(response.data)}`);
+                location.href = "index.html";
+            }).catch(error=>{
+                console.log(`서버와 연결 실패 ${error}`);
+                throw new Error(error);
+            });
+        }
+    </script>
 
 </head>
 <body class="bg_cont">
@@ -86,7 +122,8 @@
         <div id="under_innerForm_registBtn">
             <div id="under_innerForm_blueDiv_inner_semiContainer">
                 <center>
-                    <button type="button" class="under_innerForm_blueDiv_innerBtn">가입하기</button>
+                    <button type="button" class="under_innerForm_blueDiv_innerBtn"
+                    onclick="join()">가입하기</button>
                 </center>
             </div>
         </div>

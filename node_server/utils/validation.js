@@ -84,21 +84,11 @@ async function isIdInDb(userId) {
 function userlogin(id,pw) {
     return new Promise((res,rej)=>{
         let ps = global.db.collection('users').doc(id);
-        let password= "";
-        let member = {};
     
         ps.onSnapshot(docSnapshot => {
             try{
-                password = docSnapshot["_fieldsProto"]["userpw"]["stringValue"];
-                userid = docSnapshot["_fieldsProto"]["userid"]["stringValue"];
-                userAccount = docSnapshot["_fieldsProto"]["accountAddress"]["stringValue"]
-
+                let password = docSnapshot["_fieldsProto"]["userpw"]["stringValue"];
                 if (password == pw){
-                    member = {
-                        "userid":`${id}`,
-                        "password":`${password}`,
-                        "userAccount":`${userAccount}`
-                    }
                     console.log(`### return code = ${RETURN_CODE['SUCCESS']}`);
                     res(RETURN_CODE['SUCCESS']);
                 }
