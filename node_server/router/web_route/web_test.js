@@ -94,7 +94,10 @@ router.get('/workBookPython',(req,res)=>{
 */
 router.post('/registUser', async (req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/registUser");
-    
+    console.log(`### ${req.data}`);
+    console.log(JSON.stringify(req));
+
+
     const userid = req.body['userid'];
     const userpw = req.body["password"];
     const username = req.body["name"];
@@ -104,7 +107,7 @@ router.post('/registUser', async (req,res)=>{
     const month = 2;
     const day = 3;
 
-    console.log(`### /joinMember : data`);
+    console.log(`### /registUser : data`);
     console.log(`userid = ${userid}`);
     console.log(`userpw = ${userpw}`);
     console.log(`username = ${username}`);
