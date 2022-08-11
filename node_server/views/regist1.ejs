@@ -46,7 +46,7 @@
                 // }
             }).then((res)=>{
                 console.log(`서버와 연결 성공 ${JSON.stringify(res.data)}`);
-                // location.href = "index.html";
+                location.href = "http://220.67.231.91:80/web/index";
             }).catch(error=>{
                 console.log(`서버와 연결 실패 ${error}`);
                 throw new Error(error);
