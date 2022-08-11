@@ -13,6 +13,13 @@
             var [userid,userpw,username,useremail,userphone] = document.getElementsByClassName("innerForm_input");
             var [userid,userpw,username,useremail,userphone] = [userid.value,userpw.value,username.value,useremail.value,userphone.value];
 
+            console.log('### userinfo list');
+            console.log(userid);
+            console.log(userpw);
+            console.log(username);
+            console.log(useremail);
+            console.log(userphone);
+
             const data = {
                 id:userid,
                 password:userpw,
@@ -20,8 +27,8 @@
                 useremail:useremail,
                 userphone:userphone,
             }
-            
-            let qsData = qs.stringify(data);
+
+            let qsData = Qs.stringify(data);
             console.log(`###1 ${JSON.stringify(data)}`);
             console.log(`###2 ${qsData}`);
 
