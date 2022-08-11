@@ -95,7 +95,6 @@ router.get('/workBookPython',(req,res)=>{
 router.post('/registUser', async (req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/registUser");
     console.log(`### ${JSON.stringify(req.body)}`);
-    console.log(`### ${JSON.stringify(req)}`);
 
     const userid = req.body['userid'];
     const userpw = req.body["password"];
