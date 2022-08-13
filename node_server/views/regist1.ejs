@@ -33,17 +33,10 @@
             console.log(`###2 ${qsData}`);
 
             axios({
-                url: '/web/registUser',
+                url: '/web/user/registUser',
                 method: 'POST',
                 baseURL: `http://220.67.231.91:80`,
                 data: Qs.stringify(data)
-                // params: { // 이 부분 다시 확인하기
-                //     userid: data.id,
-                //     password: data.password,
-                //     name: data.name,
-                //     useremail: data.useremail,
-                //     userphone: data.userphone
-                // }
             }).then((res)=>{
                 console.log(`서버와 연결 성공 ${JSON.stringify(res.data)}`);
                 location.href = "http://220.67.231.91:80/web/index";

@@ -12,7 +12,7 @@ const { checkIdDuplicate } = require('../../utils/validation');
  * @method get
  * @param {string} userid
  */
-router.get('/checkIdDuplicate/:userid',(req,res)=>{
+router.get('/checkIdDuplicate/:userid',(req,res) => {
     userAgentModel.printUserAgent(req.header('user-agent'),"/checkIdDuplicate/:userid");
     const userid = req.params.userid;
 
@@ -39,7 +39,7 @@ router.get('/checkIdDuplicate/:userid',(req,res)=>{
  * @method get
  * @param {string} userAccount
  */
-router.get('/getBalance/:userAccount',(req,res)=>{
+router.get('/getBalance/:userAccount',(req,res) => {
     userAgentModel.printUserAgent(req.header('user-agent'),"/getMyBalance/:userAccount");
     
     const userAccount = req.params.userAccount;
@@ -48,7 +48,7 @@ router.get('/getBalance/:userAccount',(req,res)=>{
     console.log(`userAccount = ${userAccount}`);
 
     var value;
-    const getBalance = async ()=>{
+    const getBalance = async () => {
         value =  await balanceInquiry(userAccount);
         const userBalance = {
             'userBalance': value,

@@ -62,15 +62,15 @@ app.use('/', appTransactionRouter);
 // => /hscRemittance
 // => /hscPayment
 
-const webTestRouter = require('./router/web_route/web_test');
+const webUrlRouter = require('./router/web_route/url');
 const webUtilRouter = require('./router/web_route/util');
 const webUserRouter = require('./router/web_route/user');
 const webTransactionRouter = require('./router/web_route/transaction');
 
 // 웹 요청 url 변경해야함
-app.use('/web', webTestRouter);
+app.use('/web', webUrlRouter);
 
-// app.use('/web/util', webUtilRouter);
+app.use('/web/util', webUtilRouter);
 // => /checkIdDuplicate/:userid
 // => /getMyBalance/:userAccount
 // => /getGpsInfo
@@ -78,12 +78,12 @@ app.use('/web', webTestRouter);
 // => /getUserRank
 // => /getRecentTransferAccount
 
-// app.use('/web/user', webUserRouter);
+app.use('/web/user', webUserRouter);
 // => /joinMember/:userid
 // => /getMember/:userid/:userpw
 // => /ModifyMyInfo/:userId
 
-// app.use('/web/transaction', webTransactionRouter);
+app.use('/web/transaction', webTransactionRouter);
 // => /hscRemittance
 // => /hscPayment
 

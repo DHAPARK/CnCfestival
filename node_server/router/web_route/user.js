@@ -16,11 +16,11 @@ const { isIdInDb, isPasswordRight, userlogin, userSignUp } = require('../../util
  * @param {string} username
  * @param {string} useremail
  * @param {string} userphone
- * @return {object} 결과 코드
 */
 router.post('/registUser', async (req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/registUser");
-    
+    console.log(`### ${JSON.stringify(req.body)}`);
+
     const userid = req.body['userid'];
     const userpw = req.body["password"];
     const username = req.body["name"];
@@ -30,7 +30,7 @@ router.post('/registUser', async (req,res)=>{
     const month = 2;
     const day = 3;
 
-    console.log(`### /joinMember : data`);
+    console.log(`### /registUser : data`);
     console.log(`userid = ${userid}`);
     console.log(`userpw = ${userpw}`);
     console.log(`username = ${username}`);
@@ -53,7 +53,6 @@ router.post('/registUser', async (req,res)=>{
  * @method post
  * @param {string} userid
  * @param {string} userpw
- * @return {object} 유저 객체 or 실패 코드
  */
 router.get('/login', async (req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/login");
