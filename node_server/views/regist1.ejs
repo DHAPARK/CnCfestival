@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/regist1.css"/>
     <script>
         function join() {
-            var [userid,userpw,username,useremail,userphone] = document.getElementsByClassName("temp");
+            var [userid,userpw,username,useremail,userphone] = document.getElementsByClassName("regist_user");
             var [userid,userpw,username,useremail,userphone] = [userid.value,userpw.value,username.value,useremail.value,userphone.value];
 
             console.log('### userinfo list');
@@ -47,10 +47,14 @@
         }
 
         function checkId() {
-            var userid = document.getElementsByClassName("temp");
+            var userid = document.getElementById("userid");
             var userid = userid.value;
 
-            console.log(`userid ${userid}`);
+            const data = { userid:userid }
+
+            let qsData = Qs.stringify(data);
+            console.log(`###1 ${JSON.stringify(data)}`);
+            console.log(`###2 ${qsData}`);
 
             axios({
                 url: `/web/util/checkIdDuplicate/:${userid}`,
@@ -97,7 +101,7 @@
                     <div class="innerForm_input">
                         <p>USER ID</p>
                         <div id="user">
-                            <input class="temp" type="text" id="userid" placeholder="USER ID"/>
+                            <input class="regist_user" type="text" id="userid" placeholder="USER ID"/>
                             <!--userid 중복확인버튼-->
                             <button type="duplicate_btn" onclick="checkId()">확인</button>
                         </div>
@@ -105,20 +109,20 @@
                     <div class="innerForm_input">
                         <!--userpw-->
                         <p>USER PW</p>
-                        <input class="temp" type="password" id="userpw" placeholder="USER PW"/>
+                        <input class="regist_user" type="password" id="userpw" placeholder="USER PW"/>
                     </div>
                     
                     <div class="innerForm_input">
                         <!--username-->
                         <p>USER NAME</p>
-                        <input class="temp" type="text" id="username" placeholder="USER NAME"/>
+                        <input class="regist_user" type="text" id="username" placeholder="USER NAME"/>
                     </div>
                     
                     <div class="innerForm_input">
                         <!--email-->
                         <p>EMAIL</p>
                         <div id="user">
-                            <input class="temp" type="email" id="useremail" placeholder="EMAIL"/>
+                            <input class="regist_user" type="email" id="useremail" placeholder="EMAIL"/>
                             <!--email 중복확인버튼-->
                             <button type="duplicate_btn">확인</button>
                         </div>
@@ -128,7 +132,7 @@
                         <!--phone number-->
                         <p>PHONE NUMBER</p>
                         <div id="user">
-                            <input class="temp" type="text" id="phonenumber" placeholder="PHONE NUMBER"/>
+                            <input class="regist_user" type="text" id="phonenumber" placeholder="PHONE NUMBER"/>
                             <!--phone number 중복확인버튼-->
                             <button type="duplicate_btn">인증</button>
                         </div>

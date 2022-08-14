@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/index.css"/>
     <script>
         function checkUser() {
-            var [userid,userpw] = document.getElementsByClassName("temp");
+            var [userid,userpw] = document.getElementsByClassName("index_user");
             var [userid,userpw] = [userid.value,userpw.value];
 
             const data = {
@@ -25,7 +25,7 @@
                 url: 'web/user/login',
                 method: 'POST',
                 baseURL: `http://220.67.231.91:80`,
-                data: Qs.stringify(data),
+                data: Qs.stringify(data)
             }).then((res) => { // 로그인 성공하면
                 console.log(`로그인 정보 보냄 코드: ${res.status}, 메시지: ${JSON.stringify(res.data)}`);
                 location.href = "http://220.67.231.91:80/web/mypage";
@@ -52,8 +52,8 @@
             <div id="middleForm">
 
                 <form id="middleFormInnerForm">
-                    <p><input class="temp" type="text" id="userid" name="userid" placeholder="USER ID"/></p>
-                    <p><input class="temp" type="password" id="userpw" name="userpw" placeholder="USER PW"/></p>
+                    <p><input class="index_user" type="text" id="userid" name="userid" placeholder="USER ID"/></p>
+                    <p><input class="index_user" type="password" id="userpw" name="userpw" placeholder="USER PW"/></p>
                     <p><input type="button" value="로그인" onclick="checkUser()"/></p>
                     
 
