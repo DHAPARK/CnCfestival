@@ -5,9 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="/index.css"/>
+    <script>
+        function checkUser() {
+            var [userid,userpw] = document.getElementsByClassName("temp");
+            var [userid,userpw] = [userid.value,userpw.value];
 
+            const data = {
+                id:userid,
+                password:userpw
+            }
+
+            let qsData = Qs.stringfy(data);
+            axios({
+                url: 'web/user/login',
+                method: 'POST',
+                baseURL: `http://220.67.231.91:80`,
+                data: Qs.stringfy(data),
+            }).then((res) => { // 로그인 성공하면
+                console.log(`로그인 정보 보냄 코드: ${res.status}, 메시지: ${JSON.stringfy(res.data)}`);
+                location.href = "http://220.67.231.91:80/web/mypage";
+            }).catch(error=>{
+                console.log(`로그인 정보 보내기 실패 ${error}`);
+                throw new Error(error);
+            })
+        }
+    </script>
 </head>
 <body>
     <div id="container">
@@ -25,9 +49,9 @@
             <div id="middleForm">
 
                 <form id="middleFormInnerForm">
-                    <p><input type="text" id="userid" name="userid" placeholder="USER ID"/></p>
-                    <p><input type="password" id="userpw" name="userpw" placeholder="USER PW"/></p>
-                    <p><input type="button" value="로그인"/></p>
+                    <p><input class="temp" type="text" id="userid" name="userid" placeholder="USER ID"/></p>
+                    <p><input class="temp" type="password" id="userpw" name="userpw" placeholder="USER PW"/></p>
+                    <p><input type="button" value="로그인" onclick="checkUser()"/></p>
                     
 
 

@@ -57,13 +57,9 @@
             console.log(`###2 ${qsData}`);
 
             axios({
-                url: '/web/util/checkIdDuplicate/',
+                url: `/web/util/checkIdDuplicate/:${userid}`,
                 method: 'GET',
-                baseURL: `http://220.67.231.91:80`,
-                data: Qs.stringify(data),
-                params: {
-                    userid: data.userid
-                }
+                baseURL: `http://220.67.231.91:80`
             }).then((res)=>{
                 console.log(`아이디 중복 확인 코드: ${res.status}, 메시지: ${JSON.stringify(res.data)}`);
             }).catch(error=>{
