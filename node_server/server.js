@@ -94,10 +94,9 @@ app.listen(PORT, async () => {
     console.log(`${PORT}번호로 서버 실행중...`);
     console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
     console.log(global.storage);
-    global.storage.getFiles().then(function(data) {
-        data.forEach(element => {
-            console.log(`### file = ${element}`);
-            // console.log(`### files = ${JSON.stringify(element)}`);
-        }); 
+    global.storage.getMetadata().then(function(data) {
+        const metadata = data[0];
+        const apiResponse = data[1];
+        console.log(`### ${metadata}, ${apiResponse}`);
     });
 });
