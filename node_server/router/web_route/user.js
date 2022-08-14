@@ -54,7 +54,7 @@ router.post('/registUser', async (req,res)=>{
  * @param {string} userid
  * @param {string} userpw
  */
-router.get('/login', async (req,res)=>{
+router.post('/login', async (req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/login");
 
     const userid = req.body['userid'];
