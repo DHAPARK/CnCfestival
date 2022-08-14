@@ -5,8 +5,8 @@ html,body {
 }
 #container {
     width:100%;
-    height:37.5%;
-    background: linear-gradient(-60deg, rgb(195, 227, 226) 48%, white 30%);
+    height:45%;
+    background: linear-gradient(-60deg, rgb(195, 227, 226) 50%, white 50%);
 }
 
 /*topLongContainer은 width100% height200px로 고정하자*/
@@ -39,7 +39,7 @@ a:hover { color: white; text-decoration: underline;}
 #contentsContainer{
     width:100%;
     height:100%;
-    min-width:1400px;    
+    min-width:1400px;
 }
 
 #logoImage{
@@ -119,42 +119,118 @@ a:hover { color: white; text-decoration: underline;}
     margin-top: 40px;
 }
 
-.contentsContainer_Advertisement{
-    margin: 0 auto;
-    width: 100%;
-    height: 60%;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-#contentsContainer_Ad_1{
-    width: 40%;
+.contentsContainer_How{
+    padding-top:10px;
+    color: black;
+    padding-bottom: 10%;
+    padding-inline: 5%;
     height: 100%;
-    float: left;
+}
+
+#contentsContainer_How_Title{
+    font-size: 50px;
+    font-weight: bold;
+    color: black;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    margin-inline: 10%;
+    text-align: center;
+}
+
+.contentsContainer_How_Img{
+    margin-inline: 5%;
+    display: flex;
+}
+
+.arrow{
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.arrow::before, .arrow::after{
+    content: '';
+    position: absolute;
+}
+
+.arrow::before{
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.arrow::after{
+    width: 48px;
+    height: 1px;
+    background: black;
+    transform-origin: 0 100%;
+    /*transform: rotate(45deg);*/
+}
+
+/*.arrow-left{
+    transform: rotate(-45deg);
+}*/
+
+.contentsContainer_How_Img1{
+    display: flex;
+    margin-inline: 10%;
+    margin-top: 10%;
+    margin-right: 0;
+    width: 50%;
+}
+
+.contentsContainer_How_Img2{
+    display: flex;
+    flex-direction: column;
+    margin-inline: 10%;
+    margin-left: 20%;
+    margin-right: 0;
+    width: 50%;
+}
+
+.contentsContainer_How_Img p{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+#h1{
+    margin-right: 20%;
+}
+
+#how1{
+    width: 100px;
+}
+
+#h2{
+    margin: 20%;
+    margin-top: 8%;
+}
+#how2{
+    width: 130px;
+
+}
+
+#h3{
+    margin-bottom: 15%;
+}
+#h3 p{
+    margin-left: 15%;
+}
+#how3{
+    width: 220px;
+    margin-bottom: 5%;
+}
+
+#h4 p{
     margin-left: 10%;
-    margin-right: 5px;
-    background-color: #949ba3;
-    border-radius: 11px;
+}
+#how4{
+    margin-left: 15%;
+    width: 120px;
 }
 
-#contentsContainer_Ad_2{
-    width: 38%;
-    height: 60%;
-    float: right;
-    margin-right: 10%;
-    margin-bottom: 10px;
-    background-color: #949ba3;
-    border-radius: 11px;
-}
-
-#contentsContainer_Ad_3{
-    width: 38%;
-    height: 38%;
-    float: right;
-    margin-right: 10%;
-    background-color: #949ba3;
-    border-radius: 11px;
-}
 
 .contentsContainer_Service{
     padding-top:10px;
