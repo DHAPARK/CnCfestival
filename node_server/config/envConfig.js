@@ -28,7 +28,7 @@ async function initDB() {
 
 global.login = auth.getAuth();
 global.db = firestore.getFirestore();
-global.storage = firebaseAdmin.storage().bucket();
+global.storage = global.firebaseAdmin.storage().bucket();
 
 module.exports = {
     firestore,
