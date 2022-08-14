@@ -19,7 +19,7 @@ async function initWeb3() {
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    storageBucket: 'hscoin.appspot.com'
+    storageBucket: 'hscoin-d8ff7.appspot.com'
 });
 
 global.login = auth.getAuth();
