@@ -93,4 +93,5 @@ app.listen(PORT, async () => {
     moment.tz.setDefault('Asia/Seoul');
     console.log(`${PORT}번호로 서버 실행중...`);
     console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
+    console.log(global.storage);
 });

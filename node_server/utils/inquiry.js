@@ -32,6 +32,21 @@ async function balanceInquiry(inquiryAddress) {
 }
 
 /**
+ * DB에서 프랜차이즈 정보를 가져옴
+ * @returns {object} 프랜차이즈 정보들 obejct
+ */
+ async function getFranchise() {
+    let franchiseObj = {};
+    let ps = await global.db.collection(DB_COLLECTION['FRANCHISE']).get();
+    return new Promise(resolve => {
+        ps.forEach(doc => {
+            franchiseObj[doc.id] = doc.data();
+        });
+        resolve(franchiseObj);
+    });
+}
+
+/**
  * 이용내역 쿼리
  * @param {string} inquiryAddress 조회할 계정 주소
  * @returns {object} 계정주소가 보내거나 받은 정보 객체
