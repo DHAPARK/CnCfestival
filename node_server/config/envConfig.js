@@ -18,21 +18,16 @@ async function initWeb3() {
     console.log(`### Web3 Init`);
 }
 
-async function initDB() {
-    global.db = await firestore.getFirestore();
-    //global.storage = await .storage().bucket();
-    global.login = await auth.getAuth();
-    console.log(`### DB Init`);
-}
-
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     storageBucket: 'hscoin-d8ff7.appspot.com/test'
 }, 'storage');
 
+global.db = firestore.getFirestore();
+global.login = auth.getAuth();
+//global.storage = await .storage().bucket();
 
 module.exports = {
     firestore,
-    initWeb3,
-    initDB
+    initWeb3
 }

@@ -89,7 +89,6 @@ app.use('/web/transaction', webTransactionRouter);
 
 
 app.listen(PORT, async () => {
-    await envConfig.initDB();
     await envConfig.initWeb3();
     moment.tz.setDefault('Asia/Seoul');
     console.log(`${PORT}번호로 서버 실행중...`);
