@@ -96,7 +96,8 @@ app.listen(PORT, async () => {
     console.log(global.storage);
     global.storage.getFiles().then(function(data) {
         data.forEach(element => {
-            console.log(`### files = ${JSON.stringify(element)}`);
+            console.log(`### file = ${element}`);
+            // console.log(`### files = ${JSON.stringify(element)}`);
         }); 
     });
 });
