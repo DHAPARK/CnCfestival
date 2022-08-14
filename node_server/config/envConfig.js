@@ -7,6 +7,7 @@ const Web3 = require('web3');
 
 const { HSCOIN_ABI, HSCOIN_ADDRESS } = require('../utils/constant');
 
+
 /**
  * Web3, HsContract 객체 생성
  */
@@ -18,16 +19,16 @@ async function initWeb3() {
 }
 
 async function initDB() {
-    global.firebaseAdmin = await admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-        storageBucket: 'hscoin-d8ff7.appspot.com/test'
-    }, 'storage');
-    global.storage = global.firebaseAdmin.storage().bucket();
-    global.login = auth.getAuth();
-    global.db = firestore.getFirestore();
+    global.db = await firestore.getFirestore();
+    //global.storage = await .storage().bucket();
+    global.login = await auth.getAuth();
     console.log(`### DB Init`);
 }
 
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    storageBucket: 'hscoin-d8ff7.appspot.com/test'
+}, 'storage');
 
 
 module.exports = {
