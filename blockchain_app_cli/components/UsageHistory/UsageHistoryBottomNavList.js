@@ -11,8 +11,16 @@ import {useNavigation} from '@react-navigation/native';
 
 import {Dimensions} from 'react-native';
 
-const ScreenHeight = Dimensions.get('window').height;
-const ScreenWidth = Dimensions.get('window').width;
+var ScreenHeight = Dimensions.get('window').height;
+var ScreenWidth = Dimensions.get('window').width;
+
+if (Platform.OS === 'ios') {
+  ScreenHeight = ScreenHeight * 0.93;
+  ScreenWidth = ScreenWidth * 0.02;
+} else {
+  ScreenHeight = ScreenHeight * 0.9;
+  ScreenWidth = ScreenWidth * 0.02;
+}
 const Container = styled.SafeAreaView`
   width: 95%;
   height: 5%;
@@ -22,8 +30,8 @@ const Container = styled.SafeAreaView`
   flex-direction: row;
 
   position: absolute;
-  top: ${ScreenHeight * 0.93}px;
-  left: ${ScreenWidth * 0.02}px;
+  top: ${ScreenHeight}px;
+  left: ${ScreenWidth}px;
 `;
 
 function UsageHistoryBottomNavList() {
