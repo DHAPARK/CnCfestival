@@ -14,12 +14,17 @@ async function initWeb3() {
     global.web3 = new Web3('http://127.0.0.1:8545');
     global.accountList = await web3.eth.getAccounts();
     global.hsContract = await new web3.eth.Contract(HSCOIN_ABI, HSCOIN_ADDRESS);
-    console.log(`### Web3 Init web3`);
+    console.log(`### Web3 Init`);
 }
 
-global.firebaseAdmin = admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-}, 'storage');
+async function initDB() {
+    global.firebaseAdmin = admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount)
+    }, 'storage');
+    console.log(`### DB Init`);
+}
+
+
 
 global.login = auth.getAuth();
 global.db = firestore.getFirestore();
@@ -27,5 +32,6 @@ global.storage = firebaseAdmin.storage().bucket();
 
 module.exports = {
     firestore,
-    initWeb3
+    initWeb3,
+    initDB
 }

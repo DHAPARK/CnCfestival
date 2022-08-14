@@ -17,7 +17,7 @@ const auth = require("firebase-admin/auth");
 const firestore = require("firebase-admin/firestore");
 const Web3 = require('web3');
 
-const { send, allowedNodeEnvironmentFlags, getMaxListeners } = require('process');
+const { send, allowedNodeEnvironmentFlags, getMaxListeners, env } = require('process');
 const { json } = require('express');
 const PORT = 80;
 
@@ -90,6 +90,7 @@ app.use('/web/transaction', webTransactionRouter);
 
 app.listen(PORT, async () => {
     await envConfig.initWeb3();
+    await envConfig.initDB();
     moment.tz.setDefault('Asia/Seoul');
     console.log(`${PORT}번호로 서버 실행중...`);
     console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
