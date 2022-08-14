@@ -97,6 +97,7 @@ app.listen(PORT, async () => {
     global.storage.getMetadata().then(function(data) {
         const metadata = data[0];
         const apiResponse = data[1];
-        console.log(`### ${metadata}, ${apiResponse}`);
+        console.log(`### ${JSON.stringify(metadata)}`);
+        console.log(`### ${JSON.stringify(apiResponse)}`);
     });
 });
