@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./public/index.css"/>
     <script>
         function checkUser() {
-            var [userid,userpw] = document.getElementsByClassName("temp");
+            var [userid,userpw] = document.getElementsByClassName("index_user");
             var [userid,userpw] = [userid.value,userpw.value];
 
             const data = {
@@ -49,8 +49,8 @@
             <div id="middleForm">
 
                 <form id="middleFormInnerForm">
-                    <p><input class="temp" type="text" id="userid" name="userid" placeholder="USER ID"/></p>
-                    <p><input class="temp" type="password" id="userpw" name="userpw" placeholder="USER PW"/></p>
+                    <p><input class="index_user" type="text" id="userid" name="userid" placeholder="USER ID"/></p>
+                    <p><input class="index_user" type="password" id="userpw" name="userpw" placeholder="USER PW"/></p>
                     <p><input type="button" value="로그인" onclick="checkUser()"/></p>
                     
 
