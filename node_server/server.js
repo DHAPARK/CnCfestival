@@ -94,6 +94,6 @@ app.listen(PORT, async () => {
     console.log(`${PORT}번호로 서버 실행중...`);
     console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
     console.log(global.storage);
-    const test = await global.storage.ref().child('test/');
-    console.log(`#### ${test.getDownloadURL()}`);
+    const test = await global.storage.file('test/test_img1.jpg');
+    console.log(`#### ${test}`);
 });

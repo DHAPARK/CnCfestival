@@ -1,7 +1,6 @@
 const admin = require("firebase-admin");
 const auth = require("firebase-admin/auth");
 const firestore = require("firebase-admin/firestore");
-const firebase = require('firebase');
 const { getStorage } = require("firebase-admin/storage");
 const serviceAccount = require("../hscoin-d8ff7-firebase-adminsdk-unmpe-a6a77a60b5.json");
 const Web3 = require('web3');
@@ -18,14 +17,13 @@ async function initWeb3() {
     console.log(`### Web3 Init web3`);
 }
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    storageBucket: 'hscoin-d8ff7.appspot.com'
-});
+global.firebaseAdmin = admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+}, 'storage');
 
 global.login = auth.getAuth();
 global.db = firestore.getFirestore();
-global.storage = firebase.storage();
+global.storage = firebaseAdmin.storage().bucket();
 
 module.exports = {
     firestore,
