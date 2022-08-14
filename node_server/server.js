@@ -94,7 +94,7 @@ app.listen(PORT, async () => {
     console.log(`${PORT}번호로 서버 실행중...`);
     console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
     console.log(global.storage);
-    bucket.getFiles().then(function(data) {
+    global.storage.getFiles().then(function(data) {
         const files = data[0];
         console.log(`### files = ${files}`);
     });
