@@ -22,11 +22,12 @@ async function initDB() {
         credential: admin.credential.cert(serviceAccount)
     }, 'storage');
     global.storage = global.firebaseAdmin.storage().bucket();
+    global.login = auth.getAuth();
+    global.db = firestore.getFirestore();
     console.log(`### DB Init`);
 }
 
-global.login = auth.getAuth();
-global.db = firestore.getFirestore();
+
 
 module.exports = {
     firestore,
