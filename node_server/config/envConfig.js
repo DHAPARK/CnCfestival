@@ -1,6 +1,7 @@
 const admin = require("firebase-admin");
 const auth = require("firebase-admin/auth");
 const firestore = require("firebase-admin/firestore");
+const { getStorage } = require("firebase-admin/storage");
 const serviceAccount = require("../hscoin-d8ff7-firebase-adminsdk-unmpe-a6a77a60b5.json");
 const Web3 = require('web3');
 
@@ -22,7 +23,7 @@ admin.initializeApp({
 
 global.login = auth.getAuth();
 global.db = firestore.getFirestore();
-global.storage = firestore.getStorage().bucket();
+global.storage = getStorage().bucket();
 
 module.exports = {
     firestore,
