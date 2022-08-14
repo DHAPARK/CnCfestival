@@ -25,7 +25,7 @@ admin.initializeApp({
 global.login = auth.getAuth();
 global.db = firestore.getFirestore();
 global.storage = getStorage().bucket();
-
+  
 module.exports = {
     firestore,
     initWeb3
