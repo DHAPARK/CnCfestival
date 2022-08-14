@@ -18,17 +18,15 @@ async function initWeb3() {
 }
 
 async function initDB() {
-    global.firebaseAdmin = admin.initializeApp({
+    global.firebaseAdmin = await admin.initializeApp({
         credential: admin.credential.cert(serviceAccount)
     }, 'storage');
+    global.storage = global.firebaseAdmin.storage().bucket();
     console.log(`### DB Init`);
 }
 
-
-
 global.login = auth.getAuth();
 global.db = firestore.getFirestore();
-global.storage = global.firebaseAdmin.storage().bucket();
 
 module.exports = {
     firestore,
