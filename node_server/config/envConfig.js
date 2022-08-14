@@ -1,12 +1,10 @@
 const admin = require("firebase-admin");
-const auth = require("firebase-admin/auth");
 const firestore = require("firebase-admin/firestore");
 const { getStorage } = require("firebase-admin/storage");
 const serviceAccount = require("../hscoin-d8ff7-firebase-adminsdk-unmpe-a6a77a60b5.json");
 const Web3 = require('web3');
 
 const { HSCOIN_ABI, HSCOIN_ADDRESS } = require('../utils/constant');
-
 
 /**
  * Web3, HsContract 객체 생성
@@ -23,8 +21,8 @@ admin.initializeApp({
     storageBucket: 'hscoin-d8ff7.appspot.com/test'
 }, 'storage');
 
+
 global.db = firestore.getFirestore();
-global.login = auth.getAuth();
 //global.storage = await .storage().bucket();
 
 module.exports = {
