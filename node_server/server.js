@@ -95,8 +95,7 @@ app.listen(PORT, async () => {
     console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
     console.log(global.storage);
     global.storage.getFiles().then(function(data) {
-        const files = data[0];
-        files.forEach(element => {
+        data.forEach(element => {
             console.log(`### files = ${JSON.stringify(element)}`);
         }); 
     });
