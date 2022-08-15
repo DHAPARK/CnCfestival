@@ -12,7 +12,8 @@ const firebaseConfig = {
     storageBucket: "hscoin-d8ff7.appspot.com",
     messagingSenderId: "928676142936",
     appId: "1:928676142936:web:72e7970feb2b29c792cf2d",  
-    measurementId: "G-86FLCDRTND"
+    measurementId: "G-86FLCDRTND",
+    credential: admin.credential.cert(serviceAccount)
 };
 
 /**
