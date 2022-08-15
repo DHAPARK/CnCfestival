@@ -33,6 +33,10 @@ import Notice from './pages/Notice';
 import ModifyMyInfo from './pages/ModifyMyInfo';
 import UsageHistory from './pages/UsageHistory';
 import Franchisee from './pages/Franchisee';
+
+//마켓
+import MarketMain from './pages/MarketMain';
+
 //스플래시 스크린
 import SplashScreen from 'react-native-splash-screen';
 //스플래시 스크린
@@ -103,6 +107,10 @@ const App: () => Node = () => {
           name="UsageHistory"
           component={UsageHistory}
           options={{title: '이용내역', headerShown: false}}></Stack.Screen>
+        <Stack.Screen
+          name="MarketMain"
+          component={MarketMain}
+          options={{title: '마켓', headerShown: false}}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -6,6 +6,7 @@ import IndexBottomHomeButton from './IndexBottomHomeButton';
 import IndexBottomOfficialButton from './IndexBottomOfficialButton';
 import IndexBottomMarketButton from './IndexBottomMarketButton';
 import IndexBottomUseListButton from './IndexBottomUseListButton';
+import IndexBottomOnlineMarketButton from './IndexBottomOnlineMarketButton';
 
 import {useNavigation} from '@react-navigation/native';
 import {Platform, Dimensions} from 'react-native';
@@ -47,6 +48,9 @@ function IndexBottomNavList() {
       />
       <IndexBottomUseListButton
         onPress={() => navigation.navigate('UsageHistory')}
+      />
+      <IndexBottomOnlineMarketButton
+        onPress={() => navigation.navigate('MarketMain')}
       />
     </Container>
   );

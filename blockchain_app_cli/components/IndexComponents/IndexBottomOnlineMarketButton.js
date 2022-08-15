@@ -7,24 +7,26 @@ const Container = styled.TouchableOpacity`
   border-radius: 7px;
   width: 19%;
   height: 95%;
-  background-color: #95b3d7;
+  background-color: white;
   justify-content: center;
   align-items: center;
   margin: auto 0.5%;
 `;
 const styles = StyleSheet.create({
   text: {
-    color: 'white',
+    color: 'black',
     fontSize: 17,
   },
 });
 
-function IndexBottomHomeButton() {
+function IndexBottomOnlineMarketButton(props) {
   return (
     <Container>
-      <Text style={styles.text}>홈</Text>
+      <Text onPress={props.onPress} style={styles.text}>
+        마켓
+      </Text>
     </Container>
   );
 }
 
-export default IndexBottomHomeButton;
+export default IndexBottomOnlineMarketButton;
