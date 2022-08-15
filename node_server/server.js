@@ -101,18 +101,19 @@ app.listen(PORT, async () => {
     // const storageRef = 'test/test_img1.jpeg';
     // console.log(storageRef);
 
-    for(let i = 2; i<=10; i++) {
-        let item = `item${i}`;
-        let name = `name${i}`;
-        let price = 100 * i;
-        let description = `item${i} example`;
+    // for(let i = 2; i<=10; i++) {
+    //     let item = `item${i}`;
+    //     let name = `name${i}`;
+    //     let price = 100 * i;
+    //     let description = `item${i} example`;
 
-        let obj = {
-            name: name,
-            price: price,
-            description: description
-        };
+    //     let obj = {
+    //         name: name,
+    //         price: price,
+    //         description: description
+    //     };
 
-        putItemToDB(DB_COLLECTION['PRODUCT'], item, obj);
-    }
+    //     putItemToDB(DB_COLLECTION['PRODUCT'], item, obj);
+    // }
+    
 });

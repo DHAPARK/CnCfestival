@@ -4,7 +4,7 @@ const userAgentModel = require('../../models/userAgentModel');
 const { suppressDeprecationWarnings } = require("moment");
 
 const { addFavicon, getFaviconList } = require('../../utils/DB');
-const { balanceInquiry, getFranchise, getTransactionLog, getAllUserBalance, getRecentTransferAccount } = require('../../utils/inquiry');
+const { balanceInquiry, getFranchise, getProductInfo, getTransactionLog, getAllUserBalance, getRecentTransferAccount } = require('../../utils/inquiry');
 const { checkIdDuplicate } = require('../../utils/validation');
 
 /**
@@ -73,12 +73,12 @@ router.get('/getGpsInfo', async (req, res)=> {
     res.json(result);
 })
 
-router.get('/getProductInfo', async (req, res) => {
+router.get('/getProductInfoList', async (req, res) => {
     userAgentModel.printUserAgent(req.header('user-agent'),"/getProductInfo");
 
     console.log(`### /getProductInfo : data`);
 
-    const result = await getFranchise();
+    const result = await getProductInfo();
     console.log(`result = ${result}`);
     res.json(result);
 })
