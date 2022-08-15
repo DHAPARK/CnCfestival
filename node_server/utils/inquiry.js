@@ -31,6 +31,17 @@ async function balanceInquiry(inquiryAddress) {
     });
 }
 
+async function getProductInfo() {
+    let productObj = {};
+    let ps = await global.db.collection(DB_COLLECTION['PRODUCT']).get();
+    return new Promise(resolve => {
+        ps.forEach(doc => {
+            productObj[doc.id] = doc.data();
+        });
+        resolve(productObj);
+    })
+}
+
 /**
  * DB에서 프랜차이즈 정보를 가져옴
  * @returns {object} 프랜차이즈 정보들 obejct

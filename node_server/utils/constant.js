@@ -21,6 +21,7 @@ const DB_COLLECTION = {
     'FRANCHISE':'franchise',
     'TRANSACTION_LOG':'transaction_log',
     'TRANSACTION_HASH':'transaction_hash',
+    'PRODUCT':'product',
     'FAVICON':'favicon'
 };
 

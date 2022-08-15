@@ -15,7 +15,6 @@ const firebaseConfig = {
     measurementId: "G-86FLCDRTND"
 };
 
-  
 /**
  * Web3, HsContract 객체 생성
  */

@@ -73,6 +73,16 @@ router.get('/getGpsInfo', async (req, res)=> {
     res.json(result);
 })
 
+router.get('/getProductInfo', async (req, res) => {
+    userAgentModel.printUserAgent(req.header('user-agent'),"/getProductInfo");
+
+    console.log(`### /getProductInfo : data`);
+
+    const result = await getFranchise();
+    console.log(`result = ${result}`);
+    res.json(result);
+})
+
 /**
  * 이용내역 불러오기
  * @method post
