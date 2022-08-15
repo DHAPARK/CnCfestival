@@ -87,13 +87,15 @@ app.use('/web/transaction', webTransactionRouter);
 // => /hscRemittance
 // => /hscPayment
 
+const { getStorage, ref, getDownloadURL } = require("firebase-admin/storage");
 
 app.listen(PORT, async () => {
     await envConfig.initWeb3();
+    await envConfig.initDB();
     moment.tz.setDefault('Asia/Seoul');
     console.log(`${PORT}번호로 서버 실행중...`);
     console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
-    console.log(global.storage);
-    const test = await global.storage.file('test/test_img1.jpg');
-    console.log(`#### ${test}`);
+    // const storage = getStorage().bucket('test');
+    // const storageRef = 'test/test_img1.jpeg';
+    // console.log(storageRef);
 });
