@@ -36,6 +36,7 @@ import ModifyMyInfo from './pages/ModifyMyInfo';
 import UsageHistory from './pages/UsageHistory';
 import Franchisee from './pages/Franchisee';
 
+import MarketMainDescription from './pages/MarketMainDescription';
 //마켓
 import MarketMain from './pages/MarketMain';
 
@@ -117,6 +118,11 @@ const App: () => Node = () => {
           name="TransactionAni"
           component={TransactionAni}
           options={{title: '트랜잭션중', headerShown: false}}
+        />
+        <Stack.Screen
+          name="MarketMainDescription"
+          component={MarketMainDescription}
+          options={{title: '상세구매페이지', headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>
