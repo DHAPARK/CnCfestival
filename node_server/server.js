@@ -115,5 +115,5 @@ app.listen(PORT, async () => {
 
     //     putItemToDB(DB_COLLECTION['PRODUCT'], item, obj);
     // }
-    
+    envConfig.generateV4ReadSignedUrl().catch(conosle.error);
 });

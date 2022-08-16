@@ -16,19 +16,29 @@ const firebaseConfig = {
     credential: admin.credential.cert(serviceAccount)
 };
 
-const gcs = require('@google-cloud/storage')({keyFilename: '../hscoin-d8ff7-firebase-adminsdk-unmpe-a6a77a60b5.json'});
+const { Storage } = require('@google-cloud/storage');
+const storage = new Storage();
 
-const bucket = gcs.bucket(bucket);
-const file = bucket.file('test/test_img1.jpeg');
+async function generateV4ReadSignedUrl() {
+    // These options will allow temporary read access to the file
+    const options = {
+        version: 'v4',
+        action: 'read',
+      expires: Date.now() + 15 * 60 * 1000, // 15 minutes
+    };
 
-file.getSignedUrl({
-    action: 'read',
-    expires: '03-0-2491'
-}).then(signedUrls => {
-    console.log(signedUrls[0]);
-})
+    // Get a v4 signed URL for reading the file
+    const [url] = await storage
+        .bucket(bucketName)
+        .file(fileName)
+        .getSignedUrl(options);
 
-
+    console.log('Generated GET signed URL:');
+    console.log(url);
+    console.log('You can use this URL with any user agent, for example:');
+    console.log(`curl '${url}'`);
+}
+generateV4ReadSignedUrl().catch(console.error);
 
 /**
  * Web3, HsContract 객체 생성
@@ -56,5 +66,6 @@ async function initDB() {
 module.exports = {
     firestore,
     initWeb3,
-    initDB
+    initDB,
+    generateV4ReadSignedUrl
 }
