@@ -41,7 +41,7 @@ async function getProductInfo() {
     return new Promise(resolve => {
         ps.forEach(doc => {
             let temp = doc.data();
-            temp[productId] = doc.id;
+            temp['productId'] = doc.id;
             productObj.push(temp);
         });
         resolve(productObj);
