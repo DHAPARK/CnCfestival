@@ -6,19 +6,6 @@ const { transferETH, transferHSC } = require('./transaction');
 // 유효성 검사 함수
 
 /**
- * 해당 주소가 DB에 존재하는지 확인
- * @param {string} inquiryAddress 조회할 계정 주소
- * @returns {boolean} 존재 여부
- */
- async function isAddressInDB(inquiryAddress) {
-    let result = false;
-    let userInfoRef = await global.db.collection(DB_COLLECTION['USERS']);
-    let snapShot = await userInfoRef.where('accountAddress', '==', inquiryAddress).get();
-    console.log(`### ${inquiryAddress} isAddressInDB ${!snapShot.empty}`);
-    return !snapShot.empty;
-}
-
-/**
  * 유저의 아이디 비밀번호 정보 대조
  * @param {string} userId 유저 아이디
  * @param {string} userPassword  유저 패스워드

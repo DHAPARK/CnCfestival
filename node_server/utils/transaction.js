@@ -4,10 +4,23 @@ const moment = require('moment');
 const { RETURN_CODE, DB_COLLECTION, TRANSACTION_TYPE } = require('./constant');
 const { putItemToDB } = require('./DB');
 const { balanceInquiry, getUserId, getAccountPassword } = require('./inquiry');
-const { isAddressInDB } = require('./validation');
+//const { isAddressInDB } = require('./validation');
 
 /////////////////////////////////////////
 // 트랜잭션 관련 함수
+
+/**
+ * 해당 주소가 DB에 존재하는지 확인
+ * @param {string} inquiryAddress 조회할 계정 주소
+ * @returns {boolean} 존재 여부
+ */
+ async function isAddressInDB(inquiryAddress) {
+    let result = false;
+    let userInfoRef = await global.db.collection(DB_COLLECTION['USERS']);
+    let snapShot = await userInfoRef.where('accountAddress', '==', inquiryAddress).get();
+    console.log(`### ${inquiryAddress} isAddressInDB ${!snapShot.empty}`);
+    return !snapShot.empty;
+}
 
 /**
  * ETH 전송 함수
