@@ -31,12 +31,15 @@ async function balanceInquiry(inquiryAddress) {
     });
 }
 
+/**
+ * DB에서 상품 정보를 가져옴
+ * @returns {object} 상품 정보들 obejct
+ */
 async function getProductInfo() {
     let productObj = {};
     let ps = await global.db.collection(DB_COLLECTION['PRODUCT']).get();
     return new Promise(resolve => {
         ps.forEach(doc => {
-            console.log(`$#$@! doc id = ${doc.id}, doc.data() = ${doc.data()}`);
             productObj[doc.id] = doc.data();
         });
         resolve(productObj);

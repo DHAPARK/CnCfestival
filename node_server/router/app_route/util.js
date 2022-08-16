@@ -73,6 +73,11 @@ router.get('/getGpsInfo', async (req, res)=> {
     res.json(result);
 })
 
+/**
+ * 상품 정보 가져오기 매핑 getProductInfoList
+ * @method get
+ * @returns {object} 
+ */
 router.get('/getProductInfoList', async (req, res) => {
     userAgentModel.printUserAgent(req.header('user-agent'),"/getProductInfo");
 

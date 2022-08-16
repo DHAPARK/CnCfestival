@@ -16,6 +16,20 @@ const firebaseConfig = {
     credential: admin.credential.cert(serviceAccount)
 };
 
+const gcs = require('@google-cloud/storage')({keyFilename: '../hscoin-d8ff7-firebase-adminsdk-unmpe-a6a77a60b5.json'});
+
+const bucket = gcs.bucket(bucket);
+const file = bucket.file('test/test_img1.jpeg');
+
+file.getSignedUrl({
+    action: 'read',
+    expires: '03-0-2491'
+}).then(signedUrls => {
+    console.log(signedUrls[0]);
+})
+
+
+
 /**
  * Web3, HsContract 객체 생성
  */
