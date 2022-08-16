@@ -9,7 +9,6 @@ const firebaseConfig = {
     apiKey: "AIzaSyAHUg25ak_qTeKbHathmfnMuey4UeJTrkQ",
     authDomain: "hscoin-d8ff7.firebaseapp.com",
     projectId: "hscoin-d8ff7",
-    storageBucket: "gs://hscoin-d8ff7.appspot.com",
     messagingSenderId: "928676142936",
     appId: "1:928676142936:web:72e7970feb2b29c792cf2d",  
     measurementId: "G-86FLCDRTND",
@@ -54,7 +53,9 @@ async function initWeb3() {
     console.log(`### Web3 Init`);
 }
 
-global.firebaseAdmin = admin.initializeApp(firebaseConfig);
+global.firebaseAdmin = admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+}, "storage");
 
 // global.firebaseAdmin = admin.initializeApp({
 //     credential: admin.credential.cert(serviceAccount),
