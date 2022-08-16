@@ -5,7 +5,7 @@ import {StyleSheet, Text} from 'react-native';
 
 const Container = styled.TouchableOpacity`
   border-radius: 7px;
-  width: 24%;
+  width: 19%;
   height: 95%;
   background-color: white;
   justify-content: center;

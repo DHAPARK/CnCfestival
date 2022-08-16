@@ -6,6 +6,7 @@ import UsageHistoryBottomHomeButton from './UsageHistoryBottomHomeButton';
 import UsageHistoryBottomOfficialButton from './UsageHistoryBottomOfficialButton';
 import UsageHistoryBottomMarketButton from './UsageHistoryBottomMarketButton';
 import UsageHistoryBottomUseListButton from './UsageHistoryBottomUseListButton';
+import UsageHistoryBottomOnlineMarketButton from './UsageHistoryBottomOnlineMarketButton';
 
 import {useNavigation} from '@react-navigation/native';
 
@@ -49,6 +50,9 @@ function UsageHistoryBottomNavList() {
       />
       <UsageHistoryBottomUseListButton
         onPress={() => navigation.navigate('UsageHistory')}
+      />
+      <UsageHistoryBottomOnlineMarketButton
+        onPress={() => navigation.navigate('MarketMain')}
       />
     </Container>
   );

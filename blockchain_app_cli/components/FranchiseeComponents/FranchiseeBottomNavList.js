@@ -6,6 +6,7 @@ import FranchiseeBottomHomeButton from './FranchiseeBottomHomeButton';
 import FranchiseeBottomOfficialButton from './FranchiseeBottomOfficialButton';
 import FranchiseeBottomMarketButton from './FranchiseeBottomMarketButton';
 import FranchiseeBottomUseListButton from './FranchiseeBottomUseListButton';
+import FranchiseeBottomOnlineMarketButton from './FranchiseeBottomOnlineMarketButton';
 
 import {useNavigation} from '@react-navigation/native';
 
@@ -49,6 +50,9 @@ function FranchiseeBottomNavList() {
       />
       <FranchiseeBottomUseListButton
         onPress={() => navigation.navigate('UsageHistory')}
+      />
+      <FranchiseeBottomOnlineMarketButton
+        onPress={() => navigation.navigate('MarketMain')}
       />
     </Container>
   );

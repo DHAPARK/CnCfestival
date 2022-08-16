@@ -5,7 +5,7 @@ import {WhiteBalance} from 'expo-camera/build/Camera.types';
 
 const Container = styled.TouchableOpacity`
   border-radius: 7px;
-  width: 24%;
+  width: 19%;
   height: 95%;
   background-color: #95b3d7;
   justify-content: center;

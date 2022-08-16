@@ -1,6 +1,10 @@
 import React from 'react';
 import type {Node} from 'react';
 
+import MarketMainContainer from '../components/MarketMainComponents/MarKetMainContainer';
+import MarketMainTopSmallContainer from '../components/MarketMainComponents/MarketMainTopSmallContainer';
+import MarketMainBottomNavList from '../components/MarketMainComponents/MarketMainBottomNavList';
+
 import axios from 'axios';
 import qs from 'qs';
 
@@ -16,7 +20,13 @@ const MarketMain: () => Node = () => {
     console.log(res.data);
   });
 
-  return <></>;
+  return (
+    <MarketMainContainer>
+      <MarketMainTopSmallContainer />
+
+      <MarketMainBottomNavList />
+    </MarketMainContainer>
+  );
 };
 
 export default MarketMain;
