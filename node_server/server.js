@@ -89,7 +89,7 @@ app.use('/web/transaction', webTransactionRouter);
 
 const { getStorage, ref, getDownloadURL } = require("firebase-admin/storage");
 const { putItemToDB } = require('./utils/DB');
-const { RETURN_CODE, DB_COLLECTION } = require('./utils/constant');
+// const { RETURN_CODE, DB_COLLECTION } = require('./utils/constant');
 
 app.listen(PORT, async () => {
     await envConfig.initWeb3();
@@ -97,27 +97,29 @@ app.listen(PORT, async () => {
     moment.tz.setDefault('Asia/Seoul');
     console.log(`${PORT}번호로 서버 실행중...`);
     console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
-    // const storage = getStorage().bucket('test');
-    // const storageRef = 'test/test_img1.jpeg';
-    // console.log(storageRef);
+    const storage = getStorage().bucket('test');
+    const storageRef = 'test/test_img1.jpeg';
+    console.log(storageRef);
 
-    let sampleAddress1 = '0x4c16adc083a69FDB342D1F1783f4090EBEca389f';
-    let sampleAddress2 = '0xF6187073B1CaB05aa427893964229f0EF04A4D10';
-    for(let i = 1; i<=10; i++) {
-        let item = `item${i}`;
-        let name = `name${i}`;
-        let price = 1 * i;
-        let description = `item${i} example`;
-        let manufacturer = i <= 5 ? sampleAddress1 : sampleAddress2;
+    // let sampleAddress1 = '0x4c16adc083a69FDB342D1F1783f4090EBEca389f';
+    // let sampleAddress2 = '0xF6187073B1CaB05aa427893964229f0EF04A4D10';
+    // for(let i = 1; i<=10; i++) {
+    //     let item = `item${i}`;
+    //     let name = `name${i}`;
+    //     let price = 1 * i;
+    //     let description = `item${i} example`;
+    //     let manufacturer = i <= 5 ? sampleAddress1 : sampleAddress2;
 
-        let obj = {
-            name: name,
-            price: price,
-            description: description,
-            manufacturer: manufacturer
-        };
+    //     let obj = {
+    //         name: name,
+    //         price: price,
+    //         description: description,
+    //         manufacturer: manufacturer
+    //     };
 
-        putItemToDB(DB_COLLECTION['PRODUCT'], item, obj);
-    }
+    //     putItemToDB(DB_COLLECTION['PRODUCT'], item, obj);
+    // }
+
+
     //envConfig.generateV4ReadSignedUrl().catch(console.error);
 });
