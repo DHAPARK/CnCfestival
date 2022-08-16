@@ -135,7 +135,7 @@ async function userSignUp(userid,userpw,username,useremail,userphone,year,month,
 /////////////////////////////////////////
 
 module.exports = {
-    isAddressInDB,
+    //isAddressInDB,
     isIdInDb, 
     isPasswordRight, 
     checkIdDuplicate, 
