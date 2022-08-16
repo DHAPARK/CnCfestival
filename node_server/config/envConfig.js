@@ -17,9 +17,11 @@ const firebaseConfig = {
 };
 
 const { Storage } = require('@google-cloud/storage');
+const { credential } = require("firebase-admin");
 const projectId = 'hscoin-d8ff7';
 const storage = new Storage({
-    projectId: projectId
+    projectId: projectId,
+    credential: admin.credential.cert(serviceAccount)
 });
 
 async function generateV4ReadSignedUrl() {
