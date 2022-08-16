@@ -101,19 +101,23 @@ app.listen(PORT, async () => {
     // const storageRef = 'test/test_img1.jpeg';
     // console.log(storageRef);
 
-    // for(let i = 2; i<=10; i++) {
-    //     let item = `item${i}`;
-    //     let name = `name${i}`;
-    //     let price = 100 * i;
-    //     let description = `item${i} example`;
+    let sampleAddress1 = '0x4c16adc083a69FDB342D1F1783f4090EBEca389f';
+    let sampleAddress2 = '0xF6187073B1CaB05aa427893964229f0EF04A4D10';
+    for(let i = 1; i<=10; i++) {
+        let item = `item${i}`;
+        let name = `name${i}`;
+        let price = 1 * i;
+        let description = `item${i} example`;
+        let manufacturer = i <= 5 ? sampleAddress1 : sampleAddress2;
 
-    //     let obj = {
-    //         name: name,
-    //         price: price,
-    //         description: description
-    //     };
+        let obj = {
+            name: name,
+            price: price,
+            description: description,
+            manufacturer: manufacturer
+        };
 
-    //     putItemToDB(DB_COLLECTION['PRODUCT'], item, obj);
-    // }
+        putItemToDB(DB_COLLECTION['PRODUCT'], item, obj);
+    }
     //envConfig.generateV4ReadSignedUrl().catch(console.error);
 });
