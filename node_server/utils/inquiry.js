@@ -36,11 +36,13 @@ async function balanceInquiry(inquiryAddress) {
  * @returns {object} 상품 정보들 obejct
  */
 async function getProductInfo() {
-    let productObj = {};
+    let productObj = [];
     let ps = await global.db.collection(DB_COLLECTION['PRODUCT']).get();
     return new Promise(resolve => {
         ps.forEach(doc => {
-            productObj[doc.id] = doc.data();
+            let temp = {};
+            temp[doc.id] = doc.data();
+            productObj.push(temp);
         });
         resolve(productObj);
     })
