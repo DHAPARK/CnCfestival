@@ -29,9 +29,9 @@ async function generateV4ReadSignedUrl() {
 
     // Get a v4 signed URL for reading the file
     const [url] = await storage
-        .bucket(bucketName)
-        .file(fileName)
-        .getSignedUrl(options);
+        .bucket('test')
+        .file('test_img1.jpeg')
+        .getSignedUrl();
 
     console.log('Generated GET signed URL:');
     console.log(url);
