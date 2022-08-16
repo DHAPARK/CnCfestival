@@ -38,7 +38,6 @@ async function generateV4ReadSignedUrl() {
     console.log('You can use this URL with any user agent, for example:');
     console.log(`curl '${url}'`);
 }
-generateV4ReadSignedUrl().catch(console.error);
 
 /**
  * Web3, HsContract 객체 생성
