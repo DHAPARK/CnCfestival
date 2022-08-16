@@ -22,13 +22,8 @@ const LoginAni: () => Node = ({navigation, route}) => {
     },
   });
   async function loginAni() {
-    //video.current.playAsync();
     console.log('여기 오긴하나..?');
-    /*
-    let promise = new Promise(resolve => {
-      setTimeout(resolve, 5300);
-    });
-    */
+
     let promise = new Promise((res, rej) => {
       setTimeout(() => {
         res();

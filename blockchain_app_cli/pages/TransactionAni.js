@@ -20,12 +20,14 @@ function TransactionAni({navigation, route}) {
     },
   });
   async function tranAni() {
-    video.current.playAsync();
-    let promise = new Promise(resolve => {
-      setTimeout(resolve, 5100);
+    //video.current.playAsync();
+    let promise = new Promise((res, rej) => {
+      setTimeout(() => {
+        res();
+        navigation.navigate('Index');
+      }, 5300);
     });
-    let ani = await promise;
-    navigation.navigate('Index');
+    await promise;
   }
 
   return (

@@ -19,14 +19,18 @@ import axios from 'axios';
 import qs from 'qs';
 
 import {Alert} from 'react-native';
-
-function RemittanceOneThree({navigation, route}) {
+//const PaymentOneThree: () => Node = ({navigation, route}) => {
+//function RemittanceOneThree({navigation, route}) {
+const RemittanceOneThree: () => Node = ({navigation, route}) => {
   console.disableYellowBox = true;
   const [password, setPassword] = React.useState('');
+
   var receiverAccountAddress = route.params.data.recevierAddress;
   var amountValue = route.params.data.amount;
+
   function execute() {
     var dataSet = route.params.data;
+
     AsyncStorage.getItem('userinformation', (err, result) => {
       const UserInfo = JSON.parse(result);
 
@@ -146,6 +150,6 @@ function RemittanceOneThree({navigation, route}) {
       <BottomContainer />
     </RemittanceOneThreeContainer>
   );
-}
+};
 
 export default RemittanceOneThree;

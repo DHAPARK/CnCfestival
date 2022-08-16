@@ -73,6 +73,7 @@ function PaymentOne({navigation}) {
           if (scannedData) {
             //여기서 navigation 쳐주면 될것같은데..
             dataSet['recevierAddress'] = scannedData;
+            setScaned(false);
             navigation.navigate('PaymentOneTwo', {data: dataSet});
           } else {
             Alert.alert(

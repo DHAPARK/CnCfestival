@@ -12,7 +12,9 @@ import axios from 'axios';
 import qs from 'qs';
 import {Alert} from 'react-native';
 
-function PaymentOneThree({navigation, route}) {
+//const Login: () => Node = ({navigation}) => {
+//function PaymentOneThree({navigation, route}) {
+const PaymentOneThree: () => Node = ({navigation, route}) => {
   const [password, setPassword] = React.useState('');
 
   var receiverAccountAddress = route.params.data.recevierAddress;
@@ -30,7 +32,10 @@ function PaymentOneThree({navigation, route}) {
         userId: UserInfo2['userid'],
         userPassword: password,
         senderAddress: UserInfo2['userAccount'],
-        receiverAddress: dataSet.recevierAddress,
+        receiverAddress: dataSet.recevierAddress.substring(
+          1,
+          dataSet.recevierAddress.length - 1,
+        ),
         amount: dataSet.amount,
       };
 
@@ -139,6 +144,6 @@ function PaymentOneThree({navigation, route}) {
       <BottomContainer />
     </PaymentOneThreeContainer>
   );
-}
+};
 
 export default PaymentOneThree;
