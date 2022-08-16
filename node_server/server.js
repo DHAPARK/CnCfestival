@@ -92,7 +92,6 @@ const { putItemToDB } = require('./utils/DB');
 // const { RETURN_CODE, DB_COLLECTION } = require('./utils/constant');
 
 app.listen(PORT, async () => {
-    await envConfig.initFireBaseAdmin();
     await envConfig.initWeb3();
     await envConfig.initDB();
     moment.tz.setDefault('Asia/Seoul');

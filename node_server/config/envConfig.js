@@ -55,13 +55,10 @@ async function initWeb3() {
     console.log(`### Web3 Init`);
 }
 
-async function initFireBaseAdmin() {
-    global.firebaseAdmin = admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-        storageBucket: 'gs://hscoin-d8ff7.appspot.com/'
-    }, "storage");
-}
-
+global.firebaseAdmin = admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    storageBucket: 'gs://hscoin-d8ff7.appspot.com/'
+}, "storage");
 
 // global.firebaseAdmin = admin.initializeApp({
 //     credential: admin.credential.cert(serviceAccount),
@@ -70,13 +67,12 @@ async function initFireBaseAdmin() {
 
 async function initDB() {
     global.storage = await global.firebaseAdmin.storage();
-    global.db = await firestore.getFirestore();
+    global.db = admin.firestore();
     //global.db = firestore.getFirestore();
 }
 
 
 module.exports = {
-    initFireBaseAdmin,
     initWeb3,
     initDB,
     generateV4ReadSignedUrl
