@@ -7,7 +7,7 @@ const { addFavicon, getFaviconList } = require('../../utils/DB');
 const { balanceInquiry, getFranchise, getProductInfo, getTransactionLog, getAllUserBalance, getRecentTransferAccount } = require('../../utils/inquiry');
 const { checkIdDuplicate } = require('../../utils/validation');
 
-const limiter = require('../config/limiter');
+const limiter = require('../../config/limiter');
 
 /**
  * 아이디 중복 검사
