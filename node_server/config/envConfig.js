@@ -1,7 +1,5 @@
 const admin = require("firebase-admin");
-const app = require('firebase-admin/app');
-const firestore = require('firebase-admin/firestore');
-
+const firestore = require("firebase-admin/firestore");
 const serviceAccount = require("../hscoin-d8ff7-firebase-adminsdk-unmpe-a6a77a60b5.json");
 const Web3 = require('web3');
 
@@ -11,6 +9,7 @@ const firebaseConfig = {
     apiKey: "AIzaSyAHUg25ak_qTeKbHathmfnMuey4UeJTrkQ",
     authDomain: "hscoin-d8ff7.firebaseapp.com",
     projectId: "hscoin-d8ff7",
+    storageBucket: "hscoin-d8ff7.appspot.com",
     messagingSenderId: "928676142936",
     appId: "1:928676142936:web:72e7970feb2b29c792cf2d",  
     measurementId: "G-86FLCDRTND",
@@ -55,33 +54,21 @@ async function initWeb3() {
     console.log(`### Web3 Init`);
 }
 
-global.firebaseAdmin = admin.initializeApp({
-    apiKey: "AIzaSyAHUg25ak_qTeKbHathmfnMuey4UeJTrkQ",
-    authDomain: "hscoin-d8ff7.firebaseapp.com",
-    projectId: "hscoin-d8ff7",
-    messagingSenderId: "928676142936",
-    appId: "1:928676142936:web:72e7970feb2b29c792cf2d",  
-    measurementId: "G-86FLCDRTND",
-    credential: admin.credential.cert(serviceAccount),
-    storageBucket: 'gs://hscoin-d8ff7.appspot.com/'
-}, "storage");
+global.firebaseAdmin = admin.initializeApp(firebaseConfig);
 
 // global.firebaseAdmin = admin.initializeApp({
 //     credential: admin.credential.cert(serviceAccount),
 //     storageBucket: 'hscoin-d8ff7.appspot.com/test'
 // });
 
-const sec = 3;
 async function initDB() {
+    global.db = firestore.getFirestore();
     global.storage = await global.firebaseAdmin.storage();
-    setTimeout(()=>{
-        global.db = firestore.getFirestore();
-    }, sec * 1000);
-    //global.db = firestore.getFirestore();
 }
 
 
 module.exports = {
+    firestore,
     initWeb3,
     initDB,
     generateV4ReadSignedUrl
