@@ -65,7 +65,7 @@ global.firebaseAdmin = admin.initializeApp({
 
 async function initDB() {
     global.storage = await global.firebaseAdmin.storage();
-    global.db = admin.firestore.getFirestore();
+    global.db = admin.firestore;
 }
 
 
