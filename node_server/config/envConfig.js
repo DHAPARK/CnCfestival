@@ -17,7 +17,10 @@ const firebaseConfig = {
 };
 
 const { Storage } = require('@google-cloud/storage');
-const storage = new Storage();
+const projectId = 'hscoin-d8ff7';
+const storage = new Storage({
+    projectId: projectId
+});
 
 async function generateV4ReadSignedUrl() {
     // These options will allow temporary read access to the file
@@ -31,7 +34,7 @@ async function generateV4ReadSignedUrl() {
     const [url] = await storage
         .bucket('test')
         .file('test_img1.jpeg')
-        .getSignedUrl();
+        .getSignedUrl(options);
 
     console.log('Generated GET signed URL:');
     console.log(url);
