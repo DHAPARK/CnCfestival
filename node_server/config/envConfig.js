@@ -55,14 +55,10 @@ async function initWeb3() {
     console.log(`### Web3 Init`);
 }
 
-new Promise((res) => {
-    global.firebaseAdmin = admin.initializeApp({
+global.firebaseAdmin = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     storageBucket: 'gs://hscoin-d8ff7.appspot.com/'
-    }, "storage");
-}).then(() => {
-    global.db = firestore.getFirestore();
-});
+}, "storage");
 
 // global.firebaseAdmin = admin.initializeApp({
 //     credential: admin.credential.cert(serviceAccount),
@@ -71,7 +67,7 @@ new Promise((res) => {
 
 async function initDB() {
     global.storage = await global.firebaseAdmin.storage();
-    global.db = admin.firestore();
+    //global.db = admin.firestore();
     //global.db = firestore.getFirestore();
 }
 
