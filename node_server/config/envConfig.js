@@ -55,10 +55,12 @@ async function initWeb3() {
     console.log(`### Web3 Init`);
 }
 
-global.firebaseAdmin = admin.initializeApp({
+new Promise((res) => {
+    global.firebaseAdmin = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     storageBucket: 'gs://hscoin-d8ff7.appspot.com/'
-}, "storage").then(() => {
+    }, "storage");
+}).then(() => {
     global.db = firestore.getFirestore();
 });
 
@@ -69,6 +71,7 @@ global.firebaseAdmin = admin.initializeApp({
 
 async function initDB() {
     global.storage = await global.firebaseAdmin.storage();
+    global.db = admin.firestore();
     //global.db = firestore.getFirestore();
 }
 
