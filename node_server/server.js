@@ -97,9 +97,19 @@ app.listen(PORT, async () => {
     moment.tz.setDefault('Asia/Seoul');
     console.log(`${PORT}번호로 서버 실행중...`);
     console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
-    const storage = getStorage().bucket('test');
-    const storageRef = 'test/test_img1.jpeg';
-    console.log(storage);
+    
+    let file = global.storage.bucket('test').file('test_img1.jpeg');
+    const config = {
+        action: 'read',
+        expires: '08-20-2030'
+    };
+
+    file.getSignedUrl(config, (err, url) => {
+        if (err) {
+            console.log(err);
+        }
+        console.log(url);
+    })
 
     // let sampleAddress1 = '0x4c16adc083a69FDB342D1F1783f4090EBEca389f';
     // let sampleAddress2 = '0xF6187073B1CaB05aa427893964229f0EF04A4D10';
