@@ -65,11 +65,11 @@ global.firebaseAdmin = admin.initializeApp({
 //     storageBucket: 'hscoin-d8ff7.appspot.com/test'
 // });
 
-const { getFireStore } = require('firebase/firestore');
+const { getFirestore } = require('firebase/firestore');
 
 async function initDB() {
     global.storage = await global.firebaseAdmin.storage();
-    global.db = getFireStore(global.firebaseAdmin);
+    global.db = getFirestore(global.firebaseAdmin);
 }
 
 
