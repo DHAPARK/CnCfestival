@@ -56,6 +56,7 @@ async function initWeb3() {
 
 global.firebaseAdmin = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
+    storageBucket: 'gs://hscoin-d8ff7.appspot.com/'
 }, "storage");
 
 // global.firebaseAdmin = admin.initializeApp({
