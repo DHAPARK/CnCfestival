@@ -7,6 +7,8 @@ const { addFavicon, getFaviconList } = require('../../utils/DB');
 const { balanceInquiry, getFranchise, getProductInfo, getTransactionLog, getAllUserBalance, getRecentTransferAccount } = require('../../utils/inquiry');
 const { checkIdDuplicate } = require('../../utils/validation');
 
+const limiter = require('../../config/limiter');
+
 /**
  * 아이디 중복 검사
  * @method get
@@ -78,7 +80,7 @@ router.get('/getGpsInfo', async (req, res)=> {
  * @method get
  * @returns {object} 
  */
-router.get('/getProductInfoList', async (req, res) => {
+router.get('/getProductInfoList', limiter, async (req, res) => {
     userAgentModel.printUserAgent(req.header('user-agent'),"/getProductInfo");
 
     console.log(`### /getProductInfo : data`);

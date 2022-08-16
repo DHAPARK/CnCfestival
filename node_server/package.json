@@ -20,6 +20,7 @@
     "ejs": "^3.1.8",
     "express": "^4.17.2",
     "express-asyncify": "^1.0.1",
+    "express-rate-limit": "^6.5.1",
     "firebase": "^9.9.2",
     "firebase-admin": "^10.2.0",
     "http-errors": "~1.6.3",
