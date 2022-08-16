@@ -98,7 +98,7 @@ app.listen(PORT, async () => {
     console.log(`${PORT}번호로 서버 실행중...`);
     console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
     
-    let file = global.storage.bucket('test').file('test_img1.jpeg');
+    let file = global.storage.bucket().file('test_img1.jpeg');
     const config = {
         action: 'read',
         expires: '08-20-2030'
