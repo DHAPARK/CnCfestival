@@ -27,6 +27,8 @@ import PaymentOneThree from './pages/PaymentOneThree';
 import RemittanceOne from './pages/RemittanceOne';
 import RemittanceOneTwo from './pages/RemittanceOneTwo';
 import RemittanceOneThree from './pages/RemittanceOneThree';
+
+import TransactionAni from './pages/TransactionAni';
 //페이지들
 
 import Notice from './pages/Notice';
@@ -111,6 +113,11 @@ const App: () => Node = () => {
           name="MarketMain"
           component={MarketMain}
           options={{title: '마켓', headerShown: false}}></Stack.Screen>
+        <Stack.Screen
+          name="TransactionAni"
+          component={TransactionAni}
+          options={{title: '트랜잭션중', headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
