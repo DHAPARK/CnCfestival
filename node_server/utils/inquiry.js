@@ -40,8 +40,8 @@ async function getProductInfo() {
     let ps = await global.db.collection(DB_COLLECTION['PRODUCT']).get();
     return new Promise(resolve => {
         ps.forEach(doc => {
-            let temp = {};
-            temp[doc.id] = doc.data();
+            let temp = doc.data();
+            temp[productId] = doc.id;
             productObj.push(temp);
         });
         resolve(productObj);
