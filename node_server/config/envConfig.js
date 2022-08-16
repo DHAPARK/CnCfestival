@@ -1,4 +1,6 @@
 const admin = require("firebase-admin");
+const app = require('firebase-admin/app');
+const firestore = require('firebase-admin/firestore');
 
 const serviceAccount = require("../hscoin-d8ff7-firebase-adminsdk-unmpe-a6a77a60b5.json");
 const Web3 = require('web3');
@@ -65,7 +67,7 @@ global.firebaseAdmin = admin.initializeApp({
 
 async function initDB() {
     global.storage = await global.firebaseAdmin.storage();
-    global.db = admin.firestore;
+    global.db = admin.getFirestore(app);
 }
 
 
