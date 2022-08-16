@@ -7,7 +7,16 @@ const { addFavicon, getFaviconList } = require('../../utils/DB');
 const { balanceInquiry, getFranchise, getProductInfo, getTransactionLog, getAllUserBalance, getRecentTransferAccount } = require('../../utils/inquiry');
 const { checkIdDuplicate } = require('../../utils/validation');
 
-const { limiter } = require('../../config/limiterConfig');
+
+const rateLimit = require('express-rate-limit');
+const limiter = rateLimit({
+    windowMs: 1000,
+    max: 3,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: '####$$$$$#### Firebase useage warning'
+});
+
 
 /**
  * 아이디 중복 검사
