@@ -2,13 +2,19 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components/native';
 import {Platform, StyleSheet, FlatList, View} from 'react-native';
 import MarketItem from './MarketItem';
+
+var heightValue = Platform.OS === 'ios' ? 75 : 67;
+var borderpx = Platform.OS === 'ios' ? 0.5 : 2.0;
+var borderColor = Platform.OS === 'ios' ? 192 : 220;
 const Container = styled.SafeAreaView`
-  width: 90%;
-  height: 70%;
+  width: 95%;
+  height: ${heightValue}%;
+  background-color: white;
   margin: 0 auto;
+  margin-bottom: 5%;
   border-radius: 7px;
-  margin-top: 7%;
-  border: 5px solid black;
+  border: ${borderpx}px solid
+    rgba(${borderColor}, ${borderColor}, ${borderColor}, 1);
 `;
 
 function MiddleContainer(props) {

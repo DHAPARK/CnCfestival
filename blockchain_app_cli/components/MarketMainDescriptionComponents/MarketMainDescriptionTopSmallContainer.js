@@ -23,6 +23,7 @@ const Container = styled.SafeAreaView`
   justify-content: space-between;
   margin: 0 auto;
   margin-top: 7%;
+  margin-bottom: 10%;
 `;
 
 function MarketMainDescriptionTopSmallContainer() {

@@ -9,10 +9,24 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import qs from 'qs';
 import {useNavigation} from '@react-navigation/native';
 
+var heightValue = Platform.OS === 'ios' ? 75 : 70;
+var borderpx = Platform.OS === 'ios' ? 0.5 : 2.0;
+var borderColor = Platform.OS === 'ios' ? 192 : 220;
+const Container = styled.SafeAreaView`
+  width: 95%;
+  height: ${heightValue}%;
+  background-color: white;
+  margin: 0 auto;
+  margin-bottom: 5%;
+  border-radius: 7px;
+  border: ${borderpx}px solid
+    rgba(${borderColor}, ${borderColor}, ${borderColor}, 1);
+`;
+
 const ImageAreaView = styled.SafeAreaView`
   width: 100%;
   height: 50%;
-  background-color: red;
+
   margin-bottom: 4%;
 `;
 
@@ -53,26 +67,23 @@ const ItemManufacturerTextView = styled.Text`
   color: black;
 `;
 
-const Container = styled.SafeAreaView`
-  width: 90%;
-  height: 80%;
-  margin: 0 auto;
-  border-radius: 7px;
-  margin-top: 7%;
-  border: 5px solid black;
-`;
 const PurchaseBtn = styled.TouchableOpacity`
   width: 100%;
   height: 10%;
   color: black;
-  border: 1px solid red;
+  border: 3px solid black;
+  border-radius: 15px;
   background-color: white;
 `;
+
+var TextInPurchaseBtn_PaddingTop = Platform.OS === 'ios' ? 4 : 2;
 const TextInPurchaseBtn = styled.Text`
   margin: 0 auto;
   text-align: center;
   font-size: 20px;
-  padding-top: 5%;
+  color: black;
+  font-weight: bold;
+  padding-top: ${TextInPurchaseBtn_PaddingTop}%;
 `;
 
 function MiddleContainer(props) {
