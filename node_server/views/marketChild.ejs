@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js" integrity="sha512-/l6vieC+YxaZywUhmqs++8uF9DeMvJE61ua5g+UK0TuHZ4TkTgB1Gm1n0NiA86uEOM9JJ6JUwyR0hboKO0fCng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Document</title>
     <style>
         #conatiner{
@@ -40,37 +40,31 @@
             method: 'POST',
             url: `http://220.67.231.91:80/buyProductRequest`,
             data: {
-                //userId: account.userid,
                 userId : document.getElementById("userId").value,
-                //userPassword: account.userpw,
                 userPassword: document.getElementById("userPassword").value,
-                //senderAddress: account.userAccount,
                 senderAddress: document.getElementById("senderAddress").value,
-
-                //receiverAddress: props.itemInfo.manufacturer,
                 receiverAddress: document.getElementById("receiverAddress").value,
-                
-                //amount: props.itemInfo.price,
                 amount: document.getElementById("amount").value,
-                //productName: props.itemInfo.name,
                 productName: document.getElementById("productName").value,
             },
-                }).then(res => {
-                console.log(`res는 ${JSON.stringify(res.data)}`);
-                if (res.data['SUCCESS_CODE'] == 100) {
-                    //console.log('성공');
-                    window.alert("결제가 성공했습니다");
-                    window.close();
-                    //navigation.navigate('TransactionAni');
-                } else if (res.data['SUCCESS_CODE'] == 200) {
-                    console.log('송신측 주소 없음');
-                } else if (res.data['SUCCESS_CODE'] == 201) {
-                    window.alert("잔액이 부족합니다");
-                    window.close();
-                } else if (res.data['SUCCESS_CODE'] == 202) {
-                    console.log('비밀번호 오류');
-                }
-            });
+        }).then(res => {
+        console.log(`res는 ${JSON.stringify(res.data)}`);
+        window.alert(res.data);
+        alert(res.data);
+        if (res.data['SUCCESS_CODE'] == 100) {
+            //console.log('성공');
+            window.alert("결제가 성공했습니다");
+            window.close();
+            //navigation.navigate('TransactionAni');
+        } else if (res.data['SUCCESS_CODE'] == 200) {
+            console.log('송신측 주소 없음');
+        } else if (res.data['SUCCESS_CODE'] == 201) {
+            window.alert("잔액이 부족합니다");
+            window.close();
+        } else if (res.data['SUCCESS_CODE'] == 202) {
+            console.log('비밀번호 오류');
+        }
+    });
     }
 </script>
 
