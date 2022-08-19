@@ -132,7 +132,6 @@ app.listen(PORT, async () => {
 
         let obj = {
             name: name,
-            price: price,
             description: description,
             videoUrl: videoUrl,
             videoLength: videoLength
