@@ -96,7 +96,7 @@ app.use('/web/transaction', webTransactionRouter);
 
 const { getStorage, ref, getDownloadURL } = require("firebase-admin/storage");
 const { putItemToDB } = require('./utils/DB');
-// const { RETURN_CODE, DB_COLLECTION } = require('./utils/constant');
+const { RETURN_CODE, DB_COLLECTION } = require('./utils/constant');
 
 global.sessionList = {};
 
@@ -137,7 +137,7 @@ app.listen(PORT, async () => {
             videoLength: videoLength
         };
 
-        putItemToDB(DB_COLLECTION['PRODUCT'], video, obj);
+        putItemToDB(DB_COLLECTION['VIDEO'], video, obj);
     }
 
 
