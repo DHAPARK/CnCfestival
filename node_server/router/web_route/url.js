@@ -61,12 +61,12 @@ router.get('/mypage/:userId', async (req,res)=>{
     const userInfo = global.sessionList[userId][userId];
     const accountAddress = userInfo['accountAddress'];
 
-    let info = {};
+    let myInfo = {};
 
-    info['balance'] = await balanceInquiry(accountAddress);
-    info['transferLog'] = await getTransactionLog(accountAddress);
+    myInfo['balance'] = await balanceInquiry(accountAddress);
+    myInfo['transferLog'] = await getTransactionLog(accountAddress);
     
-    res.render('mypage', {info: info});
+    res.render('mypage', {info: myInfo});
 })
 
 router.get('/solution',(req,res)=>{

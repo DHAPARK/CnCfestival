@@ -107,7 +107,7 @@ app.listen(PORT, async () => {
     console.log(`${PORT}번호로 서버 실행중...`);
     console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
     
-    //성공띠
+    // 이미지 url 성공띠
     // let file = global.storage.bucket().file('test_img1.jpeg');
     // const config = {
     //     action: 'read',
@@ -121,24 +121,25 @@ app.listen(PORT, async () => {
     //     console.log(url);
     // });
 
-    // let sampleAddress1 = '0x4c16adc083a69FDB342D1F1783f4090EBEca389f';
-    // let sampleAddress2 = '0xF6187073B1CaB05aa427893964229f0EF04A4D10';
-    // for(let i = 1; i<=10; i++) {
-    //     let item = `item${i}`;
-    //     let name = `name${i}`;
-    //     let price = 1 * i;
-    //     let description = `item${i} example`;
-    //     let manufacturer = i <= 5 ? sampleAddress1 : sampleAddress2;
+    let sampleUrl1 = 'https://www.youtube.com/watch?v=ED2rOHM1od0';
+    let sampleUrl2 = 'https://www.youtube.com/watch?v=IAMdPn3YCG4';
+    for(let i = 1; i<=10; i++) {
+        let video = `video${i}`;
+        let name = `name${i}`;
+        let description = `video url ${i}th example`;
+        let videoUrl = i <= 5 ? sampleUrl1 : sampleUrl2;
+        let videoLength = 5 * i;
 
-    //     let obj = {
-    //         name: name,
-    //         price: price,
-    //         description: description,
-    //         manufacturer: manufacturer
-    //     };
+        let obj = {
+            name: name,
+            price: price,
+            description: description,
+            videoUrl: videoUrl,
+            videoLength: videoLength
+        };
 
-    //     putItemToDB(DB_COLLECTION['PRODUCT'], item, obj);
-    // }
+        putItemToDB(DB_COLLECTION['PRODUCT'], video, obj);
+    }
 
 
     //envConfig.generateV4ReadSignedUrl().catch(console.error);
