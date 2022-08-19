@@ -53,14 +53,16 @@
         //window.alert(res.data);
         //alert(res.data);
         //if (res.data['SUCCESS_CODE'] == 100) {
+            console.log( localStorage.getItem("balance") );
+            console.log( document.getElementById("amount").value );
         if ( localStorage.getItem("balance") >= document.getElementById("amount").value ){
             //console.log('성공');
-            window.alert("결제가 성공했습니다");
-            window.close();
+            //window.alert("결제가 성공했습니다");
+            //window.close();
         }
         else {
-            window.alert("잔액이 부족합니다");
-            window.close();
+            //window.alert("잔액이 부족합니다");
+            //window.close();
         }
     //});
     }
