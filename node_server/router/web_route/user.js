@@ -56,7 +56,7 @@ router.post('/registUser', async (req,res)=>{
  */
 router.post('/login', async (req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/login");
-
+    
     const userid = req.body['userid'];
     const userpw = req.body['userpw'];
 
@@ -69,7 +69,15 @@ router.post('/login', async (req,res)=>{
 
         userlogin(userid,userpw).then((returnCode)=>{
             console.log(`login returnCode = ${returnCode}`);  
-            returnCode == 100 ? res.json(userInfo) : res.json(returnCode);
+            if (returnCode == 100){
+                req.session.userInfo = userInfo;
+                req.session.isLogined = true;
+                //req.session.destroy(); 세션 삭제
+
+                res.json(userInfo)
+            } else {
+                res.json(returnCode);
+            }
         });
     } else{
         res.json(RETURN_CODE['NONE_ID']);

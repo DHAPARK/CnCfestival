@@ -2,11 +2,6 @@ const express = require('express');
 const router = express.Router();
 const userAgentModel = require('../../models/userAgentModel');
 
-const { RETURN_CODE, DB_COLLECTION } = require('../../utils/constant');
-const { modifyDBItem } = require('../../utils/DB');
-const { getUserInfo } = require('../../utils/inquiry');
-const { isIdInDb, isPasswordRight, userlogin, userSignUp } = require('../../utils/validation');
-
 router.get('/index',(req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/index");
 
@@ -42,10 +37,10 @@ router.get('/market',(req,res)=>{
     res.render('market');
 })
 
-router.get('/menuList1',(req,res)=>{
-    userAgentModel.printUserAgent(req.header('user-agent'),"/menuList1");
+router.get('/menuList',(req,res)=>{
+    userAgentModel.printUserAgent(req.header('user-agent'),"/menuList");
     
-    res.render('menuList1'); // 페이지 이름이 menuList1인 이유?
+    res.render('menuList'); // 페이지 이름이 menuList1인 이유?
 })
 
 router.get('/multipleChoice',(req,res)=>{
@@ -63,7 +58,7 @@ router.get('/mypage',(req,res)=>{
 router.get('/solution',(req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/solution");
     
-    res.render('solution1'); // 페이지 이름이 solution1인 이유 ?
+    res.render('solution'); // 페이지 이름이 solution1인 이유 ?
 })
 
 router.get('/video',(req,res)=>{

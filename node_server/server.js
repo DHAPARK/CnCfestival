@@ -12,16 +12,23 @@ const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const admin = require("firebase-admin");
-const auth = require("firebase-admin/auth");
-const firestore = require("firebase-admin/firestore");
-const Web3 = require('web3');
+const session = require('express-session');
+
+
+// const admin = require("firebase-admin");
+// const auth = require("firebase-admin/auth");
+// const firestore = require("firebase-admin/firestore");
+// const Web3 = require('web3');
 
 const { send, allowedNodeEnvironmentFlags, getMaxListeners, env } = require('process');
 const { json } = require('express');
 const PORT = 80;
 
 const envConfig = require('./config/envConfig');
+
+app.use(session({
+    secret:'session_test'
+}));
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
