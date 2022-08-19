@@ -36,10 +36,10 @@ router.get('/introduce',(req,res)=>{
 router.get('/market', async (req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/market");
 
-    const result = await getProductInfo();
-    console.log(`result = ${result}`);
+    const marketInfo = await getProductInfo();
+    console.log(`result = ${marketInfo}`);
 
-    res.render('market', result);
+    res.render('market', {marketInfo: marketInfo});
 })
 
 router.get('/menuList',(req,res)=>{
