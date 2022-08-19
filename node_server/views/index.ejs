@@ -57,7 +57,7 @@
                 data: Qs.stringify(data)
             }).then((res) => { // 로그인 성공하면
                 console.log(`status = ${res.data, typeof(res.data)}`);
-                if ( res.data == '200' ){
+                if ( typeof(res.data) == Object ){
                     console.log(`로그인 정보 보냄 코드: ${res.status}, 메시지: ${JSON.stringify(res.data)}`);
                     location.href = "http://220.67.231.91:80/web/mypage";
                 }else{
