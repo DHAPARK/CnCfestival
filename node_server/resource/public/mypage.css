@@ -66,7 +66,7 @@ a:hover { color: black; text-decoration: underline;}
 #contentContainerTopInfoDesk_Img{
     width:40%;
     position: relative;
-    margin-inline: 30%;
+    margin: 0 auto;
     top: 0;
 }
 
