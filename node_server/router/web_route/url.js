@@ -55,8 +55,11 @@ router.get('/mypage/:userId', async (req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/mypage");
     
     const userId = req.params.userId;
+    console.log(`userid ${userId}`);
     const userInfo = global.sessionList[userId];
+    console.log(`userid ${userInfo}`);
     const accountAddress = userInfo['accountAddress'];
+    console.log(`userid ${accountAddress}`);
 
     let info = {};
 
