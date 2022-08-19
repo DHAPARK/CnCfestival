@@ -16,7 +16,7 @@ router.get('/index',(req,res)=>{
 router.get('/regist',(req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/regist");
     
-    res.render('regist1'); // 페이지 이름이 regist1인 이유 ?
+    res.render('regist'); // 페이지 이름이 regist1인 이유 ?
 })
 
 /**
