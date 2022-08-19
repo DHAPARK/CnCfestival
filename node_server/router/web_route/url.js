@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userAgentModel = require('../../models/userAgentModel');
 
-const { balanceInquiry, getTransactionLog } = require('../../utils/inquiry');
+const { balanceInquiry, getTransactionLog, getProductInfo } = require('../../utils/inquiry');
 
 router.get('/index',(req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/index");
