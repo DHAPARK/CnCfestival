@@ -13,7 +13,6 @@
         .videoSemiContainer{
             width : 100%;
             height : 100%;
-
         }
 
         .videoSpace{
@@ -75,9 +74,11 @@
                             <img src=""/>
                             <center>
                                 <p><%=marketInfo[i].name%></p>
-                                <p><%=marketInfo[i].price%></p>
-                                <p><%=marketInfo[i].description%></p>
-                                <p><%=marketInfo[i].manufacturer%></p>
+                                <p><%=marketInfo[i].price%> HSC</p>
+                                <!--<p><%=marketInfo[i].description%></p>-->
+                                <!--<p><%=marketInfo[i].manufacturer%></p>-->
+                                <input type="hidden" name="description" value=<%= marketInfo[i].description %>/>
+                                <input type="hidden" name="manufacturer" value=<%= marketInfo[i].manufacturer %>/>
                             </center>
                         </div>
                         <!--eachVideo 끝 -->
