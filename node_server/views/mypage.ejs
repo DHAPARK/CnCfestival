@@ -12,22 +12,6 @@
 
 </head>
 <body>
-
-
-    <script>
-        function getBalance(){
-            axios({
-                url: `/web/util/getBalance/abcd12`,
-                method: 'GET',
-                baseURL: `http://220.67.231.91:80`
-            }).then(res=>{
-                console.log("/web/util/getBalance 꽂아줌");
-                console.log(res.data);
-            })
-        }
-
-    </script>
-
     
     <div id="container">
 
@@ -42,7 +26,7 @@
             <!-- 맨위 오른쪽 메뉴들 (홈페이지, 로그인/회원가입 , 학습 , 메뉴 등-->
             <div id="topLongContainerInnerRightMenuList" class="bg_cont">
                 <a href="#">홈페이지</a>
-                <a href="#" onclick="getBalance();" >로그인 / 회원가입</a>
+                <a href="#"> 마켓 </a>
                 <a href="#">학습</a>
                 <a href="#" id="mypage">My page</a>
                 <a href="#">메뉴</a>
@@ -76,11 +60,6 @@
                 </ul>
                 <!--여기서 이제 진짜 서버에서 넘어온 data들 for loop -->
                 <table id="solvedQuestionList_each_question">
-                    
-                    
-
-
-                    
                     <% for(let j = 0; j<6; j++){ %>
                         <tr>
                             <td class="tb_left_bd" ><%=info.transferLog[j].senderId%></td>
@@ -88,6 +67,7 @@
                             <td class="tb_left3_bd"><%=info.transferLog[j].amount%> HSC</td>
                             <td class="tb_left4_bd"> <%=info.transferLog[j].transactionTime%> </td>
                         </tr>
+
                     <%}%>
                 </table>
                 
