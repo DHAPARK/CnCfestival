@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js" integrity="sha512-/l6vieC+YxaZywUhmqs++8uF9DeMvJE61ua5g+UK0TuHZ4TkTgB1Gm1n0NiA86uEOM9JJ6JUwyR0hboKO0fCng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="/index.css"/>
+    <link rel="stylesheet" href="./public/index.css"/>
     <script>
         function checkUserIdNull(){
             var useridInput = document.getElementById("userid").value;
@@ -38,30 +37,6 @@
             if(!checkUserPwNull()) {
                 return false;
             }
-
-            var [userid,userpw] = document.getElementsByClassName("index_user");
-            var [userid,userpw] = [userid.value,userpw.value];
-
-            const data = {
-                userid:userid,
-                userpw:userpw
-            }
-
-            console.log(`${userid}, ${userpw}`);
-            console.log(Qs.stringify(data));
-
-            axios({
-                url: 'web/user/login',
-                method: 'POST',
-                baseURL: `http://220.67.231.91:80`,
-                data: Qs.stringify(data)
-            }).then((res) => { // 로그인 성공하면
-                console.log(`로그인 정보 보냄 코드: ${res.status}, 메시지: ${JSON.stringify(res.data)}`);
-                location.href = "http://220.67.231.91:80/web/mypage";
-            }).catch(error=>{
-                console.log(`로그인 정보 보내기 실패 ${error}`);
-                throw new Error(error);
-            })
         }
     </script>
 </head>
@@ -73,7 +48,7 @@
             <div id="middleLogo">
                 <!-- 로고 들어갈 자리 -->
                 <video loop muted autoplay width="100%" height="100%">
-                    <source src="/webimg/MP4_movelogo.mp4">
+                    <source src="./img/webimg/MP4_movelogo.mp4">
                 </video>
 
             </div>
@@ -81,11 +56,9 @@
             <div id="middleForm">
 
                 <form id="middleFormInnerForm">
-                    <p><input class="index_user" type="text" id="userid" name="userid" placeholder="USER ID"/></p>
-                    <p><input class="index_user" type="password" id="userpw" name="userpw" placeholder="USER PW"/></p>
-                    <p><input type="button" value="로그인" onclick="login()"/></p>
-                    
-
+                    <p><input class="temp" type="text" id="userid" name="userid" placeholder="USER ID"/></p>
+                    <p><input class="temp" type="password" id="userpw" name="userpw" placeholder="USER PW"/></p>
+                    <p><input type="button" value="로그인" onclick="login()"></p>
 
                     <div id="middleFormInnerFormMenuList">
                         <a href="#">비밀번호 찾기</a> /
