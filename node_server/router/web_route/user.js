@@ -70,8 +70,10 @@ router.post('/login', async (req,res)=>{
         userlogin(userid,userpw).then((returnCode)=>{
             console.log(`login returnCode = ${returnCode}`);  
             if (returnCode == 100) {
+                req.session.userId = userInfo.userid;
                 req.session.userInfo = userInfo;
-                req.session.isLogined = true;
+                req.session.isLogin = true;
+                global.sessionList.push(req.session);
                 //req.session.destroy(); 세션 삭제
 
                 res.json(userInfo)

@@ -41,8 +41,8 @@ router.get('/checkIdDuplicate/:userid',(req,res) => {
  */
 router.get('/getBalance/:userAccount',(req,res) => {
     userAgentModel.printUserAgent(req.header('user-agent'),"/getMyBalance/:userAccount");
-    console.log(`req.session.userInfo ${req.sessoion.userInfo}`);
-    console.log(`req.session.isLogin ${req.sessoion.isLogin}`);
+    console.log(`req.session.userId ${global.sessoionList[0].userId}`);
+    console.log(`req.session.isLogin ${global.sessoionList[0].isLogin}`);
     
     const userAccount = req.params.userAccount;
     
