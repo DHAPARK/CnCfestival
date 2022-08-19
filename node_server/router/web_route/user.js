@@ -75,8 +75,7 @@ router.post('/login', async (req,res)=>{
                 global.sessionList[userid] = req.session;
                 //req.session.destroy(); 세션 삭제
                 
-                res.json(returnCode);
-                res.render('mypage', userInfo);
+                res.json(userInfo);
             } else {
                 res.json(returnCode);
             }
