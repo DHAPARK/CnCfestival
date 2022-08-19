@@ -70,13 +70,12 @@ router.post('/login', async (req,res)=>{
         userlogin(userid,userpw).then((returnCode)=>{
             console.log(`login returnCode = ${returnCode}`);  
             if (returnCode == 100) {
-                req.session.userId = userInfo.userid;
-                req.session.userInfo = userInfo;
-                req.session.isLogin = true;
-                global.sessionList.push(req.session);
+                userInfo.isLogin = true;
+                req.session.userId = userInfo;
+                global.sessionList[userid] = req.session;
                 //req.session.destroy(); 세션 삭제
 
-                res.json(userInfo)
+                res.render('mypage');
             } else {
                 res.json(returnCode);
             }

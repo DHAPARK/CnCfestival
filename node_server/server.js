@@ -86,7 +86,7 @@ app.use('/web/util', webUtilRouter);
 // => /getRecentTransferAccount
 
 app.use('/web/user', webUserRouter);
-// => /joinMember/:userid
+// => /login/:userid
 // => /getMember/:userid/:userpw
 // => /ModifyMyInfo/:userId
 
@@ -98,7 +98,7 @@ const { getStorage, ref, getDownloadURL } = require("firebase-admin/storage");
 const { putItemToDB } = require('./utils/DB');
 // const { RETURN_CODE, DB_COLLECTION } = require('./utils/constant');
 
-global.sessionList = [];
+global.sessionList = {};
 
 app.listen(PORT, async () => {
     await envConfig.initWeb3();
