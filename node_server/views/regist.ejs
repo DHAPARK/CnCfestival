@@ -9,6 +9,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js" integrity="sha512-/l6vieC+YxaZywUhmqs++8uF9DeMvJE61ua5g+UK0TuHZ4TkTgB1Gm1n0NiA86uEOM9JJ6JUwyR0hboKO0fCng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="/regist1.css"/>
     <script>
+        var checkDupId = false;
+
         function checkUserIdNull(){
             var useridInput = document.getElementById("userid").value;
             if (useridInput == "" || useridInput == null || useridInput == undefined){
@@ -80,6 +82,10 @@
             if(!checkUserPhoneNULL()) {
                 return false;
             }
+            
+            if(!checkDupId){
+                return false;
+            }
 
 
             var [userid,userpw,username,useremail,userphone] = document.getElementsByClassName("regist_user");
@@ -133,6 +139,10 @@
                 method: 'GET',
                 baseURL: `http://220.67.231.91:80`
             }).then((res)=>{
+                if ( res.data == 100 ){
+                    checkDupId = true;
+                }
+
                 console.log(`아이디 중복 확인코드 뭐지 ${res.data}`);
                 console.log(`아이디 중복 확인 코드: ${res.data}, 메시지: ${JSON.stringify(res.data)}`);
 
