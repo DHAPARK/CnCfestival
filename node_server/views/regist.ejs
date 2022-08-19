@@ -133,8 +133,8 @@
                 method: 'GET',
                 baseURL: `http://220.67.231.91:80`
             }).then((res)=>{
-                console.log(`아이디 중복 확인코드 뭐지 ${res.status}`);
-                console.log(`아이디 중복 확인 코드: ${res.status}, 메시지: ${JSON.stringify(res.data)}`);
+                console.log(`아이디 중복 확인코드 뭐지 ${res.data}`);
+                console.log(`아이디 중복 확인 코드: ${res.data}, 메시지: ${JSON.stringify(res.data)}`);
 
             }).catch(error=>{
                 console.log(`서버와 연결 실패 ${error}`);
