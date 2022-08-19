@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userAgentModel = require('../../models/userAgentModel');
 
-const { balanceInquiry, getTransactionLog, getProductInfo } = require('../../utils/inquiry');
+const { balanceInquiry, getTransactionLog, getProductInfo, getVideoInfo } = require('../../utils/inquiry');
 
 router.get('/index',(req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/index");
@@ -78,7 +78,10 @@ router.get('/solution',(req,res)=>{
 router.get('/video',(req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/video");
     
-    res.render('video');
+    const videoInfo = await getVideoInfo();
+    console.log(`result = ${videoInfo}`);
+
+    res.render('video', {videoInfo: videoInfo});
 })
 
 router.get('/workBookPython',(req,res)=>{
