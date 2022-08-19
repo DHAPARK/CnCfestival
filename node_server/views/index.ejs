@@ -62,7 +62,7 @@
                 console.log(`status = ${res.data, typeof(res.data)}`);
                 if ( typeof(res.data) == 'object' ){
                     
-                    localStorage.setItem("UserInfo" , res.data);
+                    localStorage.setItem("UserInfo" , JSON.stringify(res.data));
                     console.log(`UserInfo 뭐박히지 ${res.data}`);
                     console.log(`UserInfo 뭐박히지 ${JSON.stringify(res.data)}`);
                     
