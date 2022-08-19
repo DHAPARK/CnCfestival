@@ -33,7 +33,7 @@ router.get('/introduce',(req,res)=>{
     res.render('introduce');
 })
 
-router.get('/market',(req,res)=>{
+router.get('/market', async (req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/market");
 
     const result = await getProductInfo();
