@@ -121,24 +121,24 @@ app.listen(PORT, async () => {
     //     console.log(url);
     // });
 
-    let sampleUrl1 = 'https://www.youtube.com/watch?v=ED2rOHM1od0';
-    let sampleUrl2 = 'https://www.youtube.com/watch?v=IAMdPn3YCG4';
-    for(let i = 1; i<=10; i++) {
-        let video = `video${i}`;
-        let name = `name${i}`;
-        let description = `video url ${i}th example`;
-        let videoUrl = i <= 5 ? sampleUrl1 : sampleUrl2;
-        let videoLength = 5 * i;
+    // let sampleUrl1 = 'https://www.youtube.com/watch?v=ED2rOHM1od0';
+    // let sampleUrl2 = 'https://www.youtube.com/watch?v=IAMdPn3YCG4';
+    // for(let i = 1; i<=10; i++) {
+    //     let video = `video${i}`;
+    //     let name = `name${i}`;
+    //     let description = `video url ${i}th example`;
+    //     let videoUrl = i <= 5 ? sampleUrl1 : sampleUrl2;
+    //     let videoLength = 5 * i;
 
-        let obj = {
-            name: name,
-            description: description,
-            videoUrl: videoUrl,
-            videoLength: videoLength
-        };
+    //     let obj = {
+    //         name: name,
+    //         description: description,
+    //         videoUrl: videoUrl,
+    //         videoLength: videoLength
+    //     };
 
-        putItemToDB(DB_COLLECTION['VIDEO'], video, obj);
-    }
+    //     putItemToDB(DB_COLLECTION['VIDEO'], video, obj);
+    // }
 
 
     //envConfig.generateV4ReadSignedUrl().catch(console.error);
