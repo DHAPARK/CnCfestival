@@ -47,24 +47,21 @@
                 amount: document.getElementById("amount").value,
                 productName: document.getElementById("productName").value,
             },
-        })
-        //.then(res => {
-        //console.log(`res는 ${JSON.stringify(res.data)}`);
-        //window.alert(res.data);
-        //alert(res.data);
-        //if (res.data['SUCCESS_CODE'] == 100) {
-            console.log( localStorage.getItem("balance") );
-            console.log( document.getElementById("amount").value );
-        if ( localStorage.getItem("balance") >= document.getElementById("amount").value ){
+        }).then(res => {
+        console.log(`res는 ${JSON.stringify(res.data)}`);
+        if (res.data['SUCCESS_CODE'] == 100) {
             //console.log('성공');
-            //window.alert("결제가 성공했습니다");
-            //window.close();
+            window.alert("결제가 성공했습니다");
+            window.close();
+        } else if (res.data['SUCCESS_CODE'] == 200) {
+            console.log('송신측 주소 없음');
+        } else if (res.data['SUCCESS_CODE'] == 201) {
+            window.alert("잔액이 부족합니다");
+            window.close();
+        } else if (res.data['SUCCESS_CODE'] == 202) {
+            console.log('비밀번호 오류');
         }
-        else {
-            //window.alert("잔액이 부족합니다");
-            //window.close();
-        }
-    //});
+    });
     }
 </script>
 
