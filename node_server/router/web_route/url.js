@@ -41,7 +41,7 @@ router.get("/marketChild", (req, res) => {
     description: req.query.description,
     receiverAddress: req.query.receiverAddress,
     productName: req.query.productName,
-    amount: amount,
+    amount: req.query.amount,
   };
   res.render("marketChild", { datas: datas });
 });
