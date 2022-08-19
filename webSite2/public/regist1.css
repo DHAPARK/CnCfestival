@@ -1,0 +1,189 @@
+html,body {
+    width:100%;
+    height:100%;
+    background-color:white;
+    margin:0px;
+}
+#container {
+    width:100%;
+    height:100%;
+}
+/*topLongContainer은 width100% height200px로 고정하자*/
+#topLongContainer {
+    width:100%;
+    height:100px;
+    background-color:white;
+    display:flex;
+    justify-content: space-between;
+    /* 얘 나중에 문제생길것같은데.. topLongContainer 줄어드는거 막아놨긴한데.. 화면사이즈마다 다르게 작용할듯하다*/
+    min-width:1400px;
+}
+/* 맨위 왼쪽 로고이미지 둘 div*/
+#topLongContainerInnerLeftLogoImg {
+    width:130px;
+    height:50px;
+    background-color:white;
+    margin-left:80px;
+    margin-top:30px;
+}
+/* 맨위 왼쪽 로고이미지*/
+#topLongContainerInnerLeftLogoImg_Img{
+    width:100%;
+    height:100%;
+}
+
+/* 맨위 오른쪽 메뉴들 (홈페이지, 로그인/회원가입 , 학습 , 메뉴 등) */
+#topLongContainerInnerRightMenuList {
+    width: 600px;
+    height: 50px;
+    background-color:white;
+    margin-right:40px;
+    margin-top:40px;
+}
+#topLongContainerInnerRightMenuList a {
+    margin-right:40px;
+    text-decoration: none;
+}
+a:link { color: black; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: black; text-decoration: underline;}
+
+/*<!-- 가운데 내용들 본격적인 시작 -->*/
+#contentsContainer{
+    width:1300px;
+    height:900px;
+    background-color:white;
+    margin: 0 auto;
+}
+
+/* 가운데 내용들 중 Form을 감싸는 div */
+#contentsContainerInnerRegisterForm{
+    margin-top:50px;
+    /* 바로 바깥div를 fixed로 줘서 width를  %로 줘도됨 */
+    width:100%;
+    height:90%;
+    background-color:white;
+    display: flex;
+    justify-content: center;
+}
+
+/* 진짜 회원가입 form */
+#contentsContainerInnerRegisterForm_Form{
+    width: 150%;
+    height:100%;
+    background-color:white;
+    padding-inline: 10%;
+}
+
+#login{
+    font-weight: bold;
+    font-size: larger;
+}
+
+/* 가입하기 버튼 */
+#under_innerForm_registBtn{
+    margin-top:2%;
+    width:100%;
+    height:36%;
+    padding-top:50px;
+}
+
+p{
+    font-size:20px;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+p[id="agree"]{
+    font-size: smaller;
+    font-weight: normal;
+    color: grey;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+input{
+    width:80%;
+    height:50px;
+    padding-left:20px;
+    margin-top:40px;
+    border-width:0px;
+    background-color: #95B3D7; 
+    font-size: large;
+}
+
+input[type="text"]{
+    border:0px;
+    color:white;
+    margin-top: 0;
+    margin-right: 5px;
+}
+
+input[type="password"]{
+    border:0px;
+    color:white;
+    margin-top: 0;
+    margin-left: 4%;
+}
+
+input[type="email"]{
+    border:0px;
+    color:white;
+    margin-top: 0;
+    margin-right: 5px;
+}
+
+button[type="duplicate_btn"]{
+    text-decoration: none;
+    cursor: pointer;
+    background: #024775;
+    color: white;
+    font-size: 15px;
+    width:100px;
+    height:auto;
+    padding-top: 17px;
+    padding-bottom: 13px;
+}
+
+.innerForm_input p{
+    margin-left: 5%;
+}
+
+#username{
+    margin-left: 4%;
+}
+
+#user{
+    display: flex;
+    justify-content: center;
+    margin-right: 0;
+}
+
+
+/* 회원가입 form밑의 파란색 "한성코인에 함께 해보세요" 든 div
+    form이 60프로 먹었으니 얜 40프로 먹으면된다
+*/
+.under_innerForm_blueDiv_innerBtn{
+    display: inline-block;
+    padding: 0 5px;
+    text-decoration: none;
+    cursor: pointer;
+    background: #024775;
+    color: white;
+    width:180px;
+    height: 57px;
+    line-height: 57px;
+    vertical-align: top;
+    font-size: 20px;
+    margin-left:6%;
+    margin-right:6%;
+}
+
+
+#bottomAdvertise{
+    width:100%;
+    height:31%;
+    /*background-color:red;*/
+}
+
