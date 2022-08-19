@@ -1,0 +1,156 @@
+html,body {
+    width:100%;
+    height:100%;
+    background-color:white;
+    margin:0px;
+}
+#container {
+    width:100%;
+    height:100%;
+}
+        /*topLongContainer은 width100% height200px로 고정하자*/
+#topLongContainer {
+    width:100%;
+    height:100px;
+    background-color:white;
+    display:flex;
+    justify-content: space-between;
+    /* 얘 나중에 문제생길것같은데.. topLongContainer 줄어드는거 막아놨긴한데.. 화면사이즈마다 다르게 작용할듯하다*/
+    min-width:1400px;
+}
+/* 맨위 왼쪽 로고이미지 둘 div*/
+#topLongContainerInnerLeftLogoImg {
+    width:130px;
+    height:50px;
+    background-color:white;
+    margin-left:80px;
+    margin-top:30px;
+}
+/* 맨위 왼쪽 로고이미지*/
+#topLongContainerInnerLeftLogoImg_Img{
+    width:100%;
+    height:100%;
+}
+/* 맨위 오른쪽 메뉴들 (홈페이지, 로그인/회원가입 , 학습 , 메뉴 등) */
+#topLongContainerInnerRightMenuList {
+    width: 600px;
+    height: 50px;
+    background-color:white;
+    margin-right:40px;
+    margin-top:40px;
+}
+#topLongContainerInnerRightMenuList a {
+    margin-right:40px;
+    text-decoration: none;
+}
+
+#learning{
+    font-weight: bold;
+    font-size: larger;
+}
+
+a:link { text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: black; text-decoration: underline;}
+
+#contentsContainer{
+    width:100%;
+    height:100%;
+    min-width:1400px;
+}
+/*"동영상 강의"텍스트*/
+#topText{
+    padding-top:20px;
+    padding-left:140px;
+    margin-inline: 50px;
+    border-bottom: 1px solid black;
+}
+#topTextRightMenu{
+    display: flex;
+    justify-content: right;
+}
+
+#topTextRightMenu p{
+    margin: 0;
+    font-size: 18px;
+    padding-inline: 2px;
+    padding-bottom: 20px;
+}
+
+a[id="workbook"]{
+    color: rgb(91, 160, 194);
+    font-size: larger;
+    border-bottom: 2px solid rgb(91, 160, 194);
+}
+
+#topTextRightMenu select{
+    border: none;
+    margin-right: 5px;
+    margin-bottom: 20px;
+}
+
+#topTextRightMenu a{
+    font-size: 18px;
+    margin-inline: 2px;
+    padding-inline: 20px;
+    text-decoration: none;
+}
+#workbookContainer{
+    width : 78%;
+    height: 80%;
+    margin:0 auto;
+    padding-left:120px;
+    padding-right:120px;
+    padding-top:20px;
+}
+
+#menuTitle p{   
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 0;
+    display: inline-block;
+}
+
+#workbookSpace p{
+    font-weight: lighter;
+    font-size: 20px;
+    display: inline-block;
+}
+
+#number, #_number{
+    padding-right: 8%;
+    width: auto;
+    margin-right: 0;
+}
+#title{
+    padding-right: 40%;
+    margin-right: 0;
+}
+
+#_title{
+    margin-right: 0;
+    width: auto;
+    padding-right: 10%;
+}
+
+#workbook_div{
+    display: inline-block;
+    width: 25%;
+    margin-right: 15%;
+    line-height: 10px;
+}
+
+#progress_bar{
+    display: inline-block;
+    position: relative;
+    background-color: #ababab;
+    width: 45%;
+    margin-left: 22px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#_progress{
+    display: inline-block;
+}
+
