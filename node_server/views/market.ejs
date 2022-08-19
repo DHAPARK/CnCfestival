@@ -69,61 +69,20 @@
                     <!-- 결론적으로 비디오를 받아오면 videoSpace를 for문 돌리게될듯
                     videosemicontainer도 2중 for로 돌릴라나..-->
                     <div class="videoSpace">
+                        <% for ( let i=0;i< marketInfo.length ; i++){ %>
                         <div class="eachVideo">
                             <!-- 여기에 video 들어가거나 유튜브 링크? -->
                             <img src=""/>
                             <center>
-                                <p>떡볶이</p>
-                                <p>5000 hsc</p>
+                                <p><%=marketInfo[i].name%></p>
+                                <p><%=marketInfo[i].price%></p>
+                                <p><%=marketInfo[i].description%></p>
+                                <p><%=marketInfo[i].manufacturer%></p>
                             </center>
                         </div>
                         <!--eachVideo 끝 -->
-
-                        <div class="eachVideo">
-                            <!-- 여기에 video 들어가거나 유튜브 링크? -->
-                            <img src=""/>
-                            <center>
-                                <p>떡볶이</p>
-                                <p>5000 hsc</p>
-                            </center>
-                        </div>
-                        <!--eachVideo 끝 -->
-                        <div class="eachVideo">
-                            <!-- 여기에 video 들어가거나 유튜브 링크? -->
-                            <img src=""/>
-                            <center>
-                                <p>떡볶이</p>
-                                <p>5000 hsc</p>
-                            </center>
-                        </div>
-                        <!--eachVideo 끝 -->
-                        <div class="eachVideo">
-                            <!-- 여기에 video 들어가거나 유튜브 링크? -->
-                            <img src=""/>
-                            <center>
-                                <p>떡볶이</p>
-                                <p>5000 hsc</p>
-                            </center>
-                        </div>
-                        <!--eachVideo 끝 -->
-                        <div class="eachVideo">
-                            <!-- 여기에 video 들어가거나 유튜브 링크? -->
-                            <img src=""/>
-                            <center>
-                                <p>떡볶이</p>
-                                <p>5000 hsc</p>
-                            </center>
-                        </div>
-                        <!--eachVideo 끝 -->
-                        <div class="eachVideo">
-                            <!-- 여기에 video 들어가거나 유튜브 링크? -->
-                            <img src=""/>
-                            <center>
-                                <p>떡볶이</p>
-                                <p>5000 hsc</p>
-                            </center>
-                        </div>
-                        <!--eachVideo 끝 -->
+                        <% } %>
+                        
 
                     </div>
                     <!--videoSpace 끝-->
