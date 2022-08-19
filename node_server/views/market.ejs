@@ -36,21 +36,23 @@
             //console.log(element);
             var eleChild = element.children[1].children;
 
-            console.log(`첫  :  ${eleChild[0].innerText}`);
-            console.log(`둘  :  ${eleChild[1].innerText.substring(0,eleChild[1].innerText.length-4)}`);
-            console.log(`description : ${eleChild[2].value}`);
-            console.log(`리시버주소 : ${eleChild[3].value}`);
             //console.log(element.innerHTML);
             var UserInfo = JSON.parse(localStorage.getItem('UserInfo'));
-            console.log(`아이디 ${UserInfo.userid}`);
-            console.log(`비번 ${UserInfo.userpw}`);
-            console.log(`내지갑주소 ${UserInfo.accountAddress}`);
-
-            console.log(`상대지갑주소 ${UserInfo.userid}`);
+            
             console.log(`제품명 ${eleChild[0].innerText}`);
             console.log(`코인수량 ${eleChild[1].innerText.substring(0,eleChild[1].innerText.length-4)}`);
-
-            
+            console.log(`상대지갑주소 ${eleChild[3].value}`);
+            console.log(`description : ${eleChild[2].value}`);
+            console.log(`내지갑주소 ${UserInfo.accountAddress}`);
+            console.log(`비번 ${UserInfo.userpw}`);
+            console.log(`아이디 ${UserInfo.userid}`);
+            var userid = UserInfo.userid;
+            var userpw = UserInfo.userpw;
+            var senderAddress = UserInfo.accountAddress;
+            var description = eleChild[2].value;
+            var receiverAddress = eleChild[3].value;
+            var productName = eleChild[0].innerText;
+            var amount = eleChild[1].innerText.substring(0,eleChild[1].innerText.length-4)
         }
     </script>
 
