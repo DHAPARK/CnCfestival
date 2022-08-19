@@ -50,7 +50,6 @@
         }).then(res => {
         console.log(`res는 ${JSON.stringify(res.data)}`);
         if (res.data['SUCCESS_CODE'] == 100) {
-            //console.log('성공');
             window.alert("결제가 성공했습니다");
             window.close();
         } else if (res.data['SUCCESS_CODE'] == 200) {
