@@ -10,7 +10,23 @@
 
 </head>
 <body>
+    <script>
+        function getBalance(){
+            axios({
+                url: `/web/util/getBalance`,
+                method: 'GET',
+                baseURL: `http://220.67.231.91:80`
+            }).then(res=>{
+                console.log("/web/util/getBalance 꽂아줌");
+                console.log(res.data);
+            })
+        }
+
+    </script>
+
     <div id="container">
+
+
         <!-- 맨위 왼쪽의 로고와 오른쪽의 메뉴들을 담는 topcontainer -->
         <div id="topLongContainer" class="bg_cont">
             
@@ -21,7 +37,7 @@
             <!-- 맨위 오른쪽 메뉴들 (홈페이지, 로그인/회원가입 , 학습 , 메뉴 등-->
             <div id="topLongContainerInnerRightMenuList" class="bg_cont">
                 <a href="#">홈페이지</a>
-                <a href="#">로그인 / 회원가입</a>
+                <a href="#" onclick="getBalance();" >로그인 / 회원가입</a>
                 <a href="#">학습</a>
                 <a href="#" id="mypage">My page</a>
                 <a href="#">메뉴</a>
