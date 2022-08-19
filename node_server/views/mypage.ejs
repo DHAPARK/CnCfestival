@@ -28,8 +28,6 @@
 
     </script>
 
-    <p><%= info.balance  %></p>
-    <p><%= info.transferLog  %></p>
     
     <div id="container">
 
@@ -63,7 +61,7 @@
                 <!--<img id="contentContainerTopInfoDesk_Img" src="/apkimg/HSC_ring.png">-->
                 <div class="contentContainerTopInfoDesk_Img_Text" style="position:relative; margin-top:55px;">
                     <p id="total_point">Total Point</p>
-                    <p id="point">8000</p>
+                    <p id="point"><%= info.balance  %></p>
                 </div>
             </div>
             <!-- contentContainerTopInfoDesk 끝 -->
@@ -78,42 +76,16 @@
                 </ul>
                 <!--여기서 이제 진짜 서버에서 넘어온 data들 for loop -->
                 <table id="solvedQuestionList_each_question">
-                    <tr>
-                        <td class="tb_left_bd" >객관식</td>
-                        <td class="tb_left2_bd">#01</td>
-                        <td class="tb_left3_bd">2022/08/01</td>
-                        <td class="tb_left4_bd">100</td>
-                    </tr>
-                    <tr>
-                        <td class="tb_left_bd" >객관식</td>
-                        <td class="tb_left2_bd">#01</td>
-                        <td class="tb_left3_bd">2022/08/01</td>
-                        <td class="tb_left4_bd">100</td>
-                    </tr>
-                    <tr>
-                        <td class="tb_left_bd" >객관식</td>
-                        <td class="tb_left2_bd">#01</td>
-                        <td class="tb_left3_bd">2022/08/01</td>
-                        <td class="tb_left4_bd">100</td>
-                    </tr>
-                    <tr>
-                        <td class="tb_left_bd" >객관식</td>
-                        <td class="tb_left2_bd">#01</td>
-                        <td class="tb_left3_bd">2022/08/01</td>
-                        <td class="tb_left4_bd">100</td>
-                    </tr>
-                    <tr>
-                        <td class="tb_left_bd" >객관식</td>
-                        <td class="tb_left2_bd">#01</td>
-                        <td class="tb_left3_bd">2022/08/01</td>
-                        <td class="tb_left4_bd">100</td>
-                    </tr>
-                    <tr>
-                        <td class="tb_left_bd" >객관식</td>
-                        <td class="tb_left2_bd">#01</td>
-                        <td class="tb_left3_bd">2022/08/01</td>
-                        <td class="tb_left4_bd">100</td>
-                    </tr>
+                    <%= for( let j = 0; j<6; j++ )
+                    {
+                    %>
+                        <tr>
+                            <td class="tb_left_bd" ><%=info.transferLog[i].senderId=%></td>
+                            <td class="tb_left2_bd"><%=info.transferLog[i].receiverId=%></td>
+                            <td class="tb_left3_bd"><%=info.transferLog[i].balance=%></td>
+                            <td class="tb_left4_bd"> <%=info.transferLog[i].transactionTime=%> </td>
+                        </tr>
+                    <%= } %>
                 </table>
                 
             </div>
