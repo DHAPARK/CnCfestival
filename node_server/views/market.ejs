@@ -33,12 +33,19 @@
     <script>
         function viewChildPage(element){
             //obj.style.display = 'none';
-            console.log(element);
-            console.log(element.innerText);
+            //console.log(element);
+            console.log(element[0][0].innerText);
+            console.log(element[0][1].innerText);
             //console.log(element.innerHTML);
             var UserInfo = JSON.parse(localStorage.getItem('UserInfo'));
-            console.log(`뭐박히지 ${UserInfo.userid}`);
-            console.log(`뭐박히지 ${JSON.stringify(UserInfo.userid)}`);
+            console.log(`아이디 ${UserInfo.userid}`);
+            console.log(`비번 ${UserInfo.userpw}`);
+            console.log(`내지갑주소 ${UserInfo.accountAddress}`);
+
+            console.log(`상대지갑주소 ${UserInfo.userid}`);
+            console.log(`제품명 ${UserInfo.userid}`);
+            console.log(`코인수량 ${UserInfo.userid}`);
+
             
         }
     </script>
