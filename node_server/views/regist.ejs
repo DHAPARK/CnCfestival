@@ -141,8 +141,8 @@
             }).then((res)=>{
                 if ( res.data == 100 ){
                     checkDupId = true;
+                    window.alert("사용가능한 아이디입니다");
                 }
-
                 console.log(`아이디 중복 확인코드 뭐지 ${res.data}`);
                 console.log(`아이디 중복 확인 코드: ${res.data}, 메시지: ${JSON.stringify(res.data)}`);
 
