@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #conatiner{
+            width:100%;
+            height:100%;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    
+    <div id="container">
+        <form method="post" action="http://220.67.231.91:80/buyProductRequest">
+            <input type="hidden" name="userId" id="userId" value=<%=datas.userid %>/>
+            <input type="hidden" name="userPassword" id="userPassword" value=<%=datas.userpw %>/>
+            <input type="hidden" name="senderAddress" id="senderAddress" value=<%=datas.senderAddress %>/>
+            <input type="hidden" name="receiverAddress" id="receiverAddress" value=<%=datas.receiverAddress %>/>
+            <input type="text" name="productName" id="productName" value=<%=datas.productName %>/>
+            <input type="text" name="amount" id="amount" value=<%=datas.amount %>/>
+            <input type="submit" value="구매"/>
+        </form>
+    </div>
+
+</body>
+</html>
