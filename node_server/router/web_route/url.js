@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const userAgentModel = require('../../models/userAgentModel');
 
+const { balanceInquiry, getTransactionLog } = require('../../utils/inquiry');
+
 router.get('/index',(req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/index");
 
@@ -49,10 +51,19 @@ router.get('/multipleChoice',(req,res)=>{
     res.render('multipleChoice');
 })
 
-router.get('/mypage',(req,res)=>{
+router.get('/mypage/:userId', async (req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/mypage");
     
-    res.render('mypage');
+    const userId = req.params.userId;
+    const userInfo = global.sessionList[userId];
+    const accountAddress = userInfo['accountAddress'];
+
+    let info = {};
+
+    info['balance'] = await balanceInquiry(accountAddress);
+    info['transferLog'] = await getTransactionLog(accountAddress);
+    
+    res.render('mypage', {info: info});
 })
 
 router.get('/solution',(req,res)=>{
