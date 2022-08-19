@@ -75,7 +75,7 @@ router.get('/solution',(req,res)=>{
     res.render('solution'); // 페이지 이름이 solution1인 이유 ?
 })
 
-router.get('/video',(req,res)=>{
+router.get('/video', async (req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/video");
     
     const videoInfo = await getVideoInfo();
