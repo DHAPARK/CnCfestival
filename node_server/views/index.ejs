@@ -62,7 +62,7 @@
                 console.log(`status = ${res.data, typeof(res.data)}`);
                 if ( typeof(res.data) == 'object' ){
                     
-                    localStorage.setItem(res.data.userid , res.data);
+                    localStorage.setItem("UserInfo" , res.data);
 
                     console.log(`로그인 정보 보냄 코드1: ${res.status}, 메시지: ${JSON.stringify(res.data)}`);
                     location.href = `http://220.67.231.91:80/web/mypage/${res.data.userid}`;
