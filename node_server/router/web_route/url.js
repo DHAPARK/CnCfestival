@@ -35,8 +35,11 @@ router.get('/introduce',(req,res)=>{
 
 router.get('/market',(req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/market");
-    
-    res.render('market');
+
+    const result = await getProductInfo();
+    console.log(`result = ${result}`);
+
+    res.render('market', result);
 })
 
 router.get('/menuList',(req,res)=>{
@@ -55,11 +58,8 @@ router.get('/mypage/:userId', async (req,res)=>{
     userAgentModel.printUserAgent(req.header('user-agent'),"/mypage");
     
     const userId = req.params.userId;
-    console.log(`userid ${userId}`);
     const userInfo = global.sessionList[userId][userId];
-    console.log(`userid ${Object.keys(userInfo)}`);
     const accountAddress = userInfo['accountAddress'];
-    console.log(`userid ${accountAddress}`);
 
     let info = {};
 
