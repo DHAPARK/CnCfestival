@@ -34,10 +34,10 @@
         function viewChildPage(element){
             //obj.style.display = 'none';
             //console.log(element);
-            var eleChild = element.children;
+            var eleChild = element.children.children;
 
-            console.log(eleChild[1]);
-            console.log(eleChild[1].innerText);
+            console.log(`첫  :  ${eleChild[0].innerText}`);
+            console.log(`둘  :  ${eleChild[1].innerText}`);
             //console.log(element.innerHTML);
             var UserInfo = JSON.parse(localStorage.getItem('UserInfo'));
             console.log(`아이디 ${UserInfo.userid}`);
