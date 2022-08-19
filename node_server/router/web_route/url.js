@@ -57,7 +57,7 @@ router.get('/mypage/:userId', async (req,res)=>{
     const userId = req.params.userId;
     console.log(`userid ${userId}`);
     const userInfo = global.sessionList[userId];
-    console.log(`userid ${userInfo}`);
+    console.log(`userid ${Object.keys(userInfo)}`);
     const accountAddress = userInfo['accountAddress'];
     console.log(`userid ${accountAddress}`);
 
