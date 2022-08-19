@@ -129,7 +129,7 @@
             console.log(`###2 ${qsData}`);
 
             axios({
-                url: `/web/util/checkIdDuplicate/:${userid}`,
+                url: `/web/util/checkIdDuplicate/${userid}`,
                 method: 'GET',
                 baseURL: `http://220.67.231.91:80`
             }).then((res)=>{
