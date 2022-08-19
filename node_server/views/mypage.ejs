@@ -8,8 +8,12 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="/mypage.css"/>
 
+
+
 </head>
 <body>
+
+
     <script>
         function getBalance(){
             axios({
@@ -24,6 +28,9 @@
 
     </script>
 
+    <p><%= info.balance  %></p>
+    <p><%= info.transferLog  %></p>
+    
     <div id="container">
 
 
