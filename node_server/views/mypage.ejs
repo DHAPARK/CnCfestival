@@ -83,10 +83,10 @@
                     
                     <% for(let j = 0; j<6; j++){ %>
                         <tr>
-                            <td class="tb_left_bd" ><%=info.transferLog[i].senderId%></td>
-                            <td class="tb_left2_bd"><%=info.transferLog[i].receiverId%></td>
-                            <td class="tb_left3_bd"><%=info.transferLog[i].balance%></td>
-                            <td class="tb_left4_bd"> <%=info.transferLog[i].transactionTime%> </td>
+                            <td class="tb_left_bd" ><%=info.transferLog[j].senderId%></td>
+                            <td class="tb_left2_bd"><%=info.transferLog[j].receiverId%></td>
+                            <td class="tb_left3_bd"><%=info.transferLog[j].balance%></td>
+                            <td class="tb_left4_bd"> <%=info.transferLog[j].transactionTime%> </td>
                         </tr>
                     <%}%>
                 </table>
