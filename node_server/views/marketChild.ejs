@@ -19,14 +19,14 @@
     
     <div id="container">
         <form method="post" action="http://220.67.231.91:80/buyProductRequest">
-            <input type="hidden" name="userId" id="userId" value=<%=datas.userid %>/>
-            <input type="hidden" name="userPassword" id="userPassword" value=<%=datas.userpw %>/>
-            <input type="hidden" name="senderAddress" id="senderAddress" value=<%=datas.senderAddress %>/>
-            <input type="hidden" name="receiverAddress" id="receiverAddress" value=<%=datas.receiverAddress %>/>
-            삼품명 : <input type="text" name="productName" id="productName" value=<%=datas.productName %>/>
-            상품설명 : <input type="text" name="description" id="description" value=<%=datas.description %>/>
-            금액 : <input type="text" name="amount" id="amount" value=<%=datas.amount %>/> HSC
-            <input type="submit" value="구매"/>
+            <p><input type="hidden" name="userId" id="userId" value=<%=datas.userid %>></p>
+            <p><input type="hidden" name="userPassword" id="userPassword" value=<%=datas.userpw %>></p>
+            <p><input type="hidden" name="senderAddress" id="senderAddress" value=<%=datas.senderAddress %>></p>
+            <p><input type="hidden" name="receiverAddress" id="receiverAddress" value=<%=datas.receiverAddress %>></p>
+            <p>삼품명 : <input type="text" name="productName" id="productName" value=<%=datas.productName %>></p>
+            <p>상품설명 : <input type="text" name="description" id="description" value=<%=datas.description %>></p>
+            <p>금액 : <input type="text" name="amount" id="amount" value=<%=datas.amount %>> HSC</p>
+            <p><input type="submit" value="구매"/></p>
         </form>
     </div>
 
