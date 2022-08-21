@@ -7,8 +7,10 @@
     <title>Document</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js" integrity="sha512-/l6vieC+YxaZywUhmqs++8uF9DeMvJE61ua5g+UK0TuHZ4TkTgB1Gm1n0NiA86uEOM9JJ6JUwyR0hboKO0fCng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="./public/regist1.css"/>
+    <link rel="stylesheet" href="/regist1.css"/>
     <script>
+        var checkDupId = false;
+
         function checkUserIdNull(){
             var useridInput = document.getElementById("userid").value;
             if (useridInput == "" || useridInput == null || useridInput == undefined){
@@ -80,6 +82,11 @@
             if(!checkUserPhoneNULL()) {
                 return false;
             }
+            
+            if(!checkDupId){
+                window.alert("아이디 중복체크를 완료하세요");
+                return false;
+            }
 
 
             var [userid,userpw,username,useremail,userphone] = document.getElementsByClassName("regist_user");
@@ -129,11 +136,20 @@
             console.log(`###2 ${qsData}`);
 
             axios({
-                url: `/web/util/checkIdDuplicate/:${userid}`,
+                url: `/web/util/checkIdDuplicate/${userid}`,
                 method: 'GET',
                 baseURL: `http://220.67.231.91:80`
             }).then((res)=>{
-                console.log(`아이디 중복 확인 코드: ${res.status}, 메시지: ${JSON.stringify(res.data)}`);
+                if ( res.data == 200 ){
+                    checkDupId = true;
+                    window.alert("사용가능한 아이디입니다");
+                } else {
+                    checkDupId = false;
+                    window.alert("중복된 아이디입니다");
+                }
+                console.log(`아이디 중복 확인코드 뭐지 ${res.data}`);
+                console.log(`아이디 중복 확인 코드: ${res.data}, 메시지: ${JSON.stringify(res.data)}`);
+
             }).catch(error=>{
                 console.log(`서버와 연결 실패 ${error}`);
                 throw new Error(error);
@@ -153,10 +169,10 @@
             </div>
             <!-- 맨위 오른쪽 메뉴들 (홈페이지, 로그인/회원가입 , 학습 , 메뉴 등-->
             <div id="topLongContainerInnerRightMenuList" class="bg_cont">
-                <a href="/web/introduce">홈페이지</a>
-                <a href="#" id="login">로그인 / 회원가입</a>
-                <a href="/web/menuList">학습</a>
-                <a href="/web/mypage">My page</a>
+                <a href="http://220.67.231.91:80/web/introduce">홈페이지</a>
+                <a href="http://220.67.231.91:80/web/market">제휴 스토어</a>
+                <a href="http://220.67.231.91:80/web/menuList">학습</a>
+                <a href="http://220.67.231.91:80/web/mypage">My page</a>
                 <a href="#">메뉴</a>
             </div>
         </div>

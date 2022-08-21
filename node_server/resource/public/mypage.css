@@ -60,41 +60,42 @@ a:hover { color: black; text-decoration: underline;}
 #contentContainerTopInfoDesk{
     margin: 0 auto;
     width: 99.5%;
-    height: 40%;
+    height: 50%;
+    position: relative;
 }
 
-#contentContainerTopInfoDesk_Img{
+/*#contentContainerTopInfoDesk_Img{
     width:40%;
     position: relative;
-    margin: 0 auto;
+    margin-inline: 30%;
     top: 0;
-}
-
-#contentContainerTopInfoDesk_Img_Text{
-    position: relative;
-}
+}*/
 
 #mypage{
     font-weight: bold;
     font-size: larger;
 }
 
+.contentContainerTopInfoDesk_Text{
+    position: absolute;
+    top: -70%;
+}
+
+
 #total_point{
-    font-size: 30px;
+    font-size: 35px;
     font-weight: bold;
     color: black;
-    margin-top: -20%;
-    margin-inline: 45%;
-    width: 11%;
+    text-align: center;
+    
 }
 
 #point{
-    margin-inline: 46.5%;
     font-size: 40px;
     font-weight: bold;
     color: #043570;
-    width: 7%;
-    margin-top: 2%;
+    margin-top: 10px;
+    text-align: center;
 }
 
 #solvedQuestionList{
