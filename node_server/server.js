@@ -119,16 +119,15 @@ app.post('/test', (req, res) => {
     const result = spawn('python3',[`pf${0}.py`]);
     
     let resLog = ''
-    //성공시 이렇게 결과받는다.
+
     result.stdout.on('data',(data)=>{
         resLog = data.toString();
     })
-    //에러발생시 이렇게 받고 아래는 코드 출처 ㅇㅇ
     result.stderr.on('data', (data)=>{
         resLog = data.toString();
     });
     //출처: https://curryyou.tistory.com/225 [카레유:티스토리]    
-
+    console.log(resLog);
     res.json(resLog);
 })
 
