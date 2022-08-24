@@ -96,7 +96,7 @@ app.use('/web/transaction', webTransactionRouter);
 // => /hscPayment
 
 
-app.post('/test', (req, res) => {
+app.post('/test', async (req, res) => {
     let code = decodeURIComponent(req.body.code);
     
     fs.writeFileSync(`pf${0}.py`, code, "utf8", (err)=>{
