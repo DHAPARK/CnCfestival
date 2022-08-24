@@ -95,16 +95,42 @@ app.use('/web/transaction', webTransactionRouter);
 // => /hscPayment
 
 
-app.get('/test', (req, res) => {
-    const age = 10;
-    const name = 'coding-king';
-    const data = {
-        age,
-        name
-    };
-    res.json(data)
-})
+app.post('/test', (req, res) => {
+    let code = decodeURIComponent(req.body.code);
+    //let { userId } = req.body
+    //console.log(code);
+    
+    // for(let i=0; i < code.length ; i++){
+    //     if(!isAlphaNumCheck(code[i])){
+    //         code = code.replace(code[i]," ");
+    //     }
+    // }
 
+    console.log(code);
+    fs.writeFileSync(`pf${0}.py`, code, "utf8", (err)=>{
+        if(err){
+            console.log(`${err}\npython 파일생성에 문제발생`);
+        }
+    })
+    //파일제대로 생기나 확인해야함
+    
+    //파일이 제대로 생성이 되는걸 확인했으니 "방금 만들어진" 파이썬파일 그대로 컴파일
+    const spawn = require("child_process").spawn;
+    const result = spawn('python',[`pf${0}.py`]);
+    
+    let resLog = ''
+    //성공시 이렇게 결과받는다.
+    result.stdout.on('data',(data)=>{
+        resLog = data.toString();
+    })
+    //에러발생시 이렇게 받고 아래는 코드 출처 ㅇㅇ
+    result.stderr.on('data', (data)=>{
+        resLog = data.toString();
+    });
+    //출처: https://curryyou.tistory.com/225 [카레유:티스토리]    
+
+    res.send(resLog);
+})
 
 const { getStorage, ref, getDownloadURL } = require("firebase-admin/storage");
 const { putItemToDB } = require('./utils/DB');
