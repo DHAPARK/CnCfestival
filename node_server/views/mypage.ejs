@@ -61,15 +61,21 @@
                 </ul>
                 <!--여기서 이제 진짜 서버에서 넘어온 data들 for loop -->
                 <table id="solvedQuestionList_each_question">
-                    <% for(let j = 0; j<6; j++){ %>
+
+                    <% 
+                    if (info) {
+                        for(let j = 0; j<info.transferLog.length ; j++){ 
+                        %>
                         <tr>
                             <td class="tb_left_bd" ><%=info.transferLog[j].senderId%></td>
                             <td class="tb_left2_bd"><%=info.transferLog[j].receiverId%></td>
                             <td class="tb_left3_bd"><%=info.transferLog[j].amount%> HSC</td>
                             <td class="tb_left4_bd"> <%=info.transferLog[j].transactionTime%> </td>
                         </tr>
-
-                    <%}%>
+                    <% 
+                        }
+                    }
+                    %>
                 </table>
                 
             </div>
