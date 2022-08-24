@@ -114,7 +114,7 @@ app.post('/test', async (req, res) => {
             let temp = { stdout: '', stderr: error };
             console.log(`stdout ${temp.stdout}`);
             console.log(`stderr ${temp.stderr}`);
-            res.json({stdout:stdout, stderr:stderr});
+            res.json({stdout:temp.stdout, stderr:temp.stderr});
         }
     });
     // const spawn = require("child_process").spawn;
