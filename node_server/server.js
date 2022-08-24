@@ -111,7 +111,10 @@ app.post('/test', async (req, res) => {
     let {stdout, stderr} = await exec(`python3 pf${0}.py`, {shell: true}, (error) => {
         if(error) {
             console.log(`error ${error}`);
-            return { stdout: '', stderr: error };
+            let temp = { stdout: '', stderr: error };
+            console.log(`stdout ${temp.stdout}`);
+            console.log(`stderr ${temp.stderr}`);
+            res.json({stdout:stdout, stderr:stderr});
         }
     });
     // const spawn = require("child_process").spawn;
