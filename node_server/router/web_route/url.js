@@ -81,10 +81,14 @@ router.get("/mypage/:userId", async (req, res) => {
   const accountAddress = userInfo["accountAddress"];
 
   let myInfo = {};
-
-  myInfo["balance"] = await balanceInquiry(accountAddress);
-  myInfo["transferLog"] = await getTransactionLog(accountAddress);
-
+  console.log(`만약에 아무것도 없으면 ? : ${myInfo}`);
+  if (userId) {
+    myInfo["balance"] = await balanceInquiry(accountAddress);
+    myInfo["transferLog"] = await getTransactionLog(accountAddress);
+  } else {
+    myInfo["balance"] = "None";
+    myInfo["transferLog"] = "None";
+  }
   res.render("mypage", { info: myInfo });
 });
 
