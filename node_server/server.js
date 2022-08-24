@@ -94,6 +94,18 @@ app.use('/web/transaction', webTransactionRouter);
 // => /hscRemittance
 // => /hscPayment
 
+
+app.get('/test', (req, res) => {
+    const age = 10;
+    const name = 'coding-king';
+    const data = {
+        age,
+        name
+    };
+    res.json(data)
+})
+
+
 const { getStorage, ref, getDownloadURL } = require("firebase-admin/storage");
 const { putItemToDB } = require('./utils/DB');
 const { RETURN_CODE, DB_COLLECTION } = require('./utils/constant');
