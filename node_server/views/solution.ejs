@@ -141,7 +141,7 @@
             httpRequest.onreadystatechange = () => {
 
                 if (httpRequest.readyState === XMLHttpRequest.DONE) {
-
+                    console.log('여기까지');
                     if (httpRequest.status === 200 ||  httpRequest.status == 201) {
                         var res = httpRequest.response;
                         console.log(`오나? ${JSON.stringify(res.stdout)}`);
