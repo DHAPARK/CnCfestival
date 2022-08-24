@@ -51,7 +51,21 @@
                 <p class="contentsContainerInnerContainersInnerText">solution.py</p>
                     <!--여기 이제 monaco 가 들어갈거다-->
                     <div id="monacoSpace">
-                        
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/loader.min.js"></script>
+                        <script>
+                            require.config({
+                                paths: {
+                                'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs'
+                                }
+                            });
+                            require(["vs/editor/editor.main"], () => {
+                                monaco.editor.create(document.getElementById('container'), {
+                                value: "",
+                                language: 'python',
+                                theme: 'vs-dark',
+                                });
+                            });
+                        </script>
                     </div>
 
                     <p class="contentsContainerInnerContainersInnerText">실행 결과</p>
@@ -79,13 +93,61 @@
             </div>
             <!--bottomContainerInnerAtagContainer 끝-->
             <div class="bottomContainerInnerRightAtagDiv">
-                <button type="button">제출하기</button>
+                <button type="button" onclick="clicked()">제출하기</button>
             </div>
 
         </div>
         <!-- bottomContainer 끝-->
     </div>    
 
+    <script>
+        function clicked(){
+
+            //해볼코드 line 순서때문에 하..
+
+            var codeContainer = document.getElementsByClassName("view-line");;
+
+            //라인들을 다 put하고 후에 array를 line의 top 을가지고 sort할것이다. 그래야 순서대로 정렬이된다.
+            //1차원 배열 하나 (모든 (top,linecode) array를 담을 배열)  이름 : AllLines
+            
+            var AllLines = [];
+            for (var line of codeContainer) {
+                //2차원 배열을 만들어 (top.linecode)를 담아준다 이름 : eachLine(굳이 변수안만들고 그냥 넣었다)
+                AllLines.push([parseInt(line.style.top.replace("px","")),line.innerText]);
+            }
+            //top대로 배열 정렬
+            for(var j=0; j<AllLines.length ; j++){
+                for(var i=0; i<AllLines.length ; i++ ) {
+                    if(AllLines[j][0] <= AllLines[i][0]){
+                        var temp = AllLines[j];
+                        AllLines[j] = AllLines[i];
+                        AllLines[i] = temp;
+                    } 
+
+                }
+            }
+            var code = "";
+            for (var line of AllLines) {
+                code += line[1] + "\n";
+            }
+            //해볼코드
+            const data = {
+                'code':String(code),
+            };
+            axios({
+                method:"POST",
+                url: "/test",
+                data: data,
+            })
+            .then((res)=>{
+                console.log(res.data);
+            })
+            .catch((err)=>{
+                console.error(err);
+            });
+                
+        }
+    </script>
 
 </body>
 </html>
