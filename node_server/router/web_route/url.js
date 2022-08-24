@@ -74,6 +74,22 @@ router.get("/multipleChoice", (req, res) => {
 });
 
 router.get("/mypage/:userId", async (req, res) => {
+  userAgentModel.printUserAgent(req.header("user-agent"), "/mypage/:userId");
+
+  const userId = req.params.userId;
+  const userInfo = global.sessionList[userId][userId];
+  const accountAddress = userInfo["accountAddress"];
+
+  let myInfo = {};
+
+  myInfo["balance"] = await balanceInquiry(accountAddress);
+  myInfo["transferLog"] = await getTransactionLog(accountAddress);
+
+  res.render("mypage", { info: myInfo });
+});
+
+//추가된부분
+router.get("/mypage", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/mypage");
 
   const userId = req.params.userId;
@@ -81,14 +97,10 @@ router.get("/mypage/:userId", async (req, res) => {
   const accountAddress = userInfo["accountAddress"];
 
   let myInfo = {};
-  console.log(`만약에 아무것도 없으면 ? : ${myInfo}`);
-  if (userId) {
-    myInfo["balance"] = await balanceInquiry(accountAddress);
-    myInfo["transferLog"] = await getTransactionLog(accountAddress);
-  } else {
-    myInfo["balance"] = "None";
-    myInfo["transferLog"] = "None";
-  }
+
+  myInfo["balance"] = "None";
+  myInfo["transferLog"] = "None";
+
   res.render("mypage", { info: myInfo });
 });
 

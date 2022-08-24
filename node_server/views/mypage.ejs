@@ -63,7 +63,7 @@
                 <table id="solvedQuestionList_each_question">
 
                     <% 
-                    if (info.transferLog.length > 0) {
+                    if (info.transferLog != "None") {
                         for(let j = 0; j<info.transferLog.length ; j++){ 
                         %>
                         <tr>
@@ -74,6 +74,15 @@
                         </tr>
                     <% 
                         }
+                    } else {
+                    
+                    %>
+
+                        <div id="pleaseLogin" style="width:100px; height:100px; margin: 0 auto;">
+                            <input type="button" value="로그인"/>
+                        </div>
+
+                    <%
                     }
                     %>
                 </table>
