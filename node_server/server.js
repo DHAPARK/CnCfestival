@@ -110,17 +110,14 @@ app.post('/test', async (req, res) => {
     //파일이 제대로 생성이 되는걸 확인했으니 "방금 만들어진" 파이썬파일 그대로 컴파일
     await exec(`python3 pf${0}.py`, {shell: true}, (error, stdout) => {
         if(error) {
-            console.log(`##1 error ${error}`);
-            console.log(`##2 error ${error}`);
-            let temp = { stdout: stdout, stderr: error };
             console.log(`stdout ${stdout}`);
-            console.log(`stderr ${stderr}`);
+            console.log(`error ${error}`);
             res.json({stdout:stdout, stderr:error});
             
         }
         else {
             console.log(`stdout ${stdout}`);
-            console.log(`stderr ${stderr}`);
+            console.log(`error ${error}`);
             res.json({stdout:stdout, stderr:error});
         }
     });
