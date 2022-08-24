@@ -129,7 +129,7 @@ app.post('/test', (req, res) => {
     });
     //출처: https://curryyou.tistory.com/225 [카레유:티스토리]    
 
-    res.send(resLog);
+    res.json(resLog);
 })
 
 const { getStorage, ref, getDownloadURL } = require("firebase-admin/storage");
