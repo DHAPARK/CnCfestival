@@ -116,20 +116,21 @@ app.post('/test', (req, res) => {
     
     //파일이 제대로 생성이 되는걸 확인했으니 "방금 만들어진" 파이썬파일 그대로 컴파일
     const spawn = require("child_process").spawn;
-    const result = spawn('python',[`pf${0}.py`]);
+    const result = spawn('python3',[`pf${0}.py`]);
     
-    let resLog = ''
-    //성공시 이렇게 결과받는다.
-    result.stdout.on('data',(data)=>{
+    let resLog;
+
+    result.stdout.on('data', (data)=>{
+        console.log(data);
+        console.log(data.toString());
         resLog = data.toString();
     })
-    //에러발생시 이렇게 받고 아래는 코드 출처 ㅇㅇ
-    result.stderr.on('data', (data)=>{
-        resLog = data.toString();
-    });
+    // result.stderr.on('data', (data)=>{
+    //     resLog = data.toString();
+    // });
     //출처: https://curryyou.tistory.com/225 [카레유:티스토리]    
-
-    res.send(resLog);
+    console.log(resLog);
+    res.json(resLog);
 })
 
 const { getStorage, ref, getDownloadURL } = require("firebase-admin/storage");
