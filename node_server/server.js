@@ -98,6 +98,7 @@ app.use('/web/transaction', webTransactionRouter);
 
 app.post('/test', async (req, res) => {
     let code = decodeURIComponent(req.body.code);
+    console.log(code);
     
     fs.writeFileSync(`pf${0}.py`, code, "utf8", (err)=>{
         if(err){
