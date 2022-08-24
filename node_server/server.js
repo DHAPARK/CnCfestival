@@ -121,6 +121,8 @@ app.post('/test', (req, res) => {
     let resLog = ''
 
     result.stdout.on('data',(data)=>{
+        console.log(data);
+        console.log(data.toString());
         resLog = data.toString();
     })
     // result.stderr.on('data', (data)=>{
