@@ -118,7 +118,7 @@ app.post('/test', (req, res) => {
     const spawn = require("child_process").spawn;
     const result = spawn('python3',[`pf${0}.py`]);
     
-    let resLog = ''
+    let resLog;
 
     result.stdout.on('data',(data)=>{
         console.log(data);
