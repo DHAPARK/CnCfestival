@@ -14,7 +14,7 @@
 <body>
     
     <div id="container">
-
+        
 
         <!-- 맨위 왼쪽의 로고와 오른쪽의 메뉴들을 담는 topcontainer -->
         <div id="topLongContainer" class="bg_cont">
@@ -28,7 +28,7 @@
                 <a href="http://220.67.231.91:80/web/introduce">홈페이지</a>
                 <a href="http://220.67.231.91:80/web/market">제휴 스토어</a>
                 <a href="http://220.67.231.91:80/web/menuList">학습</a>
-                <a href="http://220.67.231.91:80/web/mypage" id="mypage">My page</a>
+                <!--<a href="http://220.67.231.91:80/web/mypage" id="mypage">My page</a>-->
             </div>
             <!--topLongContainerInnerRightMenuList 끝-->
         </div>
@@ -59,9 +59,7 @@
                     <li><div class="ListInnerTopTitle">날짜</div></li>
                 </ul>
                 <!--여기서 이제 진짜 서버에서 넘어온 data들 for loop -->
-                <table id="solvedQuestionList_each_question">
-                <% if ( JSON.parse(localStorage.getItem('UserInfo')) != "" || JSON.parse(localStorage.getItem('UserInfo')) != undefined ) { %>
-
+                <table id="solvedQuestionList_each_question" style="display : none;">
                     <% 
                     if (info.transferLog != "None") {
                         for(let j = 0; j<info.transferLog.length ; j++){ 
@@ -86,9 +84,7 @@
                     <%
                     }
                     %>
-                <%
-                }
-                %>
+                
                 </table>
                 
             </div>
@@ -105,6 +101,7 @@
 <script>
     
     localStorage.setItem("balance",document.getElementById("point").innerText);
+    
 </script>
 
 </html>

@@ -81,7 +81,7 @@ router.get("/mypage/:userId", async (req, res) => {
   const accountAddress = userInfo["accountAddress"];
 
   let myInfo = {};
-
+  myInfo["userId"] = userId;
   myInfo["balance"] = await balanceInquiry(accountAddress);
   myInfo["transferLog"] = await getTransactionLog(accountAddress);
 
