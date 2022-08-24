@@ -108,21 +108,25 @@ app.post('/test', async (req, res) => {
     //파일제대로 생기나 확인해야함
     
     //파일이 제대로 생성이 되는걸 확인했으니 "방금 만들어진" 파이썬파일 그대로 컴파일
-    let {stdout, stderr} = await exec(`python3 pf${0}.py`, {shell: true}, (error) => {
+    await exec(`python3 pf${0}.py`, {shell: true}, (error, stdout) => {
         if(error) {
             console.log(`##1 error ${error}`);
             console.log(`##2 error ${error}`);
-            let temp = { stdout: '', stderr: error };
-            console.log(`stdout ${temp.stdout}`);
-            console.log(`stderr ${temp.stderr}`);
-            res.json({stdout:temp.stdout, stderr:temp.stderr});
+            let temp = { stdout: stdout, stderr: error };
+            console.log(`stdout ${stdout}`);
+            console.log(`stderr ${stderr}`);
+            res.json({stdout:stdout, stderr:error});
+            
+        }
+        else {
+            console.log(`stdout ${stdout}`);
+            console.log(`stderr ${stderr}`);
+            res.json({stdout:stdout, stderr:error});
         }
     });
     // const spawn = require("child_process").spawn;
     // const result = spawn('python3',[`pf${0}.py`]);
-    console.log(`stdout ${stdout}`);
-    console.log(`stderr ${stderr}`);
-    res.json({stdout:stdout, stderr:stderr});
+    
 })
 
 const { getStorage, ref, getDownloadURL } = require("firebase-admin/storage");
