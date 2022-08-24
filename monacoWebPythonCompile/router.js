@@ -54,26 +54,17 @@ app.post('/makeAndCompilePythonFile', async (req,res)=>{
     const result = spawn('python3',[`pf${0}.py`]);
     
     
-    let resLog;
-    const temp = async () => {
-        let temp;
-        await result.stdout.on('data', (data)=>{
-            console.log(data);
+    return new Promise(resolve => {
+        result.stdout.on('data', (data)=>{
             console.log(data.toString());
-            temp = data.toString();
+            resolve(data.toString());
         })
-        await result.stderr.on('data', (data)=>{
-            temp = data.toString();
+        result.stderr.on('data', (data)=>{
+            console.log(data.toString());
+            resolve(data.toString());
         });
-
-        return temp;
-    }
-
-    resLog = await temp()
-    
-    //출처: https://curryyou.tistory.com/225 [카레유:티스토리]    
-    console.log(`## ${resLog}`);
-    res.json(resLog);
+        resolve('none');
+    });
 })
 
 app.listen(3000,()=>{

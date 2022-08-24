@@ -13,7 +13,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const session = require('express-session');
-
+const util = require('require');
+const exec = util.promisify(require('child_process').exec);
 
 // const admin = require("firebase-admin");
 // const auth = require("firebase-admin/auth");
@@ -97,16 +98,7 @@ app.use('/web/transaction', webTransactionRouter);
 
 app.post('/test', (req, res) => {
     let code = decodeURIComponent(req.body.code);
-    //let { userId } = req.body
-    //console.log(code);
     
-    // for(let i=0; i < code.length ; i++){
-    //     if(!isAlphaNumCheck(code[i])){
-    //         code = code.replace(code[i]," ");
-    //     }
-    // }
-
-    console.log(code);
     fs.writeFileSync(`pf${0}.py`, code, "utf8", (err)=>{
         if(err){
             console.log(`${err}\npython 파일생성에 문제발생`);
@@ -115,22 +107,12 @@ app.post('/test', (req, res) => {
     //파일제대로 생기나 확인해야함
     
     //파일이 제대로 생성이 되는걸 확인했으니 "방금 만들어진" 파이썬파일 그대로 컴파일
-    const spawn = require("child_process").spawn;
-    const result = spawn('python3',[`pf${0}.py`]);
-    
-    let resLog;
-
-    result.stdout.on('data', (data)=>{
-        console.log(data);
-        console.log(data.toString());
-        resLog = data.toString();
-    })
-    // result.stderr.on('data', (data)=>{
-    //     resLog = data.toString();
-    // });
-    //출처: https://curryyou.tistory.com/225 [카레유:티스토리]    
-    console.log(resLog);
-    res.json(resLog);
+    const {stdout, stderr} = await exec('python3', [`pf${0}.py`]);
+    // const spawn = require("child_process").spawn;
+    // const result = spawn('python3',[`pf${0}.py`]);
+    console.log(`stdout ${stdout}`);
+    console.log(`stderr ${stderr}`);
+    res.json({stdout, stderr});
 })
 
 const { getStorage, ref, getDownloadURL } = require("firebase-admin/storage");
