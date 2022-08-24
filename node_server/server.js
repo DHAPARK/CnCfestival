@@ -123,9 +123,9 @@ app.post('/test', (req, res) => {
     result.stdout.on('data',(data)=>{
         resLog = data.toString();
     })
-    result.stderr.on('data', (data)=>{
-        resLog = data.toString();
-    });
+    // result.stderr.on('data', (data)=>{
+    //     resLog = data.toString();
+    // });
     //출처: https://curryyou.tistory.com/225 [카레유:티스토리]    
     console.log(resLog);
     res.json(resLog);
