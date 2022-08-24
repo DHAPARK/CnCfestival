@@ -120,7 +120,7 @@ app.post('/test', (req, res) => {
     
     let resLog;
 
-    result.stdout.on('data').then((data)=>{
+    result.stdout.on('data', (data)=>{
         console.log(data);
         console.log(data.toString());
         resLog = data.toString();
