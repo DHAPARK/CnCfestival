@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js" integrity="sha512-/l6vieC+YxaZywUhmqs++8uF9DeMvJE61ua5g+UK0TuHZ4TkTgB1Gm1n0NiA86uEOM9JJ6JUwyR0hboKO0fCng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="/marketChild.css"/>
     <title>Document</title>
     <style>
         #conatiner{
@@ -15,17 +16,44 @@
     </style>
 </head>
 <body>
+    <div id="topLongContainer" class="bg_cont">
+        <div id="topLongContainerInnerLeftLogoImg" class="bg_cont">
+            <img id="topLongContainerInnerLeftLogoImg_Img" src="/webimg/HSC_mini.png"/>
+            <p>상품 구매</p>
+        </div>
+    </div>
     
     <div id="container">
         <form method="post" action="http://220.67.231.91:80/buyProductRequest">
-            <p><input type="hidden" name="userId" id="userId" value=<%=datas.userid %>></p>
-            <p><input type="hidden" name="userPassword" id="userPassword" value=<%=datas.userpw %>></p>
-            <p><input type="hidden" name="senderAddress" id="senderAddress" value=<%=datas.senderAddress %>></p>
-            <p><input type="hidden" name="receiverAddress" id="receiverAddress" value=<%=datas.receiverAddress %>></p>
-            <p>삼품명 : <input type="text" name="productName" id="productName" value=<%=datas.productName %>></p>
-            <p>상품설명 : <%=datas.description%></p>
-            <p>금액 : <input type="text" name="amount" id="amount" value=<%=datas.amount %>> HSC</p>
-            <p><input type="button" onclick="purchase();" value="구매하기"/></p>
+            <p><input type="hidden" name="userId" id="userId" value="<%= datas.userid %>"></p>
+            <p><input type="hidden" name="userPassword" id="userPassword" value="<%=datas.userpw %>"></p>
+            <p><input type="hidden" name="senderAddress" id="senderAddress" value="<%=datas.senderAddress %>"></p>
+            <p><input type="hidden" name="receiverAddress" id="receiverAddress" value="<%=datas.receiverAddress %>"></p>
+
+            <div id="contentsContainer_img">
+                <!-- 상품 이미지 가져오기 -->
+                <img src="/webimg/qrIcon.png">
+            </div>
+            <div id="contentsContainer">
+                <div id="container_title">
+                    <p>상품명</p>
+                    <p>상품설명</p>            
+                </div>
+                <div id="container_text">
+                    <p><input type="text" name="productName" id="productName" value="<%=datas.productName %>"></p>
+                    <p><%=datas.description%></p>
+                </div>
+            </div>
+            <div id="contentsContainer">
+                <div id="container_title">
+                    <p>금액</p>
+                </div>
+                <div id="container_text">
+                    <p style="color: #043570;"><input type="text" name="amount" id="amount" style="color: #043570;" value="<%=datas.amount %>"> HSC</p>
+                </div>
+            </div>
+            
+            <p style="width: 100px; margin: auto; margin-top: 50px; margin-bottom: 20px;"><input type="button" onclick="purchase();" value="구매하기"/>
         </form>
     </div>
 
