@@ -113,7 +113,7 @@ app.post('/test', async (req, res) => {
     // const result = spawn('python3',[`pf${0}.py`]);
     console.log(`stdout ${stdout}`);
     console.log(`stderr ${stderr}`);
-    res.json({stdout, stderr});
+    res.json({stdout:stdout, stderr:stderr});
 })
 
 const { getStorage, ref, getDownloadURL } = require("firebase-admin/storage");
