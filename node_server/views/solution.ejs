@@ -146,8 +146,12 @@
                         var res = httpRequest.response;
                         console.log(`성공오나? ${JSON.stringify(res.stdout)}`);
                         console.log(`실패오나? ${JSON.stringify(res.stderr)}`);
+                        if(res.code == 200) { // 성공
+                            document.getElementById("resultSpace").innerText = res.stdout;
+                        } else if (res.code == 100) {
+                            document.getElementById("resultSpace").innerText = res.stderr;
+                        }
                         
-                        document.getElementById("resultSpace").innerText = res.stdout;
                         
                     } else {
                         alert('Request Error!');
