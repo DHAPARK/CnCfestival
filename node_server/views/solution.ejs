@@ -59,7 +59,7 @@
                                 }
                             });
                             require(["vs/editor/editor.main"], () => {
-                                monaco.editor.create(document.getElementById('container'), {
+                                monaco.editor.create(document.getElementById('monacoSpace'), {
                                 value: "",
                                 language: 'python',
                                 theme: 'vs-dark',
@@ -103,50 +103,68 @@
     <script>
         function clicked(){
 
-            //해볼코드 line 순서때문에 하..
+        //해볼코드 line 순서때문에 하..
 
-            var codeContainer = document.getElementsByClassName("view-line");;
+        var codeContainer = document.getElementsByClassName("view-line");;
 
-            //라인들을 다 put하고 후에 array를 line의 top 을가지고 sort할것이다. 그래야 순서대로 정렬이된다.
-            //1차원 배열 하나 (모든 (top,linecode) array를 담을 배열)  이름 : AllLines
-            
-            var AllLines = [];
-            for (var line of codeContainer) {
-                //2차원 배열을 만들어 (top.linecode)를 담아준다 이름 : eachLine(굳이 변수안만들고 그냥 넣었다)
-                AllLines.push([parseInt(line.style.top.replace("px","")),line.innerText]);
-            }
-            //top대로 배열 정렬
-            for(var j=0; j<AllLines.length ; j++){
-                for(var i=0; i<AllLines.length ; i++ ) {
-                    if(AllLines[j][0] <= AllLines[i][0]){
-                        var temp = AllLines[j];
-                        AllLines[j] = AllLines[i];
-                        AllLines[i] = temp;
-                    } 
+        //라인들을 다 put하고 후에 array를 line의 top 을가지고 sort할것이다. 그래야 순서대로 정렬이된다.
+        //1차원 배열 하나 (모든 (top,linecode) array를 담을 배열)  이름 : AllLines
 
-                }
-            }
-            var code = "";
-            for (var line of AllLines) {
-                code += line[1] + "\n";
-            }
-            //해볼코드
-            const data = {
-                'code':String(code),
-            };
-            axios({
-                method:"POST",
-                url: "/test",
-                data: data,
-            })
-            .then((res)=>{
-                console.log(res.data);
-            })
-            .catch((err)=>{
-                console.error(err);
-            });
-                
+        var AllLines = [];
+        for (var line of codeContainer) {
+            //2차원 배열을 만들어 (top.linecode)를 담아준다 이름 : eachLine(굳이 변수안만들고 그냥 넣었다)
+            AllLines.push([parseInt(line.style.top.replace("px","")),line.innerText]);
         }
+        //top대로 배열 정렬
+        for(var j=0; j<AllLines.length ; j++){
+            for(var i=0; i<AllLines.length ; i++ ) {
+                if(AllLines[j][0] <= AllLines[i][0]){
+                    var temp = AllLines[j];
+                    AllLines[j] = AllLines[i];
+                    AllLines[i] = temp;
+                } 
+            }
+        }
+        var code = "";
+        for (var line of AllLines) {
+            code += line[1] + "\n";
+        }
+        //해볼코드
+        const data = {
+            'code':String(code),
+        };
+
+        var httpRequest;
+
+            httpRequest = new XMLHttpRequest();
+
+            httpRequest.onreadystatechange = () => {
+
+                if (httpRequest.readyState === XMLHttpRequest.DONE) {
+
+                    if (httpRequest.status === 200 ||  httpRequest.status == 201) {
+                        var res = httpRequest.response;
+                        console.log(`오나? ${JSON.stringify(res.stdout)}`);
+                        
+                        document.getElementById("resultSpace").innerText = res.stdout;
+
+                    } else {
+                        alert('Request Error!');
+                    }
+                }
+            };
+
+            httpRequest.open('POST', 'http://220.67.231.91/test',true);
+
+            httpRequest.responseType = "json";
+
+            httpRequest.setRequestHeader("Content-Type", "application/json");  
+            
+            httpRequest.send(JSON.stringify(data));
+            
+            
+        }
+        </script>
     </script>
 
 </body>

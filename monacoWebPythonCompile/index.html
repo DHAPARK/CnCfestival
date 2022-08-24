@@ -13,6 +13,8 @@
         }
       </style>
 </head>
+
+
 <body>
     
     <div id="container">
@@ -33,7 +35,7 @@
         </script>
 
     <input id="sendBtn" type="button" onclick="clicked()" value="제출"/>
-    
+    <p id = "resultP" >결과 : </p>
     </div>
     
     <script>
@@ -59,7 +61,6 @@
                         AllLines[j] = AllLines[i];
                         AllLines[i] = temp;
                     } 
-
                 }
             }
             var code = "";
@@ -70,19 +71,45 @@
             const data = {
                 'code':String(code),
             };
-            axios({
-                method:"POST",
-                url: "http://localhost:3000/makeAndCompilePythonFile",
-                data: data,
-            })
-            .then((res)=>{
-                console.log(res.data);
-            })
-            .catch((err)=>{
-                console.error(err);
-            });
+            
+            var httpRequest;
+            
+                httpRequest = new XMLHttpRequest();
+            
+                httpRequest.onreadystatechange = () => {
+            
+                    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+            
+                        if (httpRequest.status === 200 ||  httpRequest.status == 201) {
+                            var res = httpRequest.response;
+                            console.log(`오나? ${JSON.stringify(res.stdout)}`);
+                            
+                            document.getElementById("resultP").innerText = res.stdout;
+            
+                        } else {
+                            alert('Request Error!');
+                        }
+                    }
+                };
+            
+                httpRequest.open('POST', 'http://220.67.231.91/test',true);
+            
+                httpRequest.responseType = "json";
+            
+                httpRequest.setRequestHeader("Content-Type", "application/json");  
+                
+                httpRequest.send(JSON.stringify(data));
+                
                 
         }
     </script>
+
+
+
+    
+    
+    
+    
+
 </body>
 </html>
