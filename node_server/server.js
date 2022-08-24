@@ -116,7 +116,7 @@ app.post('/test', (req, res) => {
     
     //파일이 제대로 생성이 되는걸 확인했으니 "방금 만들어진" 파이썬파일 그대로 컴파일
     const spawn = require("child_process").spawn;
-    const result = spawn('python',[`pf${0}.py`]);
+    const result = spawn('python3',[`pf${0}.py`]);
     
     let resLog = ''
     //성공시 이렇게 결과받는다.
