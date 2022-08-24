@@ -13,7 +13,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const session = require('express-session');
-const util = require('require');
+const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
 // const admin = require("firebase-admin");
