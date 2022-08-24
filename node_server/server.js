@@ -108,7 +108,7 @@ app.post('/test', async (req, res) => {
     //파일제대로 생기나 확인해야함
     
     //파일이 제대로 생성이 되는걸 확인했으니 "방금 만들어진" 파이썬파일 그대로 컴파일
-    const {stdout, stderr} = await exec('python3', [`pf${0}.py`], {shell: true});
+    const {stdout, stderr} = await exec(`python3 pf${0}.py`, {shell: true});
     // const spawn = require("child_process").spawn;
     // const result = spawn('python3',[`pf${0}.py`]);
     console.log(`stdout ${stdout}`);
