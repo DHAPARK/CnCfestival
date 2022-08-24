@@ -46,7 +46,7 @@ html,body {
 #contentsContainer{
     display: flex;
     justify-content: space-between;
-    padding-left: 50px;
+    padding-inline: 50px;
 }
 
 #container_title{
