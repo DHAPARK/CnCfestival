@@ -60,6 +60,7 @@
                 </ul>
                 <!--여기서 이제 진짜 서버에서 넘어온 data들 for loop -->
                 <table id="solvedQuestionList_each_question">
+                <% if ( JSON.parse(localStorage.getItem('UserInfo')) != "" || JSON.parse(localStorage.getItem('UserInfo')) != undefined ) { %>
 
                     <% 
                     if (info.transferLog != "None") {
@@ -85,6 +86,9 @@
                     <%
                     }
                     %>
+                <%
+                }
+                %>
                 </table>
                 
             </div>
