@@ -101,7 +101,7 @@ async function getProductInfo() {
     let snapShot = await videoLogRef.get();
     return new Promise(resolve => {
         snapShot.forEach(doc => {
-            videoLog[doc.id] = videoLog.data();
+            videoLog[doc.id] = doc.data();
         })
         resolve(videoLog);
     })
