@@ -125,8 +125,9 @@ router.post("/saveVideoLog", async (req, res) => {
     .set({
       watchDate: watchDate,
       watchTime: watchTime,
-      watchComplete: watchComplete,
+      watchComplete: watchComplete
     });
+  res.json({code:100});
 });
 
 /**
