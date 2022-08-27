@@ -63,9 +63,9 @@
             document.body.appendChild(form);
             
             if( /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor) ){
-                window.open(url, "비디오창","width=800px,height=1200px");
+                window.open("http://220.67.231.91:80/web/videoChild", "비디오창","width=800px,height=1200px");
             }else{
-                window.open(url, "비디오창", "width=800px,height=1200px,resizable=yes,toolbar=yes,menubar=yes,location=yes");
+                window.open("http://220.67.231.91:80/web/videoChild", "비디오창", "width=800px,height=1200px,resizable=yes,toolbar=yes,menubar=yes,location=yes");
             }
             
             form.submit();
