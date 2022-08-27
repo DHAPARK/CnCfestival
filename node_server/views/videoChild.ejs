@@ -47,11 +47,11 @@
 
 <script>
     document.domain = "test.com";
-    var iframeDom = document.getElementById("videoIframe").contentDocument.document;
-    console.log(iframeDom);
+
+    console.log(document.getElementsByClassName("ytp-time-current")[0].innerText);
+
     function setRateInterval(){
         console.log("클릭됨");
-        console.log(iframeDom);
         /*
         var timeCnt = document.getElementById("watchTime").value;
         var data = {
