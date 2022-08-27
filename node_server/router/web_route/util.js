@@ -4,7 +4,7 @@ const userAgentModel = require('../../models/userAgentModel');
 const { suppressDeprecationWarnings } = require("moment");
 
 const { addFavicon, getFaviconList } = require('../../utils/DB');
-const { balanceInquiry, getFranchise, getTransactionLog, getAllUserBalance, getRecentTransferAccount } = require('../../utils/inquiry');
+const { balanceInquiry, getFranchise, getTransactionLog, getAllUserBalance, getRecentTransferAccount, getVideoInfo } = require('../../utils/inquiry');
 const { checkIdDuplicate } = require('../../utils/validation');
 
 /**
@@ -71,6 +71,22 @@ router.get('/getGpsInfo', async (req, res)=> {
     console.log(`### /getGpsInfo : data`);
 
     const result = await getFranchise();
+    console.log(`result = ${result}`);
+    res.json(result);
+})
+
+
+/**
+ * GPS 정보 가져오기 매핑 getGpsInfo
+ * @method get
+ * @returns {object} 
+ */
+ router.get('/getVideoInfo', async (req, res)=> {
+    userAgentModel.printUserAgent(req.header('user-agent'),"/getVideoInfo");
+
+    console.log(`### /getVideoInfo : data`);
+
+    const result = await getVideoInfo();
     console.log(`result = ${result}`);
     res.json(result);
 })
