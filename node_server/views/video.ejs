@@ -29,11 +29,14 @@
     <script>
         function viewChildPage(element){
             //console.log(element.children[0].innerText);
+            var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
             var videoName = element.children[1].children[0].innerText;
             var videoUrl = element.children[1].children[3].value;
+            
+            console.log(userId);
             console.log(videoName);
             console.log(videoUrl);
-            /* 
+            
             var form = document.createElement("form");
             form.setAttribute("method", "post");
             form.setAttribute("action", url);
@@ -42,19 +45,19 @@
             var input = document.createElement('input');
             input.type = 'hidden';
             input.name = "userId";
-            input.value = "변수값1";
+            input.value = userId;
             form.appendChild(input);
             
             input = document.createElement('input');
             input.type = 'hidden';
             input.name = "videoName";
-            input.value = "변수값2";
+            input.value = videoName;
             form.appendChild(input);
             
             input = document.createElement('input');
             input.type = 'hidden';
             input.name = "videoUrl";
-            input.value = "변수값3";
+            input.value = videoUrl;
             form.appendChild(input);
             
             document.body.appendChild(form);
@@ -68,7 +71,7 @@
             form.submit();
             
             document.body.removeChild(form);
-            */
+            
         }
     </script>
 
