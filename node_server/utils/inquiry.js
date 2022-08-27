@@ -97,28 +97,14 @@ async function getProductInfo() {
  */
  async function getUserVideoLog(userId, videoName) {
     let videoLog = {};
-    let videoLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc(userId);
-    videoLogRef.get()
-    .then((docSnapshot) => {
-        console.log(`doc exists ${docSnapshot.exists}`);
-        if(!docSnapshot.exists) {
-            return undefined;
-        } else {
-            videoLogRef.onSnapshot( async (doc) => {
-                let collectionRef = await doc.collection(videoName).get()
-                console.log(`snapShot empty ${collectionRef.empty}`);
-                if (collectionRef.empty) {
-                    return undefined;
-                } else {
-                    let snapShot = await collectionRef.doc(videoName).get()
-                    snapShot.forEach(doc => {
-                        videoLog[doc.id] = doc.data();
-                    })
-                    return videoLog;
-                }
-            });
-        }
-    });
+    let videoLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc(userId).collection(videoName);
+    let snapShot = await videoLogRef.get();
+    return new Promise(resolve => {
+        snapShot.forEach(doc => {
+            videoLog[doc.id] = videoLog.data();
+        })
+        resolve(videoLog);
+    })
 }
 
 
