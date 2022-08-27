@@ -96,6 +96,10 @@
     function onPlayerStateChange(event) {
         
         if (event.data == YT.PlayerState.PLAYING && !done) {
+            if ( data["watchTime"] < parseInt(player.getCurrentTime()) ){
+                player.getCurrentTime() = data["watchTime"];
+            }
+
             setInterval(()=>{
             //여기서 서버로 걍 박으면 되는거 아닌가?
                 if ( data["watchTime"] != parseInt(player.getCurrentTime()) ) {
