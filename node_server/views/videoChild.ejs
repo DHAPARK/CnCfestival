@@ -47,12 +47,8 @@
 
 <script>
     //function setRateInterval(){
-        var spanTag = document.getElementsByClassName("ytp-time-display").children[1];
-        var currentTimeSpan = spanTag.children[0].innerText;
-        var totalTimeSpan = spanTag.children[2].innerText;
-
-        console.log(`current time : ${currentTimeSpan}`);
-        console.log(`total time : ${totalTimeSpan}`);
+        console.log(`현재 시간 : ${document.getElementsByClassName("ytp-time-current")[0]}`);
+        console.log(`총 시간 : ${document.getElementsByClassName("ytp-time-duration")[0]}`);
 
         var timeCnt = document.getElementById("watchTime").value;
         var data = {
