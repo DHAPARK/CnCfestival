@@ -32,7 +32,7 @@
 <body style="width:100%; height:100%; margin:0 auto;">
     <div id="container">
         <div id="topContainer">
-            <iframe width="100%" height="100%" src="<%= datas.videoUrl %>" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
+            <iframe onclick="setRateInterval()" width="100%" height="100%" src="<%= datas.videoUrl %>" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
         </div>
         <input type="hidden" id="watchDate" name="watchDate" value="<%= datas.watchDate %>"/>
         <input type="hidden" id="watchTime" name="watchTime" value="<%= datas.watchTime %>"/>
@@ -46,29 +46,53 @@
 
 
 <script>
-    var timeCnt = document.getElementById("watchTime").value;
-    var data = {
-        userId : JSON.parse(localStorage.getItem('UserInfo')).userid,
-        videoName : document.getElementById("videoName").value,
-        watchDate : document.getElementById("watchDate").value,
-        watchTime : timeCnt,
-        watchComplete : document.getElementById("watchComplete").value
-    };
+    function setRateInterval(){
+        
+        var totalCurrentTime;
+        var totalCurrentTimeToSec;
+        var currentTime;
 
-    setInterval(()=>{
-        //if ( timeCnt++ % 10 == 0 ) {
-            data["watchTime"] = timeCnt++;
-            axios({
-                url: 'web/util/saveVideoLog',
-                method: 'POST',
-                baseURL: `http://220.67.231.91:80`,
-                data: Qs.stringify(data)
-            }).then((res) => { // 로그인 성공하면
-                console.log(res);
-            });
-            //axios 끝
-        //}
-    },1000);
+        var timeCnt = document.getElementById("watchTime").value;
+        var data = {
+            userId : JSON.parse(localStorage.getItem('UserInfo')).userid,
+            videoName : document.getElementById("videoName").value,
+            watchDate : document.getElementById("watchDate").value,
+            watchTime : timeCnt,
+            watchComplete : document.getElementById("watchComplete").value
+        };
+
+        setInterval(()=>{
+            totalCurrentTime = document.getElementsByClassName("ytp-time-current").innerText;
+            totalCurrentTimeToSec = (totalCurrentTime.split(":")[0] * 60) + totalCurrentTime.split(":")[1];
+
+            console.log(`totalCurrentTime : ${totalCurrentTime}`);
+            console.log(`totalCurrentTimeToSec : ${ totalCurrentTimeToSec }`);
+
+
+            if ( totalCurrentTimeToSec > (data["watchTime"] + 3) ) {
+                document.getElementsByClassName("ytp-time-current").innerText = `${ parseInt(data["watchTime"] / 60) +":"+ data["watchTime"] % 60 }`;
+            } else {
+                data["watchTime"] = (totalCurrentTime.split(":")[0] * 60) + totalCurrentTime.split(":")[1];
+            }
+
+            //var currentTime = document.getElementsByClassName("ytp-time-current").innerText;
+            //console.log(`currentTime : ${currentTime}`);
+            
+
+            if ( timeCnt++ % 2 == 0 ) {
+                data["watchTime"] = timeCnt;
+                axios({
+                    url: 'web/util/saveVideoLog',
+                    method: 'POST',
+                    baseURL: `http://220.67.231.91:80`,
+                    data: Qs.stringify(data)
+                }).then((res) => { // 로그인 성공하면
+                    console.log(res);
+                });
+                //axios 끝
+            }
+        },1000);
+    }
 </script>
 
 </html>
