@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const userAgentModel = require("../../models/userAgentModel");
 const moment = require("moment");
+const cors = require("cors");
+app.use(cors());
 
 const {
   balanceInquiry,
