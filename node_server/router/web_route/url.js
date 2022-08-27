@@ -8,6 +8,7 @@ const {
   getTransactionLog,
   getProductInfo,
   getVideoInfo,
+  getUserVideoLog
 } = require("../../utils/inquiry");
 
 router.get("/index", (req, res) => {
