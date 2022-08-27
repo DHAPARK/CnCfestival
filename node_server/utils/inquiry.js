@@ -98,6 +98,9 @@ async function getProductInfo() {
  async function getUserVideoLog(userId, videoName) {
     let videoLog = {};
     let videoLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc(userId).get();
+    console.log(`videoLogRef ${videoLogRef}`);
+    console.log(`videoLogRef ${JSON.stringify(videoLogRef)}`);
+
     return new Promise( async (resolve) => {
         if (videoLogRef.empty) {
             resolve(undefined);
