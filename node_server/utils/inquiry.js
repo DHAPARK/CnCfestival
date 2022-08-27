@@ -97,7 +97,7 @@ async function getProductInfo() {
  */
  async function getUserVideoLog(userId, videoName) {
     let videoLog = {};
-    let videoLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc(userId).collection(videoName);
+    let videoLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc(userId);
     let doc = await videoLogRef.get();
     console.log(`doc exists ${doc.exists}`);
 
@@ -106,6 +106,7 @@ async function getProductInfo() {
             resolve(undefined);
         } else {
             let snapShot = await doc.where('videoName', '==', videoName).get();
+            console.log(`snapShot empty ${snapShot.empty}`);
             if (snapShot.empty) {
                 resolve(undefined);
             } else {
