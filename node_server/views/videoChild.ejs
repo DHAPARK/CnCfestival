@@ -58,7 +58,7 @@
     setInterval(()=>{
         if ( timeCnt++ % 10 == 0 ) {
             axios({
-                url: 'web/saveVideoLog',
+                url: 'web/util/saveVideoLog',
                 method: 'POST',
                 baseURL: `http://220.67.231.91:80`,
                 data: Qs.stringify(data)
