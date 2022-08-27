@@ -97,7 +97,7 @@ async function getProductInfo() {
  */
  async function getUserVideoLog(userId, videoName) {
     let videoLog = {};
-    let videoLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc(userId).collection(videoName);
+    let videoLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc(userId).collection(videoName).doc(videoName);
     let snapShot = await videoLogRef.get();
     return new Promise(resolve => {
         snapShot.forEach(doc => {

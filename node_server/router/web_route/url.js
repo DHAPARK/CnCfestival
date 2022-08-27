@@ -129,9 +129,9 @@ router.get("/videoChild", async (req, res) => {
   console.log(`videoName ${videoName}`);
   console.log(`videoUrl ${videoUrl}`);
   
-  let  videoLog = await getUserVideoLog(userId, videoName);
-  console.log(`videoLog ${videoLog}`);
-  if (videoLog == undefined) {
+  let videoLog = await getUserVideoLog(userId, videoName);
+  console.log(`videoLog ${JSON.stringify(videoLog)}`);
+  if (typeof(videoLog) != object) {
     moment.locale();
     let currDate = moment().format('lll');
     videoLog = {
@@ -145,7 +145,7 @@ router.get("/videoChild", async (req, res) => {
   console.log(`watchDate ${videoLog.watchDate}`);
   console.log(`watchTime ${videoLog.watchTime}`);
   console.log(`watchComplete ${videoLog.watchComplete}`);
-  
+
   const datas = {
     videoUrl: videoUrl,
     videoName: videoName,
