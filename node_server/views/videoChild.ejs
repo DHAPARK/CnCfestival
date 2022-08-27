@@ -99,6 +99,13 @@
     }
 
     function stopVideo() {
+        
+        player.stopVideo();
+        //axios 끝
+    }
+
+
+    function pauseVideo(){
         //여기서 서버로 걍 박으면 되는거 아닌가?
         data["watchTime"] = parseInt(player.getCurrentTime());
         axios({
@@ -108,11 +115,10 @@
             data: Qs.stringify(data)
         }).then((res) => { // 로그인 성공하면
             console.log(res);
-            player.stopVideo();
+            player.pauseVideo();
         });
-        //axios 끝
-    }
 
+    }
       //
       
     /*
