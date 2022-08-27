@@ -48,10 +48,7 @@
 <script>
     function setRateInterval(){
         
-        var totalCurrentTime;
-        var totalCurrentTimeToSec;
-        var currentTime;
-
+        
         var timeCnt = document.getElementById("watchTime").value;
         var data = {
             userId : JSON.parse(localStorage.getItem('UserInfo')).userid,
@@ -62,22 +59,6 @@
         };
 
         setInterval(()=>{
-            totalCurrentTime = document.getElementsByClassName("ytp-time-current").innerText;
-            totalCurrentTimeToSec = (totalCurrentTime.split(":")[0] * 60) + totalCurrentTime.split(":")[1];
-
-            console.log(`totalCurrentTime : ${totalCurrentTime}`);
-            console.log(`totalCurrentTimeToSec : ${ totalCurrentTimeToSec }`);
-
-
-            if ( totalCurrentTimeToSec > (data["watchTime"] + 3) ) {
-                document.getElementsByClassName("ytp-time-current").innerText = `${ parseInt(data["watchTime"] / 60) +":"+ data["watchTime"] % 60 }`;
-            } else {
-                data["watchTime"] = (totalCurrentTime.split(":")[0] * 60) + totalCurrentTime.split(":")[1];
-            }
-
-            //var currentTime = document.getElementsByClassName("ytp-time-current").innerText;
-            //console.log(`currentTime : ${currentTime}`);
-            
 
             if ( timeCnt++ % 2 == 0 ) {
                 data["watchTime"] = timeCnt;
