@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js" integrity="sha512-/l6vieC+YxaZywUhmqs++8uF9DeMvJE61ua5g+UK0TuHZ4TkTgB1Gm1n0NiA86uEOM9JJ6JUwyR0hboKO0fCng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <style>
         #container{
             width:100%;
@@ -31,12 +34,40 @@
         <div id="topContainer">
             <iframe width="100%" height="100%" src="<%= datas.videoUrl %>" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
         </div>
-        <input type="hidden" name="watchDate" value="<%= datas.watchDate %>"/>
-        <input type="hidden" name="watchTime" value="<%= datas.watchTime %>"/>
-        <input type="hidden" name="watchComplete" value="<%= datas.watchComplete %>"/>
+        <input type="hidden" id="watchDate" name="watchDate" value="<%= datas.watchDate %>"/>
+        <input type="hidden" id="watchTime" name="watchTime" value="<%= datas.watchTime %>"/>
+        <input type="hidden" id="watchComplete" name="watchComplete" value="<%= datas.watchComplete %>"/>
+        <input type="hidden" id="videoName" name="videoName" value="<%= datas.videoName %>"/>
         <div id="bottomContainer">
             <input type="button" value="나가기"/>
         </div>
     </div>    
 </body>
+
+
+<script>
+    var timeCnt = 1;
+    var data = {
+        userId : JSON.parse(localStorage.getItem('UserInfo')).userid,
+        videoName : document.getElementById("videoName").value,
+        watchDate : document.getElementById("watchDate").value,
+        watchTime : document.getElementById("watchTime").value,
+        watchComplete : document.getElementById("watchComplete").value
+    };
+
+    setInterval(()=>{
+        if ( timeCnt++ % 10 == 0 ) {
+            axios({
+                url: 'web/saveVideoLog',
+                method: 'POST',
+                baseURL: `http://220.67.231.91:80`,
+                data: Qs.stringify(data)
+            }).then((res) => { // 로그인 성공하면
+                console.log(res);
+            });
+            //axios 끝
+        }
+    },1000);
+</script>
+
 </html>
