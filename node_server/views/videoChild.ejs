@@ -59,15 +59,13 @@
 
 
 
+
+
       tag.src = "https://www.youtube.com/iframe_api";
       var firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-      console.log(document.getElementById("player").src);
-      document.getElementById("player").src = document.getElementById("player").src.replace("&?","&");
-      console.log(document.getElementById("player").src);
-      console.log(document.getElementById("player").src.replace("&?","&"));
-
+      
       // 3. This function creates an <iframe> (and YouTube player)
       //    after the API code downloads.
       var player;
@@ -80,7 +78,14 @@
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
           }
+
+          
         });
+        console.log(document.getElementById("player").src);
+        document.getElementById("player").src = document.getElementById("player").src.replace("&?","&");
+        console.log(document.getElementById("player").src);
+        console.log(document.getElementById("player").src.replace("&?","&"));
+
       }
 
 
