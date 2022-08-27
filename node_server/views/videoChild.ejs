@@ -99,19 +99,18 @@
     }
 
     function stopVideo() {
-        player.stopVideo();
-
         //여기서 서버로 걍 박으면 되는거 아닌가?
         data["watchTime"] = parseInt(player.getCurrentTime());
-                axios({
-                    url: 'web/util/saveVideoLog',
-                    method: 'POST',
-                    baseURL: `http://220.67.231.91:80`,
-                    data: Qs.stringify(data)
-                }).then((res) => { // 로그인 성공하면
-                    console.log(res);
-                });
-                //axios 끝
+        axios({
+            url: 'web/util/saveVideoLog',
+            method: 'POST',
+            baseURL: `http://220.67.231.91:80`,
+            data: Qs.stringify(data)
+        }).then((res) => { // 로그인 성공하면
+            console.log(res);
+            player.stopVideo();
+        });
+        //axios 끝
     }
 
       //
