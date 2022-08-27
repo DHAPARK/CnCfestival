@@ -26,7 +26,49 @@
             border:1px solid black;
         }
     </style>
-    
+    <script>
+        function viewChildPage(element){
+            console.log(element.children[0].innerText);
+            console.log(element.children[1].innerText);
+            console.log(element.children[2].innerText);
+            /* 
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", url);
+            form.setAttribute("target", "popup_id");
+            
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = "userId";
+            input.value = "변수값1";
+            form.appendChild(input);
+            
+            input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = "videoName";
+            input.value = "변수값2";
+            form.appendChild(input);
+            
+            input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = "videoUrl";
+            input.value = "변수값3";
+            form.appendChild(input);
+            
+            document.body.appendChild(form);
+            
+            if( /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor) ){
+                window.open(url, "비디오창","width=800px,height=1200px");
+            }else{
+                window.open(url, "비디오창", "width=800px,height=1200px,resizable=yes,toolbar=yes,menubar=yes,location=yes");
+            }
+            
+            form.submit();
+            
+            document.body.removeChild(form);
+            */
+        }
+    </script>
 
 </head>
 <body>
@@ -99,3 +141,8 @@
     <!--container 끝-->
 </body>
 </html>
+
+
+
+
+
