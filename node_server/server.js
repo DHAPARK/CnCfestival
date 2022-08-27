@@ -113,7 +113,6 @@ app.post('/test', async (req, res) => {
             console.log(`stdout ${stdout}`);
             console.log(`error ${error}`);
             res.json({code:100, stdout:stdout, stderr:error.message});
-            
         }
         else {
             console.log(`stdout ${stdout}`);
@@ -121,11 +120,11 @@ app.post('/test', async (req, res) => {
             res.json({code:200, stdout:stdout, stderr:error});
         }
     });
-    // const spawn = require("child_process").spawn;
-    // const result = spawn('python3',[`pf${0}.py`]);
-    
 })
 
+app.post('/testanswer', async (req, res) => {
+    
+})
 const { getStorage, ref, getDownloadURL } = require("firebase-admin/storage");
 const { putItemToDB } = require('./utils/DB');
 const { RETURN_CODE, DB_COLLECTION } = require('./utils/constant');
