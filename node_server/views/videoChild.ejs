@@ -47,9 +47,9 @@
 
 <script>
     //function setRateInterval(){
-        console.log(`current time : ${document.getElementsByClassName("ytp-time-current").innerText}`);
-        console.log(`total time : ${document.getElementsByClassName("ytp-time-duration").innerText}`);
-        
+        console.log(`current time : ${document.getElementsByClassName("ytp-time-current")[0].innerText}`);
+        console.log(`total time : ${document.getElementsByClassName("ytp-time-duration")[0].innerText}`);
+
         var timeCnt = document.getElementById("watchTime").value;
         var data = {
             userId : JSON.parse(localStorage.getItem('UserInfo')).userid,
