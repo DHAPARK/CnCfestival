@@ -120,7 +120,7 @@ router.get("/video", async (req, res) => {
   res.render("video", { videoInfo: videoInfo });
 });
 
-router.post("/videoChild", (req, res) => {
+router.post("/videoChild", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/videoChild");
 
   let { userId, videoName, videoUrl } = req.body;
