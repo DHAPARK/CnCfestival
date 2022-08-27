@@ -86,7 +86,7 @@
       //    the player should play for six seconds and then stop.
       var done = false;
       function onPlayerStateChange(event) {
-        document.getElementById("player").src = document.getElementById("player").src.replace("&?","&");
+        
         if (event.data == YT.PlayerState.PLAYING && !done) {
           setTimeout(stopVideo, 6000);
           done = true;
@@ -97,8 +97,10 @@
       }
 
       //
-      
-    
+      console.log(document.getElementById("player").src);
+      document.getElementById("player").src = document.getElementById("player").src.replace("&?","&");
+      console.log(document.getElementById("player").src);
+      console.log(document.getElementById("player").src.replace("&?","&"));
     /*
     function setRateInterval(){
         console.log("클릭됨");
