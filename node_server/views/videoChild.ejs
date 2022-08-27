@@ -93,8 +93,18 @@
         
         if (event.data == YT.PlayerState.PLAYING && !done) {
         //setTimeout(stopVideo, 6000);
-        if ( timeCnt++ % 2 == 0 ) {
-                data["watchTime"] = timeCnt;
+        setInterval(()=>{
+            console.log(player.getCurrentTime());
+        },1000)
+        done = true;
+        }
+    }
+
+    function stopVideo() {
+        player.stopVideo();
+
+        //여기서 서버로 걍 박으면 되는거 아닌가?
+        data["watchTime"] = timeCnt;
                 axios({
                     url: 'web/util/saveVideoLog',
                     method: 'POST',
@@ -104,14 +114,6 @@
                     console.log(res);
                 });
                 //axios 끝
-            }
-            
-        done = true;
-        }
-    }
-
-    function stopVideo() {
-        player.stopVideo();
     }
 
       //
