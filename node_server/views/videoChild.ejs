@@ -46,10 +46,11 @@
 
 
 <script>
-    document.getElementById("videoIframe").focus();
-
+    var iframeDom = document.getElementById("videoIframe").contentDocument.document;
+    console.log(iframeDom);
     function setRateInterval(){
         console.log("클릭됨");
+        console.log(iframeDom);
         /*
         var timeCnt = document.getElementById("watchTime").value;
         var data = {
