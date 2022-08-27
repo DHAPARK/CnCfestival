@@ -104,9 +104,8 @@
         //axios 끝
     }
 
-
-    function pauseVideo(){
-        //여기서 서버로 걍 박으면 되는거 아닌가?
+    setInterval(()=>{
+    //여기서 서버로 걍 박으면 되는거 아닌가?
         data["watchTime"] = parseInt(player.getCurrentTime());
         axios({
             url: 'web/util/saveVideoLog',
@@ -117,8 +116,7 @@
             console.log(res);
             player.pauseVideo();
         });
-
-    }
+    },3000);
       //
       
     /*
