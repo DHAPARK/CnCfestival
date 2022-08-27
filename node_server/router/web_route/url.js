@@ -132,7 +132,7 @@ router.get("/videoChild", async (req, res) => {
   let videoLog = await getUserVideoLog(userId, videoName);
   console.log(`videoLog ${JSON.stringify(videoLog)}`);
   console.log(`typeof ${typeof(videoLog)}`);
-  if (typeof(videoLog) != Object) {
+  if (typeof(videoLog) != 'object') {
     moment.locale();
     let currDate = moment().format('lll');
     videoLog = {
