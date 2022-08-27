@@ -56,8 +56,8 @@
     };
 
     setInterval(()=>{
-        if ( timeCnt++ % 10 == 0 ) {
-            data["watchTime"] = timeCnt;
+        //if ( timeCnt++ % 10 == 0 ) {
+            data["watchTime"] = timeCnt++;
             axios({
                 url: 'web/util/saveVideoLog',
                 method: 'POST',
@@ -67,7 +67,7 @@
                 console.log(res);
             });
             //axios 끝
-        }
+        //}
     },1000);
 </script>
 
