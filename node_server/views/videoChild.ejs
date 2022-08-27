@@ -46,17 +46,18 @@
 
 
 <script>
-    var timeCnt = 1;
+    var timeCnt = document.getElementById("watchTime").value;
     var data = {
         userId : JSON.parse(localStorage.getItem('UserInfo')).userid,
         videoName : document.getElementById("videoName").value,
         watchDate : document.getElementById("watchDate").value,
-        watchTime : document.getElementById("watchTime").value,
+        watchTime : timeCnt,
         watchComplete : document.getElementById("watchComplete").value
     };
 
     setInterval(()=>{
         if ( timeCnt++ % 10 == 0 ) {
+            data["watchTime"] = timeCnt;
             axios({
                 url: 'web/util/saveVideoLog',
                 method: 'POST',
