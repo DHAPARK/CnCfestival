@@ -97,15 +97,16 @@ async function getProductInfo() {
  */
  async function getUserVideoLog(userId, videoName) {
     let videoLog = {};
-    let videoLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc(userId).get();
+    let videoLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc(userId);
     console.log(`videoLogRef ${videoLogRef}`);
     console.log(`videoLogRef ${JSON.stringify(videoLogRef)}`);
+    let doc = await videoLogRef.get();
 
     return new Promise( async (resolve) => {
-        if (videoLogRef.empty) {
+        if (!doc.exists) {
             resolve(undefined);
         } else {
-            let snapShot = await videoLogRef.where('videoName', '==', videoName).get();
+            let snapShot = await doc.where('videoName', '==', videoName).get();
             if (snapShot.empty) {
                 resolve(undefined);
             } else {
