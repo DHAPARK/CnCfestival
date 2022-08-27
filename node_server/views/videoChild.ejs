@@ -57,9 +57,16 @@
       var vdId = document.getElementById("videoId").value;
       console.log(`vdId : ${vdId}`);
 
+
+
       tag.src = "https://www.youtube.com/iframe_api";
       var firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      console.log(document.getElementById("player").src);
+      document.getElementById("player").src = document.getElementById("player").src.replace("&?","&");
+      console.log(document.getElementById("player").src);
+      console.log(document.getElementById("player").src.replace("&?","&"));
 
       // 3. This function creates an <iframe> (and YouTube player)
       //    after the API code downloads.
@@ -80,10 +87,6 @@
 
       // 4. The API will call this function when the video player is ready.
       function onPlayerReady(event) {
-        console.log(document.getElementById("player").src);
-      document.getElementById("player").src = document.getElementById("player").src.replace("&?","&");
-      console.log(document.getElementById("player").src);
-      console.log(document.getElementById("player").src.replace("&?","&"));
         event.target.playVideo();
       }
 
