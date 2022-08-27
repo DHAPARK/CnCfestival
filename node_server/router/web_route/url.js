@@ -139,7 +139,7 @@ router.get("/videoChild", async (req, res) => {
       watchComplete: false
     }
   }
-  // videoUrl += `&start=${videoLog.watchTime}`;
+  videoUrl += `&start=${videoLog.watchTime}`;
   const datas = {
     videoUrl: videoUrl,
     watchDate: videoLog.watchDate,
