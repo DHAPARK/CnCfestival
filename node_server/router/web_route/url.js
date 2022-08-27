@@ -157,7 +157,7 @@ router.get("/videoChild", async (req, res) => {
     watchTime: videoLog.watchTime,
     watchComplete: videoLog.watchComplete,
   };
-  res.header("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "https://www.youtube.com");
   res.render("videoChild", { datas: datas });
 });
 
