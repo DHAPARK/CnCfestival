@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const userAgentModel = require("../../models/userAgentModel");
+const moment = require('moment');
 
 const {
   balanceInquiry,
@@ -107,7 +108,7 @@ router.get("/mypage", async (req, res) => {
 router.get("/solution", (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/solution");
 
-  res.render("solution"); // 페이지 이름이 solution1인 이유 ?
+  res.render("solution");
 });
 
 router.get("/video", async (req, res) => {
@@ -118,6 +119,31 @@ router.get("/video", async (req, res) => {
 
   res.render("video", { videoInfo: videoInfo });
 });
+
+router.post("/videoChild", (req, res) => {
+  userAgentModel.printUserAgent(req.header("user-agent"), "/videoChild");
+
+  let { userId, videoName, videoUrl } = req.body;
+  let  videoLog = await getUserVideoLog(userId, videoName);
+  if (videoLog == undefined) {
+    moment.locale();
+    let currDate = moment().format('lll');
+    videoLog = {
+      watchDate: currDate,
+      watchTime: 0,
+      watchComplete: false
+    }
+  }
+  videoUrl += `&start=${videoLog.watchTime}`;
+  const datas = {
+    videoUrl: videoUrl,
+    watchDate: videoLog.watchDate,
+    watchTime: videoLog.watchTime,
+    watchComplete: videoLog.watchComplete
+  };
+  res.render("videoChild", { datas: datas });
+});
+
 
 router.get("/workBookPython", (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/workBookPython");

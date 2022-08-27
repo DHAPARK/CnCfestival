@@ -1,4 +1,5 @@
 const { DB_COLLECTION } = require('./constant');
+const { putItemToDB } = require('./DB');
 const env = require('../config/envConfig');
 
 /////////////////////////////////////////
@@ -62,6 +63,57 @@ async function getProductInfo() {
             videoObj.push(temp);
         });
         resolve(videoObj);
+    })
+}
+
+/**
+ * DB에서 강의 정보를 가져옴
+ * @returns {object} 강의 정보들 obejct
+ */
+ async function setUserVideoLog(userId, videoLogObject) {
+    let videoLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc(userId);
+    return new Promise( async (resolve) => {
+        if (videoLogRef.empty) {
+            putItemToDB(DB_COLLECTION['VIDEO_LOG'], userId, videoLogObject);
+        } else {
+            let snapShot = await videoLogRef.where('videoNum', '==', videoNum).get();
+            if (snapShot.empty) {
+                resolve(undefined);
+            } else {
+                snapShot.forEach(doc => {
+                    videoLog[doc.id] = doc.data();
+                })
+                resolve(videoLog);
+            }
+            
+        }
+        
+    })
+}
+
+/**
+ * DB에서 강의 정보를 가져옴
+ * @returns {object} 강의 정보들 obejct
+ */
+ async function getUserVideoLog(userId, videoName) {
+    let videoLog = {};
+    let videoLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc(userId);
+    return new Promise( async (resolve) => {
+        if (videoLogRef.empty) {
+            resolve(undefined);
+        } else {
+            let snapShot = await videoLogRef.where('videoName', '==', videoName).get();
+            if (snapShot.empty) {
+                resolve(undefined);
+            } else {
+                snapShot.forEach(doc => {
+                    videoLog[doc.id] = doc.data();
+                })
+                resolve(videoLog);
+            }
+            
+        }
+        
     })
 }
 
@@ -237,6 +289,8 @@ module.exports = {
     getFranchise, 
     getProductInfo,
     getVideoInfo,
+    getUserVideoLog,
+    setUserVideoLog,
     getTransactionLog, 
     getAllUserBalance, 
     getUserInfo, 

@@ -6,6 +6,7 @@ const { suppressDeprecationWarnings } = require("moment");
 const { addFavicon, getFaviconList } = require('../../utils/DB');
 const { balanceInquiry, getFranchise, getTransactionLog, getAllUserBalance, getRecentTransferAccount, getVideoInfo } = require('../../utils/inquiry');
 const { checkIdDuplicate } = require('../../utils/validation');
+const { DB_COLLECTION } = require('../../utils/constant');
 
 /**
  * 아이디 중복 검사
@@ -77,7 +78,7 @@ router.get('/getGpsInfo', async (req, res)=> {
 
 
 /**
- * GPS 정보 가져오기 매핑 getGpsInfo
+ * Video 정보 가져오기 매핑 getGpsInfo
  * @method get
  * @returns {object} 
  */
@@ -90,6 +91,27 @@ router.get('/getGpsInfo', async (req, res)=> {
     console.log(`result = ${result}`);
     res.json(result);
 })
+
+/**
+ * Video 시청 기록 저장
+ * @method post
+ * @returns {object} 
+ */
+ router.post('/saveVideoLog', async (req,res)=>{
+    userAgentModel.printUserAgent(req.header('user-agent'),"/saveVideoLog");
+    const { userId, videoName, watchDate, watchTime, watchComplete} = req.body;
+    console.log(`### /saveVideoLog : data`);
+    console.log(`userId : ${userId}`);
+    console.log(`videoName : ${videoName}`);
+    console.log(`watchDate : ${watchDate}`);
+    console.log(`watchTime : ${watchTime}`);
+    console.log(`watchComplete : ${watchComplete}`);
+    
+    let ps = await global.db.collection(DB_COLLECTION['VIDEO_LOG']);
+    ps.doc(userId).collection(videoName).set({watchDate:watchDate, watchTime:watchTime, watchComplete:watchComplete});
+})
+
+
 
 /**
  * 이용내역 불러오기

@@ -23,6 +23,7 @@ const DB_COLLECTION = {
     'TRANSACTION_HASH':'transaction_hash',
     'PRODUCT':'product',
     'VIDEO':'video',
+    'VIDEO_LOG':'video_log',
     'QUESTION':'question',
     'FAVICON':'favicon'
 };
