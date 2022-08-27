@@ -157,7 +157,7 @@ router.get("/videoChild", async (req, res) => {
     watchTime: videoLog.watchTime,
     watchComplete: videoLog.watchComplete,
   };
-  res.setHeader("Access-Control-Allow-Origin", "http://220.67.231.91");
+
   res.render("videoChild", { datas: datas });
 });
 
