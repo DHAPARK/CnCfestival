@@ -76,8 +76,14 @@
         });
       }
 
+
+
       // 4. The API will call this function when the video player is ready.
       function onPlayerReady(event) {
+        console.log(document.getElementById("player").src);
+      document.getElementById("player").src = document.getElementById("player").src.replace("&?","&");
+      console.log(document.getElementById("player").src);
+      console.log(document.getElementById("player").src.replace("&?","&"));
         event.target.playVideo();
       }
 
@@ -97,10 +103,7 @@
       }
 
       //
-      console.log(document.getElementById("player").src);
-      document.getElementById("player").src = document.getElementById("player").src.replace("&?","&");
-      console.log(document.getElementById("player").src);
-      console.log(document.getElementById("player").src.replace("&?","&"));
+      
     /*
     function setRateInterval(){
         console.log("클릭됨");
