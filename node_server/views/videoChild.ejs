@@ -58,9 +58,10 @@
         };
 
         setInterval(()=>{
-            console.log(`현재 시간 : ${document.getElementsByClassName("ytp-time-current")[0].innerText}`);
-            console.log(document.getElementsByClassName("ytp-time-current")[0].innerText);
-            console.log(`총 시간 : ${document.getElementsByClassName("ytp-time-duration")[0].innerText}`);
+            console.log(`현재 시간 : ${document.getElementsByClassName("ytp-time-display")[0].children[1].children[0].innerText}`);
+            //console.log(`현재 시간 : ${document.getElementsByClassName("ytp-time-current")[0].innerText}`);
+            //console.log(document.getElementsByClassName("ytp-time-current")[0].innerText);
+            //console.log(`총 시간 : ${document.getElementsByClassName("ytp-time-duration")[0].innerText}`);
 
             if ( timeCnt++ % 2 == 0 ) {
                 data["watchTime"] = timeCnt;
