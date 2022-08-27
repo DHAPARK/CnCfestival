@@ -33,7 +33,8 @@
     <div id="container">
         <div id="topContainer" >
             <!--<iframe onclick="setRateInterval()" id="videoIframe" width="100%" height="100%" src="<%= datas.videoUrl %>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
-            <iframe onclick="setRateInterval()" id="player" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <!--<iframe onclick="setRateInterval()" id="player" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+            <div id="player"></div>
         </div>
         <input type="hidden" id="watchDate" name="watchDate" value="<%= datas.watchDate %>"/>
         <input type="hidden" id="watchTime" name="watchTime" value="<%= datas.watchTime %>"/>
@@ -65,9 +66,9 @@
       var player;
       function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
-          height: '360',
-          width: '640',
-          videoId: "tPqTE14DEUg",
+          height: '100%',
+          width: '100%',
+          videoId: vdId,
           events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
