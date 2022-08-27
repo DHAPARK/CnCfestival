@@ -122,6 +122,7 @@ router.post("/saveVideoLog", async (req, res) => {
   let ps = await global.db.collection(DB_COLLECTION["VIDEO_LOG"]);
   ps.doc(userId)
     .collection(videoName)
+    .doc(videoName)
     .set({
       watchDate: watchDate,
       watchTime: watchTime,
