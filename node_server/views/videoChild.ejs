@@ -97,7 +97,7 @@
         if ( data["watchTime"] < parseInt(player.getCurrentTime()) ){
             console.log(`datawatchTime : ${data["watchTime"]}`);
             console.log(`player.getCurrentTime() : ${player.getCurrentTime()}`);
-                player.getCurrentTime() = data["watchTime"];
+                player.getCurrentTime(data["watchTime"]);
         }
 
         if (event.data == YT.PlayerState.PLAYING && !done) {
