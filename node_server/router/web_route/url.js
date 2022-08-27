@@ -131,7 +131,9 @@ router.get("/videoChild", async (req, res) => {
   
   let videoLog = await getUserVideoLog(userId, videoName);
   console.log(`videoLog ${JSON.stringify(videoLog)}`);
-  console.log(`typeof ${typeof(videoLog)}`);
+  console.log(`typeof ${videoLog.watchComplete == undefined}`);
+  console.log(`typeof ${videoLog.watchComplete}`);
+
   if (videoLog.watchComplete == undefined) {
     moment.locale();
     let currDate = moment().format('lll');
