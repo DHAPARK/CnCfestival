@@ -160,7 +160,8 @@ router.get("/videoChild", async (req, res) => {
     watchTime: videoLog.watchTime,
     watchComplete: videoLog.watchComplete,
   };
-
+  res.setHeader("Access-Control-Allow-Origin: http://localhost:80");
+  res.setHeader("Access-Control-Allow-Origin: https://www.youtube.com");
   res.render("videoChild", { datas: datas });
 });
 
