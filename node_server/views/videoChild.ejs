@@ -82,6 +82,21 @@
         }
         });
         document.getElementById("player").src = document.getElementById("player").src.replace("&?","&");
+        setInterval(()=>{
+            //여기서 서버로 걍 박으면 되는거 아닌가?
+            data["watchTime"] = parseInt(player.getCurrentTime());
+            axios({
+                url: 'web/util/saveVideoLog',
+                method: 'POST',
+                baseURL: `http://220.67.231.91:80`,
+                data: Qs.stringify(data)
+            }).then((res) => { // 로그인 성공하면
+                console.log(res);
+                player.pauseVideo();
+            });
+        },3000);
+    
+
     }
 
     function onPlayerReady(event) {
@@ -104,54 +119,7 @@
         //axios 끝
     }
 
-    setInterval(()=>{
-    //여기서 서버로 걍 박으면 되는거 아닌가?
-        data["watchTime"] = parseInt(player.getCurrentTime());
-        axios({
-            url: 'web/util/saveVideoLog',
-            method: 'POST',
-            baseURL: `http://220.67.231.91:80`,
-            data: Qs.stringify(data)
-        }).then((res) => { // 로그인 성공하면
-            console.log(res);
-            player.pauseVideo();
-        });
-    },3000);
-      //
-      
-    /*
-    function setRateInterval(){
-        console.log("클릭됨");
-        var timeCnt = document.getElementById("watchTime").value;
-        var data = {
-            userId : JSON.parse(localStorage.getItem('UserInfo')).userid,
-            videoName : document.getElementById("videoName").value,
-            watchDate : document.getElementById("watchDate").value,
-            watchTime : timeCnt,
-            watchComplete : document.getElementById("watchComplete").value
-        };
-
-        setInterval(()=>{
-            console.log(`현재 시간 : ${document.getElementsByClassName("ytp-time-display")[0].children[1].children[0].innerText}`);
-            //console.log(`현재 시간 : ${document.getElementsByClassName("ytp-time-current")[0].innerText}`);
-            //console.log(document.getElementsByClassName("ytp-time-current")[0].innerText);
-            //console.log(`총 시간 : ${document.getElementsByClassName("ytp-time-duration")[0].innerText}`);
-
-            if ( timeCnt++ % 2 == 0 ) {
-                data["watchTime"] = timeCnt;
-                axios({
-                    url: 'web/util/saveVideoLog',
-                    method: 'POST',
-                    baseURL: `http://220.67.231.91:80`,
-                    data: Qs.stringify(data)
-                }).then((res) => { // 로그인 성공하면
-                    console.log(res);
-                });
-                //axios 끝
-            }
-        },1000);
-    }
-    */
+    
 </script>
 
 </html>
