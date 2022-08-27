@@ -131,8 +131,9 @@ router.get("/videoChild", async (req, res) => {
   
   let videoLog = await getUserVideoLog(userId, videoName);
   console.log(`videoLog ${JSON.stringify(videoLog)}`);
-  console.log(`typeof ${videoLog.watchComplete == undefined}`);
+  console.log(`typeof ${videoLog}`);
   console.log(`typeof ${videoLog.watchComplete}`);
+  console.log(`typeof ${videoLog.watchComplete == undefined}`);
 
   if (videoLog.watchComplete == undefined) {
     moment.locale();
