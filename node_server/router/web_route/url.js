@@ -125,6 +125,10 @@ router.get("/videoChild", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/videoChild");
 
   let { userId, videoName, videoUrl } = req.query;
+  console.log(`userId ${userId}`);
+  console.log(`videoName ${videoName}`);
+  console.log(`videoUrl ${videoUrl}`);
+  
   let  videoLog = await getUserVideoLog(userId, videoName);
   if (videoLog == undefined) {
     moment.locale();
