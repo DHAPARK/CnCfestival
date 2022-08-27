@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const userAgentModel = require("../../models/userAgentModel");
-const moment = require('moment');
+const moment = require("moment");
 
 const {
   balanceInquiry,
   getTransactionLog,
   getProductInfo,
   getVideoInfo,
-  getUserVideoLog
+  getUserVideoLog,
 } = require("../../utils/inquiry");
 
 router.get("/index", (req, res) => {
@@ -128,7 +128,7 @@ router.get("/videoChild", async (req, res) => {
   console.log(`userId ${userId}`);
   console.log(`videoName ${videoName}`);
   console.log(`videoUrl ${videoUrl}`);
-  
+
   let videoLog = await getUserVideoLog(userId, videoName);
   console.log(`videoLog ${JSON.stringify(videoLog)}`);
   console.log(`typeof ${videoLog}`);
@@ -137,12 +137,12 @@ router.get("/videoChild", async (req, res) => {
 
   if (videoLog.watchComplete == undefined) {
     moment.locale();
-    let currDate = moment().format('lll');
+    let currDate = moment().format("lll");
     videoLog = {
       watchDate: currDate,
       watchTime: 0,
-      watchComplete: false
-    }
+      watchComplete: false,
+    };
   }
   videoUrl += `?start=${videoLog.watchTime}`;
 
@@ -155,11 +155,11 @@ router.get("/videoChild", async (req, res) => {
     videoName: videoName,
     watchDate: videoLog.watchDate,
     watchTime: videoLog.watchTime,
-    watchComplete: videoLog.watchComplete
+    watchComplete: videoLog.watchComplete,
   };
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.render("videoChild", { datas: datas });
 });
-
 
 router.get("/workBookPython", (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/workBookPython");
