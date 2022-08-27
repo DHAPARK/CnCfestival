@@ -31,7 +31,7 @@
 
 <body style="width:100%; height:100%; margin:0 auto;">
     <div id="container">
-        <div id="topContainer">
+        <div id="topContainer" onclick="setRateInterval();">
             <iframe  width="100%" height="100%" src="<%= datas.videoUrl %>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <input type="hidden" id="watchDate" name="watchDate" value="<%= datas.watchDate %>"/>
@@ -46,8 +46,11 @@
 
 
 <script>
-    //function setRateInterval(){
+    
+
+    function setRateInterval(){
         
+        /*
         var timeCnt = document.getElementById("watchTime").value;
         var data = {
             userId : JSON.parse(localStorage.getItem('UserInfo')).userid,
@@ -76,7 +79,8 @@
                 //axios 끝
             }
         },1000);
-    //}
+        */
+    }
 </script>
 
 </html>
