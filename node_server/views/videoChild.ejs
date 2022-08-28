@@ -86,11 +86,19 @@
         });
         document.getElementById("player").src = document.getElementById("player").src.replace("&?","&");
         //console.log(player.getIframe());
-        console.log(`player.getDuration() : ${player.getDuration()}`);
+        //console.log(`player.getDuration() : ${player.getDuration()}`);
     }
 
     function onPlayerReady(event) {
         event.target.playVideo();
+
+        var embedCode = event.target.getVideoEmbedCode();
+        //event.target.playVideo();
+        if (document.getElementById('embed-code')) {
+            document.getElementById('embed-code').innerHTML = embedCode;
+            console.log(document.getElementById('embed-code').innerHTML);
+        }
+
     }
 
     var done = false;
