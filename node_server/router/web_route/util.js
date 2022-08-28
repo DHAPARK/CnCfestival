@@ -11,6 +11,7 @@ const {
   getAllUserBalance,
   getRecentTransferAccount,
   getVideoInfo,
+  getQuizInfo
 } = require("../../utils/inquiry");
 const { checkIdDuplicate } = require("../../utils/validation");
 const { DB_COLLECTION } = require("../../utils/constant");
@@ -88,6 +89,21 @@ router.get("/getGpsInfo", async (req, res) => {
   console.log(`result = ${result}`);
   res.json(result);
 });
+
+/**
+ * Video 정보 가져오기 매핑 getGpsInfo
+ * @method get
+ * @returns {object}
+ */
+ router.get("/getQuizInfo", async (req, res) => {
+    userAgentModel.printUserAgent(req.header("user-agent"), "/getQuizInfo");
+  
+    console.log(`### /getQuizInfo : data`);
+  
+    const result = await getQuizInfo();
+    console.log(`result = ${result}`);
+    res.json(result);
+  });
 
 /**
  * Video 정보 가져오기 매핑 getGpsInfo

@@ -204,8 +204,11 @@ router.get("/videoChild", async (req, res) => {
 
 router.get("/workBookPython", (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/workBookPython");
-  
-  res.render("workBookPython");
+  let quizInfo = await getQuizInfo()
+  const datas = {
+    quizInfo: quizInfo
+  };
+  res.render("workBookPython", { quizInfo: quizInfo });
 });
 /**
  * 미리 만들어 놓은 웹 url 라우팅 끝

@@ -105,10 +105,11 @@ app.use("/web/transaction", webTransactionRouter);
 // => /hscPayment
 
 app.post("/test", async (req, res) => {
+  let quizNum = req.body.quizNum
   let code = decodeURIComponent(req.body.code);
   console.log(code);
 
-  fs.writeFileSync(`pf${0}.py`, code, "utf8", (err) => {
+  fs.writeFileSync(`/submit/pf${0}.py`, code, "utf8", (err) => {
     if (err) {
       console.log(`${err}\npython 파일생성에 문제발생`);
     }
@@ -116,20 +117,29 @@ app.post("/test", async (req, res) => {
   //파일제대로 생기나 확인해야함
 
   //파일이 제대로 생성이 되는걸 확인했으니 "방금 만들어진" 파이썬파일 그대로 컴파일
-  await exec(`python3 pf${0}.py`, { shell: true }, (error, stdout) => {
-    if (error) {
-      console.log(`stdout ${stdout}`);
-      console.log(`error ${error}`);
-      res.json({ code: 100, stdout: stdout, stderr: error.message });
-    } else {
-      console.log(`stdout ${stdout}`);
-      console.log(`error ${error}`);
-      res.json({ code: 200, stdout: stdout, stderr: error });
+  fs.readFileSync(`/answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
+    if (err) {
+      console.log(`${err}\n파일 로딩에 문제발생`);
     }
-  });
+    console.log(`###answer data = ${data}`)
+    // await exec(`cat input${quizNum} | python3 /submit/pf${0}.py`, { shell: true }, (error, stdout) => {
+    //   if (error) {
+    //     console.log(`stdout ${stdout}`);
+    //     console.log(`error ${error}`);
+    //     res.json({ code: 100, stdout: stdout, stderr: error.message });
+    //   } else {
+    //     console.log(`stdout ${stdout}`);
+    //     console.log(`error ${error}`);
+    //     res.json({ code: 200, stdout: stdout, stderr: error });
+    //   }
+    // });
+  }); 
 });
 
+
+
 app.post("/testanswer", async (req, res) => {});
+
 const { getStorage, ref, getDownloadURL } = require("firebase-admin/storage");
 const { putItemToDB } = require("./utils/DB");
 const { RETURN_CODE, DB_COLLECTION } = require("./utils/constant");

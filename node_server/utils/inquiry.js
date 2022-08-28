@@ -53,13 +53,30 @@ async function getProductInfo() {
  * DB에서 강의 정보를 가져옴
  * @returns {object} 강의 정보들 obejct
  */
+ async function getQuizInfo() {
+    let quizObj = [];
+    let ps = await global.db.collection(DB_COLLECTION['QUESTION']).get();
+    return new Promise(resolve => {
+        ps.forEach(doc => {
+            let temp = doc.data();
+            temp['quizId'] = doc.id;
+            quizObj.push(temp);
+        });
+        resolve(quizObj);
+    })
+}
+
+/**
+ * DB에서 강의 정보를 가져옴
+ * @returns {object} 강의 정보들 obejct
+ */
  async function getVideoInfo() {
     let videoObj = [];
     let ps = await global.db.collection(DB_COLLECTION['VIDEO']).get();
     return new Promise(resolve => {
         ps.forEach(doc => {
             let temp = doc.data();
-            temp['productId'] = doc.id;
+            temp['videoId'] = doc.id;
             videoObj.push(temp);
         });
         resolve(videoObj);
@@ -279,6 +296,7 @@ module.exports = {
     getFranchise, 
     getProductInfo,
     getVideoInfo,
+    getQuizInfo,
     getUserVideoLog,
     setUserVideoLog,
     getTransactionLog, 
