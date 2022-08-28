@@ -5,11 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js" integrity="sha512-/l6vieC+YxaZywUhmqs++8uF9DeMvJE61ua5g+UK0TuHZ4TkTgB1Gm1n0NiA86uEOM9JJ6JUwyR0hboKO0fCng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="/workBookPython.css"/>
 
-    
-
+    <script>
+        function goToSolution(element) {
+            var quizNum = element.parentNode.children[0].value; // 문제번호
+            var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
+            const data = {
+                quizNum : quizNum,
+                userId : userId,
+            }
+            axios({
+                url: 'web/solution',
+                method: 'POST',
+                baseURL: `http://220.67.231.91:80`,
+                data: Qs.stringify(data)
+            }).then((res) => {
+                location.href = `http://220.67.231.91:80/web/solution`;
+                return;   
+            }).catch(error=>{
+                console.log(`solution 페이지 가기 실패 ${error}`);
+                throw new Error(error);
+            })
+        }
+    </script>
 </head>
 <body>
     
@@ -52,136 +73,23 @@
                 <!--문제 리스트-->
                 <div class="workbookSemiContainer">
                     <table>
+                        <% for(var i=0; i<quizInfo.length; i++) { %>
                         <tr>
                             <td>
+                                
                                 <div id="workbookSpace">
-                                    <p id="_number">001</p>
-                                    <a id="workbook_div" onclick="">
-                                        <p id="_title">파이썬 테스트 준비 - 기초</p>
-                                        <p>수학</p>
+                                    <p id="_number"><%=quizInfo[i].quizNum%></p>
+                                    <a id="workbook_div" onclick="goToSolution(this)">
+                                        <p id="_title"><%=quizInfo[i].title%></p>
+                                        <p><%=quizInfo[i].kind%></p>
                                     </a>
                                     <!--해결 checkbox-->
                                     <input type="checkbox" name="complete">
                                 </div>
+                                
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <div id="workbookSpace">
-                                    <p id="_number">002</p>
-                                    <div id="workbook_div">
-                                        <p id="_title">파이썬 테스트 준비 - 기초</p>
-                                        <p>수학</p>
-                                    </div>
-                                    <!--해결 checkbox-->
-                                    <input type="checkbox" name="complete">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div id="workbookSpace">
-                                    <p id="_number">003</p>
-                                    <div id="workbook_div">
-                                        <p id="_title">파이썬 테스트 준비 - 기초</p>
-                                        <p>수학</p>
-                                    </div>
-                                    <!--해결 checkbox-->
-                                    <input type="checkbox" name="complete">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div id="workbookSpace">
-                                    <p id="_number">004</p>
-                                    <div id="workbook_div">
-                                        <p id="_title">파이썬 테스트 준비 - 기초</p>
-                                        <p>수학</p>
-                                    </div>
-                                    <!--해결 checkbox-->
-                                    <input type="checkbox" name="complete">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div id="workbookSpace">
-                                    <p id="_number">005</p>
-                                    <div id="workbook_div">
-                                        <p id="_title">파이썬 테스트 준비 - 기초</p>
-                                        <p>수학</p>
-                                    </div>
-                                    <!--해결 checkbox-->
-                                    <input type="checkbox" name="complete">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div id="workbookSpace">
-                                    <p id="_number">006</p>
-                                    <div id="workbook_div">
-                                        <p id="_title">파이썬 테스트 준비 - 기초</p>
-                                        <p>수학</p>
-                                    </div>
-                                    <!--해결 checkbox-->
-                                    <input type="checkbox" name="complete">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div id="workbookSpace">
-                                    <p id="_number">007</p>
-                                    <div id="workbook_div">
-                                        <p id="_title">파이썬 테스트 준비 - 기초</p>
-                                        <p>수학</p>
-                                    </div>
-                                    <!--해결 checkbox-->
-                                    <input type="checkbox" name="complete">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div id="workbookSpace">
-                                    <p id="_number">008</p>
-                                    <div id="workbook_div">
-                                        <p id="_title">파이썬 테스트 준비 - 기초</p>
-                                        <p>수학</p>
-                                    </div>
-                                    <!--해결 checkbox-->
-                                    <input type="checkbox" name="complete">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div id="workbookSpace">
-                                    <p id="_number">009</p>
-                                    <div id="workbook_div">
-                                        <p id="_title">파이썬 테스트 준비 - 기초</p>
-                                        <p>수학</p>
-                                    </div>
-                                    <!--해결 checkbox-->
-                                    <input type="checkbox" name="complete">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div id="workbookSpace">
-                                    <p id="_number">010</p>
-                                    <div id="workbook_div">
-                                        <p id="_title">파이썬 테스트 준비 - 기초</p>
-                                        <p>수학</p>
-                                    </div>
-                                    <!--해결 checkbox-->
-                                    <input type="checkbox" name="complete">
-                                </div>
-                            </td>
-                        </tr>
+                        <% } %>
                     </table>
                 </div>
             </div>
