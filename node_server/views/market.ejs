@@ -35,7 +35,7 @@
             console.log(`태그가 ${element.parentNode.parentNode.children[0].value}`);
             console.log(`현재 페이지는 ${currentPage}`);
             if (currentPage > 1) {
-                var backPage = currentPage - 1;
+                var backPage = parseInt(currentPage) - 1;
                 location.href = `http://220.67.231.91:80/web/market?page=${backPage}`;
             }
         }
@@ -46,7 +46,7 @@
             console.log(`태그가 ${element.parentNode.parentNode.children[1].value}`);
             console.log(`현재 페이지는 ${currentPage}`);
             if (currentPage < totalPage) {
-                var frontPage = currentPage + 1;
+                var frontPage = parseInt(currentPage) + 1;
                 location.href = `http://220.67.231.91:80/web/market?page=${frontPage}`;
             }
         }
@@ -150,7 +150,7 @@
     
     <footer style="width: 100%;">
         <input type="hidden" name="page" value="<%= page %>"/>
-        <input type="hidden" name="page" value="<%= totalPage %>"/>
+        <input type="hidden" name="totalPage" value="<%= totalPage %>"/>
         <center style="color: black; font-size: 1.5rem;">
             <span onclick="goToBack(this)"><</span>
             <%
