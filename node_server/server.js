@@ -107,7 +107,7 @@ app.use("/web/transaction", webTransactionRouter);
 app.post("/test", async (req, res) => {
   let code = decodeURIComponent(req.body.code);
   let userId = req.body.userId;
-  let quizNum = req.body.quizNum;
+  let quizNum = parseInt(req.body.quizNum);
   console.log(code);
   console.log(`userId ${userId}`);
   console.log(`quizNum ${quizNum}`);
@@ -142,7 +142,7 @@ app.post("/test", async (req, res) => {
 
 
 
-app.post("/testanswer", async (req, res) => {});
+// app.post("/testanswer", async (req, res) => {});
 
 const { getStorage, ref, getDownloadURL } = require("firebase-admin/storage");
 const { putItemToDB } = require("./utils/DB");
