@@ -30,8 +30,8 @@
     </style>
 
     <script>
-        function goToBack() {
-            var currentPage = page.page;
+        function goToBack(element) {
+            var currentPage = element.parentNode.parentNode.children.value;
             if (currentPage > 1) {
                 var backPage = currentPage - 1;
                 location.href = 'http://220.67.231.91:80/web/market?page=${backPage}';
@@ -136,8 +136,9 @@
     <!--container 끝-->
     
     <footer style="width: 100%;">
+        <input type="hidden" name="page" value="<%= page %>"/>
         <center style="color: black; font-size: 1.5rem;">
-            <span onclick="goToBack()"><</span>
+            <span onclick="goToBack(this)"><</span>
             <%
             for(var j = 0; j < totalPage ; j++){
             %>
