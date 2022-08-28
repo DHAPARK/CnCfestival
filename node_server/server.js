@@ -141,7 +141,7 @@ app.post("/test", async (req, res) => {
   });
   //파일제대로 생기나 확인해야함
 
-  let userAnswer = Array();
+  let userAnswer = [];
   fs.readFile(process.cwd() + `/answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
     if (err) {
       console.log(`${err}\n파일 로딩에 문제발생`);
