@@ -107,10 +107,10 @@ app.use("/web/transaction", webTransactionRouter);
 app.post("/test", async (req, res) => {
   let code = decodeURIComponent(req.body.code);
   let userId = decodeURIComponent(req.body.userId);
-  let quizNum = decodeURIComponent(req.body.quizNum);
+  let quizNum = decodeURIComponent(req.body.quizNum).replace("'", '');
   console.log(code);
-  console.log(`userId ${userId}`);
-  console.log(`quizNum ${quizNum} ${typeof(quizNum)} ${Number(quizNum)} ${typeof(Number(quizNum))}`);
+  console.log(`quizNum ${quizNum}`);
+
 
   //fs.writeFileSync(`/submit/${userId}_${quizNum}.py`, code, "utf8", (err) => {
   fs.writeFile(`${userId}_${1}.py`, code, "utf8", (err) => {
@@ -119,7 +119,7 @@ app.post("/test", async (req, res) => {
     }
     else {
       //fs.readFileSync(`cat /answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
-      fs.readFile(`cat /answer/input_answer${1}.txt`, "utf-8", (err, data) => {
+      fs.readFile(`cat /answer/input_answer` + quizNum + '.txt', "utf-8", (err, data) => {
         if (err) {
           console.log(`${err}\n파일 로딩에 문제발생`);
         }
