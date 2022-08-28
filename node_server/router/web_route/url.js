@@ -149,8 +149,10 @@ router.get("/mypage", async (req, res) => {
 
 router.get("/solution", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/solution");
-  let quizNum = req.query.quizNum;
-  let userId = req.query.userId;
+  let quizNum = req.params.quizNum;
+  let userId = req.params.userId;
+  // let quizNum = req.query['quizNum'];
+  // let userId = req.query['userId'];
 
   let quizInfo = await getQuizInfo();
   console.log(`userId ${userId}`);
