@@ -74,12 +74,16 @@ router.get("/market/:page", async (req, res) => {
   if (marketInfo.length%6 != 0) {
     totalPage += 1;
   }
+  if ( page != 1 ) {
+    var _marketInfo = marketInfo.slice( totIndex * (page - 1) , lastIndex = marketInfo.length - totIndex * page > 0 ?
+    totIndex * (page - 1) + (marketInfo.length - totIndex * page) : totIndex * page );
+
+    console.log(`_marketInfo ${_marketInfo}`);
+    res.render("market", { marketInfo: _marketInfo, totalPage: totalPage });
+  } else {
+    res.redirect('/market');
+  }
   
-  var _marketInfo = marketInfo.slice( totIndex * (page - 1) , lastIndex = marketInfo.length - totIndex * page > 0 ? totIndex * (page - 1) + (marketInfo.length - totIndex * page) : totIndex * page );
-
-  console.log(`_marketInfo ${_marketInfo}`);
-
-  res.render("market", { marketInfo: _marketInfo, totalPage: totalPage });
 });
 
 
