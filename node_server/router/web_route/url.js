@@ -62,7 +62,7 @@ router.get("/market/:page", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/market");
 
   const marketInfo = await getProductInfo();
-  var page = req.query.page;
+  var page = req.params.page;
   console.log(`result = ${marketInfo}`);
 
   res.render("market", { marketInfo: marketInfo, page: page });
