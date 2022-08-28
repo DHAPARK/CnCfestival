@@ -108,6 +108,7 @@ app.post("/test", async (req, res) => {
   let code = decodeURIComponent(req.body.code);
   let userId = req.body.userId;
   let quizNum = req.body.quizNum;
+  quizNum = parseInt(quizNum);
   console.log(code);
   console.log(`userId ${userId}`);
   console.log(`quizNum ${quizNum} ${typeof(quizNum)}`);
