@@ -87,10 +87,12 @@
         document.getElementById("player").src = document.getElementById("player").src.replace("&?","&");
         //console.log(player.getIframe());
         //console.log(`player.getDuration() : ${player.getDuration()}`);
+        window.tmp_obj = player;
     }
 
     function onPlayerReady(event) {
         event.target.playVideo();
+        console.log(`전체시간 ${tmp_obj.getDuration()}`);
     }
 
     var done = false;
