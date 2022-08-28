@@ -125,18 +125,23 @@ app.post("/test", async (req, res) => {
       console.log(`${err}\n파일 로딩에 문제발생`);
     }
     console.log(`###answer data = ${data}`);
-
-    // await exec(`cat input${quizNum} | python3 /submit/pf${0}.py`, { shell: true }, (error, stdout) => {
-    //   if (error) {
-    //     console.log(`stdout ${stdout}`);
-    //     console.log(`error ${error}`);
-    //     res.json({ code: 100, stdout: stdout, stderr: error.message });
-    //   } else {
-    //     console.log(`stdout ${stdout}`);
-    //     console.log(`error ${error}`);
-    //     res.json({ code: 200, stdout: stdout, stderr: error });
-    //   }
-    // });
+    let dataSplit = data.split('\n');
+    console.log(`dataSplit = ${dataSplit}`);
+    for (let temp of dataSplit) {
+      console.log(`temp = ${temp}`);
+      await exec(`echo ${temp} | python3 /submit/pf${0}.py`, { shell: true }, (error, stdout) => {
+        if (error) {
+          console.log(`stdout ${stdout}`);
+          console.log(`error ${error}`);
+          res.json({ code: 100, stdout: stdout, stderr: error.message });
+        } else {
+          console.log(`stdout ${stdout}`);
+          console.log(`error ${error}`);
+          res.json({ code: 200, stdout: stdout, stderr: error });
+        }
+      });
+    }
+    
   }); 
 });
 
