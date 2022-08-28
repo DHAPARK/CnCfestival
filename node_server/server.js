@@ -35,6 +35,21 @@ const PORT = 80;
 
 const envConfig = require("./config/envConfig");
 
+function isAlphaNumCheck(str) {
+  const rgxstr = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f","g","h","i","j"
+,"k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J"
+,"K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",":","(",")","_"," ","\n","=",'"',"'","+",
+"-","*","/","!","#","@","$","%","^","&","\\","/","|",".",",","?","<",">","`","~","[","]","\t","/t"]
+  var Flag = false;
+  for(var i=0;i<rgxstr.length;i++){
+      if(str == rgxstr[i]){
+          Flag = true;
+      }
+  }
+
+  return Flag;
+}
+
 app.use(
   session({
     secret: "session_test",
@@ -111,7 +126,13 @@ app.post("/test", async (req, res) => {
   let quizNum = decodeURIComponent(req.body.quizNum).replaceAll("'", '');
   console.log(code);
 
-  let fileName = `${userId}_${quizNum}.py`
+  let fileName = `${userId}_${quizNum}.py`;
+
+  for(let i=0; i < code.length ; i++){
+    if(!isAlphaNumCheck(code[i])){
+      code = code.replace(code[i]," ");
+    }
+  }
 
   fs.writeFileSync(process.cwd() + `/submit/${fileName}`, code, "utf8", (err) => {
     if (err) {
