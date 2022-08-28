@@ -15,6 +15,7 @@ const logger = require("morgan");
 const session = require("express-session");
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
+const path = require('path');
 
 const cors = require("cors");
 app.use(cors());
@@ -107,19 +108,17 @@ app.use("/web/transaction", webTransactionRouter);
 app.post("/test", async (req, res) => {
   let code = decodeURIComponent(req.body.code);
   let userId = decodeURIComponent(req.body.userId);
-  let quizNum = decodeURIComponent(req.body.quizNum).replace("'", '');
+  let quizNum = decodeURIComponent(req.body.quizNum).replaceAll("'", '');
   console.log(code);
   console.log(`quizNum ${quizNum}`);
 
 
-  //fs.writeFileSync(`/submit/${userId}_${quizNum}.py`, code, "utf8", (err) => {
-  fs.writeFile(`${userId}_${1}.py`, code, "utf8", (err) => {
+  fs.writeFileSync(process.cwd() + `./submit/${userId}_${quizNum}.py`, code, "utf8", (err) => {
     if (err) {
       console.log(`${err}\npython 파일생성에 문제발생`);
     }
     else {
-      //fs.readFileSync(`cat /answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
-      fs.readFile(`cat /answer/input_answer` + quizNum + '.txt', "utf-8", (err, data) => {
+      fs.readFileSync(process.cwd() + `cat ./answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
         if (err) {
           console.log(`${err}\n파일 로딩에 문제발생`);
         }
