@@ -135,6 +135,10 @@
         for (var line of AllLines) {
             code += line[1] + "\n";
         }
+
+        var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
+        var quizNum = document.getElementById("quizInfo_quizNum").innerText;
+        
         //해볼코드
         const data = {
             'code':String(code),
@@ -142,8 +146,7 @@
             'quizNum' : quizNum,
         };
 
-        var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
-        var quizNum = document.getElementById("quizInfo_quizNum").innerText;
+        
         /*const userInfo = {
             userId : userId,
             quizNum : quizNum,
