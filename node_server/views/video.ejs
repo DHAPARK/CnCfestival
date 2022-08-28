@@ -148,6 +148,22 @@
         <!--contentsContainer 끝-->
     </div>
     <!--container 끝-->
+
+    <footer style="width: 100%;">
+        <input type="hidden" name="page" value="<%= page %>"/>
+        <center style="color: black; font-size: 1.5rem;">
+            <span onclick="goToBack(this)"><</span>
+            <%
+            for(var j = 0; j < page ; j++){
+            %>
+            <a style="padding: 5px; color: black; font-size: 1.5rem;" href="http://220.67.231.91:80/web/video/<%= j + 1 %>"><%= j + 1 %></a>
+            <%
+            }
+            %>
+            <span onclick="goToFront(this)">></span>
+        </center>
+    </footer>
+
 </body>
 <script>
     document.getElementById("myPage").href = document.getElementById("myPage").href + '/' + `${JSON.parse(localStorage.getItem('UserInfo')).userid}`;
