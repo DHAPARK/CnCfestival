@@ -129,7 +129,7 @@ app.post("/test", async (req, res) => {
     let dataSplit = data.split('\n');
     let code = -1, error_result, output_result;
     console.log(dataSplit.length);
-    for (let i; i<dataSplit.length - 1; i++) {
+    for (let i = 0; i < dataSplit.length - 1; i++) {
       let temp = dataSplit[i];
       console.log(temp);
       exec(`echo ${temp} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true }, (error, stdout) => {
