@@ -40,6 +40,16 @@
             }
         }
 
+        function goToFront(element) {
+            var currentPage = element.parentNode.parentNode.children[0].value;
+            console.log(`태그가 ${element.parentNode.parentNode.children[0].value}`);
+            console.log(`현재 페이지는 ${currentPage}`);
+            if (currentPage < totalPage) {
+                var frontPage = currentPage + 1;
+                location.href = `http://220.67.231.91:80/web/market?page=${frontPage}`;
+            }
+        }
+
         function viewChildPage(element){
             //obj.style.display = 'none';
             //console.log(element);
