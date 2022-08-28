@@ -141,7 +141,7 @@
         };
 
         var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
-        var quizNum = document.getElementById("quizInfo_quizNum").value;
+        var quizNum = document.getElementById("quizInfo_quizNum").innerText;
         const userInfo = {
             userId : userId,
             quizNum : quizNum,
