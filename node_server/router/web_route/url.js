@@ -200,14 +200,15 @@ router.get("/video/:page", async (req, res) => {
   var totalIndex = 6;
   var dataToEnd;
   const videoInfo = await getVideoInfo();
-  if (videoInfo.length - totalIndex * page > 0) {
-    dataToEnd = videoInfo.slice(totalIndex * (page - 1), videoInfo.length);
-    page += 1;
-  } else {
-    dataToEnd = videoInfo.slice(totalIndex * (page - 1), totalIndex * page);
+  if (page != 1) {
+    if (videoInfo.length - totalIndex * page > 0) {
+      dataToEnd = videoInfo.slice(totalIndex * (page - 1), videoInfo.length);
+      page += 1;
+    } else {
+      dataToEnd = videoInfo.slice(totalIndex * (page - 1), totalIndex * page);
+    }
+    console.log(`result = ${videoInfo}`);
   }
-  console.log(`result = ${videoInfo}`);
-
   res.render("video", { videoInfo: dataToEnd, totalPage: page });
 });
 
