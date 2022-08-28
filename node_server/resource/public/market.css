@@ -79,6 +79,9 @@ a:hover { color: white; text-decoration: underline;}
     height: 80%;
 }
 
+.eachVideo center {
+    margin-top: 10px;
+}
 
 .videoSemiContainer{
     display:flex;
@@ -87,7 +90,6 @@ a:hover { color: white; text-decoration: underline;}
 .eachVideo p{
     font-weight: bold;
     font-size: 1.2rem;
-    margin-top: 10px;
     margin:0px;
     padding:0px;
 }
