@@ -17,9 +17,9 @@
             console.log(` quizNum 찍힌나 ${quizNum}`);
             console.log(` userId 찍힌나 ${userId}`);
             axios({
-                url: 'web/solution',
+                url: `web/solution/${quizNum}/${userId}`,
                 method: 'GET',
-                baseURL: `http://220.67.231.91:80/web/solution/${quizNum}/${userId}`,
+                baseURL: `http://220.67.231.91:80`,
             }).then((res) => {
                 //location.href = `http://220.67.231.91:80/web/solution?quizNum=${quizNum}&userId=${userId}`;
                 console.log(res);
