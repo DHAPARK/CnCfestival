@@ -30,6 +30,14 @@
     </style>
 
     <script>
+        function goToBack() {
+            var currentPage = page;
+            if (currentPage > 1) {
+                var backPage = currentPage - 1;
+                location.href = 'http://220.67.231.91:80/web/market?page=${backPage}';
+            }
+        }
+
         function viewChildPage(element){
             //obj.style.display = 'none';
             //console.log(element);
@@ -129,7 +137,7 @@
     
     <footer style="width: 100%;">
         <center style="color: black; font-size: 1.5rem;">
-            <span><</span>
+            <span onclick="goToBack()"><</span>
             <%
             for(var j = 0; j < totalPage ; j++){
             %>
@@ -137,7 +145,7 @@
             <%
             }
             %>
-            <span>></span>
+            <span onclick="goToFront()">></span>
         </center>
     </footer>
 </body>
