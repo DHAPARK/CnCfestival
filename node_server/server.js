@@ -126,6 +126,7 @@ app.post("/test", async (req, res) => {
     if (err) {
       console.log(`${err}\n파일 로딩에 문제발생`);
     }
+    console.log(`read data ${data}`);
     let dataSplit = data.split('\n');
     dataSplit = dataSplit.pop();
     let code = -1, error_result, output_result;
