@@ -150,13 +150,14 @@
         };*/
 
         var httpRequest;
-
-            httpRequest = new XMLHttpRequest();
-
-            httpRequest.onreadystatechange = () => {
-
-                if (httpRequest.readyState === XMLHttpRequest.DONE) {
-                    console.log('여기까지');
+        
+        httpRequest = new XMLHttpRequest();
+        
+        httpRequest.onreadystatechange = () => {
+            
+            if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                console.log('여기까지');
+                console.log(`data : ${data}`);
                     if (httpRequest.status === 200 ||  httpRequest.status == 201) {
                         var res = httpRequest.response;
                         console.log(`성공오나? ${JSON.stringify(res.stdout)}`);
@@ -176,14 +177,13 @@
                 }
             };
 
-            
+
             httpRequest.open('POST', 'http://220.67.231.91:80/test',true);
 
             httpRequest.responseType = "json";
 
             httpRequest.setRequestHeader("Content-Type", "application/json");  
             
-            console.log(`data : ${data}`);
             // userid, 푼 문제 번호 넘겨줘야 함
             httpRequest.send(JSON.stringify(data));
             
