@@ -138,14 +138,16 @@
         //해볼코드
         const data = {
             'code':String(code),
+            'userId' : userId,
+            'quizNum' : quizNum,
         };
 
         var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
         var quizNum = document.getElementById("quizInfo_quizNum").innerText;
-        const userInfo = {
+        /*const userInfo = {
             userId : userId,
             quizNum : quizNum,
-        };
+        };*/
 
         var httpRequest;
 
@@ -181,7 +183,7 @@
             httpRequest.setRequestHeader("Content-Type", "application/json");  
             
             // userid, 푼 문제 번호 넘겨줘야 함
-            httpRequest.send(JSON.stringify(data), {userInfo : userInfo});
+            httpRequest.send(JSON.stringify(data));
             
             
         }
