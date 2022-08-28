@@ -202,7 +202,7 @@ router.get("/videoChild", async (req, res) => {
   res.render("videoChild", { datas: datas });
 });
 
-router.get("/workBookPython", (req, res) => {
+router.get("/workBookPython", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/workBookPython");
   let quizInfo = await getQuizInfo()
   const datas = {
