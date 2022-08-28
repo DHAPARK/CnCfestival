@@ -105,11 +105,14 @@ app.use("/web/transaction", webTransactionRouter);
 // => /hscPayment
 
 app.post("/test", async (req, res) => {
-  let quizNum = req.body.quizNum
+  let quizNum = req.body.quizNum;
+  let userId = req.body.userId;
   let code = decodeURIComponent(req.body.code);
   console.log(code);
+  console.log(`userId ${userId}`);
+  console.log(`quizNum ${quizNum}`);
 
-  fs.writeFileSync(`/submit/pf${0}.py`, code, "utf8", (err) => {
+  fs.writeFileSync(`/submit/${userId}_${quizNum}.py`, code, "utf8", (err) => {
     if (err) {
       console.log(`${err}\npython 파일생성에 문제발생`);
     }
@@ -117,11 +120,12 @@ app.post("/test", async (req, res) => {
   //파일제대로 생기나 확인해야함
 
   //파일이 제대로 생성이 되는걸 확인했으니 "방금 만들어진" 파이썬파일 그대로 컴파일
-  fs.readFileSync(`/answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
+  fs.readFileSync(`cat /answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
     if (err) {
       console.log(`${err}\n파일 로딩에 문제발생`);
     }
     console.log(`###answer data = ${data}`)
+
     // await exec(`cat input${quizNum} | python3 /submit/pf${0}.py`, { shell: true }, (error, stdout) => {
     //   if (error) {
     //     console.log(`stdout ${stdout}`);

@@ -209,6 +209,7 @@ router.get("/workBookPython", async (req, res) => {
   const datas = {
     quizInfo: quizInfo
   };
+  console.log(quizInfo);
   res.render("workBookPython", { quizInfo: quizInfo });
 });
 /**
