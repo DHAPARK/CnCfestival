@@ -80,7 +80,7 @@ router.get("/market/:page", async (req, res) => {
     totIndex * (page - 1) + (marketInfo.length - totIndex * page) : totIndex * page );
 
     console.log(`_marketInfo ${_marketInfo}`);
-    res.render("market", { marketInfo: _marketInfo, totalPage: totalPage, page:page });
+    res.render("market", { marketInfo: _marketInfo, totalPage: totalPage, page: page });
   } else {
     res.redirect('http://220.67.231.91:80/web/market');
     //location.href = "http://220.67.231.91:80/web/market";
