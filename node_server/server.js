@@ -107,17 +107,17 @@ app.use("/web/transaction", webTransactionRouter);
 app.post("/test", async (req, res) => {
   let code = decodeURIComponent(req.body.code);
   let userId = decodeURIComponent(req.body.userId);
-  //let quizNum = parseInt(decodeURIComponent(req.body.quizNum));
+  let quizNum = decodeURIComponent(req.body.quizNum);
   console.log(code);
   console.log(`userId ${userId}`);
-  //console.log(`quizNum ${quizNum} ${typeof(quizNum)}`);
+  console.log(`quizNum ${quizNum} ${typeof(quizNum)} ${parseInt(quizNum)} ${typeof(parseInt(quizNum))}`);
 
   //fs.writeFileSync(`/submit/${userId}_${quizNum}.py`, code, "utf8", (err) => {
-  fs.writeFile(`${userId}_${1}.py`, code, "utf8", (err, data) => {
+  fs.writeFile(`${userId}_${1}.py`, code, "utf8", (err) => {
     if (err) {
       console.log(`${err}\npython 파일생성에 문제발생`);
     }
-    if (data) {
+    else {
       //fs.readFileSync(`cat /answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
       fs.readFile(`cat /answer/input_answer${1}.txt`, "utf-8", (err, data) => {
         if (err) {
