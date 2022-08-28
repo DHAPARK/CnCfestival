@@ -151,10 +151,12 @@ router.get("/solution", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/solution");
   let { quizNum, userId } = req.params;
   let quizInfo = await getQuizInfo();
-  console.log(quizInfo);
+  console.log(`userId ${userId}`);
+  console.log(`quizNum ${quizNum}`);
+  console.log(`${typeof(quizNum)}`);
   let temp;
   for (let quiz of quizInfo) {
-    if (quiz.quizNum == quizNum) {
+    if (parseInt(quiz.quizNum) == quizNum) {
         temp = quiz;
         break;
     }
