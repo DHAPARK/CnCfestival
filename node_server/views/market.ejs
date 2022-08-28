@@ -32,7 +32,7 @@
     <script>
         function goToBack(element) {
             var currentPage = element.parentNode.parentNode.children[0].innerText;
-            console.log(`부모 태그가 ${element.parentNode.parentNode.innerText}`);
+            console.log(`태그가 ${element.parentNode.parentNode.children[0].innerText}`);
             console.log(`현재 페이지는 ${currentPage}`);
             if (currentPage > 1) {
                 var backPage = currentPage - 1;
