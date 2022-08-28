@@ -138,8 +138,8 @@
         //해볼코드
         const data = {
             'code':String(code),
-            userId : userId,
-            quizNum : quizNum,
+            'userId' : userId,
+            'quizNum' : quizNum,
         };
 
         var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
@@ -176,7 +176,7 @@
                 }
             };
 
-            httpRequest.open('POST', 'http://220.67.231.91/test',true);
+            httpRequest.open('POST', 'http://220.67.231.91:80/test',true);
 
             httpRequest.responseType = "json";
 
