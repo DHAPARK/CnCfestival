@@ -178,16 +178,34 @@ router.get("/video/:page", async (req, res) => {
   var totalIndex = 6;
   var dataToEnd;
   const videoInfo = await getVideoInfo();
-  if (page != 1) {
-    if (videoInfo.length - totalIndex * page > 0) {
-      dataToEnd = videoInfo.slice(totalIndex * (page - 1), videoInfo.length);
-      page += 1;
-    } else {
-      dataToEnd = videoInfo.slice(totalIndex * (page - 1), totalIndex * page);
-    }
-    console.log(`result = ${videoInfo}`);
+  var page = req.params.page;
+  console.log(`page : ${page}`);
+  //console.log(`result = ${marketInfo}`);
+
+  var totalPage =
+    parseInt(videoInfo.length / 6) < 1 ? 1 : parseInt(videoInfo.length / 6);
+  if (videoInfo.length % 6 != 0) {
+    totalPage += 1;
   }
-  res.render("video", { videoInfo: dataToEnd, totalPage: page });
+  if (page != 1) {
+    var _videoInfo = videoInfo.slice(
+      totIndex * (page - 1),
+      (lastIndex =
+        videoInfo.length - totIndex * page > 0
+          ? totIndex * (page - 1) + (videoInfo.length - totIndex * page)
+          : totIndex * page)
+    );
+
+    console.log(`_videoInfo ${_videoInfo}`);
+    res.render("video", {
+      videoInfo: _videoInfo,
+      totalPage: totalPage,
+      page: page,
+    });
+  } else {
+    //res.redirect("http://220.67.231.91:80/web/video");
+    location.href = "http://220.67.231.91:80/web/video";
+  }
 });
 
 router.get("/videoChild", async (req, res) => {
