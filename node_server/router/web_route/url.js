@@ -75,6 +75,9 @@ router.get("/market", async (req, res) => {
   const marketInfo = await getProductInfo();
   console.log(`result = ${marketInfo}`);
   var totalPage = parseInt(marketInfo.length / 6) < 1 ? 1 : parseInt(marketInfo.length / 6);
+  if (marketInfo.length%6 != 0) {
+    marketInfo.length += 1;
+  }
   var _marketInfo = marketInfo.slice(0, 6);
   //console.log(`_marketInfo 배열 : ${_marketInfo.length}` );
   res.render("market", { marketInfo: _marketInfo, totalPage : totalPage });
