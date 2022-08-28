@@ -127,23 +127,23 @@ app.post("/test", async (req, res) => {
       console.log(`${err}\n파일 로딩에 문제발생`);
     }
     let dataSplit = data.split('\n');
+    dataSplit = dataSplit.pop();
     let code = -1, error_result, output_result;
-    console.log(dataSplit.length);
-    for (let i = 0; i < dataSplit.length - 1; i++) {
-      let temp = dataSplit[i];
-      console.log(temp);
-      exec(`echo ${temp} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true }, (error, stdout) => {
-        if (error) {
-          console.log(`stdout ${stdout}`);
-          console.log(`error ${error}`);
-          res.json({ code: code, stdout: stdout, stderr: error.message });
-        } else {
-          console.log(`stdout ${stdout}`);
-          console.log(`error ${error}`);
-          res.json({ code: 200, stdout: stdout, stderr: error });
-        }
-      });
-    }
+    
+    dataSplit.forEach(async data => {
+        await exec(`echo ${temp} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true }, (error, stdout) => {
+          if (error) {
+            console.log(`stdout ${stdout}`);
+            console.log(`error ${error}`);
+            res.json({ code: code, stdout: stdout, stderr: error.message });
+          } else {
+            console.log(`stdout ${stdout}`);
+            console.log(`error ${error}`);
+            res.json({ code: 200, stdout: stdout, stderr: error });
+          }
+        });
+    })
+
     // if (code == 100) {
       
     // } else {
