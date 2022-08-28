@@ -149,7 +149,7 @@ app.post("/test", async (req, res) => {
     }
     
     let dataSplit = Array(data.split('\n'));
-    dataSplit = dataSplit.pop();
+    dataSplit.pop();
     let code = -1, error_result, output_result;
     
     dataSplit.forEach(async data => {
@@ -161,11 +161,10 @@ app.post("/test", async (req, res) => {
           } else {
             console.log(`stdout ${stdout}`);
             console.log(`error ${error}`);
-            //res.json({ code: 200, stdout: stdout, stderr: error });
           }
         });
     })
-
+    res.json({ code: 200, stdout: stdout, stderr: error });
     // if (code == 100) {
       
     // } else {
