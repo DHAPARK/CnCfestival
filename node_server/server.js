@@ -113,11 +113,10 @@ app.post("/test", async (req, res) => {
   //console.log(`quizNum ${quizNum} ${typeof(quizNum)}`);
 
   //fs.writeFileSync(`/submit/${userId}_${quizNum}.py`, code, "utf8", (err) => {
-  fs.writeFile(`/submit/${userId}_${1}.py`, code, "utf8", (err, data) => {
+  fs.writeFile(`${userId}_${1}.py`, code, "utf8", (err, data) => {
     if (err) {
       console.log(`${err}\npython 파일생성에 문제발생`);
     }
-    console.log(`data = ${data}`);
     if (data) {
       //fs.readFileSync(`cat /answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
       fs.readFile(`cat /answer/input_answer${1}.txt`, "utf-8", (err, data) => {
