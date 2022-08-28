@@ -120,7 +120,7 @@ app.post("/test", async (req, res) => {
 
   //파일이 제대로 생성이 되는걸 확인했으니 "방금 만들어진" 파이썬파일 그대로 컴파일
   console.log(`${userId}_${quizNum}.py write`);
-  fs.readFileSync(process.cwd() + `/answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
+  fs.readFile(process.cwd() + `/answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
     if (err) {
       console.log(`${err}\n파일 로딩에 문제발생`);
     }
