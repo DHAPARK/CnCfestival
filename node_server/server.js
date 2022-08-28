@@ -142,30 +142,29 @@ app.post("/test", async (req, res) => {
   //파일제대로 생기나 확인해야함
 
   let userAnswer = [];
-  fs.readFile(process.cwd() + `/answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
+  let data = fs.readFileSync(process.cwd() + `/answer/input_answer${quizNum}.txt`, "utf-8", (err) => {
     if (err) {
       console.log(`${err}\n파일 로딩에 문제발생`);
     }
-    
-    let dataSplit = Array(data.split('\n'));
-    dataSplit.pop();
-
-    dataSplit.forEach(async data => {
-        await exec(`echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true }, (error, stdout) => {
-          if (error) {
-            console.log(`stdout ${stdout}`);
-            console.log(`error ${error}`);
-            res.json({ code: 100, stdout: stdout, stderr: error.message });
-          } else {
-            console.log(`stdout ${stdout}`);
-            console.log(`error ${error}`);
-            userAnswer.push(stdout);
-          }
-        });
-    });
-    res.json({ code: 200, stdout: 'stdout', stderr: 'error' });  
   }); 
 
+  let dataSplit = Array(data.split('\n'));
+  dataSplit.pop();
+
+  dataSplit.forEach(async (data) => {
+      await exec(`echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true }, (error, stdout) => {
+        if (error) {
+          console.log(`stdout ${stdout}`);
+          console.log(`error ${error}`);
+          res.json({ code: 100, stdout: stdout, stderr: error.message });
+        } else {
+          console.log(`stdout ${stdout}`);
+          console.log(`error ${error}`);
+          userAnswer.push(stdout);
+        }
+      });
+  });
+    
   fs.readFile(process.cwd() + `/answer/output_answer${quizNum}.txt`, "utf-8", (err, data) => {
     if (err) {
       console.log(`${err}\n파일 로딩에 문제발생`);
@@ -177,19 +176,20 @@ app.post("/test", async (req, res) => {
     let correct = 0;
     console.log(userAnswer);
     dataSplit.forEach(async (data, index) => {
-        if (data == userAnswer[index]) {
-          correct += 1;
-        }
-        if (index + 1 == total) {
-          console.log(`total = ${total}, correct = ${correct}`);
-          res.json({ code: 200, stdout: 'stdout', stderr: 'error' });
-        }
+      if (data == userAnswer[index]) {
+        correct += 1;
+      }
+      if (index + 1 == total) {
+        console.log(`total = ${total}, correct = ${correct}`);
+        res.json({ code: 200, stdout: 'stdout', stderr: 'error' });
+      }
     });
     
   }); 
-
+  
+  //res.json({ code: 200, stdout: 'stdout', stderr: 'error' });  
   // if (돌아감 == 200) {
-  //   if (정답임) {
+    //   if (정답임) {
 
   //   }
   //   else {
