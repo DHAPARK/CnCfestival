@@ -68,6 +68,11 @@ router.get("/market/:page", async (req, res) => {
   const marketInfo = await getProductInfo();
 
   var page = req.params.page;
+
+  if ( page <= 0 ) {
+    page = 1;
+  }
+
   console.log(`page : ${page}`);
   console.log(`result = ${marketInfo}`);
 
