@@ -107,10 +107,10 @@ app.use("/web/transaction", webTransactionRouter);
 app.post("/test", async (req, res) => {
   let code = decodeURIComponent(req.body.code);
   let userId = req.body.userId;
-  let quizNum = parseInt(req.body.quizNum);
+  let quizNum = req.body.quizNum;
   console.log(code);
   console.log(`userId ${userId}`);
-  console.log(`quizNum ${quizNum}`);
+  console.log(`quizNum ${quizNum} ${typeof(quizNum)}`);
 
   fs.writeFileSync(`/submit/${userId}_${quizNum}.py`, code, "utf8", (err) => {
     if (err) {
