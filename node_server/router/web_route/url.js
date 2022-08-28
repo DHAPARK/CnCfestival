@@ -47,6 +47,7 @@ router.get("/marketChild", (req, res) => {
     receiverAddress: req.query.receiverAddress,
     productName: req.query.productName,
     amount: req.query.amount,
+    image: req.query.image,
   };
   res.render("marketChild", { datas: datas });
 });
