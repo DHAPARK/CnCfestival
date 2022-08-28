@@ -147,7 +147,7 @@ router.get("/mypage", async (req, res) => {
   res.render("mypage", { info: myInfo });
 });
 
-router.get("/solution", async (req, res) => {
+router.get("/solution/:quizNum/:userId", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/solution");
   let quizNum = req.params.quizNum;
   let userId = req.params.userId;
