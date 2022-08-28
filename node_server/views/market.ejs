@@ -31,10 +31,12 @@
 
     <script>
         function goToBack(element) {
-            var currentPage = element.parentNode.parentNode.children.value;
+            var currentPage = element.parentNode.parentNode.children[0].value;
+            console.log(`태그가 ${element.parentNode.parentNode.children[0].value}`);
+            console.log(`현재 페이지는 ${currentPage}`);
             if (currentPage > 1) {
                 var backPage = currentPage - 1;
-                location.href = 'http://220.67.231.91:80/web/market?page=${backPage}';
+                //location.href = `http://220.67.231.91:80/web/market?page=${backPage}`;
             }
         }
 
@@ -136,7 +138,7 @@
     <!--container 끝-->
     
     <footer style="width: 100%;">
-        <input type="hidden" name="page" value="<%= page %>"/>
+        <input type="hidden" name="page" value="<%= page.page %>"/>
         <center style="color: black; font-size: 1.5rem;">
             <span onclick="goToBack(this)"><</span>
             <%
