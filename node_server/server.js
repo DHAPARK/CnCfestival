@@ -117,9 +117,10 @@ app.post("/test", async (req, res) => {
     if (err) {
       console.log(`${err}\npython 파일생성에 문제발생`);
     }
+    console.log(`data = ${data}`);
     if (data) {
       //fs.readFileSync(`cat /answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
-      fs.readFileSync(`cat /answer/input_answer${1}.txt`, "utf-8", (err, data) => {
+      fs.readFile(`cat /answer/input_answer${1}.txt`, "utf-8", (err, data) => {
         if (err) {
           console.log(`${err}\n파일 로딩에 문제발생`);
         }
