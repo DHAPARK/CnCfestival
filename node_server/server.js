@@ -175,6 +175,7 @@ app.post("/test", async (req, res) => {
     dataSplit.pop();
     let total = dataSplit.length;
     let correct = 0;
+    console.log(userAnswer);
     dataSplit.forEach(async (data, index) => {
         if (data == userAnswer[index]) {
           correct += 1;
