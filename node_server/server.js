@@ -147,11 +147,10 @@ app.post("/test", async (req, res) => {
     if (err) {
       console.log(`${err}\n파일 로딩에 문제발생`);
     }
-    console.log(`read data ${data}`);
+    
     let dataSplit = Array(data.split('\n'));
     dataSplit = dataSplit.pop();
     let code = -1, error_result, output_result;
-    console.log(`typeof dataSplit ${typeof dataSplit}`);
     
     dataSplit.forEach(async data => {
         await exec(`echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true }, (error, stdout) => {
@@ -162,7 +161,7 @@ app.post("/test", async (req, res) => {
           } else {
             console.log(`stdout ${stdout}`);
             console.log(`error ${error}`);
-            res.json({ code: 200, stdout: stdout, stderr: error });
+            //res.json({ code: 200, stdout: stdout, stderr: error });
           }
         });
     })
