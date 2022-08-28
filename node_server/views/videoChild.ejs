@@ -85,7 +85,8 @@
         }
         });
         document.getElementById("player").src = document.getElementById("player").src.replace("&?","&");
-        console.log(player.getIframe());
+        //console.log(player.getIframe());
+        console.log(`player.getDuration() : ${player.getDuration()}`);
     }
 
     function onPlayerReady(event) {
@@ -101,8 +102,6 @@
         }
 
         if (event.data == YT.PlayerState.PLAYING && !done) {
-            
-
             setInterval(()=>{
             //여기서 서버로 걍 박으면 되는거 아닌가?
                 if ( data["watchTime"] != parseInt(player.getCurrentTime()) ) {

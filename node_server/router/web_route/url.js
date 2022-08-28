@@ -167,7 +167,7 @@ router.get("/videoChild", async (req, res) => {
 
 router.get("/workBookPython", (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/workBookPython");
-
+  
   res.render("workBookPython");
 });
 /**
