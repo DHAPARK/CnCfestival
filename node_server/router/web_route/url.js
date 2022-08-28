@@ -58,13 +58,14 @@ router.get("/introduce", (req, res) => {
   res.render("introduce");
 });
 
-router.get("/market", async (req, res) => {
+router.get("/market/:page", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/market");
 
   const marketInfo = await getProductInfo();
+  var page = req.query.page;
   console.log(`result = ${marketInfo}`);
 
-  res.render("market", { marketInfo: marketInfo });
+  res.render("market", { marketInfo: marketInfo, page: page });
 });
 
 router.get("/menuList", (req, res) => {
