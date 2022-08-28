@@ -225,8 +225,8 @@ router.get("/video/:page", async (req, res) => {
       page: page,
     });
   } else {
-    res.redirect("http://220.67.231.91:80/web/video");
-    //location.href = "http://220.67.231.91:80/web/market";
+    //res.redirect("http://220.67.231.91:80/web/video");
+    location.href = "http://220.67.231.91:80/web/video";
   }
 });
 
