@@ -105,13 +105,13 @@ app.use("/web/transaction", webTransactionRouter);
 // => /hscPayment
 
 app.post("/test", async (req, res) => {
-  let quizNum = req.body.quizNum;
-  let userId = req.body.userId;
+  let userInfo = req.body.userInfo;
   let code = decodeURIComponent(req.body.code);
   console.log(code);
-  console.log(`userId ${userId}`);
-  console.log(`quizNum ${quizNum}`);
-
+  console.log(`userId ${userInfo}`);
+  let userId = userInfo.userId;
+  let quizNum = userInfo.quizNum;
+  
   fs.writeFileSync(`/submit/${userId}_${quizNum}.py`, code, "utf8", (err) => {
     if (err) {
       console.log(`${err}\npython 파일생성에 문제발생`);
