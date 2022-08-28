@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js" integrity="sha512-/l6vieC+YxaZywUhmqs++8uF9DeMvJE61ua5g+UK0TuHZ4TkTgB1Gm1n0NiA86uEOM9JJ6JUwyR0hboKO0fCng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="/marketChild.css"/>
+    <title>Document</title>
+    <style>
+        #conatiner{
+            width:100%;
+            height:100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="topLongContainer" class="bg_cont">
+        <div id="topLongContainerInnerLeftLogoImg" class="bg_cont">
+            <img id="topLongContainerInnerLeftLogoImg_Img" src="/webimg/HSC_mini.png"/>
+            <p>상품 구매</p>
+        </div>
+    </div>
+    
+    <div id="container">
+        <form method="post" action="http://220.67.231.91:80/buyProductRequest">
+            <p><input type="hidden" name="userId" id="userId" value="<%= datas.userid %>"></p>
+            <p><input type="hidden" name="userPassword" id="userPassword" value="<%=datas.userpw %>"></p>
+            <p><input type="hidden" name="senderAddress" id="senderAddress" value="<%=datas.senderAddress %>"></p>
+            <p><input type="hidden" name="receiverAddress" id="receiverAddress" value="<%=datas.receiverAddress %>"></p>
+
+            <div id="contentsContainer_img">
+                <!-- 상품 이미지 가져오기 -->
+                <img src="<%=datas.image%>">
+            </div>
+            <div id="contentsContainer">
+                <div id="container_title">
+                    <p>상품명</p>
+                </div>
+                <div id="container_text">
+                    <!--<p><input style="word-wrap: break-word; word-break: break-all; width: 300px;" type="text" name="productName" id="productName" value="<%=datas.productName %>" disabled></p>-->
+                    <p><%=datas.productName%></p>
+                </div>
+            </div>
+            <div id="contentsContainer">
+                <div id="container_title">
+                    <p>상품설명</p>            
+                </div>
+                <div id="container_text">
+                    <!--<p><input style="word-wrap: break-word; word-break: break-all; width: 300px;" type="text" name="productName" id="productName" value="<%=datas.productName %>" disabled></p>-->
+                    <p style="width: 300px;"><%=datas.description%></p>
+                </div>
+            </div>
+            <div id="contentsContainer">
+                <div id="container_title">
+                    <p>금액</p>
+                </div>
+                <div id="container_text">
+                    <p style="color: #043570;"><input type="text" name="amount" id="amount" style="color: #043570; width: 100px; text-align: right;" value="<%=datas.amount %>" disabled> HSC</p>
+                </div>
+            </div>
+            
+            <p style="width: 100px; margin: auto; margin-top: 50px; margin-bottom: 20px;"><input type="button" onclick="purchase();" value="구매하기"/>
+        </form>
+    </div>
+
+</body>
+
+<script>
+    function purchase(){
+        axios({
+            method: 'POST',
+            url: `http://220.67.231.91:80/buyProductRequest`,
+            data: {
+                userId : document.getElementById("userId").value,
+                userPassword: document.getElementById("userPassword").value,
+                senderAddress: document.getElementById("senderAddress").value,
+                receiverAddress: document.getElementById("receiverAddress").value.substring(0,document.getElementById("receiverAddress").value.length-1),
+                amount: document.getElementById("amount").value,
+                productName: document.getElementById("productName").value,
+            },
+        }).then(res => {
+        console.log(`res는 ${JSON.stringify(res.data)}`);
+        if (res.data['SUCCESS_CODE'] == 100) {
+            window.alert("결제가 성공했습니다");
+            window.close();
+        } else if (res.data['SUCCESS_CODE'] == 200) {
+            console.log('송신측 주소 없음');
+        } else if (res.data['SUCCESS_CODE'] == 201) {
+            window.alert("잔액이 부족합니다");
+            window.close();
+        } else if (res.data['SUCCESS_CODE'] == 202) {
+            console.log('비밀번호 오류');
+        }
+    });
+    }
+</script>
+
+</html>
