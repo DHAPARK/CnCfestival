@@ -113,12 +113,12 @@ app.post("/test", async (req, res) => {
   console.log(`quizNum ${quizNum}`);
 
 
-  fs.writeFileSync(process.cwd() + `./submit/${userId}_${quizNum}.py`, code, "utf8", (err) => {
+  fs.writeFileSync(process.cwd() + `/submit/${userId}_${quizNum}.py`, code, "utf8", (err) => {
     if (err) {
       console.log(`${err}\npython 파일생성에 문제발생`);
     }
     else {
-      fs.readFileSync(process.cwd() + `cat ./answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
+      fs.readFileSync('cat ' + process.cwd() + `/answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
         if (err) {
           console.log(`${err}\n파일 로딩에 문제발생`);
         }
