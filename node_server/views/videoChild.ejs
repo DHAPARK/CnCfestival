@@ -104,6 +104,13 @@
 
         if (event.data == YT.PlayerState.PLAYING && !done) {
             setInterval(()=>{
+                // 영상이 끝나면 수고하셨습니다 alert뜨고 종료.
+                if ( player.getCurrentTime() >= tmp_obj.getDuration() ) {
+                    if (window.confirm("고생하셨습니다.창을 닫으시겠습니까?")) {
+                        window.close();
+                    }
+                }
+
             //여기서 서버로 걍 박으면 되는거 아닌가?
                 if ( data["watchTime"] != parseInt(player.getCurrentTime()) ) {
                     data["watchTime"] = parseInt(player.getCurrentTime());
