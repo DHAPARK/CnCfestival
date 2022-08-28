@@ -129,7 +129,7 @@ app.post("/test", async (req, res) => {
     let dataSplit = data.split('\n');
     dataSplit = dataSplit.pop();
     let code = -1, error_result, output_result;
-    
+    console.log(`typeof dataSplit ${typeof dataSplit}`);
     dataSplit.foreach(async data => {
         await exec(`echo ${temp} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true }, (error, stdout) => {
           if (error) {
