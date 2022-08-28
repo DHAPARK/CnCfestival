@@ -126,15 +126,16 @@ app.post("/test", async (req, res) => {
     if (err) {
       console.log(`${err}\n파일 로딩에 문제발생`);
     }
-    console.log(`###answer data = ${data}`);
     let dataSplit = data.split('\n');
+    let code = -1, error_result, output_result;
+    console.log(dataSplit.length);
     for (let i; i<dataSplit.length - 1; i++) {
       let temp = dataSplit[i];
       exec(`echo ${temp} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true }, (error, stdout) => {
         if (error) {
           console.log(`stdout ${stdout}`);
           console.log(`error ${error}`);
-          res.json({ code: 100, stdout: stdout, stderr: error.message });
+          res.json({ code: code, stdout: stdout, stderr: error.message });
         } else {
           console.log(`stdout ${stdout}`);
           console.log(`error ${error}`);
@@ -142,7 +143,11 @@ app.post("/test", async (req, res) => {
         }
       });
     }
-    
+    // if (code == 100) {
+      
+    // } else {
+      
+    // }
   }); 
 });
 
