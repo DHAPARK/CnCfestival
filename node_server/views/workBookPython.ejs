@@ -13,17 +13,13 @@
         function goToSolution(element) {
             var quizNum = element.parentNode.children[0].value; // 문제번호
             var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
-            const data = {
-                quizNum : quizNum,
-                userId : userId,
-            }
+    
             axios({
                 url: 'web/solution',
                 method: 'GET',
                 baseURL: `http://220.67.231.91:80`,
-                data: Qs.stringify(data)
             }).then((res) => {
-                location.href = `http://220.67.231.91:80/web/solution`;
+                location.href = `http://220.67.231.91:80/web/solution?${quizNum}/${userId}`;
                 return;   
             }).catch(error=>{
                 console.log(`solution 페이지 가기 실패 ${error}`);
