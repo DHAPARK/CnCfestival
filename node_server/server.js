@@ -115,32 +115,29 @@ app.post("/test", async (req, res) => {
     if (err) {
       console.log(`${err}\npython 파일생성에 문제발생`);
     }
-    else {
-      console.log(`${userId}_${quizNum}.py write`);
-      fs.readFileSync('cat ' + process.cwd() + `/answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
-        if (err) {
-          console.log(`${err}\n파일 로딩에 문제발생`);
-        }
-        console.log(`###answer data = ${data}`)
-
-        // await exec(`cat input${quizNum} | python3 /submit/pf${0}.py`, { shell: true }, (error, stdout) => {
-        //   if (error) {
-        //     console.log(`stdout ${stdout}`);
-        //     console.log(`error ${error}`);
-        //     res.json({ code: 100, stdout: stdout, stderr: error.message });
-        //   } else {
-        //     console.log(`stdout ${stdout}`);
-        //     console.log(`error ${error}`);
-        //     res.json({ code: 200, stdout: stdout, stderr: error });
-        //   }
-        // });
-      }); 
-    }
   });
   //파일제대로 생기나 확인해야함
 
   //파일이 제대로 생성이 되는걸 확인했으니 "방금 만들어진" 파이썬파일 그대로 컴파일
-  
+  console.log(`${userId}_${quizNum}.py write`);
+  fs.readFileSync('cat ' + process.cwd() + `/answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
+    if (err) {
+      console.log(`${err}\n파일 로딩에 문제발생`);
+    }
+    console.log(`###answer data = ${data}`);
+
+    // await exec(`cat input${quizNum} | python3 /submit/pf${0}.py`, { shell: true }, (error, stdout) => {
+    //   if (error) {
+    //     console.log(`stdout ${stdout}`);
+    //     console.log(`error ${error}`);
+    //     res.json({ code: 100, stdout: stdout, stderr: error.message });
+    //   } else {
+    //     console.log(`stdout ${stdout}`);
+    //     console.log(`error ${error}`);
+    //     res.json({ code: 200, stdout: stdout, stderr: error });
+    //   }
+    // });
+  }); 
 });
 
 
