@@ -97,7 +97,6 @@
     function onPlayerStateChange(event) {
         if ( data["watchTime"] < parseInt(player.getCurrentTime()) ){
             console.log(`datawatchTime : ${data["watchTime"]}`);
-            console.log(`player.getCurrentTime() : ${player.getCurrentTime()}`);
             //여기까지 해놨다
         }
 
@@ -106,6 +105,7 @@
             //여기서 서버로 걍 박으면 되는거 아닌가?
                 if ( data["watchTime"] != parseInt(player.getCurrentTime()) ) {
                     data["watchTime"] = parseInt(player.getCurrentTime());
+                    console.log(`player.getCurrentTime() : ${player.getCurrentTime()}`);
                     axios({
                         url: 'web/util/saveVideoLog',
                         method: 'POST',
