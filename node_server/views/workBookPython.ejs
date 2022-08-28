@@ -11,8 +11,9 @@
 
     <script>
         function goToSolution(element) {
-            var quizNum = element.parentNode.children[0].value; // 문제번호
+            var quizNum = element.parentNode.children[0].innerText; // 문제번호
             var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
+            //console.log();
             console.log(` quizNum 찍힌나 ${quizNum}`);
             console.log(` userId 찍힌나 ${userId}`);
             axios({
