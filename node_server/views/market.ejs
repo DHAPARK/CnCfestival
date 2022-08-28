@@ -34,6 +34,7 @@
         function viewChildPage(element){
             //obj.style.display = 'none';
             //console.log(element);
+            var _eleChild = element.children[0];
             var eleChild = element.children[1].children;
 
             //console.log(element.innerHTML);
@@ -53,6 +54,7 @@
             var receiverAddress = eleChild[3].value;
             var productName = eleChild[0].innerText;
             var amount = eleChild[1].innerText.substring(0,eleChild[1].innerText.length-4);
+            var image = _eleChild.value;
 
 
             var myWindow = window.open(`http://220.67.231.91:80/web/marketChild?userid=${userid}&userpw=${userpw}&senderAddress=${senderAddress}&description=${description}&receiverAddress=${receiverAddress}&productName=${productName}&amount=${amount}`,"구매창","width=800px,height=1200px");
