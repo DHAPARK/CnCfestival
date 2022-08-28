@@ -62,41 +62,55 @@ router.get("/introduce", (req, res) => {
 router.get("/market/:page", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/market/:page");
 
-  var page = req.params.page;
   var totIndex = 6;
   var lastIndex = totIndex * page;
 
   const marketInfo = await getProductInfo();
 
+  var page = req.params.page;
   console.log(`page : ${page}`);
   console.log(`result = ${marketInfo}`);
 
-  var totalPage = parseInt(marketInfo.length / 6) < 1 ? 1 : parseInt(marketInfo.length / 6);
+  var totalPage =
+    parseInt(marketInfo.length / 6) < 1 ? 1 : parseInt(marketInfo.length / 6);
   if (marketInfo.length % 6 != 0) {
     totalPage += 1;
   }
-  var _marketInfo = marketInfo.slice(totIndex * (page - 1), totIndex * (page));
+  if (page != 1) {
+    var _marketInfo = marketInfo.slice(
+      totIndex * (page - 1),
+      (lastIndex =
+        marketInfo.length - totIndex * page > 0
+          ? totIndex * (page - 1) + (marketInfo.length - totIndex * page)
+          : totIndex * page)
+    );
 
-  console.log(`_marketInfo ${_marketInfo}`);
-  res.render("market", { marketInfo: _marketInfo, totalPage: totalPage, page: page });
-  
+    console.log(`_marketInfo ${_marketInfo}`);
+    res.render("market", {
+      marketInfo: _marketInfo,
+      totalPage: totalPage,
+      page: page,
+    });
+  } else {
+    res.redirect("http://220.67.231.91:80/web/market");
+    //location.href = "http://220.67.231.91:80/web/market";
+  }
 });
-
 
 router.get("/market", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/market");
 
-  // const marketInfo = await getProductInfo();
-  // console.log(`result = ${marketInfo}`);
-  // var totalPage = parseInt(marketInfo.length / 6) < 1 ? 1 : parseInt(marketInfo.length / 6);
-  // if (marketInfo.length%6 != 0) {
-  //   totalPage += 1;
-  // }
-  // var _marketInfo = marketInfo.slice(0, 6);
-  // console.log(`totalPage : ${totalPage}`);
-  // //console.log(`_marketInfo 배열 : ${_marketInfo.length}` );
-  // res.render("market", { marketInfo: _marketInfo, totalPage : totalPage });
-  res.redirect('http://220.67.231.91/web/market/1');
+  const marketInfo = await getProductInfo();
+  console.log(`result = ${marketInfo}`);
+  var totalPage =
+    parseInt(marketInfo.length / 6) < 1 ? 1 : parseInt(marketInfo.length / 6);
+  if (marketInfo.length % 6 != 0) {
+    totalPage += 1;
+  }
+  var _marketInfo = marketInfo.slice(0, 6);
+  console.log(`totalPage : ${totalPage}`);
+  //console.log(`_marketInfo 배열 : ${_marketInfo.length}` );
+  res.render("market", { marketInfo: _marketInfo, totalPage: totalPage });
 });
 
 router.get("/menuList", (req, res) => {
@@ -152,12 +166,12 @@ router.get("/solution/:quizNum/:userId", async (req, res) => {
   let quizInfo = await getQuizInfo();
   console.log(`userId ${userId}`);
   console.log(`quizNum ${quizNum}`);
-  console.log(`${typeof(quizNum)}`);
+  console.log(`${typeof quizNum}`);
   let temp;
   for (let quiz of quizInfo) {
     if (parseInt(quiz.quizNum) == quizNum) {
-        temp = quiz;
-        break;
+      temp = quiz;
+      break;
     }
   }
   console.log(`temp = ${temp}`);
@@ -166,11 +180,35 @@ router.get("/solution/:quizNum/:userId", async (req, res) => {
 
 router.get("/video", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/video");
-
+  var totalIndex = 6;
   const videoInfo = await getVideoInfo();
+
+  var totalPage =
+    parseInt(videoInfo.length / 6) < 1 ? 1 : parseInt(videoInfo.length / 6);
+  if (videoInfo.length % 6 != 0) {
+    totalPage += 1;
+  }
+  var _videoInfo = videoInfo.slice(0, 6);
+  console.log(`totalPage : ${totalPage}`);
+  //console.log(`_marketInfo 배열 : ${_marketInfo.length}` );
+  res.render("video", { videoInfo: _videoInfo, totalPage: totalPage });
+});
+
+router.get("/video/:page", async (req, res) => {
+  userAgentModel.printUserAgent(req.header("user-agent"), "/video/:page");
+  var page = req.params.page;
+  var totalIndex = 6;
+  var dataToEnd;
+  const videoInfo = await getVideoInfo();
+  if (videoInfo.length - totalIndex * page > 0) {
+    dataToEnd = videoInfo.slice(totalIndex * (page - 1), videoInfo.length);
+    page += 1;
+  } else {
+    dataToEnd = videoInfo.slice(totalIndex * (page - 1), totalIndex * page);
+  }
   console.log(`result = ${videoInfo}`);
 
-  res.render("video", { videoInfo: videoInfo });
+  res.render("video", { videoInfo: dataToEnd, totalPage: page });
 });
 
 router.get("/videoChild", async (req, res) => {
@@ -216,9 +254,9 @@ router.get("/videoChild", async (req, res) => {
 
 router.get("/workBookPython", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/workBookPython");
-  let quizInfo = await getQuizInfo()
+  let quizInfo = await getQuizInfo();
   const datas = {
-    quizInfo: quizInfo
+    quizInfo: quizInfo,
   };
   console.log(quizInfo);
   res.render("workBookPython", { quizInfo: quizInfo });
