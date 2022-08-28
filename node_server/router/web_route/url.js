@@ -76,19 +76,41 @@ router.get("/market/:page", async (req, res) => {
   if (marketInfo.length % 6 != 0) {
     totalPage += 1;
   }
-  var _marketInfo = marketInfo.slice(totIndex * (page - 1), totIndex * (page - 1) + totIndex * page);
+  if (page != 1) {
+    var _marketInfo = marketInfo.slice(
+      totIndex * (page - 1),
+      (lastIndex =
+        marketInfo.length - totIndex * page > 0
+          ? totIndex * (page - 1) + (marketInfo.length - totIndex * page)
+          : totIndex * page)
+    );
 
-  res.render("market", {
-    marketInfo: _marketInfo,
-    totalPage: totalPage,
-    page: page,
-  });
+    console.log(`_marketInfo ${_marketInfo}`);
+    res.render("market", {
+      marketInfo: _marketInfo,
+      totalPage: totalPage,
+      page: page,
+    });
+  } else {
+    res.redirect("http://220.67.231.91:80/web/market");
+    //location.href = "http://220.67.231.91:80/web/market";
+  }
 });
 
 router.get("/market", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/market");
 
-  res.redirect("http://220.67.231.91:80/web/market/1");
+  const marketInfo = await getProductInfo();
+  console.log(`result = ${marketInfo}`);
+  var totalPage =
+    parseInt(marketInfo.length / 6) < 1 ? 1 : parseInt(marketInfo.length / 6);
+  if (marketInfo.length % 6 != 0) {
+    totalPage += 1;
+  }
+  var _marketInfo = marketInfo.slice(0, 6);
+  console.log(`totalPage : ${totalPage}`);
+  //console.log(`_marketInfo 배열 : ${_marketInfo.length}` );
+  res.render("market", { marketInfo: _marketInfo, totalPage: totalPage });
 });
 
 router.get("/menuList", (req, res) => {
@@ -175,17 +197,17 @@ router.get("/video", async (req, res) => {
 router.get("/video/:page", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/video/:page");
   var page = req.params.page;
-  var totalIndex = 6;
+  var totIndex = 6;
   var dataToEnd;
   const videoInfo = await getVideoInfo();
   var page = req.params.page;
   console.log(`page : ${page}`);
   //console.log(`result = ${marketInfo}`);
 
-  var totalPage =
+  var totPage =
     parseInt(videoInfo.length / 6) < 1 ? 1 : parseInt(videoInfo.length / 6);
   if (videoInfo.length % 6 != 0) {
-    totalPage += 1;
+    totPage += 1;
   }
   if (page != 1) {
     var _videoInfo = videoInfo.slice(
@@ -199,7 +221,7 @@ router.get("/video/:page", async (req, res) => {
     console.log(`_videoInfo ${_videoInfo}`);
     res.render("video", {
       videoInfo: _videoInfo,
-      totalPage: totalPage,
+      totalPage: totPage,
       page: page,
     });
   } else {
