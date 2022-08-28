@@ -156,8 +156,10 @@ router.get("/solution", async (req, res) => {
   for (let quiz of quizInfo) {
     if (quiz.quizNum == quizNum) {
         temp = quiz;
+        break;
     }
   }
+  console.log(`temp = ${temp}`);
   res.render("solution", { quizInfo: temp });
 });
 
