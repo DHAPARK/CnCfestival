@@ -147,7 +147,7 @@ router.get("/mypage", async (req, res) => {
   res.render("mypage", { info: myInfo });
 });
 
-router.get("/solution", (req, res) => {
+router.post("/solution", (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/solution");
 
   res.render("solution");
