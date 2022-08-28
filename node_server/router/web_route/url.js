@@ -76,41 +76,19 @@ router.get("/market/:page", async (req, res) => {
   if (marketInfo.length % 6 != 0) {
     totalPage += 1;
   }
-  if (page != 1) {
-    var _marketInfo = marketInfo.slice(
-      totIndex * (page - 1),
-      (lastIndex =
-        marketInfo.length - totIndex * page > 0
-          ? totIndex * (page - 1) + (marketInfo.length - totIndex * page)
-          : totIndex * page)
-    );
+  var _marketInfo = marketInfo.slice(totIndex * (page - 1), totIndex * (page - 1) + totIndex * page);
 
-    console.log(`_marketInfo ${_marketInfo}`);
-    res.render("market", {
-      marketInfo: _marketInfo,
-      totalPage: totalPage,
-      page: page,
-    });
-  } else {
-    res.redirect("http://220.67.231.91:80/web/market");
-    //location.href = "http://220.67.231.91:80/web/market";
-  }
+  res.render("market", {
+    marketInfo: _marketInfo,
+    totalPage: totalPage,
+    page: page,
+  });
 });
 
 router.get("/market", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/market");
 
-  const marketInfo = await getProductInfo();
-  console.log(`result = ${marketInfo}`);
-  var totalPage =
-    parseInt(marketInfo.length / 6) < 1 ? 1 : parseInt(marketInfo.length / 6);
-  if (marketInfo.length % 6 != 0) {
-    totalPage += 1;
-  }
-  var _marketInfo = marketInfo.slice(0, 6);
-  console.log(`totalPage : ${totalPage}`);
-  //console.log(`_marketInfo 배열 : ${_marketInfo.length}` );
-  res.render("market", { marketInfo: _marketInfo, totalPage: totalPage });
+  res.redirect("http://220.67.231.91:80/web/market/1");
 });
 
 router.get("/menuList", (req, res) => {
