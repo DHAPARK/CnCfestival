@@ -91,14 +91,6 @@
 
     function onPlayerReady(event) {
         event.target.playVideo();
-
-        var embedCode = event.target.getVideoEmbedCode();
-        //event.target.playVideo();
-        if (document.getElementById('embed-code')) {
-            document.getElementById('embed-code').innerHTML = embedCode;
-            console.log(document.getElementById('embed-code').innerHTML);
-        }
-
     }
 
     var done = false;
