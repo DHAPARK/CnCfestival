@@ -68,6 +68,18 @@ router.get("/market/:page", async (req, res) => {
   res.render("market", { marketInfo: marketInfo, page: page });
 });
 
+
+router.get("/market", async (req, res) => {
+  userAgentModel.printUserAgent(req.header("user-agent"), "/market");
+
+  const marketInfo = await getProductInfo();
+  console.log(`result = ${marketInfo}`);
+  var totalPage = parseInt(marketInfo.length / 9);
+  var _marketInfo = marketInfo.slice(0, 9);
+  console.log(`_marketInfo 배열 : ${_marketInfo.length}` );
+  //res.render("market", { marketInfo: _marketInfo, totalPage : totalPage });
+});
+
 router.get("/menuList", (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/menuList");
 
