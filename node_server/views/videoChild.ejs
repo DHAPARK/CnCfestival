@@ -85,7 +85,8 @@
         }
         });
         document.getElementById("player").src = document.getElementById("player").src.replace("&?","&");
-        console.log(player.getIframe());
+        //console.log(player.getIframe());
+        //console.log(`player.getDuration() : ${player.getDuration()}`);
     }
 
     function onPlayerReady(event) {
@@ -96,17 +97,15 @@
     function onPlayerStateChange(event) {
         if ( data["watchTime"] < parseInt(player.getCurrentTime()) ){
             console.log(`datawatchTime : ${data["watchTime"]}`);
-            console.log(`player.getCurrentTime() : ${player.getCurrentTime()}`);
             //여기까지 해놨다
         }
 
         if (event.data == YT.PlayerState.PLAYING && !done) {
-            
-
             setInterval(()=>{
             //여기서 서버로 걍 박으면 되는거 아닌가?
                 if ( data["watchTime"] != parseInt(player.getCurrentTime()) ) {
                     data["watchTime"] = parseInt(player.getCurrentTime());
+                    console.log(`player.getCurrentTime() : ${player.getCurrentTime()}`);
                     axios({
                         url: 'web/util/saveVideoLog',
                         method: 'POST',
