@@ -149,9 +149,16 @@ router.get("/mypage", async (req, res) => {
 
 router.get("/solution", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/solution");
-  let quizInfo = await getQuizInfo()
+  let { quizNum, userId } = req.params;
+  let quizInfo = await getQuizInfo();
   console.log(quizInfo);
-  res.render("solution", { quizInfo: quizInfo });
+  let temp;
+  for (let quiz of quizInfo) {
+    if (quiz.quizNum == quizNum) {
+        temp = quiz;
+    }
+  }
+  res.render("solution", { quizInfo: temp });
 });
 
 router.get("/video", async (req, res) => {
