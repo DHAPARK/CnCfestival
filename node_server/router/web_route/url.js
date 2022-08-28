@@ -59,13 +59,27 @@ router.get("/introduce", (req, res) => {
 });
 
 router.get("/market/:page", async (req, res) => {
-  userAgentModel.printUserAgent(req.header("user-agent"), "/market");
+  userAgentModel.printUserAgent(req.header("user-agent"), "/market/:page");
+
+  var totIndex = 6;
+  var lastIndex = totIndex * page;
 
   const marketInfo = await getProductInfo();
+
   var page = req.params.page;
+  console.log(`page : ${page}`);
   console.log(`result = ${marketInfo}`);
 
-  res.render("market", { marketInfo: marketInfo, page: page });
+  var totalPage = parseInt(marketInfo.length / 6) < 1 ? 1 : parseInt(marketInfo.length / 6);
+  if (marketInfo.length%6 != 0) {
+    totalPage += 1;
+  }
+  
+  var _marketInfo = marketInfo.slice( totIndex * (page - 1) , lastIndex = marketInfo.length - totIndex * page > 0 ? totIndex * (page - 1) + (marketInfo.length - totIndex * page) : totIndex * page );
+
+  console.log(`_marketInfo ${_marketInfo}`);
+
+  res.render("market", { marketInfo: _marketInfo, totalPage: totalPage });
 });
 
 
