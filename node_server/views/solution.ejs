@@ -11,7 +11,7 @@
 <body>
     <div id="container">
         <div id="topLongContainer" class="bg_cont">
-            
+            <input type="hidden" id="quizInfo_quizNum" value="'<%= quizInfo.quizNum %>'"/>
             <div id="topLongContainerInnerLeftLogoImg" class="bg_cont">
                 <img id="topLongContainerInnerLeftLogoImg_Img" src="/webimg/HSC_mini.png"/>
                 <div id="topLongContainerTitleText">
@@ -134,6 +134,13 @@
             'code':String(code),
         };
 
+        var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
+        var quizNum = document.getElementById("quizInfo_quizNum").value;
+        const userInfo = {
+            userId : userId,
+            quizNum : quizNum,
+        };
+
         var httpRequest;
 
             httpRequest = new XMLHttpRequest();
@@ -167,7 +174,8 @@
 
             httpRequest.setRequestHeader("Content-Type", "application/json");  
             
-            httpRequest.send(JSON.stringify(data));
+            // userid, 푼 문제 번호 넘겨줘야 함
+            httpRequest.send(JSON.stringify(data), {userInfo : userInfo});
             
             
         }
