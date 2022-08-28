@@ -110,7 +110,7 @@ app.post("/test", async (req, res) => {
   let quizNum = decodeURIComponent(req.body.quizNum);
   console.log(code);
   console.log(`userId ${userId}`);
-  console.log(`quizNum ${quizNum} ${typeof(quizNum)} ${parseInt(quizNum)} ${typeof(parseInt(quizNum))}`);
+  console.log(`quizNum ${quizNum} ${typeof(quizNum)} ${Number(quizNum)} ${typeof(Number(quizNum))}`);
 
   //fs.writeFileSync(`/submit/${userId}_${quizNum}.py`, code, "utf8", (err) => {
   fs.writeFile(`${userId}_${1}.py`, code, "utf8", (err) => {
