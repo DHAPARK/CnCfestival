@@ -74,10 +74,10 @@ router.get("/market", async (req, res) => {
 
   const marketInfo = await getProductInfo();
   console.log(`result = ${marketInfo}`);
-  var totalPage = parseInt(marketInfo.length / 9);
-  var _marketInfo = marketInfo.slice(0, 9);
-  console.log(`_marketInfo 배열 : ${_marketInfo.length}` );
-  //res.render("market", { marketInfo: _marketInfo, totalPage : totalPage });
+  var totalPage = parseInt(marketInfo.length / 10) < 1 ? 1 : parseInt(marketInfo.length / 10);
+  var _marketInfo = marketInfo.slice(0, 10);
+  //console.log(`_marketInfo 배열 : ${_marketInfo.length}` );
+  res.render("market", { marketInfo: _marketInfo, totalPage : totalPage });
 });
 
 router.get("/menuList", (req, res) => {

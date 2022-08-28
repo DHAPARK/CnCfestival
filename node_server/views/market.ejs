@@ -63,14 +63,6 @@
 </head>
 <body>
 
-    <%
-    var length = 9; // 한 페이지에 보일 상품 수
-
-    for(var i = (page * page_num) - page_num; i < (page * page_num); i++) { // 처음에 보여줘야 할 상품들
-    if(i > length){
-        i++;
-    }
-    %>
 
     
     
@@ -126,7 +118,7 @@
                         <% } %>
                         
                         <%
-                        for(var j = 0; j < marketInfo.length / page_num; j++){
+                        for(var j = 0; j < totalPage ; j++){
                         %>
                         [<a href="http://220.67.231.91:80/web/market/<%= j + 1 %>"><%= j + 1 %></a>]
                         <%
