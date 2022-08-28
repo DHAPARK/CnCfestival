@@ -111,7 +111,9 @@ app.post("/test", async (req, res) => {
   let quizNum = decodeURIComponent(req.body.quizNum).replaceAll("'", '');
   console.log(code);
 
-  fs.writeFileSync(process.cwd() + `/submit/${userId}_${quizNum}.py`, code, "utf8", (err) => {
+  let fileName = `${userId}_${quizNum}.py`
+
+  fs.writeFileSync(process.cwd() + `/submit/${fileName}`, code, "utf8", (err) => {
     if (err) {
       console.log(`${err}\npython 파일생성에 문제발생`);
     }
@@ -119,7 +121,7 @@ app.post("/test", async (req, res) => {
   //파일제대로 생기나 확인해야함
 
   //파일이 제대로 생성이 되는걸 확인했으니 "방금 만들어진" 파이썬파일 그대로 컴파일
-  console.log(`${userId}_${quizNum}.py write`);
+  console.log(` write`);
   fs.readFile(process.cwd() + `/answer/input_answer${quizNum}.txt`, "utf-8", (err, data) => {
     if (err) {
       console.log(`${err}\n파일 로딩에 문제발생`);
@@ -129,7 +131,7 @@ app.post("/test", async (req, res) => {
     console.log(`dataSplit = ${dataSplit}`);
     for (let temp of dataSplit) {
       console.log(`temp = ${temp}`);
-      exec(`echo ${temp} | python3 /submit/pf${0}.py`, { shell: true }, (error, stdout) => {
+      exec(`echo ${temp} | python3 /submit/${fileName}`, { shell: true }, (error, stdout) => {
         if (error) {
           console.log(`stdout ${stdout}`);
           console.log(`error ${error}`);
