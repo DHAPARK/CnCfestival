@@ -193,7 +193,7 @@ router.get("/video/:page", async (req, res) => {
     totIndex * (page - 1) + totIndex * page
   );
 
-  res.render("market", {
+  res.render("video", {
     videoInfo: _videoInfo,
     totalPage: totalPage,
     page: page,
