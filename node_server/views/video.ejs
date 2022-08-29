@@ -78,7 +78,7 @@
             var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
             var videoName = element.children[1].children[0].innerText;
             var videoUrl = element.children[1].children[3].value;
-            var myWindow = window.open(`http://220.67.231.91:80/web/videoChild?userId=${userId}&videoName=${videoName}&videoUrl=${videoUrl}`,"강의창","width=1100px,height=700px");
+            var myWindow = window.open(`http://220.67.231.91:80/web/videoChild?userId=${userId}&videoName=${videoName}&videoUrl=${videoUrl}`,"강의창","width=1100px,height=700px",resizable=no);
         }
     </script>
 
