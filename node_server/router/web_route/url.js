@@ -166,18 +166,8 @@ router.get("/solution/:quizNum/:userId", async (req, res) => {
 
 router.get("/video", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/video");
-  var totalIndex = 6;
-  const videoInfo = await getVideoInfo();
 
-  var totalPage =
-    parseInt(videoInfo.length / 6) < 1 ? 1 : parseInt(videoInfo.length / 6);
-  if (videoInfo.length % 6 != 0) {
-    totalPage += 1;
-  }
-  var _videoInfo = videoInfo.slice(0, 6);
-  console.log(`totalPage : ${totalPage}`);
-  //console.log(`_marketInfo 배열 : ${_marketInfo.length}` );
-  res.render("video", { videoInfo: _videoInfo, totalPage: totalPage });
+  res.redirect("http://220.67.231.91:80/web/market/1");
 });
 
 router.get("/video/:page", async (req, res) => {
