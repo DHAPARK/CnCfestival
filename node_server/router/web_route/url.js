@@ -167,7 +167,7 @@ router.get("/solution/:quizNum/:userId", async (req, res) => {
 router.get("/video", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/video");
 
-  res.redirect("http://220.67.231.91:80/web/market/1");
+  res.redirect("http://220.67.231.91:80/web/video/1");
 });
 
 router.get("/video/:page", async (req, res) => {
