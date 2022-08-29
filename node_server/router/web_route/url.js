@@ -69,7 +69,7 @@ router.get("/market/:page", async (req, res) => {
 
   var page = req.params.page;
 
-  if ( page <= 0 ) {
+  if (page <= 0) {
     page = 1;
   }
 
@@ -81,7 +81,10 @@ router.get("/market/:page", async (req, res) => {
   if (marketInfo.length % 6 != 0) {
     totalPage += 1;
   }
-  var _marketInfo = marketInfo.slice(totIndex * (page - 1), totIndex * (page - 1) + totIndex * page);
+  var _marketInfo = marketInfo.slice(
+    totIndex * (page - 1),
+    totIndex * (page - 1) + totIndex * page
+  );
 
   res.render("market", {
     marketInfo: _marketInfo,
@@ -179,38 +182,32 @@ router.get("/video", async (req, res) => {
 
 router.get("/video/:page", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/video/:page");
-  var page = req.params.page;
-  var totalIndex = 6;
-  var dataToEnd;
+
   const videoInfo = await getVideoInfo();
+  var totIndex = 6;
+  var lastIndex = totIndex * page;
+
   var page = req.params.page;
-  console.log(`page : ${page}`);
-  //console.log(`result = ${marketInfo}`);
+
+  if (page <= 0) {
+    page = 1;
+  }
 
   var totalPage =
     parseInt(videoInfo.length / 6) < 1 ? 1 : parseInt(videoInfo.length / 6);
   if (videoInfo.length % 6 != 0) {
     totalPage += 1;
   }
-  if (page != 1) {
-    var _videoInfo = videoInfo.slice(
-      totIndex * (page - 1),
-      (lastIndex =
-        videoInfo.length - totIndex * page > 0
-          ? totIndex * (page - 1) + (videoInfo.length - totIndex * page)
-          : totIndex * page)
-    );
+  var _videoInfo = videoInfo.slice(
+    totIndex * (page - 1),
+    totIndex * (page - 1) + totIndex * page
+  );
 
-    console.log(`_videoInfo ${_videoInfo}`);
-    res.render("video", {
-      videoInfo: _videoInfo,
-      totalPage: totalPage,
-      page: page,
-    });
-  } else {
-    //res.redirect("http://220.67.231.91:80/web/video");
-    location.href = "http://220.67.231.91:80/web/video";
-  }
+  res.render("market", {
+    videoInfo: _videoInfo,
+    totalPage: totalPage,
+    page: page,
+  });
 });
 
 router.get("/videoChild", async (req, res) => {
