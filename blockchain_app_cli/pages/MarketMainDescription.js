@@ -12,8 +12,10 @@ const MarketMainDescription: () => Node = ({navigation, route}) => {
   console.log(`검사 ${route.params.data.price}`);
   console.log(`검사 ${route.params.data.manufacturer}`);
   console.log(`검사 ${route.params.data.productId}`);
+  console.log(`검사 ${route.params.data.image}`);
 
   const itemInfo = {
+    image: route.params.data.image,
     name: route.params.data.name,
     description: route.params.data.description,
     price: route.params.data.price,

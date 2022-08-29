@@ -38,6 +38,7 @@ function MiddleContainer(props) {
         //onLayout={e => setContainerWidth(e.nativeEvent.layout.width)}
         renderItem={({item}) => (
           <MarketItem
+            image={item.image}
             description={item.description}
             manufacturer={item.manufacturer}
             name={item.name}
