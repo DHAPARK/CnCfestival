@@ -128,6 +128,7 @@ app.post("/test", async (req, res) => {
   console.log(code);
 
   let fileName = `${userId}_${quizNum}.py`;
+  let submitOutputFileName = `${userId}_${quizNum}.txt`;
 
   for(let i=0; i < code.length ; i++){
     if(!isAlphaNumCheck(code[i])){
@@ -156,7 +157,6 @@ app.post("/test", async (req, res) => {
     }
   });
 
-  let submitOutputFileName = `${userId}_${quizNum}.txt`;
   inputDataSplit.forEach(async (data) => {
     let {stdout, error} = await exec(`echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true });
     if (error) {
