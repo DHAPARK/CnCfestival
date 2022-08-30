@@ -141,12 +141,14 @@ app.post("/test", async (req, res) => {
       console.log(`${err}\npython 파일생성에 문제발생`);
     }
   });
+  console.log(`${fileName} 생성 완료`);
 
   let inputData = fs.readFileSync(process.cwd() + `/answer/input_answer${quizNum}.txt`, "utf-8", (err) => {
     if (err) {
       console.log(`${err}\n파일 로딩에 문제발생`);
     }
-  }); 
+  });
+  console.log(`inputData 읽기 완료`);
 
   let inputDataSplit = Array(inputData.split('\n'));
   inputDataSplit.pop();
@@ -156,6 +158,7 @@ app.post("/test", async (req, res) => {
       console.log(`${err}\noutput 파일생성에 문제발생`);
     }
   });
+  console.log(`${submitOutputFileName} 생성 완료`);
 
   inputDataSplit.forEach(async (data) => {
     let {stdout, error} = await exec(`echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true });
@@ -166,12 +169,12 @@ app.post("/test", async (req, res) => {
     } else {
       console.log(`stdout ${stdout}`);
       console.log(`error ${error}`);
-    
       fs.appendFileSync(process.cwd() + `/submit/${submitOutputFileName}`, stdout, "utf8", (err) => {
         if (err) {
           console.log(`${err}\noutput 파일생성에 문제발생`);
         }
       });
+      console.log(`${submitOutputFileName} 추가 생성 완료`);
     }
   });
   
@@ -181,6 +184,7 @@ app.post("/test", async (req, res) => {
       console.log(`${err}\n파일 로딩에 문제발생`);
     }
   });
+  console.log(`outputData 읽기 완료`);
   let outputDataSplit = Array(outputData.split('\n'));
   outputDataSplit.pop();
 
@@ -189,6 +193,7 @@ app.post("/test", async (req, res) => {
       console.log(`${err}\n파일 로딩에 문제발생`);
     }
   });
+  console.log(`${submitOutputFileName} 읽기 완료`);
   let userOutputDataSplit = Array(userOutputData.split('\n'));
   userOutputDataSplit.pop();
 
