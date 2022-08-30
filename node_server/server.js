@@ -120,32 +120,6 @@ app.use("/web/transaction", webTransactionRouter);
 // => /hscRemittance
 // => /hscPayment
 
-async function func1() {
-  let userAnswer = [];
-  let inputData = fs.readFileSync(process.cwd() + `/answer/input_answer${quizNum}.txt`, "utf-8", (err) => {
-    if (err) {
-      console.log(`${err}\n파일 로딩에 문제발생`);
-    }
-  }); 
-
-  let inputDataSplit = Array(inputData.split('\n'));
-  inputDataSplit.pop();
-
-  inputDataSplit.forEach(async (data) => {
-    let {stdout, error} = await exec(`echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true });
-    if (error) {
-      console.log(`stdout ${stdout}`);
-      console.log(`error ${error}`);
-      res.json({ code: 100, stdout: stdout, stderr: error.message });
-    } else {
-      console.log(`stdout ${stdout}`);
-      console.log(`error ${error}`);
-      userAnswer.push(stdout);
-    }
-  });
-
-  return userAnswer;
-}
 
 app.post("/test", async (req, res) => {
   let code = decodeURIComponent(req.body.code);
@@ -167,8 +141,33 @@ app.post("/test", async (req, res) => {
     }
   });
 
-  await func1();
+  let inputData = fs.readFileSync(process.cwd() + `/answer/input_answer${quizNum}.txt`, "utf-8", (err) => {
+    if (err) {
+      console.log(`${err}\n파일 로딩에 문제발생`);
+    }
+  }); 
 
+  let inputDataSplit = Array(inputData.split('\n'));
+  inputDataSplit.pop();
+
+  let submitOutputFileName = `${userId}_${quizNum}.txt`;
+  inputDataSplit.forEach(async (data) => {
+    let {stdout, error} = await exec(`echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true });
+    if (error) {
+      console.log(`stdout ${stdout}`);
+      console.log(`error ${error}`);
+      res.json({ code: 100, stdout: stdout, stderr: error.message });
+    } else {
+      console.log(`stdout ${stdout}`);
+      console.log(`error ${error}`);
+    
+      fs.appendFileSync(process.cwd() + `/submit/${submitOutputFileName}`, stdout, "utf8", (err) => {
+        if (err) {
+          console.log(`${err}\noutput 파일생성에 문제발생`);
+        }
+      });
+    }
+  });
   
 
   let outputData = fs.readFileSync(process.cwd() + `/answer/output_answer${quizNum}.txt`, "utf-8", (err) => {
@@ -178,11 +177,20 @@ app.post("/test", async (req, res) => {
   });
   let outputDataSplit = Array(outputData.split('\n'));
   outputDataSplit.pop();
+
+  let userOutputData = fs.readFileSync(process.cwd() + `/submit/${submitOutputFileName}`, "utf-8", (err) => {
+    if (err) {
+      console.log(`${err}\n파일 로딩에 문제발생`);
+    }
+  });
+  let userOutputDataSplit = Array(userOutputData.split('\n'));
+  userOutputDataSplit.pop();
+
   let total = outputDataSplit.length;
   let correct = 0;
-  console.log(userAnswer);
-  dataSplit.forEach(async (data, index) => {
-    if (data == userAnswer[index]) {
+
+  outputDataSplit.forEach(async (data, index) => {
+    if (data == userOutputDataSplit[index]) {
       correct += 1;
     }
     if (index + 1 == total) {
