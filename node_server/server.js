@@ -150,6 +150,12 @@ app.post("/test", async (req, res) => {
   let inputDataSplit = Array(inputData.split('\n'));
   inputDataSplit.pop();
 
+  fs.writeFileSync(process.cwd() + `/submit/${submitOutputFileName}`, '', "utf8", (err) => {
+    if (err) {
+      console.log(`${err}\noutput 파일생성에 문제발생`);
+    }
+  });
+
   let submitOutputFileName = `${userId}_${quizNum}.txt`;
   inputDataSplit.forEach(async (data) => {
     let {stdout, error} = await exec(`echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true });
