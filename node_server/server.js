@@ -199,13 +199,15 @@ app.post("/test", async (req, res) => {
     if (data == userOutputDataSplit[index]) {
       correct += 1;
     }
+    console.log(`data = ${data}, user = ${userOutputDataSplit[index]}`);
+    console.log(`total = ${total}, correct = ${correct}`);
     if (index + 1 == total) {
-      
+      res.json({ code: 200, stdout: 'stdout', stderr: 'error' });    
     }
   });
   
-  console.log(`total = ${total}, correct = ${correct}`);
-  res.json({ code: 200, stdout: 'stdout', stderr: 'error' });
+  
+  
   
   //res.json({ code: 200, stdout: 'stdout', stderr: 'error' });  
   // if (돌아감 == 200) {
