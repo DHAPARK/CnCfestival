@@ -200,11 +200,12 @@ app.post("/test", async (req, res) => {
       correct += 1;
     }
     if (index + 1 == total) {
-      console.log(`total = ${total}, correct = ${correct}`);
-      res.json({ code: 200, stdout: 'stdout', stderr: 'error' });
+      
     }
   });
-     
+  
+  console.log(`total = ${total}, correct = ${correct}`);
+  res.json({ code: 200, stdout: 'stdout', stderr: 'error' });
   
   //res.json({ code: 200, stdout: 'stdout', stderr: 'error' });  
   // if (돌아감 == 200) {
