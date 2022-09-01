@@ -150,7 +150,8 @@ app.post("/test", async (req, res) => {
   });
   console.log(`inputData 읽기 완료`);
 
-  console.log(inputData, typeof inputData);
+  console.log(inputData[0], inputData[1], inputData[2], inputData[3]);
+  console.log(inputData[4], inputData[5], inputData[6], inputData[7]);
 
   let inputDataSplit = inputData.split(/\r\n|\r\n/);
   inputDataSplit.pop();
