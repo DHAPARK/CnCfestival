@@ -206,21 +206,6 @@ app.post("/test", async (req, res) => {
       res.json({ code: 200, stdout: 'stdout', stderr: 'error' });    
     }
   });
-  
-  
-  
-  
-  //res.json({ code: 200, stdout: 'stdout', stderr: 'error' });  
-  // if (돌아감 == 200) {
-    //   if (정답임) {
-
-  //   }
-  //   else {
-
-  //   }
-  // } else {
-
-  // }
 });
 
 
