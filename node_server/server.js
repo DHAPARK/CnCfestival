@@ -152,7 +152,8 @@ app.post("/test", async (req, res) => {
 
   let inputDataSplit = Array(inputData.split('\n'));
   inputDataSplit.pop();
-
+  
+  console.log(inputDataSplit);
   fs.writeFileSync(process.cwd() + `/submit/${submitOutputFileName}`, '', "utf8", (err) => {
     if (err) {
       console.log(`${err}\noutput 파일생성에 문제발생`);
@@ -162,6 +163,8 @@ app.post("/test", async (req, res) => {
 
   inputDataSplit.forEach(async (data) => {
     let {stdout, error} = await exec(`echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true });
+    console.log(`${stdout}, ${error}`);
+    
     if (error) {
       console.log(`stdout ${stdout}`);
       console.log(`error ${error}`);
@@ -177,7 +180,6 @@ app.post("/test", async (req, res) => {
       console.log(`${submitOutputFileName} 추가 생성 완료`);
     }
   });
-  
 
   let outputData = fs.readFileSync(process.cwd() + `/answer/output_answer${quizNum}.txt`, "utf-8", (err) => {
     if (err) {
