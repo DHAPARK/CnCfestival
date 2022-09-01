@@ -147,13 +147,12 @@ app.post("/test", async (req, res) => {
     if (err) {
       console.log(`${err}\n파일 로딩에 문제발생`);
     }
-  });
+  }).toString().split("\n");
   console.log(`inputData 읽기 완료`);
 
-  let inputDataSplit = inputData.split('\r\n');
-  inputDataSplit.pop();
+  inputData.pop();
   
-  console.log(inputDataSplit, typeof inputDataSplit);
+  console.log(inputData, typeof inputData);
   fs.writeFileSync(process.cwd() + `/submit/${submitOutputFileName}`, '', "utf8", (err) => {
     if (err) {
       console.log(`${err}\noutput 파일생성에 문제발생`);
@@ -161,7 +160,7 @@ app.post("/test", async (req, res) => {
   });
   console.log(`${submitOutputFileName} 생성 완료`);
 
-  inputDataSplit.forEach(async (data) => {
+  inputData.forEach(async (data) => {
     let {stdout, error} = await exec(`echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true });
     console.log(`${stdout}, ${error}`);
 
