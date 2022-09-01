@@ -190,7 +190,7 @@ router.get("/video/:page", async (req, res) => {
   }
   var _videoInfo = videoInfo.slice(
     totIndex * (page - 1),
-    totIndex * (page - 1) + totIndex * page
+    totIndex * page
   );
 
   res.render("video", {
