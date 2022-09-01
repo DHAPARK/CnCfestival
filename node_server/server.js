@@ -150,6 +150,8 @@ app.post("/test", async (req, res) => {
   });
   console.log(`inputData 읽기 완료`);
 
+  console.log(inputData);
+  
   let inputDataSplit = Array(inputData.split('\n'));
   inputDataSplit.pop();
   
@@ -164,7 +166,7 @@ app.post("/test", async (req, res) => {
   inputDataSplit.forEach(async (data) => {
     let {stdout, error} = await exec(`echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true });
     console.log(`${stdout}, ${error}`);
-    
+
     if (error) {
       console.log(`stdout ${stdout}`);
       console.log(`error ${error}`);
