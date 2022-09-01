@@ -152,10 +152,10 @@ app.post("/test", async (req, res) => {
 
   console.log(inputData, typeof inputData);
 
-  let inputDataSplit = Array(inputData.split('\n'));
+  let inputDataSplit = Array(inputData.split(/\r\n|\r\n/));
   inputDataSplit.pop();
   
-  console.log(inputDataSplit);
+  console.log(inputDataSplit, typeof inputDataSplit);
   fs.writeFileSync(process.cwd() + `/submit/${submitOutputFileName}`, '', "utf8", (err) => {
     if (err) {
       console.log(`${err}\noutput 파일생성에 문제발생`);
