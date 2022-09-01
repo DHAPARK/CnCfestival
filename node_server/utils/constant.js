@@ -33,6 +33,8 @@ const TRANSACTION_TYPE = {
     'REMITTANCE':'remittance',
 };
 
+const POINT = 1;
+
 module.exports = {
     HSCOIN_ADDRESS,
     HSCOIN_JSON_FILE,
@@ -41,4 +43,5 @@ module.exports = {
     RETURN_CODE,
     DB_COLLECTION,
     TRANSACTION_TYPE,
+    POINT,
 }

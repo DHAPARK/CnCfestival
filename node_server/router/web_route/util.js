@@ -5,16 +5,18 @@ const { suppressDeprecationWarnings } = require("moment");
 
 const { addFavicon, getFaviconList } = require("../../utils/DB");
 const {
+  getContractAddress,
   balanceInquiry,
   getFranchise,
   getTransactionLog,
   getAllUserBalance,
   getRecentTransferAccount,
   getVideoInfo,
-  getQuizInfo
+  getQuizInfo,
+  calcPoint
 } = require("../../utils/inquiry");
 const { checkIdDuplicate } = require("../../utils/validation");
-const { DB_COLLECTION } = require("../../utils/constant");
+const { DB_COLLECTION, POINT } = require("../../utils/constant");
 
 /**
  * 아이디 중복 검사
@@ -118,6 +120,25 @@ router.get("/getVideoInfo", async (req, res) => {
   const result = await getVideoInfo();
   console.log(`result = ${result}`);
   res.json(result);
+});
+
+/**
+ * 비디오 시청 시간에 따라 포인트 지급
+ * @method get
+ * @returns {object}
+ */
+ router.post("/savePoint", async (req, res) => {
+  userAgentModel.printUserAgent(req.header("user-agent"), "/savePoint");
+  const { userId, userAccount, videoUrl, watchLength } = req.body;
+  console.log(`### /savePoint : data`);
+  console.log(`userId : ${userId}`);
+  console.log(`videoUrl : ${videoUrl}`);
+  console.log(`watchLength : ${watchLength}`);
+
+  let point = await calcPoint(POINT, watchLength);
+  await transferHSC(global.accountList[0], userAccount, point);
+  
+  res.json({ point : point });
 });
 
 /**

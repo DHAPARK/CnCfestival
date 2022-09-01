@@ -5,6 +5,17 @@ const env = require('../config/envConfig');
 /////////////////////////////////////////
 // 정보 조회 관련 함수
 
+
+/**
+ * 계정의 HSC 보유값 리턴
+ * @param {string} inquiryAddress 조회할 계정 주소
+ * @returns {float} ETH 값으로 리턴
+ */
+ async function getContractAddress() {
+    let contractAddress = await global.accountList[0];
+    return contractAddress.get;
+}
+
 /**
  * 계정의 HSC 보유값 리턴
  * @param {string} inquiryAddress 조회할 계정 주소
@@ -15,6 +26,10 @@ async function balanceInquiry(inquiryAddress) {
     let hsBalanceEth = global.web3.utils.fromWei(hsBalanceWei, 'ether');
     console.log(`### hsBalance = ${hsBalanceEth}`);
     return hsBalanceEth;
+}
+
+async function calcPoint(priceUnit, watchLength) {
+    return priceUnit * watchLength;
 }
 
 /**
@@ -292,11 +307,13 @@ async function getUserFaviconList(userId) {
 /////////////////////////////////////////
 
 module.exports = {
+    getContractAddress,
     balanceInquiry, 
     getFranchise, 
     getProductInfo,
     getVideoInfo,
     getQuizInfo,
+    calcPoint,
     getUserVideoLog,
     setUserVideoLog,
     getTransactionLog, 

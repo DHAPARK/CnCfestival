@@ -162,8 +162,6 @@ app.post("/test", async (req, res) => {
 
   inputData.forEach(async (data) => {
     let {stdout, error} = await exec(`echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true });
-    console.log(`${stdout}, ${error}`);
-
     if (error) {
       res.json({ code: 100, stdout: stdout, stderr: error.message });
     } else {
@@ -172,7 +170,6 @@ app.post("/test", async (req, res) => {
           console.log(`${err}\noutput 파일생성에 문제발생`);
         }
       });
-      console.log(`${submitOutputFileName} 추가 생성 완료`);
     }
   });
 
@@ -195,6 +192,7 @@ app.post("/test", async (req, res) => {
 
   let total = outputData.length;
   let correct = 0;
+  console.log(`total = ${total}`);
 
   outputData.forEach(async (data, index) => {
     console.log(`index = ${index}, total = ${total}, correct = ${correct}`);
