@@ -163,12 +163,11 @@
             
             <%
             for(var j = 0; j < totalPage ; j++){
-                if (j == page) {
+                if (j == page) { %>
                     <a style="padding: 5px; color: black; font-size: 1.5rem; font-weight: bold;" href="http://220.67.231.91:80/web/market/<%= j + 1 %>"><%= j + 1 %></a>
-                } else {
+                <% } else { %>
                     <a style="padding: 5px; color: black; font-size: 1.5rem;" href="http://220.67.231.91:80/web/market/<%= j + 1 %>"><%= j + 1 %></a>
-                }
-            %>
+                <% } %>
             <%
             }
             %>
