@@ -165,12 +165,8 @@ app.post("/test", async (req, res) => {
     console.log(`${stdout}, ${error}`);
 
     if (error) {
-      console.log(`stdout ${stdout}`);
-      console.log(`error ${error}`);
       res.json({ code: 100, stdout: stdout, stderr: error.message });
     } else {
-      console.log(`stdout ${stdout}`);
-      console.log(`error ${error}`);
       fs.appendFileSync(process.cwd() + `/submit/${submitOutputFileName}`, stdout, "utf8", (err) => {
         if (err) {
           console.log(`${err}\noutput 파일생성에 문제발생`);
@@ -184,28 +180,27 @@ app.post("/test", async (req, res) => {
     if (err) {
       console.log(`${err}\n파일 로딩에 문제발생`);
     }
-  });
+  }).toString().split("\n");
   console.log(`outputData 읽기 완료`);
-  let outputDataSplit = Array(outputData.split('\n'));
-  outputDataSplit.pop();
+
+  outputData.pop();
 
   let userOutputData = fs.readFileSync(process.cwd() + `/submit/${submitOutputFileName}`, "utf-8", (err) => {
     if (err) {
       console.log(`${err}\n파일 로딩에 문제발생`);
     }
-  });
+  }).toString().split("\n");
   console.log(`${submitOutputFileName} 읽기 완료`);
-  let userOutputDataSplit = Array(userOutputData.split('\n'));
-  userOutputDataSplit.pop();
+  userOutputData.pop();
 
   let total = outputDataSplit.length;
   let correct = 0;
 
-  outputDataSplit.forEach(async (data, index) => {
-    if (data == userOutputDataSplit[index]) {
+  outputData.forEach(async (data, index) => {
+    if (data == userOutputData[index]) {
       correct += 1;
     }
-    console.log(`data = ${data}, user = ${userOutputDataSplit[index]}`);
+    console.log(`data = ${data}, user = ${userOutputData[index]}`);
     console.log(`total = ${total}, correct = ${correct}`);
     if (index + 1 == total) {
       res.json({ code: 200, stdout: 'stdout', stderr: 'error' });    
