@@ -128,7 +128,8 @@
                             <!-- 여기에 video 들어가거나 유튜브 링크? -->
                             <img src="https://img.youtube.com/vi/<%=videoInfo[i].videoUrl.split('embed')[1].substring(1,videoInfo[i].videoUrl.split('embed')[1].length)%>/0.jpg" style="width:100%; height: 100%;" />
                             <center>
-                                <p style="margin-bottom: 5px;"><%= videoInfo[i].name %></p>
+                                <p style="margin-bottom: 5px; font-weight: bold;
+                                font-size: 1.2rem;"><%= videoInfo[i].name %></p>
                                 
                                 <input type="hidden" name="videoLength" value="<%= videoInfo[i].videoLength %>"/>
                                 <input type="hidden" name="description" value="<%= videoInfo[i].description %>"/>

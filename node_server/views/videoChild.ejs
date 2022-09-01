@@ -130,6 +130,8 @@
                         data2["videoUrl"] = document.getElementById("videoUrlForPoint").value;
                         data2["watchLength"] = data["watchTime"];
                         data2["videoTotalLength"]  = tmp_obj.getDuration();
+                        data2["userAccount"] = JSON.parse(localStorage.getItem('UserInfo')).accountAddress;
+                        
                         axios({
                             url: 'web/util/savePoint',
                             method: 'POST',
