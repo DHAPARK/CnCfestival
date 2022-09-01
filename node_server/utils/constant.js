@@ -24,6 +24,7 @@ const DB_COLLECTION = {
     'PRODUCT':'product',
     'VIDEO':'video',
     'VIDEO_LOG':'video_log',
+    'POINT_LOG':'point_log',
     'QUESTION':'question',
     'FAVICON':'favicon'
 };
@@ -34,6 +35,7 @@ const TRANSACTION_TYPE = {
 };
 
 const POINT = 1;
+const POINT_MAXIMUM = 50;
 
 module.exports = {
     HSCOIN_ADDRESS,
@@ -44,4 +46,5 @@ module.exports = {
     DB_COLLECTION,
     TRANSACTION_TYPE,
     POINT,
+    POINT_MAXIMUM,
 }

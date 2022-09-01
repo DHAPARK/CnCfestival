@@ -194,7 +194,7 @@ app.post("/test", async (req, res) => {
   let correct = 0;
   console.log(`total = ${total}`);
 
-  outputData.forEach(async (data, index) => {
+  outputData.forEach(async (data, index, arr) => {
     console.log(`index = ${index}, total = ${total}, correct = ${correct}`);
     if (data == userOutputData[index]) {
       correct += 1;

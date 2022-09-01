@@ -1,20 +1,9 @@
-const { DB_COLLECTION } = require('./constant');
+const { DB_COLLECTION, POINT_MAXIMUM, POINT} = require('./constant');
 const { putItemToDB } = require('./DB');
 const env = require('../config/envConfig');
 
 /////////////////////////////////////////
 // 정보 조회 관련 함수
-
-
-/**
- * 계정의 HSC 보유값 리턴
- * @param {string} inquiryAddress 조회할 계정 주소
- * @returns {float} ETH 값으로 리턴
- */
- async function getContractAddress() {
-    let contractAddress = await global.accountList[0];
-    return contractAddress.get;
-}
 
 /**
  * 계정의 HSC 보유값 리턴
@@ -28,8 +17,46 @@ async function balanceInquiry(inquiryAddress) {
     return hsBalanceEth;
 }
 
-async function calcPoint(priceUnit, watchLength) {
-    return priceUnit * watchLength;
+/**
+ * 유저 계정 비밀번호를 가져오는 함수
+ * @param {string} inquiryAddress 
+ * @returns 유저 아이디
+ */
+ async function getUserPointLog(userId, videoUrl) {
+    let pointLogRef = await global.db.collection(DB_COLLECTION["POINT_LOG"]);
+    let snapShot = await pointLogRef.where('userId', '==', userId)
+    .where('videoUrl', '==', videoUrl).get();
+
+    let pointLogObj = {};
+    return new Promise(resolve => {
+        snapShot.forEach(doc => {
+            pointLogObj[doc.id] = doc.data();
+        })
+        resolve(pointLogObj);
+    });
+}
+
+async function calcPointLog(pointLogObj) {
+    let pointTotal = 0;
+
+    return new Promise(resolve => {
+        Object.keys(pointLogObj).forEach((value) => {
+            pointTotal += pointLogObj[value]['point'];
+        })
+        resolve(pointTotal);
+    });
+}
+
+async function calcPoint(userId, videoUrl, watchLength) {
+    let tempPoint = POINT * watchLength;
+    let pointLogObj = await getUserPointLog(userId, videoUrl);
+    let totalPoint = calcPointLog(pointLogObj);
+
+    if (totalPoint == POINT_MAXIMUM) {
+        return 0;
+    } else {
+        return tempPoint;
+    }
 }
 
 /**
@@ -119,7 +146,6 @@ async function getProductInfo() {
             }
             
         }
-        
     })
 }
 
@@ -307,7 +333,6 @@ async function getUserFaviconList(userId) {
 /////////////////////////////////////////
 
 module.exports = {
-    getContractAddress,
     balanceInquiry, 
     getFranchise, 
     getProductInfo,

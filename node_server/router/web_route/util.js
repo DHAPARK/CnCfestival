@@ -3,7 +3,7 @@ const router = express.Router();
 const userAgentModel = require("../../models/userAgentModel");
 const { suppressDeprecationWarnings } = require("moment");
 
-const { addFavicon, getFaviconList } = require("../../utils/DB");
+const { addFavicon, getFaviconList, putItemToDB } = require("../../utils/DB");
 const {
   getContractAddress,
   balanceInquiry,
@@ -132,13 +132,27 @@ router.get("/getVideoInfo", async (req, res) => {
   const { userId, userAccount, videoUrl, watchLength } = req.body;
   console.log(`### /savePoint : data`);
   console.log(`userId : ${userId}`);
+  console.log(`userAccount : ${userAccount}`);
   console.log(`videoUrl : ${videoUrl}`);
   console.log(`watchLength : ${watchLength}`);
 
-  let point = await calcPoint(POINT, watchLength);
-  await transferHSC(global.accountList[0], userAccount, point);
+  let point = await calcPoint(userId, videoUrl, watchLength);
+  let pointObj = { 
+    point : point,
+    userId : userId,
+    videoUrl : videoUrl,
+    watchLength : watchLength,
+    success : false
+   };
+
+  if (point != 0) {
+    await transferHSC(global.accountList[0], userAccount, point);
+    pointObj['success'] = true;
+    let currTimeMilli = moment().format('x');
+    putItemToDB(DB_COLLECTION['POINT_LOG'], currTimeMilli, pointObj);
+  }
   
-  res.json({ point : point });
+  res.json(result);
 });
 
 /**
