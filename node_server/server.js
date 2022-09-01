@@ -150,7 +150,7 @@ app.post("/test", async (req, res) => {
   });
   console.log(`inputData 읽기 완료`);
 
-  let inputDataSplit = inputData.split(' ');
+  let inputDataSplit = inputData.split('\r\n');
   inputDataSplit.pop();
   
   console.log(inputDataSplit, typeof inputDataSplit);
