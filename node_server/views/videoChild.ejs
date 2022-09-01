@@ -46,6 +46,7 @@
         </div>-->
     </div>
     <input type="hidden" id="videoId" value="<%=datas.videoUrl.split('embed')[1].substring(1,datas.videoUrl.split('embed')[1].length)%>"/>
+    <input type="hidden" id="videoUrlForPoint" value="<%= datas.videoUrl %>" />
 </body>
 
 
@@ -121,8 +122,20 @@
                         method: 'POST',
                         baseURL: `http://220.67.231.91:80`,
                         data: Qs.stringify(data)
-                    }).then((res) => { // 로그인 성공하면
+                    }).then((res) => {
                         console.log(res);
+
+                        var data2 = [];
+                        data2["userid"] = JSON.parse(localStorage.getItem('UserInfo')).userid;
+                        data2["videoUrl"] = document.getElementById("videoUrlForPoint").value;
+                        axios({
+                            url: 'web/util/savePoint',
+                            method: 'POST',
+                            baseURL: 'http://220.67.231.91:80',
+                            data: Qs.stringify(data2)
+                        }).then((res)=>{
+                            console.log(res);
+                        })
                         //player.pauseVideo();
                     });
                 }
