@@ -152,7 +152,7 @@ app.post("/test", async (req, res) => {
 
   console.log(inputData, typeof inputData);
 
-  let inputDataSplit = Array(inputData.split(/\r\n|\r\n/));
+  let inputDataSplit = inputData.split(/\r\n|\r\n/);
   inputDataSplit.pop();
   
   console.log(inputDataSplit, typeof inputDataSplit);
