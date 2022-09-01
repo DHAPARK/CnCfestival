@@ -193,7 +193,7 @@ app.post("/test", async (req, res) => {
   console.log(`${submitOutputFileName} 읽기 완료`);
   userOutputData.pop();
 
-  let total = outputDataSplit.length;
+  let total = outputData.length;
   let correct = 0;
 
   outputData.forEach(async (data, index) => {
