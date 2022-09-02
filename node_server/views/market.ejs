@@ -30,13 +30,15 @@
     </style>
 
     <script>
+        const ipConfig = require('../config/ipConfig');
+
         function goToBack(element) {
             var currentPage = element.parentNode.parentNode.children[0].value;
             console.log(`태그가 ${element.parentNode.parentNode.children[0].value}`);
             console.log(`현재 페이지는 ${currentPage}`);
             if (currentPage > 1) {
                 var backPage = parseInt(currentPage) - 1;
-                location.href = `http://220.67.231.91:80/web/market?page=${backPage}`;
+                location.href = `${ipConfig}/web/market?page=${backPage}`;
             }
         }
 
@@ -47,7 +49,7 @@
             console.log(`현재 페이지는 ${currentPage}`);
             if (currentPage < totalPage) {
                 var frontPage = parseInt(currentPage) + 1;
-                location.href = `http://220.67.231.91:80/web/market?page=${frontPage}`;
+                location.href = `${ipConfig}/web/market?page=${frontPage}`;
             }
         }
 
@@ -77,7 +79,7 @@
             var image = _eleChild.src;
             console.log(`image: ${image}`);
 
-            var myWindow = window.open(`http://220.67.231.91:80/web/marketChild?userid=${userid}&userpw=${userpw}&senderAddress=${senderAddress}&description=${description}&receiverAddress=${receiverAddress}&productName=${productName}&amount=${amount}&image=${image}`,"구매창","width=800px,height=1200px");
+            var myWindow = window.open(`${ipConfig}/web/marketChild?userid=${userid}&userpw=${userpw}&senderAddress=${senderAddress}&description=${description}&receiverAddress=${receiverAddress}&productName=${productName}&amount=${amount}&image=${image}`,"구매창","width=800px,height=1200px");
         }
     </script>
 </head>
@@ -96,10 +98,10 @@
             <!--topLongContainerInnerLeftLogoImg 끝-->
             <!-- 맨위 오른쪽 메뉴들 (홈페이지, 로그인/회원가입 , 학습 , 메뉴 등-->
             <div id="topLongContainerInnerRightMenuList" class="bg_cont">
-                <a href="http://220.67.231.91:80/web/introduce">홈페이지</a>
-                <a href="http://220.67.231.91:80/web/market">제휴 스토어</a>
-                <a href="http://220.67.231.91:80/web/menuList">학습</a>
-                <a href="http://220.67.231.91:80/web/mypage" id="myPage">My page</a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/introduce">홈페이지</a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/market">제휴 스토어</a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/menuList">학습</a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/mypage" id="myPage">My page</a>
             </div>
             <!--topLongContainerInnerRightMenuList 끝-->
         </div>
@@ -156,7 +158,7 @@
             <% if ( page == 1 ) { %>
                 
             <% } else { %>
-                <a href="http://220.67.231.91:80/web/market/<%= parseInt(page) - 1 %> " style="color : black;"> < </a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/market/<%= parseInt(page) - 1 %> " style="color : black;"> < </a>
             <% } %>
             
             
@@ -164,9 +166,9 @@
             <%
             for(var j = 0; j < totalPage ; j++){
                 if (j+1 == page) { %>
-                    <a style="padding: 5px; color: black; font-size: 1.5rem; font-weight: bold;" href="http://220.67.231.91:80/web/market/<%= j + 1 %>"><%= j + 1 %></a>
+                    <a style="padding: 5px; color: black; font-size: 1.5rem; font-weight: bold;" href="<%-include('./ipConfig.ejs')%>/web/market/<%= j + 1 %>"><%= j + 1 %></a>
                 <% } else { %>
-                    <a style="padding: 5px; color: black; font-size: 1.5rem;" href="http://220.67.231.91:80/web/market/<%= j + 1 %>"><%= j + 1 %></a>
+                    <a style="padding: 5px; color: black; font-size: 1.5rem;" href="<%-include('./ipConfig.ejs')%>/web/market/<%= j + 1 %>"><%= j + 1 %></a>
                 <% } %>
             <%
             }
@@ -176,7 +178,7 @@
             <% if ( totalPage <= page ) { %>
                 
             <% } else { %>
-                <a href="http://220.67.231.91:80/web/market/<%= parseInt(page) + 1 %> " style="color : black;"> > </a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/market/<%= parseInt(page) + 1 %> " style="color : black;"> > </a>
             <% } %>
         </center>
     </footer>

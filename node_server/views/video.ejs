@@ -74,11 +74,11 @@
             
             document.body.removeChild(form);
             */
-            
+            const ipConfig = require('../config/ipConfig');
             var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
             var videoName = element.children[1].children[0].innerText;
             var videoUrl = element.children[1].children[3].value;
-            var myWindow = window.open(`http://220.67.231.91:80/web/videoChild?userId=${userId}&videoName=${videoName}&videoUrl=${videoUrl}`,"강의창","width=1000px,height=600px");
+            var myWindow = window.open(`${ipConfig}/web/videoChild?userId=${userId}&videoName=${videoName}&videoUrl=${videoUrl}`,"강의창","width=1000px,height=600px");
         }
     </script>
 
@@ -96,10 +96,10 @@
             <!--topLongContainerInnerLeftLogoImg 끝-->
             <!-- 맨위 오른쪽 메뉴들 (홈페이지, 로그인/회원가입 , 학습 , 메뉴 등-->
             <div id="topLongContainerInnerRightMenuList" class="bg_cont">
-                <a href="http://220.67.231.91:80/web/introduce">홈페이지</a>
-                <a href="http://220.67.231.91:80/web/market">제휴 스토어</a>
-                <a href="http://220.67.231.91:80/web/menuList" id="learning">학습</a>
-                <a href="http://220.67.231.91:80/web/mypage" id="myPage">My page</a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/introduce">홈페이지</a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/market">제휴 스토어</a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/menuList" id="learning">학습</a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/mypage" id="myPage">My page</a>
             </div>
             <!--topLongContainerInnerRightMenuList 끝-->
         </div>
@@ -158,16 +158,16 @@
             <% if ( page == 1 ) { %>
                 
             <% } else { %>
-                <a href="http://220.67.231.91:80/web/video/<%= parseInt(page) - 1 %> " style="color : black;"> < </a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/video/<%= parseInt(page) - 1 %> " style="color : black;"> < </a>
             <% } %>
 
 
             <%
             for(var j = 0; j < totalPage ; j++){
                 if (j+1 == page) { %>
-                    <a style="padding: 5px; color: black; font-size: 1.5rem; font-weight: bold;" href="http://220.67.231.91:80/web/video/<%= j + 1 %>"><%= j + 1 %></a>
+                    <a style="padding: 5px; color: black; font-size: 1.5rem; font-weight: bold;" href="<%-include('./ipConfig.ejs')%>/web/video/<%= j + 1 %>"><%= j + 1 %></a>
                 <% } else { %>
-                    <a style="padding: 5px; color: black; font-size: 1.5rem;" href="http://220.67.231.91:80/web/video/<%= j + 1 %>"><%= j + 1 %></a>
+                    <a style="padding: 5px; color: black; font-size: 1.5rem;" href="<%-include('./ipConfig.ejs')%>/web/video/<%= j + 1 %>"><%= j + 1 %></a>
                 <% } %>
             <%
             }
@@ -176,7 +176,7 @@
             <% if ( totalPage <= page ) { %>
                 
             <% } else { %>
-                <a href="http://220.67.231.91:80/web/video/<%= parseInt(page) + 1 %> " style="color : black;"> > </a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/video/<%= parseInt(page) + 1 %> " style="color : black;"> > </a>
             <% } %>
 
         </center>

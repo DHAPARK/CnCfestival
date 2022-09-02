@@ -24,7 +24,7 @@
     </div>
     
     <div id="container">
-        <form method="post" action="http://220.67.231.91:80/buyProductRequest">
+        <form method="post" action="<%-include('./ipConfig.ejs')%>/buyProductRequest">
             <p><input type="hidden" name="userId" id="userId" value="<%= datas.userid %>"></p>
             <p><input type="hidden" name="userPassword" id="userPassword" value="<%=datas.userpw %>"></p>
             <p><input type="hidden" name="senderAddress" id="senderAddress" value="<%=datas.senderAddress %>"></p>
@@ -68,10 +68,11 @@
 </body>
 
 <script>
+    const ipConfig = require('../config/ipConfig');
     function purchase(){
         axios({
             method: 'POST',
-            url: `http://220.67.231.91:80/buyProductRequest`,
+            url: `${ipConfig}/buyProductRequest`,
             data: {
                 userId : document.getElementById("userId").value,
                 userPassword: document.getElementById("userPassword").value,

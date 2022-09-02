@@ -51,6 +51,7 @@
 
 
 <script>
+    const ipConfig = require('../config/ipConfig');
     //document.domain = "220.67.231.91";
 
     var timeCnt = document.getElementById("watchTime").value;
@@ -120,7 +121,7 @@
                     axios({
                         url: 'web/util/saveVideoLog',
                         method: 'POST',
-                        baseURL: `http://220.67.231.91:80`,
+                        baseURL: `${ipConfig}`,
                         data: Qs.stringify(data)
                     }).then((res) => {
                         console.log(res);
@@ -135,7 +136,7 @@
                         axios({
                             url: 'web/util/savePoint',
                             method: 'POST',
-                            baseURL: 'http://220.67.231.91:80',
+                            baseURL: `${ipConfig}`,
                             data: Qs.stringify(data2)
                         }).then((res)=>{
                             console.log(res);

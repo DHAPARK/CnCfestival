@@ -4,6 +4,9 @@ const router = express.Router();
 const userAgentModel = require("../../models/userAgentModel");
 const moment = require("moment");
 const cors = require("cors");
+
+const ipConfig = require("../../config/ipConfig");
+
 app.use(cors());
 
 const {
@@ -81,10 +84,7 @@ router.get("/market/:page", async (req, res) => {
   if (marketInfo.length % 6 != 0) {
     totalPage += 1;
   }
-  var _marketInfo = marketInfo.slice(
-    totIndex * (page - 1),
-    totIndex * page
-  );
+  var _marketInfo = marketInfo.slice(totIndex * (page - 1), totIndex * page);
 
   res.render("market", {
     marketInfo: _marketInfo,
@@ -96,7 +96,7 @@ router.get("/market/:page", async (req, res) => {
 router.get("/market", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/market");
 
-  res.redirect("http://220.67.231.91:80/web/market/1");
+  res.redirect(`${ipConfig}/web/market/1`);
 });
 
 router.get("/menuList", (req, res) => {
@@ -167,7 +167,7 @@ router.get("/solution/:quizNum/:userId", async (req, res) => {
 router.get("/video", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/video");
 
-  res.redirect("http://220.67.231.91:80/web/video/1");
+  res.redirect(`${ipConfig}/web/video/1`);
 });
 
 router.get("/video/:page", async (req, res) => {
@@ -188,10 +188,7 @@ router.get("/video/:page", async (req, res) => {
   if (videoInfo.length % 6 != 0) {
     totalPage += 1;
   }
-  var _videoInfo = videoInfo.slice(
-    totIndex * (page - 1),
-    totIndex * page
-  );
+  var _videoInfo = videoInfo.slice(totIndex * (page - 1), totIndex * page);
 
   res.render("video", {
     videoInfo: _videoInfo,

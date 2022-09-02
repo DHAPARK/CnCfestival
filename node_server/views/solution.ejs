@@ -180,8 +180,8 @@
                 }
             };
 
-
-            httpRequest.open('POST', 'http://220.67.231.91:80/test',true);
+            const ipConfig = require('../config/ipConfig');
+            httpRequest.open('POST', `${ipConfig}/test`,true);
 
             httpRequest.responseType = "json";
 

@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js" integrity="sha512-/l6vieC+YxaZywUhmqs++8uF9DeMvJE61ua5g+UK0TuHZ4TkTgB1Gm1n0NiA86uEOM9JJ6JUwyR0hboKO0fCng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="/regist1.css"/>
     <script>
+        const ipConfig = require('../config/ipConfig');
         var checkDupId = false;
 
         function checkUserIdNull(){
@@ -114,11 +115,11 @@
             axios({
                 url: '/web/user/registUser',
                 method: 'POST',
-                baseURL: `http://220.67.231.91:80`,
+                baseURL: `${ipConfig}`,
                 data: Qs.stringify(data)
             }).then((res)=>{
                 console.log(`서버와 연결 성공 코드: ${JSON.stringify(res.status)}, 메시지: ${JSON.stringify(res.data)}`);
-                location.href = "http://220.67.231.91:80/web/index";
+                location.href = `${ipConfig}/web/index`;
             }).catch(error=>{
                 console.log(`서버와 연결 실패 ${error}`);
                 throw new Error(error);
@@ -138,7 +139,7 @@
             axios({
                 url: `/web/util/checkIdDuplicate/${userid}`,
                 method: 'GET',
-                baseURL: `http://220.67.231.91:80`
+                baseURL: `${ipConfig}`
             }).then((res)=>{
                 if ( res.data == 200 ){
                     checkDupId = true;
@@ -169,9 +170,9 @@
             </div>
             <!-- 맨위 오른쪽 메뉴들 (홈페이지, 로그인/회원가입 , 학습 , 메뉴 등-->
             <div id="topLongContainerInnerRightMenuList" class="bg_cont">
-                <a href="http://220.67.231.91:80/web/introduce">홈페이지</a>
-                <a href="http://220.67.231.91:80/web/market">제휴 스토어</a>
-                <a href="http://220.67.231.91:80/web/menuList">학습</a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/introduce">홈페이지</a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/market">제휴 스토어</a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/menuList">학습</a>
                 <!--<a href="http://220.67.231.91:80/web/mypage">My page</a>-->
             </div>
         </div>

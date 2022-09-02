@@ -12,6 +12,8 @@
     
 
     <script>
+        const ipConfig = require('../config/ipConfig');
+
         function checkUserIdNull(){
             var useridInput = document.getElementById("userid").value;
             if (useridInput == "" || useridInput == null || useridInput == undefined){
@@ -56,7 +58,7 @@
             axios({
                 url: 'web/user/login',
                 method: 'POST',
-                baseURL: `http://220.67.231.91:80`,
+                baseURL: `${ipConfig}`,
                 data: Qs.stringify(data)
             }).then((res) => { // 로그인 성공하면
                 console.log(`status = ${res.data, typeof(res.data)}`);
@@ -67,7 +69,7 @@
                     console.log(`UserInfo 뭐박히지 ${JSON.stringify(res.data)}`);
                     
                     console.log(`로그인 정보 보냄 코드1: ${res.status}, 메시지: ${JSON.stringify(res.data)}`);
-                    location.href = `http://220.67.231.91:80/web/mypage/${res.data.userid}`;
+                    location.href = `${ipConfig}/web/mypage/${res.data.userid}`;
                     return;    
                     
                 } else{
@@ -105,7 +107,7 @@
                     <div id="middleFormInnerFormMenuList">
                         <a href="#">비밀번호 찾기</a> /
                         <a href="#">아이디 찾기</a> /
-                        <a href="http://220.67.231.91:80/web/regist">회원가입</a>
+                        <a href="<%-include('./ipConfig.ejs')%>/web/regist">회원가입</a>
                     </div>
                     <!-- form id : middleFormInnerFormMenuList 끝 -->
                 </form>
