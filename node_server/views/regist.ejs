@@ -13,6 +13,7 @@
         var checkDupId = false;
 
         function checkUserIdNull(){
+            console.log(`ip는 : ${ipConfig}`);
             var useridInput = document.getElementById("userid").value;
             if (useridInput == "" || useridInput == null || useridInput == undefined){
                 window.alert("userid가 비어있습니다. 입력해주세요.");
@@ -137,7 +138,7 @@
             console.log(`###2 ${qsData}`);
 
             axios({
-                url: `<%-include('./ipConfig.ejs')%>/web/util/checkIdDuplicate/${userid}`,
+                url: `/web/util/checkIdDuplicate/${userid}`,
                 method: 'GET',
                 baseURL: `${ipConfig}`
             }).then((res)=>{
