@@ -169,7 +169,7 @@
                         if(res.code == 200) { // 성공
 
 
-                            const result = `결과 : ${res.stdout.pass == true ? "정답입니다!!!" : "오답입니다"}\n${res.stdout.correct} / ${res.stdout.total}\n정답률 : ${parseInt(res.stdout.percentage)}%`;
+                            const result = `결과 : ${res.stdout.pass == "true" ? "정답입니다!!!" : "오답입니다"}\n${res.stdout.correct} / ${res.stdout.total}\n정답률 : ${parseInt(res.stdout.percentage)}%`;
                             //document.getElementById("resultSpace").innerText = res.stdout;
                             document.getElementById("resultSpace").innerText = result;
                             document.getElementById("resultSpace").style.color = "white";
