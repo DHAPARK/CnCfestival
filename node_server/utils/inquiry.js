@@ -26,7 +26,7 @@ async function balanceInquiry(inquiryAddress) {
     let pointLogRef = await global.db.collection(DB_COLLECTION["POINT_LOG"]);
     let snapShot = await pointLogRef.where('userId', '==', userId)
     .where('videoUrl', '==', videoUrl).get();
-
+    
     let pointLogObj = {};
     return new Promise(resolve => {
         snapShot.forEach(doc => {
@@ -35,7 +35,6 @@ async function balanceInquiry(inquiryAddress) {
         resolve(pointLogObj);
     });
 }
-
 async function calcPointLog(pointLogObj) {
     let pointTotal = 0;
 
