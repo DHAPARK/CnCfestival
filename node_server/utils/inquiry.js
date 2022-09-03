@@ -52,7 +52,7 @@ async function calcPoint(userId, videoUrl, watchLength) {
     let pointLogObj = await getUserPointLog(userId, videoUrl);
     let totalPoint = calcPointLog(pointLogObj);
 
-    if (totalPoint == POINT_MAXIMUM) {
+    if (totalPoint >= POINT_MAXIMUM) {
         return 0;
     } else {
         return tempPoint;

@@ -36,7 +36,7 @@ const TRANSACTION_TYPE = {
 };
 
 const POINT = 1;
-const POINT_MAXIMUM = 50;
+const POINT_MAXIMUM = 20;
 
 module.exports = {
     HSCOIN_ADDRESS,

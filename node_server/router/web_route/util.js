@@ -138,6 +138,7 @@ router.get("/getVideoInfo", async (req, res) => {
   console.log(`watchLength : ${watchLength}`);
 
   let point = await calcPoint(userId, videoUrl, watchLength);
+  console.log(`##### $$$ calc point = ${point}`);
   let pointObj = { 
     point : point,
     userId : userId,
