@@ -1,7 +1,7 @@
 const express = require("express");
+const monent = require('moment');
 const router = express.Router();
 const userAgentModel = require("../../models/userAgentModel");
-const { suppressDeprecationWarnings } = require("moment");
 
 const { addFavicon, getFaviconList, putItemToDB } = require("../../utils/DB");
 const {
