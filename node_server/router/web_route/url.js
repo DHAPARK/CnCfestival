@@ -5,7 +5,7 @@ const userAgentModel = require("../../models/userAgentModel");
 const moment = require("moment");
 const cors = require("cors");
 
-const ipConfig = require("../../config/ipConfig");
+const { ipConfig } = require("../../config/ipConfig");
 
 app.use(cors());
 
