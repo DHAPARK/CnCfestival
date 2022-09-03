@@ -9,28 +9,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js" integrity="sha512-/l6vieC+YxaZywUhmqs++8uF9DeMvJE61ua5g+UK0TuHZ4TkTgB1Gm1n0NiA86uEOM9JJ6JUwyR0hboKO0fCng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="/workBookPython.css"/>
 
-    <script>
-        const ipConfig = document.getElementById("ipConfig").value;
-        function goToSolution(element) {
-            var quizNum = element.parentNode.children[0].innerText; // 문제번호
-            var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
-            //console.log();
-            console.log(` quizNum 찍힌나 ${quizNum}`);
-            console.log(` userId 찍힌나 ${userId}`);
-            axios({
-                url: `${ipConfig}/web/solution/${quizNum}/${userId}`,
-                method: 'GET',
-                //baseURL: ``,
-            }).then((res) => {
-                location.href = `${ipConfig}/web/solution/${quizNum}/${userId}`;
-                console.log(res);
-                //location.href = ``;
-            }).catch(error=>{
-                console.log(`solution 페이지 가기 실패 ${error}`);
-                throw new Error(error);
-            })
-        }
-    </script>
 </head>
 <body>
     <input type="hidden" id="ipConfig" value="<%-include('./ipConfig.ejs')%>"/>
@@ -100,6 +78,28 @@
     <!--container 끝-->
 </body>
 
+<script>
+    const ipConfig = document.getElementById("ipConfig").value;
+    function goToSolution(element) {
+        var quizNum = element.parentNode.children[0].innerText; // 문제번호
+        var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
+        //console.log();
+        console.log(` quizNum 찍힌나 ${quizNum}`);
+        console.log(` userId 찍힌나 ${userId}`);
+        axios({
+            url: `${ipConfig}/web/solution/${quizNum}/${userId}`,
+            method: 'GET',
+            //baseURL: ``,
+        }).then((res) => {
+            location.href = `${ipConfig}/web/solution/${quizNum}/${userId}`;
+            console.log(res);
+            //location.href = ``;
+        }).catch(error=>{
+            console.log(`solution 페이지 가기 실패 ${error}`);
+            throw new Error(error);
+        })
+    }
+</script>
 <script>
     document.getElementById("myPage").href = document.getElementById("myPage").href + '/' + `${JSON.parse(localStorage.getItem('UserInfo')).userid}`;
 </script>
