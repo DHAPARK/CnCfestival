@@ -167,7 +167,9 @@
                         console.log(`성공오나? ${JSON.stringify(res.stdout)}`);
                         console.log(`실패오나? ${JSON.stringify(res.stderr)}`);
                         if(res.code == 200) { // 성공
-                            document.getElementById("resultSpace").innerText = res.stdout;
+                            const result = `결과 : ${res.stdout.pass}\n${res.stdout.correct} / ${res.stdout.total}\n정답률 : ${res.stdout.percentage}%`;
+                            //document.getElementById("resultSpace").innerText = res.stdout;
+                            document.getElementById("resultSpace").innerText = result;
                             document.getElementById("resultSpace").style.color = "white";
                         } else if (res.code == 100) {
                             document.getElementById("resultSpace").innerText = res.stderr;
