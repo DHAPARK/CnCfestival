@@ -153,7 +153,7 @@ router.get("/getVideoInfo", async (req, res) => {
     putItemToDB(DB_COLLECTION['POINT_LOG'], currTimeMilli, pointObj);
   }
   
-  res.json(result);
+  res.json(pointObj);
 });
 
 /**
