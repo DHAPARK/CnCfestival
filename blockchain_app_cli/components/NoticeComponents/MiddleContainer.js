@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import {Platform, StyleSheet} from 'react-native';
-
+import IPCONFIG from '../../config/IpConfig';
 import NoticeViewOne from './NoticeViewOne';
 import MyInfoView from './MyInfoView';
 //import SvgQRCode from 'react-native-qrcode-svg';

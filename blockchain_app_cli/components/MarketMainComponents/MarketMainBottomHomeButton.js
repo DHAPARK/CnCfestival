@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import {StyleSheet, Text} from 'react-native';
-
+import IPCONFIG from '../../config/IpConfig';
 const Container = styled.TouchableOpacity`
   border-radius: 7px;
   width: 19%;

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/workBookPython.css"/>
 
     <script>
+        const ipConfig = require('../config/ipConfig');
         function goToSolution(element) {
             var quizNum = element.parentNode.children[0].innerText; // 문제번호
             var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
@@ -17,11 +18,11 @@
             console.log(` quizNum 찍힌나 ${quizNum}`);
             console.log(` userId 찍힌나 ${userId}`);
             axios({
-                url: `http://220.67.231.91:80/web/solution/${quizNum}/${userId}`,
+                url: `${ipConfig}/web/solution/${quizNum}/${userId}`,
                 method: 'GET',
                 //baseURL: ``,
             }).then((res) => {
-                location.href = `http://220.67.231.91:80/web/solution/${quizNum}/${userId}`;
+                location.href = `${ipConfig}/web/solution/${quizNum}/${userId}`;
                 console.log(res);
                 //location.href = ``;
             }).catch(error=>{
@@ -44,10 +45,10 @@
             <!--topLongContainerInnerLeftLogoImg 끝-->
             <!-- 맨위 오른쪽 메뉴들 (홈페이지, 로그인/회원가입 , 학습 , 메뉴 등-->
             <div id="topLongContainerInnerRightMenuList" class="bg_cont">
-                <a href="http://220.67.231.91:80/web/introduce">홈페이지</a>
-                <a href="http://220.67.231.91:80/web/market">제휴 스토어</a>
-                <a href="http://220.67.231.91:80/web/menuList" id="learning">학습</a>
-                <a href="http://220.67.231.91:80/web/mypage" id="myPage">My page</a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/introduce">홈페이지</a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/market">제휴 스토어</a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/menuList" id="learning">학습</a>
+                <a href="<%-include('./ipConfig.ejs')%>/web/mypage" id="myPage">My page</a>
             </div>
             <!--topLongContainerInnerRightMenuList 끝-->
         </div>
@@ -59,7 +60,7 @@
             <div id="topText">
                 <div id="topTextRightMenu">
                     <a href="#" id="workbook">문제집</a>
-                    <a href="http://220.67.231.91:80/web/video">강의</a>
+                    <a href="<%-include('./ipConfig.ejs')%>/web/video">강의</a>
                 </div>
             </div>
             <!--topText 끝-->

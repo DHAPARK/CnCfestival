@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import IPCONFIG from '../../config/IpConfig';
 // width:95%;
 // height:7%;
 // flex-direction:row;

@@ -21,6 +21,7 @@ import qs from 'qs';
 import {Alert} from 'react-native';
 //const PaymentOneThree: () => Node = ({navigation, route}) => {
 //function RemittanceOneThree({navigation, route}) {
+import IPCONFIG from '../config/IpConfig';
 const RemittanceOneThree: () => Node = ({navigation, route}) => {
   console.disableYellowBox = true;
   const [password, setPassword] = React.useState('');
@@ -47,7 +48,7 @@ const RemittanceOneThree: () => Node = ({navigation, route}) => {
 
       axios({
         method: 'POST',
-        url: `http://220.67.231.91:80/hscRemittance`,
+        url: `${IPCONFIG}/hscRemittance`,
         data: qs.stringify(dataSet2),
       })
         .then(res => {

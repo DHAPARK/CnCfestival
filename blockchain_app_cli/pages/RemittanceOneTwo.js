@@ -6,7 +6,7 @@ import InputAndConfirmBtn from '../components/RemittanceOneTwoComponents/InputAn
 import MiddlePriceContainer from '../components/RemittanceOneTwoComponents/MiddlePriceContainer';
 import BottomContainer from '../components/RemittanceOneTwoComponents/BottomContainer';
 import {Alert} from 'react-native';
-
+import IPCONFIG from '../config/IpConfig';
 function RemittanceOneTwo({navigation, route}) {
   console.disableYellowBox = true;
   const dataSet = route.params.data;

@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 import QRCode from 'react-native-qrcode-svg';
-
+import IPCONFIG from '../../config/IpConfig';
 const MyView = styled.SafeAreaView`
   align-items: center;
   background-color: #ecf0f1;

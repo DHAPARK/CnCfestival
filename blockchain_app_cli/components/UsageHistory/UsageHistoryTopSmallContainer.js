@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import {StyleSheet, Image, Text} from 'react-native';
-
+import IPCONFIG from '../../config/IpConfig';
 const styles = StyleSheet.create({
   image: {
     width: '30%',

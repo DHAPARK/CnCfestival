@@ -23,7 +23,7 @@ import LoginIdAndPw from '../components/LoginComponents/LoginIdAndPw';
 import BlockForPreventAvoding from '../components/LoginComponents/BlockForPreventAvoding';
 import axios from 'axios';
 import {Platform, StyleSheet} from 'react-native';
-
+import IPCONFIG from '../config/IpConfig';
 const Label = styled.Text`
   font-size: 20px;
   font-weight: bold;
@@ -78,7 +78,7 @@ const Login: () => Node = ({navigation}) => {
     //220.67.231.91:80
     axios({
       method: 'GET',
-      url: `http://220.67.231.91:80/getMember/${id}/${pw}`,
+      url: `${IPCONFIG}/getMember/${id}/${pw}`,
     })
       .then(data => {
         return data;

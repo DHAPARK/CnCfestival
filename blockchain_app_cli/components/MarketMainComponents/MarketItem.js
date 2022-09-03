@@ -4,6 +4,7 @@ import type {Node} from 'react';
 import styled from 'styled-components';
 import {Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import IPCONFIG from '../../config/IpConfig';
 const Container = styled.TouchableOpacity`
   width: 38%;
   height: 170px;

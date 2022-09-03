@@ -3,7 +3,7 @@ import LongContainer from './LongContainer';
 import FranchiseePageButton from './FranchiseePageButton';
 import PTInput from './PTInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import IPCONFIG from '../../config/IpConfig';
 function InputAndSearchBtn(props) {
   const [svalue, setSValue] = React.useState('');
   AsyncStorage.setItem(

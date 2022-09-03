@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import {StyleSheet, Text} from 'react-native';
 
 import {useEffect} from 'react/cjs/react.production.min';
-
+import IPCONFIG from '../../config/IpConfig';
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'yellow',

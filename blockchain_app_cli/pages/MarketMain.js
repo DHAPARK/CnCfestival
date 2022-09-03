@@ -10,14 +10,14 @@ import qs from 'qs';
 
 //alert를 띄우기위한 import
 import {Alert} from 'react-native';
-
+import IPCONFIG from '../config/IpConfig';
 const MarketMain: () => Node = () => {
   //var getItemList = '';
   const [getItemList, setItemList] = useState('');
   useEffect(() => {
     axios({
       method: 'GET',
-      url: `http://220.67.231.91:80/getProductInfoList`,
+      url: `${IPCONFIG}/getProductInfoList`,
     }).then(res => {
       console.log(res.data);
       //getItemList = res.data;

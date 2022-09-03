@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View, StyleSheet, Button} from 'react-native';
 import Video from 'react-native-video';
-
+import IPCONFIG from '../config/IpConfig';
 const LoginAni: () => Node = ({navigation, route}) => {
   //const Regist: () => Node = ({navigation}) => {
   console.disableYellowBox = true;

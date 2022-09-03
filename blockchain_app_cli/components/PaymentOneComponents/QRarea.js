@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import IPCONFIG from '../../config/IpConfig';
 /*
 const QRarea = styled.View`
     width:250px;

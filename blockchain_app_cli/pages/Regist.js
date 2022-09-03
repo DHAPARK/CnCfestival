@@ -45,7 +45,7 @@ import qs from 'qs';
 
 //alert를 띄우기위한 import
 import {Alert} from 'react-native';
-
+import IPCONFIG from '../config/IpConfig';
 const Regist: () => Node = ({navigation}) => {
   console.disableYellowBox = true;
   const [fullDate, setFullDate] = React.useState('2022-03-03');
@@ -107,7 +107,7 @@ const Regist: () => Node = ({navigation}) => {
       //axios
       axios({
         method: 'GET',
-        url: `http://220.67.231.91:80/checkIdDuplicate/${e}`,
+        url: `${IPCONFIG}/checkIdDuplicate/${e}`,
       })
         .then(data => {
           return data;
@@ -366,7 +366,7 @@ const Regist: () => Node = ({navigation}) => {
     //axios 통신
     axios({
       method: 'POST',
-      url: `http://220.67.231.91:80/joinMember/${userid}`,
+      url: `${IPCONFIG}/joinMember/${userid}`,
       data: qs.stringify(data),
     })
       .then(res => {

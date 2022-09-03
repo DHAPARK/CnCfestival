@@ -5,7 +5,7 @@ import MarketMainDescriptionContainer from '../components/MarketMainDescriptionC
 import MarketMainDescriptionTopSmallContainer from '../components/MarketMainDescriptionComponents/MarketMainDescriptionTopSmallContainer';
 import MiddleContainer from '../components/MarketMainDescriptionComponents/MiddleContainer';
 //const Index: () => Node = ({navigation, route}) => {
-
+import IPCONFIG from '../config/IpConfig';
 const MarketMainDescription: () => Node = ({navigation, route}) => {
   console.log(`검사 ${route.params.data.name}`);
   console.log(`검사 ${route.params.data.description}`);

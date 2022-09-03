@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import {StyleSheet, Text, Clipboard, Alert, Platform} from 'react-native';
-
+import IPCONFIG from '../../config/IpConfig';
 //alert를 띄우기위한 import
 
 import axios from 'axios';

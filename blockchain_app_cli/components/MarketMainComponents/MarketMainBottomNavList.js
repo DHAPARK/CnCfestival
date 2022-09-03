@@ -11,7 +11,7 @@ import MarketMainBottomOnlineMarketButton from './MarketMainBottomOnlineMarketBu
 import {useNavigation} from '@react-navigation/native';
 
 import {Dimensions} from 'react-native';
-
+import IPCONFIG from '../../config/IpConfig';
 var ScreenHeight = Dimensions.get('window').height;
 var ScreenWidth = Dimensions.get('window').width;
 

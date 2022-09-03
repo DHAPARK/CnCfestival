@@ -7,7 +7,7 @@ import UsageHistoryBottomOfficialButton from './UsageHistoryBottomOfficialButton
 import UsageHistoryBottomMarketButton from './UsageHistoryBottomMarketButton';
 import UsageHistoryBottomUseListButton from './UsageHistoryBottomUseListButton';
 import UsageHistoryBottomOnlineMarketButton from './UsageHistoryBottomOnlineMarketButton';
-
+import IPCONFIG from '../../config/IpConfig';
 import {useNavigation} from '@react-navigation/native';
 
 import {Dimensions} from 'react-native';

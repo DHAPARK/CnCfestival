@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-
+import IPCONFIG from '../../config/IpConfig';
 const SmallContainerForMiddlePicker = styled.SafeAreaView`
   margin-bottom: 6%;
   margin-left: 2%;

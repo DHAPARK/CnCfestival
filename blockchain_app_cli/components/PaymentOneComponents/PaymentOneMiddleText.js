@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import {Platform, Dimensions, StyleSheet, Image, Text} from 'react-native';
-
+import IPCONFIG from '../../config/IpConfig';
 const middleFontSize = Platform.OS === 'ios' ? 18 : 20;
 
 const Container = styled.SafeAreaView`

@@ -6,7 +6,7 @@ import IndexPageRemittanceButton from './IndexPageRemittanceButton';
 import IndexPagePaymentButton from './IndexPagePaymentButton';
 
 import {useNavigation} from '@react-navigation/native';
-
+import IPCONFIG from '../../config/IpConfig';
 const Container = styled.SafeAreaView`
   flex-direction: column;
   width: 23%;

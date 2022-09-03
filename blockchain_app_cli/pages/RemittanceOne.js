@@ -11,7 +11,7 @@ import RemittanceOneTopSmallContainer from '../components/RemittanceOneComponent
 import InputAndConfirmBtn from '../components/RemittanceOneComponents/InputAndConfirmBtn';
 import TopMiddleText from '../components/RemittanceOneComponents/TopMiddleText';
 import {Alert} from 'react-native';
-
+import IPCONFIG from '../config/IpConfig';
 //index.js 에 쓰인 Text
 const Text = styled.Text`
   font-size: 20px;

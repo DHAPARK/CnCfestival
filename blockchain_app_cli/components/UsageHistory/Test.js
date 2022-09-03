@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import DatePicker from 'react-native-datepicker';
 import {StyleSheet, Text} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import IPCONFIG from '../../config/IpConfig';
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'yellow',

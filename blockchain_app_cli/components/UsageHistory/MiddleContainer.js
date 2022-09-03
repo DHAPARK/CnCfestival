@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';
 import {Platform, View, Text, StyleSheet} from 'react-native';
-
+import IPCONFIG from '../../config/IpConfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 

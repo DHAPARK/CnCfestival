@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-
+import IPCONFIG from '../../config/IpConfig';
 const RegistTopSmallContainer = styled.SafeAreaView`
   margin-bottom: 5%;
   margin-left: 10%;

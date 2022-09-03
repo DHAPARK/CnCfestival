@@ -33,7 +33,7 @@ import qs from 'qs';
 
 //alert를 띄우기위한 import
 import {Alert} from 'react-native';
-
+import IPCONFIG from '../config/IpConfig';
 function ModifyMyInfo({navigation}) {
   console.disableYellowBox = true;
   var [userInfo, setUserInfo] = React.useState('');
@@ -201,7 +201,7 @@ function ModifyMyInfo({navigation}) {
     //axios 통신
     axios({
       method: 'POST',
-      url: `http://220.67.231.91:80/ModifyMyInfo/${userid}`,
+      url: `${IPCONFIG}/ModifyMyInfo/${userid}`,
       data: qs.stringify(data),
     })
       .then(res => {

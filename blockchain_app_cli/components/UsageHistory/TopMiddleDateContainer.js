@@ -5,6 +5,7 @@ import UsageHistoryButtonLeft from './UsageHistoryButtonLeft';
 import UsageHistoryButtonRight from './UsageHistoryButtonRight';
 import axios from 'axios';
 import {Alert} from 'react-native';
+import IPCONFIG from '../../config/IpConfig';
 const Label = styled.Text`
   margin: 0 auto;
 `;
@@ -12,7 +13,7 @@ const Label = styled.Text`
 function getRank() {
   axios({
     method: 'GET',
-    url: `http://220.67.231.91:80/getUserRank`,
+    url: `${IPCONFIG}/getUserRank`,
   }).then(data => {
     console.log(`뭐 오긴하나 ? ${data.data}`);
     var userList = [];

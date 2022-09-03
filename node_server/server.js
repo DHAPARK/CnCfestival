@@ -15,7 +15,7 @@ const logger = require("morgan");
 const session = require("express-session");
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
-const path = require('path');
+const path = require("path");
 
 const cors = require("cors");
 app.use(cors());
@@ -36,15 +36,109 @@ const PORT = 80;
 const envConfig = require("./config/envConfig");
 
 function isAlphaNumCheck(str) {
-  const rgxstr = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f","g","h","i","j"
-,"k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J"
-,"K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",":","(",")","_"," ","\n","=",'"',"'","+",
-"-","*","/","!","#","@","$","%","^","&","\\","/","|",".",",","?","<",">","`","~","[","]","\t","/t"]
+  const rgxstr = [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+    ":",
+    "(",
+    ")",
+    "_",
+    " ",
+    "\n",
+    "=",
+    '"',
+    "'",
+    "+",
+    "-",
+    "*",
+    "/",
+    "!",
+    "#",
+    "@",
+    "$",
+    "%",
+    "^",
+    "&",
+    "\\",
+    "/",
+    "|",
+    ".",
+    ",",
+    "?",
+    "<",
+    ">",
+    "`",
+    "~",
+    "[",
+    "]",
+    "\t",
+    "/t",
+  ];
   var Flag = false;
-  for(var i=0;i<rgxstr.length;i++){
-      if(str == rgxstr[i]){
-          Flag = true;
-      }
+  for (var i = 0; i < rgxstr.length; i++) {
+    if (str == rgxstr[i]) {
+      Flag = true;
+    }
   }
 
   return Flag;
@@ -120,73 +214,111 @@ app.use("/web/transaction", webTransactionRouter);
 // => /hscRemittance
 // => /hscPayment
 
-
 app.post("/test", async (req, res) => {
   let code = decodeURIComponent(req.body.code);
   let userId = decodeURIComponent(req.body.userId);
-  let quizNum = decodeURIComponent(req.body.quizNum).replaceAll("'", '');
+  let quizNum = decodeURIComponent(req.body.quizNum).replaceAll("'", "");
   console.log(code);
 
   let fileName = `${userId}_${quizNum}.py`;
   let submitOutputFileName = `${userId}_${quizNum}.txt`;
 
-  for(let i=0; i < code.length ; i++){
-    if(!isAlphaNumCheck(code[i])){
-      code = code.replace(code[i]," ");
+  for (let i = 0; i < code.length; i++) {
+    if (!isAlphaNumCheck(code[i])) {
+      code = code.replace(code[i], " ");
     }
   }
 
-  fs.writeFileSync(process.cwd() + `/submit/${fileName}`, code, "utf8", (err) => {
-    if (err) {
-      console.log(`${err}\npython 파일생성에 문제발생`);
+  fs.writeFileSync(
+    process.cwd() + `/submit/${fileName}`,
+    code,
+    "utf8",
+    (err) => {
+      if (err) {
+        console.log(`${err}\npython 파일생성에 문제발생`);
+      }
     }
-  });
+  );
   console.log(`${fileName} 생성 완료`);
 
-  let inputData = fs.readFileSync(process.cwd() + `/answer/input_answer${quizNum}.txt`, "utf-8", (err) => {
-    if (err) {
-      console.log(`${err}\n파일 로딩에 문제발생`);
-    }
-  }).toString().split("\n");
+  let inputData = fs
+    .readFileSync(
+      process.cwd() + `/answer/input_answer${quizNum}.txt`,
+      "utf-8",
+      (err) => {
+        if (err) {
+          console.log(`${err}\n파일 로딩에 문제발생`);
+        }
+      }
+    )
+    .toString()
+    .split("\n");
   console.log(`inputData 읽기 완료`);
 
   inputData.pop();
-  
+
   console.log(inputData, typeof inputData);
-  fs.writeFileSync(process.cwd() + `/submit/${submitOutputFileName}`, '', "utf8", (err) => {
-    if (err) {
-      console.log(`${err}\noutput 파일생성에 문제발생`);
+  fs.writeFileSync(
+    process.cwd() + `/submit/${submitOutputFileName}`,
+    "",
+    "utf8",
+    (err) => {
+      if (err) {
+        console.log(`${err}\noutput 파일생성에 문제발생`);
+      }
     }
-  });
+  );
   console.log(`${submitOutputFileName} 생성 완료`);
 
   inputData.forEach(async (data) => {
-    let {stdout, error} = await exec(`echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: true });
+    let { stdout, error } = await exec(
+      `echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`,
+      { shell: true }
+    );
     if (error) {
       res.json({ code: 100, stdout: stdout, stderr: error.message });
     } else {
-      fs.appendFileSync(process.cwd() + `/submit/${submitOutputFileName}`, stdout, "utf8", (err) => {
-        if (err) {
-          console.log(`${err}\noutput 파일생성에 문제발생`);
+      fs.appendFileSync(
+        process.cwd() + `/submit/${submitOutputFileName}`,
+        stdout,
+        "utf8",
+        (err) => {
+          if (err) {
+            console.log(`${err}\noutput 파일생성에 문제발생`);
+          }
         }
-      });
+      );
     }
   });
 
-  let outputData = fs.readFileSync(process.cwd() + `/answer/output_answer${quizNum}.txt`, "utf-8", (err) => {
-    if (err) {
-      console.log(`${err}\n파일 로딩에 문제발생`);
-    }
-  }).toString().split("\n");
+  let outputData = fs
+    .readFileSync(
+      process.cwd() + `/answer/output_answer${quizNum}.txt`,
+      "utf-8",
+      (err) => {
+        if (err) {
+          console.log(`${err}\n파일 로딩에 문제발생`);
+        }
+      }
+    )
+    .toString()
+    .split("\n");
   console.log(`outputData 읽기 완료`);
 
   outputData.pop();
 
-  let userOutputData = fs.readFileSync(process.cwd() + `/submit/${submitOutputFileName}`, "utf-8", (err) => {
-    if (err) {
-      console.log(`${err}\n파일 로딩에 문제발생`);
-    }
-  }).toString().split("\n");
+  let userOutputData = fs
+    .readFileSync(
+      process.cwd() + `/submit/${submitOutputFileName}`,
+      "utf-8",
+      (err) => {
+        if (err) {
+          console.log(`${err}\n파일 로딩에 문제발생`);
+        }
+      }
+    )
+    .toString()
+    .split("\n");
   console.log(`${submitOutputFileName} 읽기 완료`);
   userOutputData.pop();
 
@@ -202,12 +334,10 @@ app.post("/test", async (req, res) => {
     console.log(`data = ${data}, user = ${userOutputData[index]}`);
     console.log(`total = ${total}, correct = ${correct}`);
     if (index + 1 == total) {
-      res.json({ code: 200, stdout: 'stdout', stderr: 'error' });    
+      res.json({ code: 200, stdout: "stdout", stderr: "error" });
     }
   });
 });
-
-
 
 // app.post("/testanswer", async (req, res) => {});
 

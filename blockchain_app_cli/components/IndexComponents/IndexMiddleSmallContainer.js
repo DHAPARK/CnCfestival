@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import {StyleSheet, Image, Text} from 'react-native';
 import Video from 'react-native-video';
+import IPCONFIG from '../../config/IpConfig';
 const styles = StyleSheet.create({
   video: {
     width: '100%',

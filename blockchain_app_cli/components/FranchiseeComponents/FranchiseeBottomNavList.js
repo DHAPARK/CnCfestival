@@ -7,7 +7,7 @@ import FranchiseeBottomOfficialButton from './FranchiseeBottomOfficialButton';
 import FranchiseeBottomMarketButton from './FranchiseeBottomMarketButton';
 import FranchiseeBottomUseListButton from './FranchiseeBottomUseListButton';
 import FranchiseeBottomOnlineMarketButton from './FranchiseeBottomOnlineMarketButton';
-
+import IPCONFIG from '../../config/IpConfig';
 import {useNavigation} from '@react-navigation/native';
 
 import {Dimensions} from 'react-native';

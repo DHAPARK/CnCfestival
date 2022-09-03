@@ -7,7 +7,7 @@ import NoticeBottomOfficialButton from './NoticeBottomOfficialButton';
 import NoticeBottomMarketButton from './NoticeBottomMarketButton';
 import NoticeBottomUseListButton from './NoticeBottomUseListButton';
 import NoticeBottomOnlineMarketButton from './NoticeBottomOnlineMarketButton';
-
+import IPCONFIG from '../../config/IpConfig';
 import {useNavigation} from '@react-navigation/native';
 import {Dimensions} from 'react-native';
 

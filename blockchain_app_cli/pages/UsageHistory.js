@@ -6,7 +6,7 @@ import TopMenuListContainer from '../components/UsageHistory/TopMenuListContaine
 import TopMiddleDateContainer from '../components/UsageHistory/TopMiddleDateContainer';
 import MiddleContainer from '../components/UsageHistory/MiddleContainer';
 import UsageHistoryBottomNavList from '../components/UsageHistory/UsageHistoryBottomNavList';
-
+import IPCONFIG from '../config/IpConfig';
 function UsageHistory() {
   console.disableYellowBox = true;
 
