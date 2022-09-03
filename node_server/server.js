@@ -19,7 +19,9 @@ const path = require("path");
 
 const cors = require("cors");
 app.use(cors());
+
 // const admin = require("firebase-admin");
+// const auth = require("firebase-admin/auth");
 // const auth = require("firebase-admin/auth");
 // const firestore = require("firebase-admin/firestore");
 // const Web3 = require('web3');
