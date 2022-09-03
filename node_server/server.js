@@ -272,13 +272,15 @@ app.post("/test", async (req, res) => {
   );
   console.log(`${submitOutputFileName} 생성 완료`);
   
+  let stdout, error;
   for (let data of inputData) {
-    let { stdout, error } = await exec(
+    let { tmp_stdout, tmp_error } = await exec(
       `echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`,
       { shell: true }
     );
-    if (error) {
-      res.json({ code: 100, stderr: error.message });
+    if (tmp_error) {
+      stdout = tmp_stdout;
+      error = tmp_error;
       break;
     } else {
       fs.appendFileSync(
@@ -292,6 +294,9 @@ app.post("/test", async (req, res) => {
         }
       );
     }
+  }
+  if (error) {
+    res.json({ code: 100, stderr: error.message });
   }
 
   let outputData = fs
