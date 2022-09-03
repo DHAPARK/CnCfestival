@@ -279,10 +279,12 @@ app.post("/test", async (req, res) => {
       { shell: true }
     );
     if (tmp_error) {
+      console.log(`tmp_error is true ${tmp_error} ${tmp_stdout}`);
       stdout = tmp_stdout;
       error = tmp_error;
       break;
     } else {
+      console.log(`tmp_error is false ${tmp_error} ${tmp_stdout}`);
       fs.appendFileSync(
         process.cwd() + `/submit/${submitOutputFileName}`,
         stdout,
@@ -296,6 +298,7 @@ app.post("/test", async (req, res) => {
     }
   }
   if (error) {
+    console.log(`error is false ${error} ${stdout}`);
     res.json({ code: 100, stderr: error.message });
   }
 
