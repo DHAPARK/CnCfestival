@@ -271,8 +271,8 @@ app.post("/test", async (req, res) => {
     }
   );
   console.log(`${submitOutputFileName} 생성 완료`);
-
-  inputData.forEach(async (data) => {
+  
+  for (let data of inputData) {
     let { stdout, error } = await exec(
       `echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`,
       { shell: true }
@@ -291,7 +291,7 @@ app.post("/test", async (req, res) => {
         }
       );
     }
-  });
+  }
 
   let outputData = fs
     .readFileSync(
