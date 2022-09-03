@@ -279,6 +279,7 @@ app.post("/test", async (req, res) => {
     );
     if (error) {
       res.json({ code: 100, stderr: error.message });
+      break;
     } else {
       fs.appendFileSync(
         process.cwd() + `/submit/${submitOutputFileName}`,
