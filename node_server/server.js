@@ -278,7 +278,7 @@ app.post("/test", async (req, res) => {
       { shell: true }
     );
     if (error) {
-      res.json({ code: 100, stdout: stdout, stderr: error.message });
+      res.json({ code: 100, stderr: error.message });
     } else {
       fs.appendFileSync(
         process.cwd() + `/submit/${submitOutputFileName}`,
@@ -339,7 +339,14 @@ app.post("/test", async (req, res) => {
     console.log(`data = ${data}, user = ${userOutputData[index]}`);
     console.log(`total = ${total}, correct = ${correct}`);
     if (index + 1 == total) {
-      res.json({ code: 200, stdout: "stdout", stderr: "error" });
+      let pass = correct == total ? true : false;
+      let stdout = {
+        pass : pass,
+        correct : correct,
+        total : total,
+        percentage : correct / total * 100
+      };
+      res.json({ code: 200, stdout: stdout });
     }
   });
 });
