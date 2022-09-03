@@ -15,6 +15,7 @@ const {
   getQuizInfo,
   calcPoint
 } = require("../../utils/inquiry");
+const { transferHSC } = require('../../utils/transaction');
 const { checkIdDuplicate } = require("../../utils/validation");
 const { DB_COLLECTION, POINT } = require("../../utils/constant");
 
