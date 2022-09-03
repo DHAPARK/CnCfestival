@@ -74,7 +74,7 @@
     function purchase(){
         axios({
             method: 'POST',
-            url: `${ipConfig}/app/buyProductRequest`,
+            url: `${ipConfig}/buyProductRequest`,
             data: {
                 userId : document.getElementById("userId").value,
                 userPassword: document.getElementById("userPassword").value,
