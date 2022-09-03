@@ -8,157 +8,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js" integrity="sha512-/l6vieC+YxaZywUhmqs++8uF9DeMvJE61ua5g+UK0TuHZ4TkTgB1Gm1n0NiA86uEOM9JJ6JUwyR0hboKO0fCng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="/regist1.css"/>
-    <script>
-        const ipConfig = document.getElementById("ipConfig").value;
-        var checkDupId = false;
-
-        function checkUserIdNull(){
-            console.log(`ip는 : ${ipConfig}`);
-            var useridInput = document.getElementById("userid").value;
-            if (useridInput == "" || useridInput == null || useridInput == undefined){
-                window.alert("userid가 비어있습니다. 입력해주세요.");
-                useridInput.focus();
-                
-                return false;
-            }
-            return true;
-        }
-
-        function checkUserPwNull(){
-            var userpwInput = document.getElementById("userpw").value;
-            if (userpwInput == "" || userpwInput == null || userpwInput == undefined){
-                window.alert("userpw가 비어있습니다. 입력해주세요.");
-                userpwInput.focus();
-                return false;
-            }
-            return true;
-        }
-
-        function checkUserEmailNull(){
-            var useremailInput = document.getElementById("useremail").value;
-            if (useremailInput == "" || useremailInput == null || useremailInput == undefined){
-                window.alert("useremail이 비어있습니다. 입력해주세요.");
-                useremailInput.focus();
-                return false;
-            }
-            return true;
-        }
-
-        function checkUserNameNull(){
-            var usernameInput = document.getElementById("username").value;
-            if (usernameInput == "" || usernameInput == null || usernameInput == undefined){
-                window.alert("username이 비어있습니다. 입력해주세요.");
-                usernameInput.focus();
-                return false;
-            }
-            return true;
-        }
-
-        function checkUserPhoneNULL(){
-            var userphoneInput = document.getElementById("phonenumber").value;
-            if (userphoneInput == "" || userphoneInput == null || userphoneInput == undefined){
-                window.alert("phonenumber가 비어있습니다. 입력해주세요.");
-                userphoneInput.focus();
-                return false;
-            }
-            return true;
-        }
-
-        function join() {
-            if(!checkUserIdNull()) {
-                return false;
-            }
-            
-            if(!checkUserPwNull()) {
-                return false;
-            }
-
-            if(!checkUserNameNull()){
-                return false;
-            }
-
-            if(!checkUserEmailNull()) {
-                return false;
-            }
-
-            if(!checkUserPhoneNULL()) {
-                return false;
-            }
-            
-            if(!checkDupId){
-                window.alert("아이디 중복체크를 완료하세요");
-                return false;
-            }
-
-
-            var [userid,userpw,username,useremail,userphone] = document.getElementsByClassName("regist_user");
-            var [userid,userpw,username,useremail,userphone] = [userid.value,userpw.value,username.value,useremail.value,userphone.value];
-
-            console.log('### userinfo list');
-            console.log(userid);
-            console.log(userpw);
-            console.log(username);
-            console.log(useremail);
-            console.log(userphone);
-
-            const data = {
-                userid:userid,
-                password:userpw,
-                name:username,
-                useremail:useremail,
-                userphone:userphone,
-            }
-
-            let qsData = Qs.stringify(data);
-            console.log(`###1 ${JSON.stringify(data)}`);
-            console.log(`###2 ${qsData}`);
-
-            axios({
-                url: '/web/user/registUser',
-                method: 'POST',
-                baseURL: `${ipConfig}`,
-                data: Qs.stringify(data)
-            }).then((res)=>{
-                console.log(`서버와 연결 성공 코드: ${JSON.stringify(res.status)}, 메시지: ${JSON.stringify(res.data)}`);
-                location.href = `${ipConfig}/web/index`;
-            }).catch(error=>{
-                console.log(`서버와 연결 실패 ${error}`);
-                throw new Error(error);
-            });
-        }
-
-        function checkId() {
-            var userid = document.getElementById("userid");
-            var userid = userid.value;
-
-            const data = { userid:userid }
-
-            let qsData = Qs.stringify(data);
-            console.log(`###1 ${JSON.stringify(data)}`);
-            console.log(`###2 ${qsData}`);
-
-            axios({
-                url: `/web/util/checkIdDuplicate/${userid}`,
-                method: 'GET',
-                baseURL: `${ipConfig}`
-            }).then((res)=>{
-                if ( res.data == 200 ){
-                    checkDupId = true;
-                    window.alert("사용가능한 아이디입니다");
-                } else {
-                    checkDupId = false;
-                    window.alert("중복된 아이디입니다");
-                }
-                console.log(`아이디 중복 확인코드 뭐지 ${res.data}`);
-                console.log(`아이디 중복 확인 코드: ${res.data}, 메시지: ${JSON.stringify(res.data)}`);
-
-            }).catch(error=>{
-                console.log(`서버와 연결 실패 ${error}`);
-                throw new Error(error);
-            });
-        }
-    </script>
-
+    
 </head>
 <body class="bg_cont">
     <input type="hidden" id="ipConfig" value="<%-include('./ipConfig.ejs')%>"/>
@@ -259,6 +109,158 @@
 
 
 </body>
+
+
+<script>
+    const ipConfig = document.getElementById("ipConfig").value;
+    var checkDupId = false;
+
+    function checkUserIdNull(){
+        console.log(`ip는 : ${ipConfig}`);
+        var useridInput = document.getElementById("userid").value;
+        if (useridInput == "" || useridInput == null || useridInput == undefined){
+            window.alert("userid가 비어있습니다. 입력해주세요.");
+            useridInput.focus();
+            
+            return false;
+        }
+        return true;
+    }
+
+    function checkUserPwNull(){
+        var userpwInput = document.getElementById("userpw").value;
+        if (userpwInput == "" || userpwInput == null || userpwInput == undefined){
+            window.alert("userpw가 비어있습니다. 입력해주세요.");
+            userpwInput.focus();
+            return false;
+        }
+        return true;
+    }
+
+    function checkUserEmailNull(){
+        var useremailInput = document.getElementById("useremail").value;
+        if (useremailInput == "" || useremailInput == null || useremailInput == undefined){
+            window.alert("useremail이 비어있습니다. 입력해주세요.");
+            useremailInput.focus();
+            return false;
+        }
+        return true;
+    }
+
+    function checkUserNameNull(){
+        var usernameInput = document.getElementById("username").value;
+        if (usernameInput == "" || usernameInput == null || usernameInput == undefined){
+            window.alert("username이 비어있습니다. 입력해주세요.");
+            usernameInput.focus();
+            return false;
+        }
+        return true;
+    }
+
+    function checkUserPhoneNULL(){
+        var userphoneInput = document.getElementById("phonenumber").value;
+        if (userphoneInput == "" || userphoneInput == null || userphoneInput == undefined){
+            window.alert("phonenumber가 비어있습니다. 입력해주세요.");
+            userphoneInput.focus();
+            return false;
+        }
+        return true;
+    }
+
+    function join() {
+        if(!checkUserIdNull()) {
+            return false;
+        }
+        
+        if(!checkUserPwNull()) {
+            return false;
+        }
+
+        if(!checkUserNameNull()){
+            return false;
+        }
+
+        if(!checkUserEmailNull()) {
+            return false;
+        }
+
+        if(!checkUserPhoneNULL()) {
+            return false;
+        }
+        
+        if(!checkDupId){
+            window.alert("아이디 중복체크를 완료하세요");
+            return false;
+        }
+
+
+        var [userid,userpw,username,useremail,userphone] = document.getElementsByClassName("regist_user");
+        var [userid,userpw,username,useremail,userphone] = [userid.value,userpw.value,username.value,useremail.value,userphone.value];
+
+        console.log('### userinfo list');
+        console.log(userid);
+        console.log(userpw);
+        console.log(username);
+        console.log(useremail);
+        console.log(userphone);
+
+        const data = {
+            userid:userid,
+            password:userpw,
+            name:username,
+            useremail:useremail,
+            userphone:userphone,
+        }
+
+        let qsData = Qs.stringify(data);
+        console.log(`###1 ${JSON.stringify(data)}`);
+        console.log(`###2 ${qsData}`);
+
+        axios({
+            url: '/web/user/registUser',
+            method: 'POST',
+            baseURL: `${ipConfig}`,
+            data: Qs.stringify(data)
+        }).then((res)=>{
+            console.log(`서버와 연결 성공 코드: ${JSON.stringify(res.status)}, 메시지: ${JSON.stringify(res.data)}`);
+            location.href = `${ipConfig}/web/index`;
+        }).catch(error=>{
+            console.log(`서버와 연결 실패 ${error}`);
+            throw new Error(error);
+        });
+    }
+
+    function checkId() {
+        var userid = document.getElementById("userid");
+        var userid = userid.value;
+
+        const data = { userid:userid }
+
+        let qsData = Qs.stringify(data);
+        console.log(`###1 ${JSON.stringify(data)}`);
+        console.log(`###2 ${qsData}`);
+
+        axios({
+            url: `/web/util/checkIdDuplicate/${userid}`,
+            method: 'GET',
+            baseURL: `${ipConfig}`
+        }).then((res)=>{
+            if ( res.data == 200 ){
+                checkDupId = true;
+                window.alert("사용가능한 아이디입니다");
+            } else {
+                checkDupId = false;
+                window.alert("중복된 아이디입니다");
+            }
+            console.log(`아이디 중복 확인코드 뭐지 ${res.data}`);
+            console.log(`아이디 중복 확인 코드: ${res.data}, 메시지: ${JSON.stringify(res.data)}`);
+
+        }).catch(error=>{
+            console.log(`서버와 연결 실패 ${error}`);
+            throw new Error(error);
+        });
+    }
+</script>
 
 
 
