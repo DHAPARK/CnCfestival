@@ -276,11 +276,9 @@ app.post("/test", async (req, res) => {
   for (let data of inputData) {
     exec(`echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: false }, (error, stdout, stderr) => {
       if (error) {
-        console.log(`tmp_error is true ${tmp_error} ${tmp_stdout}`);
         tmp_stdout = stdout;
         tmp_error = error;
       } else {
-        console.log(`tmp_error is false ${tmp_error} ${tmp_stdout}`);
         fs.appendFileSync(
           process.cwd() + `/submit/${submitOutputFileName}`,
           stdout,
@@ -294,6 +292,8 @@ app.post("/test", async (req, res) => {
       }
     });
   }
+  console.log(`tmp_error = ${JSON.stringify(tmp_error)}`);
+  
   if (tmp_error) {
     console.log(`error is false ${error} ${stdout}`);
     res.json({ code: 100, stderr: error.message });
