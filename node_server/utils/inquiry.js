@@ -49,9 +49,7 @@ async function calcPointLog(pointLogObj) {
 async function calcPoint(userId, videoUrl, watchLength) {
     let tempPoint = POINT * watchLength;
     let pointLogObj = await getUserPointLog(userId, videoUrl);
-    console.log(`##### $$$ calc func pointLogObj = ${JSON.stringify(pointLogObj)}`);
     let totalPoint = await calcPointLog(pointLogObj);
-    console.log(`##### $$$ calc func totalPoint = ${totalPoint}`);
 
     if (totalPoint >= POINT_MAXIMUM) {
         return 0;
