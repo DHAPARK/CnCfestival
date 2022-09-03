@@ -1,5 +1,5 @@
 const express = require("express");
-const monent = require('moment');
+const moment = require('moment');
 const router = express.Router();
 const userAgentModel = require("../../models/userAgentModel");
 
