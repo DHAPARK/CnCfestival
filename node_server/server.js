@@ -272,32 +272,29 @@ app.post("/test", async (req, res) => {
   );
   console.log(`${submitOutputFileName} 생성 완료`);
   
-  let stdout, error;
+  let tmp_stdout, tmp_error;
   for (let data of inputData) {
-    let { tmp_stdout, tmp_error } = await exec(
-      `echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`,
-      { shell: true }
-    );
-    if (tmp_error) {
-      console.log(`tmp_error is true ${tmp_error} ${tmp_stdout}`);
-      stdout = tmp_stdout;
-      error = tmp_error;
-      break;
-    } else {
-      console.log(`tmp_error is false ${tmp_error} ${tmp_stdout}`);
-      fs.appendFileSync(
-        process.cwd() + `/submit/${submitOutputFileName}`,
-        stdout,
-        "utf8",
-        (err) => {
-          if (err) {
-            console.log(`${err}\noutput 파일생성에 문제발생`);
+    exec(`echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: false }, (error, stdout, stderr) => {
+      if (error) {
+        console.log(`tmp_error is true ${tmp_error} ${tmp_stdout}`);
+        tmp_stdout = stdout;
+        tmp_error = error;
+      } else {
+        console.log(`tmp_error is false ${tmp_error} ${tmp_stdout}`);
+        fs.appendFileSync(
+          process.cwd() + `/submit/${submitOutputFileName}`,
+          stdout,
+          "utf8",
+          (err) => {
+            if (err) {
+              console.log(`${err}\noutput 파일생성에 문제발생`);
+            }
           }
-        }
-      );
-    }
+        );
+      }
+    });
   }
-  if (error) {
+  if (tmp_error) {
     console.log(`error is false ${error} ${stdout}`);
     res.json({ code: 100, stderr: error.message });
   }
