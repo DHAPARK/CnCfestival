@@ -4,7 +4,7 @@ import LongContainer from './LongContainer';
 import PaymentOneTwoPageButton from './PaymentOneTwoPageButton';
 import PTInput from './PTInput';
 import {useNavigation} from '@react-navigation/native';
-
+import IPCONFIG from '../../config/IpConfig';
 function InputAndConfirmBtn(props) {
   const navigation = useNavigation();
   return (

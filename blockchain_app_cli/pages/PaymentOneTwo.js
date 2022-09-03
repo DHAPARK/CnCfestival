@@ -7,7 +7,7 @@ import InputAndConfirmBtn from '../components/PaymentOneTwoComponents/InputAndCo
 import MiddlePriceContainer from '../components/PaymentOneTwoComponents/MiddlePriceContainer';
 import BottomContainer from '../components/PaymentOneTwoComponents/BottomContainer';
 import {Alert} from 'react-native';
-
+import IPCONFIG from '../config/IpConfig';
 function PaymentOneTwo({navigation, route}) {
   console.disableYellowBox = true;
   const dataSet = route.params.data;

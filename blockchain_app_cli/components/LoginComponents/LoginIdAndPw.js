@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import {StyleSheet} from 'react-native';
-
+import IPCONFIG from '../../config/IpConfig';
 const Container = styled.TouchableOpacity`
   margin: 0 auto;
   border-bottom-color: black;

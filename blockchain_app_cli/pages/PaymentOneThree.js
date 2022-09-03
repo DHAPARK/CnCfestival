@@ -11,7 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import qs from 'qs';
 import {Alert} from 'react-native';
-
+import IPCONFIG from '../config/IpConfig';
 //const Login: () => Node = ({navigation}) => {
 //function PaymentOneThree({navigation, route}) {
 const PaymentOneThree: () => Node = ({navigation, route}) => {
@@ -41,7 +41,7 @@ const PaymentOneThree: () => Node = ({navigation, route}) => {
 
       axios({
         method: 'POST',
-        url: `http://220.67.231.91:80/hscPayment`,
+        url: `${IPCONFIG}/hscPayment`,
         data: qs.stringify(dataSet2),
       })
         .then(res => {

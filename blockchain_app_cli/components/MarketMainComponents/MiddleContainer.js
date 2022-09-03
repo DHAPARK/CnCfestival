@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components/native';
 import {Platform, StyleSheet, FlatList, View} from 'react-native';
 import MarketItem from './MarketItem';
-
+import IPCONFIG from '../../config/IpConfig';
 var heightValue = Platform.OS === 'ios' ? 75 : 67;
 var borderpx = Platform.OS === 'ios' ? 0.5 : 2.0;
 var borderColor = Platform.OS === 'ios' ? 192 : 220;

@@ -7,7 +7,7 @@ import {Dimensions} from 'react-native';
 import Video from 'react-native-video';
 
 import logoVideo from '../../image/MP4_movelogo.mp4';
-
+import IPCONFIG from '../../config/IpConfig';
 const ScreenHeight = Dimensions.get('window').height;
 const ScreenWidth = Dimensions.get('window').width;
 

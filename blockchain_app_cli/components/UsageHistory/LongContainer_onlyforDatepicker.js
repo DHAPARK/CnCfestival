@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-
+import IPCONFIG from '../../config/IpConfig';
 const LongContainer_onlyforDatepicker = styled.SafeAreaView`
   width: 95%;
   height: 7%;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Platform, StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
-
+import IPCONFIG from '../../config/IpConfig';
 const Input = styled.TextInput`
   width: 63%;
   margin-left: 10%;

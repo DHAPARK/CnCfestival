@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import PriceButton from './PriceButton';
 import {Platform} from 'react-native';
 const btnMarginBottom = Platform.OS === 'ios' ? 8 : 5;
-
+import IPCONFIG from '../../config/IpConfig';
 const Container = styled.SafeAreaView`
   width: 85%;
   height: 30%;

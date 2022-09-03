@@ -5,7 +5,7 @@ import InputAndSearchBtn from '../components/FranchiseeComponents/InputAndSearch
 import MiddleContainer from '../components/FranchiseeComponents/MiddleContainer';
 import FranchiseeBottomNavList from '../components/FranchiseeComponents/FranchiseeBottomNavList';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import IPCONFIG from '../../config/IpConfig';
 function saveLocation(name) {
   if (name === '미래관') {
     AsyncStorage.setItem(

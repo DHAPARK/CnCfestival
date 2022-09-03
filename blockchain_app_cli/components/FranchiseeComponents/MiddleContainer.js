@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 import GpsView from './GpsView';
-
+import IPCONFIG from '../../config/IpConfig';
 const Container = styled.SafeAreaView`
   width: 95%;
   height: 60%;

@@ -2,7 +2,7 @@ import React from 'react';
 import {Platform, StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 import {Text} from 'react-native';
-
+import IPCONFIG from '../../config/IpConfig';
 const Container = styled.SafeAreaView`
   width: 65%;
   position: relative;

@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 import {Dimensions} from 'react-native';
 import {Platform, StyleSheet, Text} from 'react-native';
-
+import IPCONFIG from '../../config/IpConfig';
 const width = Platform.OS === 'ios' ? 42 : 40;
 const height = Platform.OS === 'ios' ? 11 : 10;
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import LongContainer from './LongContainer';
-
+import IPCONFIG from '../../config/IpConfig';
 function TopMenuListContainer() {
   return (
     <LongContainer>

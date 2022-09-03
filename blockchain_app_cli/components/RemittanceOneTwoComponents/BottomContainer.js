@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import {Platform, Dimensions, StyleSheet, Text} from 'react-native';
-
+import IPCONFIG from '../../config/IpConfig';
 const bottomFontSize = Platform.OS === 'ios' ? 25 : 30;
 
 const Label = styled.Text`

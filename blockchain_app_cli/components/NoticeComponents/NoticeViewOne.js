@@ -4,7 +4,7 @@ import QRarea from './QRarea';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Platform, Clipboard, StyleSheet, Image} from 'react-native';
 import Video from 'react-native-video';
-
+import IPCONFIG from '../../config/IpConfig';
 const Container = styled.TouchableOpacity`
   width: 70%;
   height: 75%;

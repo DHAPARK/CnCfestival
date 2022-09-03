@@ -20,7 +20,7 @@ import PaymentOneBottomMyInfo from '../components/PaymentOneComponents/PaymentOn
 //import {BarCodeScanner} from 'expo-barcode-scanner';
 import {Camera, CameraType} from 'react-native-camera-kit';
 //import QRScanner from 'react-native-camera';
-
+import IPCONFIG from '../config/IpConfig';
 //index.js 에 쓰인 Text
 const Text = styled.Text`
   font-size: 20px;

@@ -25,6 +25,8 @@ import {useIsFocused} from '@react-navigation/native';
 //로그무시
 import {LogBox} from 'react-native';
 
+import IPCONFIG from '../config/IpConfig';
+
 const Container = styled.SafeAreaView`
   flex: 1;
   background-color: white;
@@ -68,7 +70,7 @@ const Index: () => Node = ({navigation, route}) => {
   }).then(userAccount => {
     axios({
       method: 'POST',
-      url: `http://220.67.231.91:80/getRecentTransferAccount`,
+      url: `${IPCONFIG}/getRecentTransferAccount`,
       data: {
         userAccount: account,
       },
@@ -154,7 +156,7 @@ const Index: () => Node = ({navigation, route}) => {
     const userAccount = JSON.parse(userInfo)['userAccount'];
     axios({
       method: 'POST',
-      url: `http://220.67.231.91:80/getTransactionLog/${userAccount}`,
+      url: `${IPCONFIG}/getTransactionLog/${userAccount}`,
     })
       .then(data => {
         return data;
@@ -212,7 +214,7 @@ const Index: () => Node = ({navigation, route}) => {
 
     axios({
       method: 'GET',
-      url: `http://220.67.231.91:80/getMyBalance/${userAccount}`,
+      url: `${IPCONFIG}/getMyBalance/${userAccount}`,
     })
       .then(data => {
         return data;
@@ -237,7 +239,7 @@ const Index: () => Node = ({navigation, route}) => {
 
         axios({
           method: 'GET',
-          url: `http://220.67.231.91:80/getMyBalance/${userAccount}`,
+          url: `${IPCONFIG}/getMyBalance/${userAccount}`,
         })
           .then(data => {
             return data;
@@ -261,7 +263,7 @@ const Index: () => Node = ({navigation, route}) => {
 
       axios({
         method: 'GET',
-        url: `http://220.67.231.91:80/getMyBalance/${userAccount}`,
+        url: `${IPCONFIG}/getMyBalance/${userAccount}`,
       })
         .then(data => {
           return data;

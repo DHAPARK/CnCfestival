@@ -4,7 +4,7 @@ import NoticeBottomNavList from '../components/NoticeComponents/NoticeBottomNavL
 import NoticeTopSmallContainer from '../components/NoticeComponents/NoticeTopSmallContainer';
 
 import MiddleContainer from '../components/NoticeComponents/MiddleContainer';
-
+import IPCONFIG from '../config/IpConfig';
 function Notice({navigation}) {
   console.disableYellowBox = true;
   return (

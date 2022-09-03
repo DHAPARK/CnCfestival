@@ -8,7 +8,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import qs from 'qs';
 import {useNavigation} from '@react-navigation/native';
-
+import IPCONFIG from '../../config/IpConfig';
 var heightValue = Platform.OS === 'ios' ? 75 : 70;
 var borderpx = Platform.OS === 'ios' ? 0.5 : 2.0;
 var borderColor = Platform.OS === 'ios' ? 192 : 220;
@@ -109,7 +109,7 @@ function MiddleContainer(props) {
   function purchaseItem() {
     axios({
       method: 'POST',
-      url: `http://220.67.231.91:80/buyProductRequest`,
+      url: `${IPCONFIG}/buyProductRequest`,
       data: {
         userId: account.userid,
         userPassword: account.userpw,

@@ -4,7 +4,7 @@ import {Platform, StyleSheet} from 'react-native';
 import {View} from 'react-native-web';
 import ModifyInfoButton from './ModifyInfoButton';
 import LogOutButton from './LogOutButton';
-
+import IPCONFIG from '../../config/IpConfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {useNavigation} from '@react-navigation/native';

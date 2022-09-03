@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-
+import IPCONFIG from '../../config/IpConfig';
 import {Platform} from 'react-native';
 const width = Platform.OS === 'ios' ? 25 : 24;
 
