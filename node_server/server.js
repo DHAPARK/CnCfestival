@@ -306,8 +306,10 @@ app.post("/test", async (req, res) => {
     .toString()
     .split("\n");
   console.log(`outputData 읽기 완료`);
-
+  
   outputData.pop();
+
+  console.log(outputData, typeof outputData);
 
   let userOutputData = fs
     .readFileSync(
