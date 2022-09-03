@@ -130,7 +130,8 @@
                         var data2 = [];
                         data2["userId"] = JSON.parse(localStorage.getItem('UserInfo')).userid;
                         data2["videoUrl"] = document.getElementById("videoUrlForPoint").value;
-                        data2["watchLength"] = data["watchTime"];
+                        //data2["watchLength"] = data["watchTime"];
+                        data2["watchLength"] = 1;
                         data2["videoTotalLength"]  = tmp_obj.getDuration();
                         data2["userAccount"] = JSON.parse(localStorage.getItem('UserInfo')).accountAddress;
                         
