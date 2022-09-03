@@ -246,7 +246,7 @@ app.post("/test", async (req, res) => {
   let inputData = fs
     .readFileSync(
       process.cwd() + `/answer/input_answer${quizNum}.txt`,
-      "utf-8",
+      "utf8",
       (err) => {
         if (err) {
           console.log(`${err}\n파일 로딩에 문제발생`);
@@ -296,7 +296,7 @@ app.post("/test", async (req, res) => {
   let outputData = fs
     .readFileSync(
       process.cwd() + `/answer/output_answer${quizNum}.txt`,
-      "utf-8",
+      "utf8",
       (err) => {
         if (err) {
           console.log(`${err}\n파일 로딩에 문제발생`);
@@ -314,7 +314,7 @@ app.post("/test", async (req, res) => {
   let userOutputData = fs
     .readFileSync(
       process.cwd() + `/submit/${submitOutputFileName}`,
-      "utf-8",
+      "utf8",
       (err) => {
         console.log(`### useroutputdata 읽는 중`);
         if (err) {
