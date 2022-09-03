@@ -12,7 +12,7 @@
     
 
     <script>
-        const ipConfig = require('../config/ipConfig');
+        const ipConfig = document.getElementById("ipConfig").value;
 
         function checkUserIdNull(){
             var useridInput = document.getElementById("userid").value;
@@ -83,6 +83,7 @@
     </script>
 </head>
 <body>
+    <input type="hidden" id="ipConfig" value="<%-include('./ipConfig.ejs')%>"/>
     <div id="container">
         
         <div id="middleContainer">

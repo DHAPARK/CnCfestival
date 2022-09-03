@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/workBookPython.css"/>
 
     <script>
-        const ipConfig = require('../config/ipConfig');
+        const ipConfig = document.getElementById("ipConfig").value;
         function goToSolution(element) {
             var quizNum = element.parentNode.children[0].innerText; // 문제번호
             var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
@@ -33,7 +33,7 @@
     </script>
 </head>
 <body>
-    
+    <input type="hidden" id="ipConfig" value="<%-include('./ipConfig.ejs')%>"/>
     
     <div id="container">
         <!-- 맨위 왼쪽의 로고와 오른쪽의 메뉴들을 담는 topcontainer -->

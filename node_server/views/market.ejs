@@ -30,7 +30,7 @@
     </style>
 
     <script>
-        const ipConfig = require('../config/ipConfig');
+        const ipConfig = document.getElementById("ipConfig").value;
 
         function goToBack(element) {
             var currentPage = element.parentNode.parentNode.children[0].value;
@@ -85,7 +85,7 @@
 </head>
 <body>
 
-
+    <input type="hidden" id="ipConfig" value="<%-include('./ipConfig.ejs')%>"/>
     
     
     <div id="container">

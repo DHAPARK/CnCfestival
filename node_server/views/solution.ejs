@@ -180,7 +180,7 @@
                 }
             };
 
-            const ipConfig = require('../config/ipConfig');
+            const ipConfig = document.getElementById("ipConfig").value;
             httpRequest.open('POST', `${ipConfig}/test`,true);
 
             httpRequest.responseType = "json";
@@ -194,6 +194,6 @@
         }
         </script>
     </script>
-
+    <input type="hidden" id="ipConfig" value="<%-include('./ipConfig.ejs')%>"/>
 </body>
 </html>

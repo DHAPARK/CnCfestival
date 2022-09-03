@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js" integrity="sha512-/l6vieC+YxaZywUhmqs++8uF9DeMvJE61ua5g+UK0TuHZ4TkTgB1Gm1n0NiA86uEOM9JJ6JUwyR0hboKO0fCng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="/regist1.css"/>
     <script>
-        const ipConfig = require('../config/ipSetting');
+        const ipConfig = document.getElementById("ipConfig").value;
         var checkDupId = false;
 
         function checkUserIdNull(){
@@ -161,7 +161,7 @@
 
 </head>
 <body class="bg_cont">
-    
+    <input type="hidden" id="ipConfig" value="<%-include('./ipConfig.ejs')%>"/>
     <div id="container">
         <!-- 맨위 왼쪽의 로고와 오른쪽의 메뉴들을 담는 topcontainer -->
         <div id="topLongContainer" class="bg_cont">
