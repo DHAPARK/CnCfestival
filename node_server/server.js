@@ -316,6 +316,7 @@ app.post("/test", async (req, res) => {
       process.cwd() + `/submit/${submitOutputFileName}`,
       "utf-8",
       (err) => {
+        console.log(`### useroutputdata 읽는 중`);
         if (err) {
           console.log(`${err}\n파일 로딩에 문제발생`);
         }
@@ -330,10 +331,8 @@ app.post("/test", async (req, res) => {
 
   let total = outputData.length;
   let correct = 0;
-  console.log(`total = ${total}`);
 
   outputData.forEach(async (data, index, arr) => {
-    console.log(`index = ${index}, total = ${total}, correct = ${correct}`);
     if (data == userOutputData[index]) {
       correct += 1;
     }
