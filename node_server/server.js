@@ -272,34 +272,25 @@ app.post("/test", async (req, res) => {
   );
   console.log(`${submitOutputFileName} 생성 완료`);
   
-  let tmp_stdout, tmp_error;
   for (let data of inputData) {
-    exec(`echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`, { shell: false }, (error, stdout, stderr) => {
-      if (error) {
-        tmp_stdout = stdout;
-        tmp_error = error;
-      } else {
-        fs.appendFileSync(
-          process.cwd() + `/submit/${submitOutputFileName}`,
-          stdout,
-          "utf8",
-          (err) => {
-            if (err) {
-              console.log(`${err}\noutput 파일생성에 문제발생`);
-            }
+    let { stdout, error } = await exec(
+      `echo ${data} | python3 ` + process.cwd() + `/submit/${fileName}`,
+      { shell: true }
+    );
+    if (error) {
+      res.json({ code: 100, stderr: error.message });
+    } else {
+      fs.appendFileSync(
+        process.cwd() + `/submit/${submitOutputFileName}`,
+        stdout,
+        "utf8",
+        (err) => {
+          if (err) {
+            console.log(`${err}\noutput 파일생성에 문제발생`);
           }
-        );
-      }
-    });
-    if (tmp_error) {
-      break;
+        }
+      );
     }
-  }
-  console.log(`tmp_error = ${JSON.stringify(tmp_error)}`);
-
-  if (tmp_error) {
-    console.log(`error is false ${error} ${stdout}`);
-    res.json({ code: 100, stderr: error.message });
   }
 
   let outputData = fs
