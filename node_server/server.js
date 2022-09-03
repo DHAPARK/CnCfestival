@@ -326,6 +326,8 @@ app.post("/test", async (req, res) => {
   console.log(`${submitOutputFileName} 읽기 완료`);
   userOutputData.pop();
 
+  console.log(userOutputData, typeof userOutputData);
+
   let total = outputData.length;
   let correct = 0;
   console.log(`total = ${total}`);
