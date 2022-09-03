@@ -291,9 +291,12 @@ app.post("/test", async (req, res) => {
         );
       }
     });
+    if (tmp_error) {
+      break;
+    }
   }
   console.log(`tmp_error = ${JSON.stringify(tmp_error)}`);
-  
+
   if (tmp_error) {
     console.log(`error is false ${error} ${stdout}`);
     res.json({ code: 100, stderr: error.message });
