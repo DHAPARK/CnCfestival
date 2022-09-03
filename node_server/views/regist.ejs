@@ -137,7 +137,7 @@
             console.log(`###2 ${qsData}`);
 
             axios({
-                url: `/web/util/checkIdDuplicate/${userid}`,
+                url: `<%-include('./ipConfig.ejs')%>/web/util/checkIdDuplicate/${userid}`,
                 method: 'GET',
                 baseURL: `${ipConfig}`
             }).then((res)=>{
