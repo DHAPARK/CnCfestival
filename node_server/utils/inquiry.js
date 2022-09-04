@@ -141,8 +141,7 @@ async function getProductInfo() {
             temp['videoName'] = doc.id;
             videoWatchObj.push(temp);
         });
-        
-        console.log(`watchObj = ${JSON.stringify(videoWatchObj)}`);
+    
         resolve(videoWatchObj);
     });
 }
