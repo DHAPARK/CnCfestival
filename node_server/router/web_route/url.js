@@ -120,43 +120,33 @@ router.get("/mypage/:userId", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/mypage/:userId");
   
   const userId = req.params.userId;
-  const userInfo = global.sessionList[userId][userId];
-  const accountAddress = userInfo["accountAddress"];
-
-  let myInfo = {};
-  myInfo["userId"] = userId;
-  myInfo["balance"] = await balanceInquiry(accountAddress);
-  myInfo["transferLog"] = await getTransactionLog(accountAddress);
-  let videoLog = await getVideoWatchInfo(userId);
-
-  for (let i=0; i<videoLog.length; i++) {
-    let log = videoLog[i];
-    let videoUrl = log['videoUrl'].split('?')[0];
-    let pointLogObj = await getUserPointLog(userId, videoUrl);
-    let totalPoint = await calcPointLog(pointLogObj);
-    console.log(`## totalPoint  ${totalPoint}`);
-    log['totalPoint'] = totalPoint;
-    console.log(`## log  ${JSON.stringify(log)}`);
+  try {
+    const userInfo = global.sessionList[userId][userId];
+    const accountAddress = userInfo["accountAddress"];
+  
+    let myInfo = {};
+    myInfo["userId"] = userId;
+    myInfo["balance"] = await balanceInquiry(accountAddress);
+    myInfo["transferLog"] = await getTransactionLog(accountAddress);
+    let videoLog = await getVideoWatchInfo(userId);
+  
+    for (let i=0; i<videoLog.length; i++) {
+      let log = videoLog[i];
+      let videoUrl = log['videoUrl'].split('?')[0];
+      let pointLogObj = await getUserPointLog(userId, videoUrl);
+      let totalPoint = await calcPointLog(pointLogObj);
+      console.log(`## totalPoint  ${totalPoint}`);
+      log['totalPoint'] = totalPoint;
+      console.log(`## log  ${JSON.stringify(log)}`);
+    }
+  
+    myInfo["videoLog"] = videoLog;
+    myInfo["POINT_MAXIMUM"] = POINT_MAXIMUM;
+    console.log(`myInfo = ${JSON.stringify(myInfo)}`);
+    res.render("mypage", { info: myInfo });
+  } catch(err) {
+    res.render("index");
   }
-
-  myInfo["videoLog"] = videoLog;
-  myInfo["POINT_MAXIMUM"] = POINT_MAXIMUM;
-  console.log(`myInfo = ${JSON.stringify(myInfo)}`);
-  res.render("mypage", { info: myInfo });
-
-  // try {
-  //   const userInfo = global.sessionList[userId][userId];
-  //   const accountAddress = userInfo["accountAddress"];
-  //   let myInfo = {};
-  //   myInfo["userId"] = userId;
-  //   myInfo["balance"] = await balanceInquiry(accountAddress);
-  //   myInfo["transferLog"] = await getTransactionLog(accountAddress);
-  //   myInfo["videoLog"] = await getVideoWatchInfo(userId);
-
-  //   res.render("mypage", { info: myInfo });
-  // } catch (e) {
-  //   res.render("index");
-  // }
 });
 
 //추가된부분
