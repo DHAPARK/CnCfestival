@@ -116,19 +116,30 @@ router.get("/mypage/:userId", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/mypage/:userId");
   
   const userId = req.params.userId;
-  try {
-    const userInfo = global.sessionList[userId][userId];
-    const accountAddress = userInfo["accountAddress"];
-    let myInfo = {};
-    myInfo["userId"] = userId;
-    myInfo["balance"] = await balanceInquiry(accountAddress);
-    myInfo["transferLog"] = await getTransactionLog(accountAddress);
-    myInfo["videoLog"] = await getVideoWatchInfo(userId);
+  const userInfo = global.sessionList[userId][userId];
+  const accountAddress = userInfo["accountAddress"];
+  let myInfo = {};
+  myInfo["userId"] = userId;
+  myInfo["balance"] = await balanceInquiry(accountAddress);
+  myInfo["transferLog"] = await getTransactionLog(accountAddress);
+  myInfo["videoLog"] = await getVideoWatchInfo(userId);
 
-    res.render("mypage", { info: myInfo });
-  } catch (e) {
-    res.render("index");
-  }
+  res.render("mypage", { info: myInfo });
+  res.render("index");
+  
+  // try {
+  //   const userInfo = global.sessionList[userId][userId];
+  //   const accountAddress = userInfo["accountAddress"];
+  //   let myInfo = {};
+  //   myInfo["userId"] = userId;
+  //   myInfo["balance"] = await balanceInquiry(accountAddress);
+  //   myInfo["transferLog"] = await getTransactionLog(accountAddress);
+  //   myInfo["videoLog"] = await getVideoWatchInfo(userId);
+
+  //   res.render("mypage", { info: myInfo });
+  // } catch (e) {
+  //   res.render("index");
+  // }
 });
 
 //추가된부분
