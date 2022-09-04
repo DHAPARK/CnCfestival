@@ -59,18 +59,18 @@
                     <li><div class="ListInnerTopTitle">시청완료</div></li>
                 </ul>
                 <!--여기서 이제 진짜 서버에서 넘어온 data들 for loop -->
-                <p><%= info.videoLog %></p>
+
 
                 <table id="solvedQuestionList_each_question" style="display : none;">
                     <% 
-                    if (info.transferLog != "None") {
-                        for(let j = 0; j<info.transferLog.length ; j++){ 
+                    if (info.videoLog != "None") {
+                        for(let j = 0; j<info.videoLog.length ; j++){ 
                         %>
                         <tr>
-                            <td class="tb_left_bd" ><%=info.transferLog[j].senderId%></td>
-                            <td class="tb_left2_bd"><%=info.transferLog[j].receiverId%></td>
-                            <td class="tb_left3_bd"><%=info.transferLog[j].amount%> HSC</td>
-                            <td class="tb_left4_bd"> <%=info.transferLog[j].transactionTime%> </td>
+                            <td class="tb_left_bd" ><%=info.videoLog[j].videoName%></td>
+                            <td class="tb_left2_bd"><%=  parseInt( info.videoLog[j].watchTime / info.videoLog[j].videoTotalLength ) %> %</td>
+                            <td class="tb_left3_bd"><%=info.videoLog[j].totalPoint%> / <%= info.videoLog[j].POINT_MAXIMUM %> HSC</td>
+                            <td class="tb_left4_bd"> <%=info.videoLog[j].watchComplete ? "완" : "미완" %> </td>
                         </tr>
                     <% 
                         }

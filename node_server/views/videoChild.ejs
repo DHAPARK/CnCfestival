@@ -118,8 +118,8 @@
             //여기서 서버로 걍 박으면 되는거 아닌가?
                 if ( data["watchTime"] != parseInt(player.getCurrentTime()) ) {
                     data["watchTime"] = parseInt(player.getCurrentTime());
-                    data["videoTotalLength"]  = tmp_obj.getDuration();
-                    console.log(`player.getCurrentTime() : ${player.getCurrentTime()}`);
+                    data["videoTotalLength"]  = parseInt(tmp_obj.getDuration());
+                    console.log(`player.getCurrentTime() : ${parseInt(player.getCurrentTime())}`);
                     axios({
                         url: 'web/util/saveVideoLog',
                         method: 'POST',
@@ -133,7 +133,7 @@
                         data2["videoUrl"] = document.getElementById("videoUrlForPoint").value.split("?")[0];
                         //data2["watchLength"] = data["watchTime"];
                         data2["watchLength"] = 1;
-                        data2["videoTotalLength"]  = tmp_obj.getDuration();
+                        data2["videoTotalLength"]  = parseInt(tmp_obj.getDuration());
                         data2["userAccount"] = JSON.parse(localStorage.getItem('UserInfo')).accountAddress;
                         
                         axios({
