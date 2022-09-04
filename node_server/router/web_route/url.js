@@ -10,6 +10,8 @@ const { ipConfig } = require("../../config/ipSetting");
 app.use(cors());
 
 const {
+  calcPointLog,
+  getUserPointLog,
   balanceInquiry,
   getTransactionLog,
   getProductInfo,
@@ -123,7 +125,13 @@ router.get("/mypage/:userId", async (req, res) => {
   myInfo["userId"] = userId;
   myInfo["balance"] = await balanceInquiry(accountAddress);
   myInfo["transferLog"] = await getTransactionLog(accountAddress);
-  myInfo["videoLog"] = await getVideoWatchInfo(userId);
+  let videoLog = await getVideoWatchInfo(userId);
+  videoLog.forEach((log) => {
+    let pointLogObj = await getUserPointLog(userId, log['videoName']);
+    let totalPoint = await calcPointLog(pointLogObj);
+    log['totalPoint'] = totalPoint;
+  })
+  myInfo["videoLog"] = videoLog;
 
   res.render("mypage", { info: myInfo });
 
