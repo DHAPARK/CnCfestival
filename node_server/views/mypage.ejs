@@ -69,7 +69,7 @@
                         <tr>
                             <td class="tb_left_bd" ><%=info.videoLog[j].videoName%></td>
 
-                            <td class="tb_left2_bd"><%=  parseInt( info.videoLog[j].watchTime / info.videoLog[j].videoTotalLength ) * 100 %> </td>
+                            <td class="tb_left2_bd"><%=  parseInt( info.videoLog[j].watchTime * 100 / info.videoLog[j].videoTotalLength ) %> </td>
 
                             <td class="tb_left2_bd"> watchTime :<%=  info.videoLog[j].watchTime %> </td>
                             <td class="tb_left2_bd"> videoTotalLength : <%=  info.videoLog[j].videoTotalLength  %></td>
