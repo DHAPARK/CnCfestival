@@ -137,9 +137,11 @@ async function getProductInfo() {
     console.log(`getVideoWatchLog ${userId}`);
     return new Promise(resolve => {
         watchLogRef.forEach(doc => {
-            let temp = doc.data();
-            temp['id'] = doc.id;
-            videoWatchObj.push(temp);
+            console.log(JSON.stringify(doc));
+            
+            // let temp = doc.data();
+            // temp['id'] = doc.id;
+            // videoWatchObj.push(temp);
         });
         
         console.log(`watchObj = ${JSON.stringify(videoWatchObj)}`);
