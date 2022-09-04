@@ -128,14 +128,16 @@ router.get("/mypage/:userId", async (req, res) => {
   myInfo["balance"] = await balanceInquiry(accountAddress);
   myInfo["transferLog"] = await getTransactionLog(accountAddress);
   let videoLog = await getVideoWatchInfo(userId);
-  videoLog.forEach(async (log) => {
+
+  for (let i=0; i<videoLog.length; i++) {
+    let log = videoLog[i];
     let pointLogObj = await getUserPointLog(userId, log['videoName']);
     let totalPoint = await calcPointLog(pointLogObj);
     console.log(`## totalPoint  ${totalPoint}`);
     log['totalPoint'] = totalPoint;
     console.log(`## log  ${JSON.stringify(log)}`);
-  });
-  
+  }
+
   myInfo["videoLog"] = videoLog;
   myInfo["POINT_MAXIMUM"] = POINT_MAXIMUM;
   console.log(`myInfo = ${JSON.stringify(myInfo)}`);
