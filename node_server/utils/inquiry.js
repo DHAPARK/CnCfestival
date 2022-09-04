@@ -134,9 +134,12 @@ async function getProductInfo() {
     let videoWatchObj = [];
     let watchLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).get();
 
+    console.log(`getVideoWatchLog ${userId}`)
     return new Promise(resolve => {
         for (let i = 0; i<watchLogRef.length; i++) {
             let doc = watchLogRef[i];
+            console.log(`doc.id = ${doc.id}`)
+            console.log(`doc.id == userId = ${doc.id == userId}`)
             if (doc.id == userId) {
                 for (let j=0; j<doc.data().length; j++) {
                     let docData = doc.data()[i];
