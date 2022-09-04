@@ -355,7 +355,9 @@ async function getUserFaviconList(userId) {
 /////////////////////////////////////////
 
 module.exports = {
-    balanceInquiry, 
+    balanceInquiry,
+    getUserPointLog,
+    calcPointLog, 
     getFranchise, 
     getProductInfo,
     getVideoInfo,
