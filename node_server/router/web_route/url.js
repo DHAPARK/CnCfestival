@@ -123,8 +123,7 @@ router.get("/mypage/:userId", async (req, res) => {
   myInfo["userId"] = userId;
   myInfo["balance"] = await balanceInquiry(accountAddress);
   myInfo["transferLog"] = await getTransactionLog(accountAddress);
-  //myInfo["videoLog"] = await getVideoWatchInfo(userId);
-  myInfo["videoLog"] = await getVideoWatchInfo("aaaa1234");
+  myInfo["videoLog"] = await getVideoWatchInfo(userId);
 
   res.render("mypage", { info: myInfo });
 
