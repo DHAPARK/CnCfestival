@@ -68,16 +68,7 @@
                         %>
                         <tr>
                             <td class="tb_left_bd" ><%=info.videoLog[j].videoName%></td>
-
-                            <td class="tb_left2_bd"><%=  parseInt( info.videoLog[j].watchTime * 100 / info.videoLog[j].videoTotalLength ) %> </td>
-
-                            <td class="tb_left2_bd"> watchTime :<%=  info.videoLog[j].watchTime %> </td>
-                            <td class="tb_left2_bd"> videoTotalLength : <%=  info.videoLog[j].videoTotalLength  %></td>
-                            <td class="tb_left2_bd"> watchTime :<%=  typeof(info.videoLog[j].watchTime) %> </td>
-                            <td class="tb_left2_bd"> videoTotalLength : <%=  typeof(info.videoLog[j].videoTotalLength)  %></td>
-
-
-
+                            <td class="tb_left2_bd"><%=info.videoLog[j].watchTime%>%> / <%=info.videoLog[j].videoTotalLength%>  ( <%= parseInt( info.videoLog[j].watchTime * 100 / info.videoLog[j].videoTotalLength ) %> ) %</td>
                             <td class="tb_left3_bd"><%=info.videoLog[j].totalPoint%> / <%= info.POINT_MAXIMUM %> HSC</td>
                             <td class="tb_left4_bd"> <%=info.videoLog[j].watchComplete ? "완" : "미완" %> </td>
                         </tr>
