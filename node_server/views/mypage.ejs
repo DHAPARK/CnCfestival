@@ -70,7 +70,7 @@
                             <td class="tb_left_bd" ><%=info.videoLog[j].videoName%></td>
                             <td class="tb_left2_bd"><%=  parseInt( info.videoLog[j].watchTime / info.videoLog[j].videoTotalLength ) * 100 %> %</td>
                             <td class="tb_left3_bd"><%=info.videoLog[j].totalPoint%> / <%= info.POINT_MAXIMUM %> HSC</td>
-                            <td class="tb_left4_bd"> <%=info.videoLog[j].watchComplete == "true" ? "완" : "미완" %> </td>
+                            <td class="tb_left4_bd"> <%=info.videoLog[j].watchComplete ? "완" : "미완" %> </td>
                         </tr>
                     <% 
                         }
