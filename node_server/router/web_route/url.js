@@ -21,6 +21,8 @@ const {
   getVideoWatchInfo,
 } = require("../../utils/inquiry");
 
+const {POINT_MAXIMUM} = require("../../utils/constant");
+
 router.get("/index", (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/index");
 
@@ -126,12 +128,13 @@ router.get("/mypage/:userId", async (req, res) => {
   myInfo["balance"] = await balanceInquiry(accountAddress);
   myInfo["transferLog"] = await getTransactionLog(accountAddress);
   let videoLog = await getVideoWatchInfo(userId);
-  videoLog.forEach((log) => {
+  videoLog.forEach(async (log) => {
     let pointLogObj = await getUserPointLog(userId, log['videoName']);
     let totalPoint = await calcPointLog(pointLogObj);
     log['totalPoint'] = totalPoint;
   })
   myInfo["videoLog"] = videoLog;
+  myInfo["POINT_MAXIMUM"] = POINT_MAXIMUM;
 
   res.render("mypage", { info: myInfo });
 
