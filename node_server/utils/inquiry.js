@@ -295,13 +295,15 @@ async function getProductInfo() {
  * @returns 유저 아이디
  */
  async function getQuizLog(documentName) {
-    let userInfoRef = await global.db.collection(DB_COLLECTION["QUIZ_LOG"]).doc(documentName).get();
-    console.log(JSON.stringify(userInfoRef));
-    if (userInfoRef._size == 0) {
-        return false;
-    } else {
-        return true;
-    }
+    let userInfoRef = await global.db.collection(DB_COLLECTION["QUIZ_LOG"]).get();
+    return new Promise(resolve => {
+        userInfoRef.forEach(doc => {
+            if(doc.id == documentName) {
+                resolve(true);
+            }
+        })
+        resolve(false);
+    })
 }
 
 /**
