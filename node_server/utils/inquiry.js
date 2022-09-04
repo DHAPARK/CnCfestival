@@ -135,6 +135,7 @@ async function getProductInfo() {
     let watchLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc(userId);
 
     return new Promise(resolve => {
+        console.log(`logRef empty = ${watchLogRef.empty}`);
         if (watchLogRef.empty) {
             watchLogRef.forEach(doc => {
                 let temp = doc.collection(doc.id).get().data();
