@@ -26,6 +26,7 @@ const DB_COLLECTION = {
     'VIDEO':'video',
     'VIDEO_LOG':'video_log',
     'POINT_LOG':'point_log',
+    'QUIZ_LOG':'quiz_log',
     'QUESTION':'question',
     'FAVICON':'favicon'
 };

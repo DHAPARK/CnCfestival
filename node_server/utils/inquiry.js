@@ -136,7 +136,6 @@ async function getProductInfo() {
     let watchLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc(userId).collection(userId).get();
 
     return new Promise(resolve => {
-        console.log(JSON.stringify(watchLogRef));
         watchLogRef.forEach(doc => {
             let temp = doc.data();
             temp['videoName'] = doc.id;
@@ -290,6 +289,19 @@ async function getProductInfo() {
     })
 }
 
+/**
+ * 유저 아이디를 가져오는 함수
+ * @param {string} inquiryAddress 
+ * @returns 유저 아이디
+ */
+ async function getQuizLog(documentName) {
+    let userInfoRef = await global.db.collection(DB_COLLECTION["QUIZ_LOG"]).doc(documentName).get();
+    if (userInfoRef.size == 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 /**
  * 가입된 유저 정보를 가져옴
@@ -385,7 +397,8 @@ module.exports = {
     setUserVideoLog,
     getTransactionLog, 
     getAllUserBalance, 
-    getUserInfo, 
+    getUserInfo,
+    getQuizLog,
     getUserId,
     getVideoWatchInfo,
     getAccountPassword,
