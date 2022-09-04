@@ -45,7 +45,7 @@
 
             <div id="workbookContainer">
                 <div id="menuTitle">
-                    <p id="number">번호</p> <p id="title">제목</p> <p id="progress">해결</p>
+                    <p id="number">번호</p> <p id="title">제목</p> <p id="title">분야</p> <p id="progress">해결</p>
                 </div>
 
                 <!--문제 리스트-->
@@ -59,8 +59,9 @@
                                     <p id="_number"><%=quizInfo[i].quizNum%></p>
                                     <a id="workbook_div" onclick="goToSolution(this)">
                                         <p id="_title"><%=quizInfo[i].title%></p>
-                                        <p><%=quizInfo[i].kind%></p>
+                                        <p style="margin-left:40px;"><%=quizInfo[i].kind%></p>
                                     </a>
+                                    
                                     <!--해결 checkbox-->
                                     <input type="checkbox" name="complete">
                                 </div>
