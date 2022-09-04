@@ -16,6 +16,7 @@ const {
   getVideoInfo,
   getUserVideoLog,
   getQuizInfo,
+  getVideoWatchInfo,
 } = require("../../utils/inquiry");
 
 router.get("/index", (req, res) => {
