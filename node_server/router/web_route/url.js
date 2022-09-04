@@ -117,7 +117,7 @@ router.get("/mypage/:userId", async (req, res) => {
 
   const userId = req.params.userId;
   //try {
-    const userInfo = global.sessionList[userId][userId];
+    const userInfo = global.sessionList[userId];
     const accountAddress = userInfo["accountAddress"];
     let myInfo = {};
     myInfo["userId"] = userId;
