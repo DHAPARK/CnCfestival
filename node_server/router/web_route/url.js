@@ -115,7 +115,12 @@ router.get("/mypage/:userId", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/mypage/:userId");
 
   const userId = req.params.userId;
-  const userInfo = global.sessionList[userId][userId];
+  try {
+    const userInfo = global.sessionList[userId][userId];
+  } catch (e) {
+    res.render("/index");
+  }
+
   const accountAddress = userInfo["accountAddress"];
 
   let myInfo = {};
