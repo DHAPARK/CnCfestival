@@ -296,7 +296,8 @@ async function getProductInfo() {
  */
  async function getQuizLog(documentName) {
     let userInfoRef = await global.db.collection(DB_COLLECTION["QUIZ_LOG"]).doc(documentName).get();
-    if (userInfoRef.size == 0) {
+    console.log(JSON.stringify(userInfoRef));
+    if (userInfoRef._size == 0) {
         return false;
     } else {
         return true;
