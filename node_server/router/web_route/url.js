@@ -134,7 +134,8 @@ router.get("/mypage/:userId", async (req, res) => {
     console.log(`## totalPoint  ${totalPoint}`);
     log['totalPoint'] = totalPoint;
     console.log(`## log  ${JSON.stringify(log)}`);
-  })
+  });
+  
   myInfo["videoLog"] = videoLog;
   myInfo["POINT_MAXIMUM"] = POINT_MAXIMUM;
   console.log(`myInfo = ${JSON.stringify(myInfo)}`);
