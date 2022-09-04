@@ -280,6 +280,22 @@ async function getProductInfo() {
  * @param {string} userId 
  * @returns {object} 유저 정보 객체
  */
+ async function getUserAccount(userId) {
+    let userInfoRef = await global.db.collection(DB_COLLECTION["USERS"]);
+    let snapShot = await userInfoRef.where('userid', '==', userId).get();
+    return new Promise(resolve => {
+        snapShot.forEach(doc => {
+            resolve(doc.data()['accountAddress']);
+        })
+    })
+}
+
+
+/**
+ * 가입된 유저 정보를 가져옴
+ * @param {string} userId 
+ * @returns {object} 유저 정보 객체
+ */
 async function getUserInfo(userId) {
     let userInfoRef = await global.db.collection(DB_COLLECTION["USERS"]);
     let snapShot = await userInfoRef.where('userid', '==', userId).get();
@@ -373,6 +389,6 @@ module.exports = {
     getUserId,
     getVideoWatchInfo,
     getAccountPassword,
-    getAccountPassword, 
+    getUserAccount,
     getRecentTransferAccount 
 }

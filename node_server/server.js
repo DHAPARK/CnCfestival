@@ -31,10 +31,12 @@ const {
   allowedNodeEnvironmentFlags,
   getMaxListeners,
   env,
+  resourceUsage,
 } = require("process");
 const { json } = require("express");
 const PORT = 80;
-
+const {getUserAccount} = require('./utils/inquiry');
+const {transferHSC} = require('./utils/transaction');
 const envConfig = require("./config/envConfig");
 
 function isAlphaNumCheck(str) {
@@ -219,6 +221,7 @@ app.use("/web/transaction", webTransactionRouter);
 app.post("/test", async (req, res) => {
   let code = decodeURIComponent(req.body.code);
   let userId = decodeURIComponent(req.body.userId);
+  let userAccount = await getUserAccount(userId);
   let quizNum = decodeURIComponent(req.body.quizNum).replaceAll("'", "");
   console.log(code);
 
@@ -351,7 +354,7 @@ app.post("/test", async (req, res) => {
         total : total,
         percentage : correct / total * 100
       };
-      
+      await transferHSC(global.accountList[0], userAccount, 10);
       res.json({ code: 200, stdout: stdout });
     }
   });
