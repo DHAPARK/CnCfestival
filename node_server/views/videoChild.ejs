@@ -111,7 +111,29 @@
                 // 영상이 끝나면 수고하셨습니다 alert뜨고 종료.
                 if ( player.getCurrentTime() >= tmp_obj.getDuration() ) {
                     if (window.confirm("고생하셨습니다.창을 닫으시겠습니까?")) {
-                        window.close();
+                        //axios 여기까지
+                        var data = {
+                            userId : JSON.parse(localStorage.getItem('UserInfo')).userid,
+                            videoName : document.getElementById("videoName").value,
+                            watchDate : document.getElementById("watchDate").value,
+                            watchTime : timeCnt,
+                            watchComplete : document.getElementById("watchComplete").value
+                        };
+                        data["videoTotalLength"]  = parseInt(tmp_obj.getDuration());
+
+                        axios({
+                            url: 'web/util/saveVideoLog',
+                            method: 'POST',
+                            baseURL: `${ipConfig}`,
+                            data: Qs.stringify(data)
+                        }).then((res)=>{
+                            if(res){
+                                window.close();
+                                
+                            }
+                        })
+                        //axios 여기까지
+
                     }
                 }
 
