@@ -42,6 +42,7 @@ async function calcPointLog(pointLogObj) {
         Object.keys(pointLogObj).forEach((value) => {
             pointTotal += pointLogObj[value]['point'];
         })
+        console.log(`pointTotal = ${pointTotal}`);
         resolve(pointTotal);
     });
 }
