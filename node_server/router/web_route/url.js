@@ -131,7 +131,8 @@ router.get("/mypage/:userId", async (req, res) => {
 
   for (let i=0; i<videoLog.length; i++) {
     let log = videoLog[i];
-    let pointLogObj = await getUserPointLog(userId, log['videoName']);
+    let videoUrl = log['videoUrl'].split('?')[0];
+    let pointLogObj = await getUserPointLog(userId, videoUrl);
     let totalPoint = await calcPointLog(pointLogObj);
     console.log(`## totalPoint  ${totalPoint}`);
     log['totalPoint'] = totalPoint;
