@@ -119,6 +119,8 @@
                 if ( data["watchTime"] != parseInt(player.getCurrentTime()) ) {
                     data["watchTime"] = parseInt(player.getCurrentTime());
                     data["videoTotalLength"]  = parseInt(tmp_obj.getDuration());
+                    //여기에 
+                    data["videoUrl"] = document.getElementById("videoUrlForPoint").value;
                     console.log(`player.getCurrentTime() : ${parseInt(player.getCurrentTime())}`);
                     axios({
                         url: 'web/util/saveVideoLog',
