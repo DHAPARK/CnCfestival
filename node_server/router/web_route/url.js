@@ -114,7 +114,7 @@ router.get("/multipleChoice", (req, res) => {
 
 router.get("/mypage/:userId", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/mypage/:userId");
-
+  
   const userId = req.params.userId;
   try {
     const userInfo = global.sessionList[userId][userId];

@@ -143,6 +143,8 @@ async function getProductInfo() {
                 videoWatchObj.push(temp);
             });
         }
+        console.log(videoWatchObj);
+        console.log(JSON.stringify(videoWatchObj));
         resolve(videoWatchObj);
     });
 }
