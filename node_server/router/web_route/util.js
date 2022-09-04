@@ -172,6 +172,8 @@ router.post("/saveVideoLog", async (req, res) => {
   console.log(`watchComplete : ${watchComplete}`);
   console.log(`videoTotalLength : ${videoTotalLength}`);
 
+  watchTime = int(watchTime);
+  videoTotalLength = int(videoTotalLength);
   watchComplete = watchTime == videoTotalLength - 1 ? true : false;
   let ps = await global.db.collection(DB_COLLECTION["VIDEO_LOG"]);
   ps.doc(userId)
