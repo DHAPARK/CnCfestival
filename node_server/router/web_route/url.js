@@ -118,16 +118,15 @@ router.get("/mypage/:userId", async (req, res) => {
   try {
     const userInfo = global.sessionList[userId][userId];
     const accountAddress = userInfo["accountAddress"];
+    let myInfo = {};
+    myInfo["userId"] = userId;
+    myInfo["balance"] = await balanceInquiry(accountAddress);
+    myInfo["transferLog"] = await getTransactionLog(accountAddress);
+
+    res.render("mypage", { info: myInfo });
   } catch (e) {
     res.render("index");
   }
-
-  let myInfo = {};
-  myInfo["userId"] = userId;
-  myInfo["balance"] = await balanceInquiry(accountAddress);
-  myInfo["transferLog"] = await getTransactionLog(accountAddress);
-
-  res.render("mypage", { info: myInfo });
 });
 
 //추가된부분
