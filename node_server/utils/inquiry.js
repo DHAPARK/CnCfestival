@@ -132,7 +132,7 @@ async function getProductInfo() {
  */
  async function getVideoWatchInfo(userId) {
     let videoWatchObj = [];
-    let watchLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc(userId).get();
+    let watchLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc(userId).collection(userId).get();
 
     return new Promise(resolve => {
         console.log(JSON.stringify(watchLogRef));
