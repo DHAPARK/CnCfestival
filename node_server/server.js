@@ -351,7 +351,7 @@ app.post("/test", async (req, res) => {
         total : total,
         percentage : correct / total * 100
       };
-      if ()
+      
       res.json({ code: 200, stdout: stdout });
     }
   });

@@ -46,7 +46,7 @@ async function calcPointLog(pointLogObj) {
     });
 }
 
-async function getQuiz
+//async function getQuiz
 
 async function calcPoint(userId, videoUrl, watchLength) {
     let tempPoint = POINT * watchLength;
