@@ -108,6 +108,7 @@
     </div>    
 
     <script>
+        const ipConfig = document.getElementById("ipConfig").value;
         function clicked(){
 
         //해볼코드 line 순서때문에 하..
@@ -145,6 +146,7 @@
             'code':String(code),
             'userId' : userId,
             quizNum : quizNum,
+
         };
 
         
@@ -159,6 +161,8 @@
         
         httpRequest.onreadystatechange = () => {
             
+            
+
             if (httpRequest.readyState === XMLHttpRequest.DONE) {
                 console.log('여기까지');
                 console.log(`data : ${JSON.stringify(data)}`);
@@ -176,6 +180,14 @@
                             //document.getElementById("resultSpace").innerText = res.stdout;
                             document.getElementById("resultSpace").innerText = result;
                             document.getElementById("resultSpace").style.color = "white";
+
+                            if ( res.stdout.pass === true ) {
+                                if ( window.confirm("문제를 맞췄습니다!\n문제페이지로돌아가시겠습니까?") ) {
+                                    history.back();
+                                }
+                            }
+
+
                         } else if (res.code == 100) {
                             document.getElementById("resultSpace").innerText = res.stderr;
                             document.getElementById("resultSpace").style.color = "red";
@@ -188,9 +200,9 @@
                 }
             };
 
-            const ipConfig = document.getElementById("ipConfig").value;
+            
             httpRequest.open('POST', `${ipConfig}/test`,true);
-
+            
             httpRequest.responseType = "json";
 
             httpRequest.setRequestHeader("Content-Type", "application/json");  
