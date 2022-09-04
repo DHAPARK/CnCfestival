@@ -163,7 +163,7 @@ router.get("/getVideoInfo", async (req, res) => {
  */
 router.post("/saveVideoLog", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/saveVideoLog");
-  let { userId, videoName, watchDate, watchTime, watchComplete, videoTotalLength } = req.body;
+  let { userId, videoName, watchDate, watchTime, watchComplete, videoUrl, videoTotalLength } = req.body;
   console.log(`### /saveVideoLog : data`);
   console.log(`userId : ${userId}`);
   console.log(`videoName : ${videoName}`);
@@ -181,6 +181,7 @@ router.post("/saveVideoLog", async (req, res) => {
       watchDate: watchDate,
       watchTime: watchTime,
       watchComplete: watchComplete,
+      videoUrl: videoUrl,
       videoTotalLength : videoTotalLength
     });
   res.json({code:100});
