@@ -118,6 +118,7 @@ router.get("/mypage/:userId", async (req, res) => {
   const userId = req.params.userId;
   const userInfo = global.sessionList[userId][userId];
   const accountAddress = userInfo["accountAddress"];
+
   let myInfo = {};
   myInfo["userId"] = userId;
   myInfo["balance"] = await balanceInquiry(accountAddress);
