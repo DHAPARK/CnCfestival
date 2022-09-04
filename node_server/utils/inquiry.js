@@ -135,15 +135,12 @@ async function getProductInfo() {
     let watchLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc("aaaa1234").get();
 
     return new Promise(resolve => {
-        console.log(`logRef empty = ${JSON.stringify(watchLogRef)}`);
-        if (watchLogRef.empty) {
-            watchLogRef.forEach(doc => {
-                let temp = doc.collection(doc.id).get().data();
-                temp['videoName'] = doc.id;
-                console.log(`temp = ${temp}`);
-                videoWatchObj.push(temp);
-            });
-        }
+        watchLogRef.forEach(doc => {
+            let temp = doc.collection(doc.id).get().data();
+            temp['videoName'] = doc.id;
+            console.log(`temp = ${temp}`);
+            videoWatchObj.push(temp);
+        });
         console.log(`videoWathcObj = ${videoWatchObj}`);
         console.log(JSON.stringify(videoWatchObj));
         resolve(videoWatchObj);
