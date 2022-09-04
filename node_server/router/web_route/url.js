@@ -125,8 +125,7 @@ router.get("/mypage/:userId", async (req, res) => {
   myInfo["videoLog"] = await getVideoWatchInfo(userId);
 
   res.render("mypage", { info: myInfo });
-  res.render("index");
-  
+
   // try {
   //   const userInfo = global.sessionList[userId][userId];
   //   const accountAddress = userInfo["accountAddress"];
