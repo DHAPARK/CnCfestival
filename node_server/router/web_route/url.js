@@ -118,7 +118,7 @@ router.get("/mypage/:userId", async (req, res) => {
   try {
     const userInfo = global.sessionList[userId][userId];
   } catch (e) {
-    res.render("/index");
+    res.render("index");
   }
 
   const accountAddress = userInfo["accountAddress"];
