@@ -46,6 +46,8 @@ async function calcPointLog(pointLogObj) {
     });
 }
 
+async function getQuiz
+
 async function calcPoint(userId, videoUrl, watchLength) {
     let tempPoint = POINT * watchLength;
     let pointLogObj = await getUserPointLog(userId, videoUrl);
@@ -122,6 +124,27 @@ async function getProductInfo() {
         });
         resolve(videoObj);
     })
+}
+
+/**
+ * DB에서 강의 정보를 가져옴
+ * @returns {object} 강의 정보들 obejct
+ */
+ async function getVideoWatchInfo(userId) {
+    let videoWatchObj = [];
+    let watchLogRef = await global.db.collection(DB_COLLECTION['VIDEO_LOG']).doc(userId);
+
+    return new Promise(resolve => {
+        if (watchLogRef.empty) {
+            watchLogRef.forEach(doc => {
+                let temp = doc.collection(doc.id).get().data();
+                temp['videoName'] = doc.id;
+                console.log(`temp = ${temp}`);
+                videoWatchObj.push(temp);
+            });
+        }
+        resolve(videoWatchObj);
+    });
 }
 
 /**
@@ -343,7 +366,8 @@ module.exports = {
     getTransactionLog, 
     getAllUserBalance, 
     getUserInfo, 
-    getUserId, 
+    getUserId,
+    getVideoWatchInfo,
     getAccountPassword,
     getAccountPassword, 
     getRecentTransferAccount 

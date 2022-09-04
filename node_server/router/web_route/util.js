@@ -5,7 +5,6 @@ const userAgentModel = require("../../models/userAgentModel");
 
 const { addFavicon, getFaviconList, putItemToDB } = require("../../utils/DB");
 const {
-  getContractAddress,
   balanceInquiry,
   getFranchise,
   getTransactionLog,
