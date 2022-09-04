@@ -143,11 +143,11 @@ async function getProductInfo() {
                     console.log(`temp = ${temp}`);
                     videoWatchObj.push(temp);
                 })
+                console.log(`videoWathcObj = ${videoWatchObj}`);
+                console.log(JSON.stringify(videoWatchObj));
+                resolve(videoWatchObj);
             }
         });
-        console.log(`videoWathcObj = ${videoWatchObj}`);
-        console.log(JSON.stringify(videoWatchObj));
-        resolve(videoWatchObj);
     });
 }
 
