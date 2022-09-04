@@ -116,8 +116,8 @@ router.get("/mypage/:userId", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/mypage/:userId");
 
   const userId = req.params.userId;
-  //try {
-    const userInfo = global.sessionList[userId];
+  try {
+    const userInfo = global.sessionList[userId][userId];
     const accountAddress = userInfo["accountAddress"];
     let myInfo = {};
     myInfo["userId"] = userId;
@@ -126,9 +126,9 @@ router.get("/mypage/:userId", async (req, res) => {
     myInfo["videoLog"] = await getVideoWatchInfo(userId);
 
     res.render("mypage", { info: myInfo });
-  //} catch (e) {
+  } catch (e) {
     res.render("index");
-  //}
+  }
 });
 
 //추가된부분
