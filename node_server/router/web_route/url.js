@@ -129,6 +129,7 @@ router.get("/mypage/:userId", async (req, res) => {
   myInfo["transferLog"] = await getTransactionLog(accountAddress);
   let videoLog = await getVideoWatchInfo(userId);
   videoLog.forEach(async (log) => {
+    console.log(`## log  ${JSON.stringify(lgo)}`);
     let pointLogObj = await getUserPointLog(userId, log['videoName']);
     let totalPoint = await calcPointLog(pointLogObj);
     log['totalPoint'] = totalPoint;

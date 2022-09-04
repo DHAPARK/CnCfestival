@@ -163,7 +163,7 @@ router.get("/getVideoInfo", async (req, res) => {
  */
 router.post("/saveVideoLog", async (req, res) => {
   userAgentModel.printUserAgent(req.header("user-agent"), "/saveVideoLog");
-  let { userId, videoName, watchDate, watchTime, watchComplete, videoTotalLength } = req.body;
+  const { userId, videoName, watchDate, watchTime, watchComplete, videoTotalLength } = req.body;
   console.log(`### /saveVideoLog : data`);
   console.log(`userId : ${userId}`);
   console.log(`videoName : ${videoName}`);
@@ -172,7 +172,7 @@ router.post("/saveVideoLog", async (req, res) => {
   console.log(`watchComplete : ${watchComplete}`);
   console.log(`videoTotalLength : ${videoTotalLength}`);
 
-  watchComplete = watchTime == videoTotalLength ? true : false;
+  // watchComplete = watchTime == videoTotalLength ? true : false;
   let ps = await global.db.collection(DB_COLLECTION["VIDEO_LOG"]);
   ps.doc(userId)
     .collection(userId)
