@@ -82,8 +82,8 @@ html,body {
 }
 
 #container input[type="button"]{
-    border: 2px solid rgb(211, 241, 240);
-    background-color: rgb(211, 241, 240);
+    border: 2px solid rgb(217, 234, 240);
+    background-color: rgb(217, 234, 240);
     width: 100px;
     height: 50px;
     font-size: 1.2rem;
