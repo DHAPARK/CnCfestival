@@ -375,7 +375,7 @@ app.post("/test", async (req, res) => {
 
 const { getStorage, ref, getDownloadURL } = require("firebase-admin/storage");
 const { getProductInfo }  = require('./utils/inquiry');
-const { modifyAddressInfo, DB_COLLECTION }  = require('./utils/DB');
+const { modifyAddressInfo }  = require('./utils/DB');
 
 global.sessionList = {};
 
