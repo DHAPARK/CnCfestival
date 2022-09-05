@@ -122,7 +122,9 @@ router.post('/buyProductRequest', (req, res)=> {
     
     isPasswordRight(userId, userPassword).then(isSucc => {
         console.log(`isPasswordRight ${typeof isSucc} ${isSucc}`);
+        console.log(`isPasswordRight ${isSucc == true}`);
         if(isSucc == true) {
+            console.log(`isPasswordRight ${isSucc == true}`);
             buyProduct(senderAddress, receiverAddress, amount, productName).then(code => {
                 result['SUCCESS_CODE'] = code;
                 console.log(`result = ${result}`);
