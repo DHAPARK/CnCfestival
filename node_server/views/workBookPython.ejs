@@ -80,24 +80,36 @@
 
 <script>
     const ipConfig = document.getElementById("ipConfig").value;
+
+
     function goToSolution(element) {
-        var quizNum = element.parentNode.children[0].innerText; // 문제번호
-        var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
-        //console.log();
-        console.log(` quizNum 찍힌나 ${quizNum}`);
-        console.log(` userId 찍힌나 ${userId}`);
-        axios({
-            url: `${ipConfig}/web/solution/${quizNum}/${userId}`,
-            method: 'GET',
-            //baseURL: ``,
-        }).then((res) => {
-            location.href = `${ipConfig}/web/solution/${quizNum}/${userId}`;
-            console.log(res);
-            //location.href = ``;
-        }).catch(error=>{
-            console.log(`solution 페이지 가기 실패 ${error}`);
-            throw new Error(error);
-        })
+        try{
+
+        
+            var quizNum = element.parentNode.children[0].innerText; // 문제번호
+            var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
+            //console.log();
+            console.log(` quizNum 찍힌나 ${quizNum}`);
+            console.log(` userId 찍힌나 ${userId}`);
+            axios({
+                url: `${ipConfig}/web/solution/${quizNum}/${userId}`,
+                method: 'GET',
+                //baseURL: ``,
+            }).then((res) => {
+                location.href = `${ipConfig}/web/solution/${quizNum}/${userId}`;
+                console.log(res);
+                //location.href = ``;
+            }).catch(error=>{
+                console.log(`solution 페이지 가기 실패 ${error}`);
+                throw new Error(error);
+            })
+
+        }catch (e){
+            if (window.confirm("로그인이 되어있지 않습니다")) {
+                location.href=`${ipConfig}/web/index`;
+            }
+        }
+
     }
 </script>
 <script>
