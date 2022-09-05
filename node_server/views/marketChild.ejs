@@ -156,7 +156,9 @@
 
 <script>
     const ipConfig = document.getElementById("ipConfig").value;
+
     function purchase(){
+        console.log('버튼안눌리나?');
         axios({
             method: 'POST',
             url: `${ipConfig}/buyProductRequest`,
