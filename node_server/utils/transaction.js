@@ -179,6 +179,7 @@ async function buyProduct(senderAddress, receiverAddress, amount, productName) {
         transactionType:TRANSACTION_TYPE['PAYMENT'],
         transactionTime:moment().format('YYYY-MM-DD HH:mm:ss')
     };
+    console.log("뭘까 여기서 죽나?");
 
     if(await isAddressInDB(senderAddress) && await isAddressInDB(receiverAddress)) {
         console.log("### payment address check true");
