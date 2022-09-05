@@ -135,9 +135,9 @@
 <script>
     //document.domain = "220.67.231.91";
     function viewChildPage(element){
-        
+        const ipConfig = document.getElementById("ipConfig").value;
         try {
-            const ipConfig = document.getElementById("ipConfig").value;
+            
             var userId = JSON.parse(localStorage.getItem('UserInfo')).userid;
             var videoName = element.children[1].children[0].innerText;
             var videoUrl = element.children[1].children[3].value;
