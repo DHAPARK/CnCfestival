@@ -98,8 +98,8 @@
                     }catch(e){
                         %>
                         <script>
-                            const ipConfig = document.getElementById("ipConfig").value;
                             if (window.confirm("로그인이 되어있지 않습니다")) {
+                                const ipConfig = document.getElementById("ipConfig").value;
                                 location.href=`${ipConfig}/web/index`;
                             }
                         </script>
