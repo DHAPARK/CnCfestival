@@ -35,27 +35,28 @@
                 <!-- 상품 이미지 가져오기 -->
                 <img src="<%=datas.image%>">
             </div>
-            <div id="contentsContainer" style="margin-bottom: 20px;">
-                <div id="container_text">
-                    <input type="hidden" id="productName" value="<%=datas.productName%>"/>
-                    <p><%=datas.productName%></p>
+            <div id="contentsContainer_text">
+                <div id="contentsContainer" style="margin-bottom: 20px;">
+                    <div id="container_text">
+                        <input type="hidden" id="productName" value="<%=datas.productName%>"/>
+                        <center><%=datas.productName%></center>
+                    </div>
                 </div>
-            </div>
-            <div id="contentsContainer">
-                <div id="container_text" style="margin-bottom: 30px;">
-                    <p style="width: 450px;"><%=datas.description%></p>
+                <div id="contentsContainer">
+                    <div id="container_text" style="margin-bottom: 30px;">
+                        <center style="width: 450px;"><%=datas.description%></center>
+                    </div>
                 </div>
-            </div>
-            <div id="contentsContainer">
-                <div id="container_text">
-                    <p style="color: #043570;"><input type="text" name="amount" id="amount" style="color: #043570; width: 100px; text-align: right;" value="<%=datas.amount %>" disabled> HSC</p>
+                <div id="contentsContainer">
+                    <div id="container_text">
+                        <center style="color: #043570;"><input type="text" name="amount" id="amount" style="color: #043570; width: 100px; text-align: right;" value="<%=datas.amount %>" disabled> HSC</center>
+                    </div>
                 </div>
+                
+                <a style="width: 100px; margin: auto; margin-top: 50px; margin-bottom: 20px;"><input type="button" onclick="purchase();" value="구매하기"/>
             </div>
-            
-            <a style="width: 100px; margin: auto; margin-top: 50px; margin-bottom: 20px;"><input type="button" onclick="purchase();" value="구매하기"/>
         </form>
     </div>
-
 </body>
 
 <script>

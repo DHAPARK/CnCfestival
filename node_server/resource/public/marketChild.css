@@ -33,8 +33,11 @@ html,body {
     border-radius: 30px;
 }*/
 
-#contentsContainer{
+#contentsContainer_text{
     margin: 0 auto;
+}
+
+#contentsContainer{
     font-size: 1.2rem;
 }
 
