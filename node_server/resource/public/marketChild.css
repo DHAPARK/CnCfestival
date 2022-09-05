@@ -95,6 +95,6 @@ html,body {
     border-radius: 10px;
 }
 
-a[id="purchase_btn"]:hover {
+input[type="button"]:hover {
     width: 150px;
 }
