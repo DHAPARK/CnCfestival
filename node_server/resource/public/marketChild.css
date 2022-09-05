@@ -83,12 +83,12 @@ html,body {
 }
 
 #container input[type="button"]{
-    border: 2px solid aliceblue;
-    background-color: aliceblue;
+    border: 2px solid rgb(211, 241, 240);
+    background-color: rgb(211, 241, 240);
     width: 100px;
     height: 50px;
     font-size: 1.2rem;
     font-weight: bold;
-    color: white;
+    color: rgb(49, 57, 133);
     border-radius: 10px;
 }
