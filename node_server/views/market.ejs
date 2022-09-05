@@ -184,6 +184,8 @@
         var image = _eleChild.src;
         console.log(`image: ${image}`);
 
+        console.log(`userid 뭐라오지 ${userid} ??`);
+
         var myWindow = window.open(`${ipConfig}/web/marketChild?userid=${userid}&userpw=${userpw}&senderAddress=${senderAddress}&description=${description}&receiverAddress=${receiverAddress}&productName=${productName}&amount=${amount}&image=${image}`,"구매창","width=800px,height=1200px");
     }
 </script>
