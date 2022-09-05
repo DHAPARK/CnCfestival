@@ -141,6 +141,7 @@ li{
     border-collapse : collapse;
     padding-inline: 10%;
     margin: 0 auto;
+    margin-bottom: 30px;
 }
 td{
     width:20%;
