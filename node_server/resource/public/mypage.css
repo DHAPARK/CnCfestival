@@ -137,7 +137,7 @@ li{
 
 #solvedQuestionList_each_question{
     width: 89%;
-    height:100%;
+    /*height:100%;*/
     border-collapse : collapse;
     padding-inline: 10%;
     margin: 0 auto;

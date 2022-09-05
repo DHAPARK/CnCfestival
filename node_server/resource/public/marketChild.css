@@ -97,4 +97,5 @@ html,body {
 
 #purchase_btn:hover {
     width: 150px;
+    background-color: aqua;
 }
