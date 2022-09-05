@@ -2,7 +2,7 @@ html,body {
     width:100%;
     height:110%;
     margin:0px;
-    background:  rgb(211, 241, 240);
+    background:  rgb(242, 242, 242);
 }
 
 #topLongContainerInnerLeftLogoImg {
@@ -24,13 +24,21 @@ html,body {
     font-weight: bold;
 }
 
-#container form{
+/*#container form{
     width: 500px;
     margin: 0 auto;
     margin-top: 150px;
     font-size: 1.5rem;
     border: 5px solid rgb(54, 105, 102);
     border-radius: 30px;
+}*/
+
+#contentsContainer_text{
+    text-align: center;
+}
+
+#contentsContainer{
+    font-size: 1.2rem;
 }
 
 #contentsContainer_img{
@@ -40,32 +48,27 @@ html,body {
 }
 
 #contentsContainer_img img{
-     width: 200px;
+     width: 50%;
 }
 
-#contentsContainer{
+/*#contentsContainer{
     display: flex;
     justify-content: space-between;
     padding-inline: 30px;
-}
+}*/
 
 #container_title{
     width: 120px;
     text-align: right;
     margin-right: 10px;
     font-weight: bold;
-    color: rgb(54, 105, 102);
 }
 
 #container_text{
     width: 400px;
     padding-left: 15px;
+    margin: 0 auto;
 }
-
-#productName, #amount, #container_text p{
-    color: rgb(63, 139, 116);
-}
-
 
 #container_text div{
     height: auto;
@@ -79,16 +82,20 @@ html,body {
 #container input{
     border: none;
     font-size: 1.5rem;
-    background:  rgb(211, 241, 240);
+    background:  rgb(242, 242, 242);
 }
 
 #container input[type="button"]{
-    border: 2px solid aliceblue;
-    background-color: aliceblue;
+    border: 2px solid rgb(217, 234, 240);
+    background-color: rgb(217, 234, 240);
     width: 100px;
     height: 50px;
     font-size: 1.2rem;
     font-weight: bold;
-    color: white;
+    color: rgb(49, 57, 133);
     border-radius: 10px;
+}
+
+a:hover {
+    width: 150px;
 }

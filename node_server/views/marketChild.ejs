@@ -19,7 +19,7 @@
     <input type="hidden" id="ipConfig" value="<%-include('./ipConfig.ejs')%>"/>
     <div id="topLongContainer" class="bg_cont">
         <div id="topLongContainerInnerLeftLogoImg" class="bg_cont">
-            <img id="topLongContainerInnerLeftLogoImg_Img" src="/webimg/HSC_mini.png"/>
+            <a href="<%-include('./ipConfig.ejs')%>/web/introduce"><img id="topLongContainerInnerLeftLogoImg_Img" src="/webimg/HSC_mini.png"/></a>
             <p>상품 구매</p>
         </div>
     </div>
@@ -35,27 +35,28 @@
                 <!-- 상품 이미지 가져오기 -->
                 <img src="<%=datas.image%>">
             </div>
-            <div id="contentsContainer">
-                <div id="container_text">
-                    <input type="hidden" id="productName" value="<%=datas.productName%>"/>
-                    <p><%=datas.productName%></p>
+            <div id="contentsContainer_text">
+                <div id="contentsContainer" style="margin-bottom: 20px;">
+                    <div id="container_text">
+                        <input type="hidden" id="productName" value="<%=datas.productName%>"/>
+                        <center style="font-weight: bold"><%=datas.productName%></center>
+                    </div>
                 </div>
-            </div>
-            <div id="contentsContainer">
-                <div id="container_text">
-                    <p style="width: 300px;"><%=datas.description%></p>
+                <div id="contentsContainer">
+                    <div id="container_text" style="margin-bottom: 30px;">
+                        <center style="width: 400px; margin-bottom: 20px;"><%=datas.description%></center>
+                    </div>
                 </div>
-            </div>
-            <div id="contentsContainer">
-                <div id="container_text">
-                    <p style="color: #043570;"><input type="text" name="amount" id="amount" style="color: #043570; width: 100px; text-align: right;" value="<%=datas.amount %>" disabled> HSC</p>
+                <div id="contentsContainer">
+                    <div id="container_text" style="margin-bottom: 40px;">
+                        <center style="color: #043570;"><input type="text" name="amount" id="amount" style="color: #043570; width: 100px; text-align: right;" value="<%=datas.amount %>" disabled> HSC</center>
+                    </div>
                 </div>
+                
+                <a style="width: 100px; margin: auto; margin-top: 50px; margin-bottom: 20px;"><input type="button" onclick="purchase();" value="구매하기"/>
             </div>
-            
-            <p style="width: 100px; margin: auto; margin-top: 50px; margin-bottom: 20px;"><input type="button" onclick="purchase();" value="구매하기"/>
         </form>
     </div>
-
 </body>
 
 <script>

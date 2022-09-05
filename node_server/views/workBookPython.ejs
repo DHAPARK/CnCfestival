@@ -18,7 +18,7 @@
         <div id="topLongContainer" class="bg_cont">
             
             <div id="topLongContainerInnerLeftLogoImg" class="bg_cont">
-                <img id="topLongContainerInnerLeftLogoImg_Img" src="/webimg/HSC_mini.png"/>
+                <a href="<%-include('./ipConfig.ejs')%>/web/introduce"><img id="topLongContainerInnerLeftLogoImg_Img" src="/webimg/HSC_mini.png"/></a>
             </div>
             <!--topLongContainerInnerLeftLogoImg 끝-->
             <!-- 맨위 오른쪽 메뉴들 (홈페이지, 로그인/회원가입 , 학습 , 메뉴 등-->
@@ -61,8 +61,8 @@
                                         <p style="width:100%; margin-right:0px;" id="_title"><%=quizInfo[i].title%></p>
                                     </a>
                                     <p style="display:inline; margin-left:45px;"><%=quizInfo[i].kind%></p>
-                                    <!--해결 checkbox-->
-                                    <input style="float:right; margin-right:85px;" type="checkbox" name="complete">
+                                    <!--해결 checkbox 사용자가 체크 못하게-->
+                                    <!--<input style="float:right; margin-right:85px;" type="checkbox" name="complete" checked disabled>-->
                                 </div>
                                 
                             </td>

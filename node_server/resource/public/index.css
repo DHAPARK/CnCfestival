@@ -86,5 +86,6 @@ html,body{
 }
 
 video {
-    pointer-events: none;
-    }
+    outline: none;
+    border: none;
+}
