@@ -33,6 +33,10 @@ html,body {
     border-radius: 30px;
 }*/
 
+#contentsContainer{
+    margin: 0 auto;
+}
+
 #contentsContainer_img{
     text-align: center;
     margin-inline: 150px;
