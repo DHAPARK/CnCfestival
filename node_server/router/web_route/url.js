@@ -58,12 +58,7 @@ router.get("/marketChild", (req, res) => {
     amount: req.query.amount,
     image: req.query.image,
   };
-  let userId = datas.userid;
-  try {
-    const userInfo = global.sessionList[userId][userId];
-  } catch(e) {
-    res.render("index");
-  }
+  
   res.render("marketChild", { datas: datas });
 });
 
@@ -177,11 +172,7 @@ router.get("/solution/:quizNum/:userId", async (req, res) => {
   let userId = req.params.userId;
   // let quizNum = req.query['quizNum'];
   // let userId = req.query['userId'];
-  try {
-    const userInfo = global.sessionList[userId][userId];
-  } catch(e) {
-    res.render("index");
-  }
+
 
   let quizInfo = await getQuizInfo();
   console.log(`userId ${userId}`);

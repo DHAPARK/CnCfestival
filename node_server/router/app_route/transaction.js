@@ -112,6 +112,12 @@ router.post('/buyProductRequest', (req, res)=> {
     const productName = req.body['productName'];
     const result = {};
     
+    try {
+      const userInfo = global.sessionList[userId][userId];
+    } catch(e) {
+      res.render("index");
+    }
+    
     console.log(`### /buyProductRequest : data`);
     console.log(`userId = ${userId}`);
     console.log(`userPassword = ${userPassword}`);
