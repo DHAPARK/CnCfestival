@@ -59,12 +59,12 @@ router.get("/marketChild", (req, res) => {
     image: req.query.image,
   };
 
-  let userId = datas.userid;
-  try {
-    const userInfo = global.sessionList[userId][userId];
-  } catch(e) {
-    res.render("error");
-  }
+  // let userId = datas.userid;
+  // try {
+  //   const userInfo = global.sessionList[userId][userId];
+  // } catch(e) {
+  //   res.render("error");
+  // }
 
   res.render("marketChild", { datas: datas });
 });
