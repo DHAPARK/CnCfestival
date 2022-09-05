@@ -8,7 +8,12 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js" integrity="sha512-/l6vieC+YxaZywUhmqs++8uF9DeMvJE61ua5g+UK0TuHZ4TkTgB1Gm1n0NiA86uEOM9JJ6JUwyR0hboKO0fCng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="/index.css"/>
-
+<style>
+    .player {
+        outline: none;
+        border: none;
+    }
+</style>
     
 
 </head>
@@ -20,7 +25,7 @@
 
             <div id="middleLogo">
                 <!-- 로고 들어갈 자리 -->
-                <video loop muted autoplay width="100%" height="100%">
+                <video class="player" loop muted autoplay width="100%" height="100%">
                     <source src="/webimg/MP4_movelogo.mp4">
                 </video>
 
