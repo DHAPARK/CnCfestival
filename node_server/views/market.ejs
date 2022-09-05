@@ -190,7 +190,7 @@
             var myWindow = window.open(`${ipConfig}/web/marketChild?userid=${userid}&userpw=${userpw}&senderAddress=${senderAddress}&description=${description}&receiverAddress=${receiverAddress}&productName=${productName}&amount=${amount}&image=${image}`,"구매창","width=800px,height=1200px");
         }catch (e) {
             if (window.confirm("로그인이 되어있지 않습니다")) {
-                location.href="index";
+                location.href=`${ipConfig}/web/index`;
             }
         }
 
