@@ -58,6 +58,12 @@ router.get("/marketChild", (req, res) => {
     amount: req.query.amount,
     image: req.query.image,
   };
+  let userId = datas.userid;
+  try {
+    const userInfo = global.sessionList[userId][userId];
+  } catch(e) {
+    res.render("index");
+  }
   res.render("marketChild", { datas: datas });
 });
 
@@ -171,6 +177,11 @@ router.get("/solution/:quizNum/:userId", async (req, res) => {
   let userId = req.params.userId;
   // let quizNum = req.query['quizNum'];
   // let userId = req.query['userId'];
+  try {
+    const userInfo = global.sessionList[userId][userId];
+  } catch(e) {
+    res.render("index");
+  }
 
   let quizInfo = await getQuizInfo();
   console.log(`userId ${userId}`);
@@ -228,6 +239,12 @@ router.get("/videoChild", async (req, res) => {
   console.log(`videoName ${videoName}`);
   console.log(`videoUrl ${videoUrl}`);
 
+  try {
+    const userInfo = global.sessionList[userId][userId];
+  } catch(e) {
+    res.render("index");
+  }
+
   let videoLog = await getUserVideoLog(userId, videoName);
   console.log(`videoLog ${JSON.stringify(videoLog)}`);
   console.log(`typeof ${videoLog}`);
@@ -267,6 +284,7 @@ router.get("/workBookPython", async (req, res) => {
   const datas = {
     quizInfo: quizInfo,
   };
+
   console.log(quizInfo);
   res.render("workBookPython", { quizInfo: quizInfo });
 });
