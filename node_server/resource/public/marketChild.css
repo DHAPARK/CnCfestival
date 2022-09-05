@@ -86,3 +86,7 @@ html,body {
     color: rgb(49, 57, 133);
     border-radius: 10px;
 }
+
+p:hover {
+    width: 150px;
+}
