@@ -77,7 +77,7 @@ html,body {
 #container input{
     border: none;
     font-size: 1.5rem;
-    background:  rgb(211, 241, 240);
+    background:  rgb(242, 242, 242);
 }
 
 #container input[type="button"]{
