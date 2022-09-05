@@ -40,14 +40,14 @@ html,body {
 }
 
 #contentsContainer_img img{
-     width: 200px;
+     width: 50%;
 }
 
-#contentsContainer{
+/*#contentsContainer{
     display: flex;
     justify-content: space-between;
     padding-inline: 30px;
-}
+}*/
 
 #container_title{
     width: 120px;

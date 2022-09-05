@@ -28,8 +28,8 @@ html,body {
 }
 /* 맨위 왼쪽 로고이미지*/
 #topLongContainerInnerLeftLogoImg_Img{
-    width:100%;
-    height:100%;
+    width:90%;
+    height:90%;
 }
 /* 맨위 오른쪽 메뉴들 (홈페이지, 로그인/회원가입 , 학습 , 메뉴 등) */
 #topLongContainerInnerRightMenuList {
