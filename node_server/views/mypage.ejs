@@ -58,7 +58,7 @@
             </div>
             <!-- contentContainerTopInfoDesk 끝 -->
 
-            <div id="solvedQuestionList" style="height: 600px; overflow: auto;">
+            <div id="solvedQuestionList">
 
                 <ul id="solvedQuestionList_Title">
                     <li><div class="ListInnerTopTitle">영상명</div></li>
@@ -69,46 +69,48 @@
                 <!--여기서 이제 진짜 서버에서 넘어온 data들 for loop -->
 
 
-                <table id="solvedQuestionList_each_question" style="overflow: auto;">
+                <div class="table-wrapper">
+                    <table id="solvedQuestionList_each_question">
 
-                    <% 
-                    try {
-                        if (info.videoLog != "None") {
-                            for(let j = 0; j<info.videoLog.length ; j++){ 
-                            %>
-                            <tr style="width:100%; height:100px;">
-                                <td class="tb_left_bd" style="height:100%"><%=info.videoLog[j].videoName%></td>
-                                <td class="tb_left2_bd" style="height:100%"><%=info.videoLog[j].watchTime%>%> / <%=info.videoLog[j].videoTotalLength%>  ( <%= parseInt( info.videoLog[j].watchTime * 100 / info.videoLog[j].videoTotalLength ) %> ) %</td>
-                                <td class="tb_left3_bd" style="height:100%"><%=info.videoLog[j].totalPoint%> / <%= info.POINT_MAXIMUM %> HSC</td>
-                                <td class="tb_left4_bd" style="height:100%"> <%=info.videoLog[j].watchComplete ? "완" : "미완" %> </td>
-                            </tr>
                         <% 
+                        try {
+                            if (info.videoLog != "None") {
+                                for(let j = 0; j<info.videoLog.length ; j++){ 
+                                %>
+                                <tr style="width:100%; height:100px;">
+                                    <td class="tb_left_bd" style="height:100%"><%=info.videoLog[j].videoName%></td>
+                                    <td class="tb_left2_bd" style="height:100%"><%=info.videoLog[j].watchTime%>%> / <%=info.videoLog[j].videoTotalLength%>  ( <%= parseInt( info.videoLog[j].watchTime * 100 / info.videoLog[j].videoTotalLength ) %> ) %</td>
+                                    <td class="tb_left3_bd" style="height:100%"><%=info.videoLog[j].totalPoint%> / <%= info.POINT_MAXIMUM %> HSC</td>
+                                    <td class="tb_left4_bd" style="height:100%"> <%=info.videoLog[j].watchComplete ? "완" : "미완" %> </td>
+                                </tr>
+                            <% 
+                                }
+                            } else {
+                            
+                            %>
+    
+                                <div id="pleaseLogin" style="width:300px; height:100px; margin: 0 auto; text-align:center; margin-top:10%;">
+                                    <p>로그인이 필요합니다</p>
+                                    <input type="button" value="로그인"/>
+                                </div>
+    
+                            <%
                             }
-                        } else {
-                        
-                        %>
-
-                            <div id="pleaseLogin" style="width:300px; height:100px; margin: 0 auto; text-align:center; margin-top:10%;">
-                                <p>로그인이 필요합니다</p>
-                                <input type="button" value="로그인"/>
-                            </div>
-
-                        <%
+                        }catch(e){
+                            %>
+                            <script>
+                                if (window.confirm("로그인이 되어있지 않습니다")) {
+                                    const ipConfig = document.getElementById("ipConfig").value;
+                                    location.href=`${ipConfig}/web/index`;
+                                }
+                            </script>
+                            <%
                         }
-                    }catch(e){
                         %>
-                        <script>
-                            if (window.confirm("로그인이 되어있지 않습니다")) {
-                                const ipConfig = document.getElementById("ipConfig").value;
-                                location.href=`${ipConfig}/web/index`;
-                            }
-                        </script>
-                        <%
-                    }
-                    %>
-                
-                </table>
-                
+                    
+                    </table>
+                    
+                </div>
             </div>
             <!--solvedQuestionList 끝-->
 
