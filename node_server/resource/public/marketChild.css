@@ -92,6 +92,6 @@ html,body {
     border-radius: 10px;
 }
 
-p:hover {
+a:hover {
     width: 150px;
 }
