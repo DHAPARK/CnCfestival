@@ -67,6 +67,7 @@ html,body {
 #container_text{
     width: 400px;
     padding-left: 15px;
+    margin: 0 auto;
 }
 
 #container_text div{
