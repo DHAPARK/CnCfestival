@@ -74,7 +74,7 @@
                     if (info.videoLog != "None") {
                         for(let j = 0; j<info.videoLog.length ; j++){ 
                         %>
-                        <tr style="width:100%; height:100px;">
+                        <tr style="width:100%;">
                             <td class="tb_left_bd" style="height:100%"><%=info.videoLog[j].videoName%></td>
                             <td class="tb_left2_bd" style="height:100%"><%=info.videoLog[j].watchTime%>%> / <%=info.videoLog[j].videoTotalLength%>  ( <%= parseInt( info.videoLog[j].watchTime * 100 / info.videoLog[j].videoTotalLength ) %> ) %</td>
                             <td class="tb_left3_bd" style="height:100%"><%=info.videoLog[j].totalPoint%> / <%= info.POINT_MAXIMUM %> HSC</td>
