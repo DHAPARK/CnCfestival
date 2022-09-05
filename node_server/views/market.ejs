@@ -161,32 +161,40 @@
     function viewChildPage(element){
         //obj.style.display = 'none';
         //console.log(element);
-        var _eleChild = element.children[0];
-        var eleChild = element.children[1].children;
+        try{
+            var _eleChild = element.children[0];
+            var eleChild = element.children[1].children;
 
-        //console.log(element.innerHTML);
-        var UserInfo = JSON.parse(localStorage.getItem('UserInfo'));
+            //console.log(element.innerHTML);
+            var UserInfo = JSON.parse(localStorage.getItem('UserInfo'));
+            
+            console.log(`제품명 ${eleChild[0].innerText}`);
+            console.log(`코인수량 ${eleChild[1].innerText.substring(0,eleChild[1].innerText.length-4)}`);
+            console.log(`상대지갑주소 ${eleChild[3].value}`);
+            console.log(`description : ${eleChild[2].value}`);
+            console.log(`내지갑주소 ${UserInfo.accountAddress}`);
+            console.log(`비번 ${UserInfo.userpw}`);
+            console.log(`아이디 ${UserInfo.userid}`);
+            var userid = UserInfo.userid;
+            var userpw = UserInfo.userpw;
+            var senderAddress = UserInfo.accountAddress;
+            var description = eleChild[2].value;
+            var receiverAddress = eleChild[3].value;
+            var productName = eleChild[0].innerText;
+            var amount = eleChild[1].innerText.substring(0,eleChild[1].innerText.length-4);
+            var image = _eleChild.src;
+            console.log(`image: ${image}`);
+
+            console.log(`userid 뭐라오지 ${userid} ??`);
+
+            var myWindow = window.open(`${ipConfig}/web/marketChild?userid=${userid}&userpw=${userpw}&senderAddress=${senderAddress}&description=${description}&receiverAddress=${receiverAddress}&productName=${productName}&amount=${amount}&image=${image}`,"구매창","width=800px,height=1200px");
+        }catch (e) {
+            if (window.confirm("로그인이 되어있지 않습니다")) {
+                location.href="index";
+            }
+        }
+
         
-        console.log(`제품명 ${eleChild[0].innerText}`);
-        console.log(`코인수량 ${eleChild[1].innerText.substring(0,eleChild[1].innerText.length-4)}`);
-        console.log(`상대지갑주소 ${eleChild[3].value}`);
-        console.log(`description : ${eleChild[2].value}`);
-        console.log(`내지갑주소 ${UserInfo.accountAddress}`);
-        console.log(`비번 ${UserInfo.userpw}`);
-        console.log(`아이디 ${UserInfo.userid}`);
-        var userid = UserInfo.userid;
-        var userpw = UserInfo.userpw;
-        var senderAddress = UserInfo.accountAddress;
-        var description = eleChild[2].value;
-        var receiverAddress = eleChild[3].value;
-        var productName = eleChild[0].innerText;
-        var amount = eleChild[1].innerText.substring(0,eleChild[1].innerText.length-4);
-        var image = _eleChild.src;
-        console.log(`image: ${image}`);
-
-        console.log(`userid 뭐라오지 ${userid} ??`);
-
-        var myWindow = window.open(`${ipConfig}/web/marketChild?userid=${userid}&userpw=${userpw}&senderAddress=${senderAddress}&description=${description}&receiverAddress=${receiverAddress}&productName=${productName}&amount=${amount}&image=${image}`,"구매창","width=800px,height=1200px");
     }
 </script>
 </html>
