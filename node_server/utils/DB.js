@@ -28,6 +28,26 @@ async function removetemToDB(collectionName, documentName) {
     console.log(`### DB ${documentName} delete`);
 }
 
+
+/**
+ * DB에 값 수정
+ * @param {string} collectionName 
+ * @param {string} documentName 
+ * @param {obejct} dataObject 
+ */
+ async function modifyAddressInfo(collectionName, documentName, dataObject) {
+    let productRef = await global.db.collection(collectionName).doc(documentName);
+    
+    return new Promise(resolve => {
+        productRef.update({
+            manufacturer:dataObject['address']
+        });
+        console.log(`### DB ${documentName} update`);
+        resolve(RETURN_CODE['SUCCESS']);
+    })
+}
+
+
 /**
  * DB에 값 수정
  * @param {string} collectionName 
@@ -124,6 +144,7 @@ module.exports = {
     removetemToDB, 
     modifyDBItem, 
     addFavicon, 
-    removeFavicon, 
+    removeFavicon,
+    modifyAddressInfo,
     getFaviconList 
 }
