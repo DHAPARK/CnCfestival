@@ -111,12 +111,6 @@ router.post('/buyProductRequest', (req, res)=> {
     const amount = req.body["amount"];
     const productName = req.body['productName'];
     const result = {};
-
-    try {
-      const userInfo = global.sessionList[userId][userId];
-    } catch(e) {
-      res.render("error");
-    }
     
     console.log(`### /buyProductRequest : data`);
     console.log(`userId = ${userId}`);

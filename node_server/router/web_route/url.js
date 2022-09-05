@@ -58,7 +58,14 @@ router.get("/marketChild", (req, res) => {
     amount: req.query.amount,
     image: req.query.image,
   };
-  
+
+  let userId = datas.userid;
+  try {
+    const userInfo = global.sessionList[userId][userId];
+  } catch(e) {
+    res.render("error");
+  }
+
   res.render("marketChild", { datas: datas });
 });
 
