@@ -386,14 +386,14 @@ app.listen(PORT, async () => {
   console.log(`${PORT}번호로 서버 실행중...`);
   console.log(moment().format("YYYY-MM-DD HH:mm:ss"));
 
-  let address = "0xcF28DB0Cc642e8fD333B1A5f14e9a80db3479B7C";
-  let productInfoList = await getProductInfo();
-  for (let i=0; i<productInfoList.length; i++) {
-    let documentName = productInfoList[i]['productId'];
-    let modifyObj = {
-      address: address
-    }
-    let result = await modifyAddressInfo(DB_COLLECTION['PRODUCT'], documentName, modifyObj);
-    console.log(`result[${i}] = ${result}`);
-  }
+  // let address = "0xcF28DB0Cc642e8fD333B1A5f14e9a80db3479B7C";
+  // let productInfoList = await getProductInfo();
+  // for (let i=0; i<productInfoList.length; i++) {
+  //   let documentName = productInfoList[i]['productId'];
+  //   let modifyObj = {
+  //     address: address
+  //   }
+  //   let result = await modifyAddressInfo(DB_COLLECTION['PRODUCT'], documentName, modifyObj);
+  //   console.log(`result[${i}] = ${result}`);
+  // }
 });
