@@ -3,7 +3,8 @@ const path = require('path');
 
 //Hscoin 관련 정보
 // const HSCOIN_ADDRESS = '0x4551899d1ef9cE15E2bD06589d7a9F7d3df9dc3f'; // hscoin 컨트랙트 주소
-const HSCOIN_ADDRESS = '0x3C5738f553d33417c327f92581d4EeFAf6237501'; // hscoin 컨트랙트 주소
+//const HSCOIN_ADDRESS = '0x3C5738f553d33417c327f92581d4EeFAf6237501'; // hscoin 컨트랙트 주소
+const HSCOIN_ADDRESS = '0x10Bd96E62d958891f42Cf607466aEB8337c141F1';
 const HSCOIN_JSON_FILE = path.join(__dirname, '../../hscoin-contract/build/contracts/Hscoin.json');
 const HSCOIN_JSON_PARSED = JSON.parse(fs.readFileSync(HSCOIN_JSON_FILE));
 const HSCOIN_ABI = HSCOIN_JSON_PARSED.abi;
