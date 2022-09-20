@@ -1,5 +1,5 @@
 //const ipConfig = "http://13.113.58.8";
-const ipConfig = "http://127.0.0.1";
+const ipConfig = "http://35.78.201.84";
 
 module.exports = {
   ipConfig,
