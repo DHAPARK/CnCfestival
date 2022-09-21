@@ -36,10 +36,10 @@ const {
 
 const { json } = require("express");
 const PORT = 80;
-const {getUserAccount, getQuizLog} = require('./utils/inquiry');
-const {transferHSC} = require('./utils/transaction');
-const {putItemToDB} = require('./utils/DB');
-const {DB_COLLECTION} = require('./utils/constant');
+const { getUserAccount, getQuizLog } = require("./utils/inquiry");
+const { transferHSC } = require("./utils/transaction");
+const { putItemToDB } = require("./utils/DB");
+const { DB_COLLECTION } = require("./utils/constant");
 const envConfig = require("./config/envConfig");
 
 function isAlphaNumCheck(str) {
@@ -277,7 +277,7 @@ app.post("/test", async (req, res) => {
     }
   );
   console.log(`${submitOutputFileName} 생성 완료`);
-  
+
   for (let data of inputData) {
     try {
       let { stdout, error } = await exec(
@@ -295,13 +295,12 @@ app.post("/test", async (req, res) => {
           }
         }
       );
-    } catch(error) {
+    } catch (error) {
       if (error) {
         console.log(JSON.stringify(error));
         res.json({ code: 100, stderr: error.message });
       }
     }
-    
   }
 
   let outputData = fs
@@ -317,7 +316,7 @@ app.post("/test", async (req, res) => {
     .toString()
     .split("\n");
   console.log(`outputData 읽기 완료`);
-  
+
   outputData.pop();
 
   console.log(outputData, typeof outputData);
@@ -352,20 +351,20 @@ app.post("/test", async (req, res) => {
     if (index + 1 == total) {
       let pass = correct == total ? true : false;
       let stdout = {
-        pass : pass,
-        correct : correct,
-        total : total,
-        percentage : correct / total * 100
+        pass: pass,
+        correct: correct,
+        total: total,
+        percentage: (correct / total) * 100,
       };
       let documentName = `${userId}_${quizNum}`;
       if (!(await getQuizLog(documentName))) {
         await transferHSC(global.accountList[0], userAccount, 10);
       }
-            
+
       let quizSolveObj = {
-        solved: true
-      }
-      putItemToDB(DB_COLLECTION['QUIZ_LOG'], documentName, quizSolveObj);
+        solved: true,
+      };
+      putItemToDB(DB_COLLECTION["QUIZ_LOG"], documentName, quizSolveObj);
       res.json({ code: 200, stdout: stdout });
     }
   });
@@ -374,8 +373,8 @@ app.post("/test", async (req, res) => {
 // app.post("/testanswer", async (req, res) => {});
 
 const { getStorage, ref, getDownloadURL } = require("firebase-admin/storage");
-const { getProductInfo }  = require('./utils/inquiry');
-const { modifyAddressInfo }  = require('./utils/DB');
+const { getProductInfo } = require("./utils/inquiry");
+const { modifyAddressInfo } = require("./utils/DB");
 
 global.sessionList = {};
 
@@ -386,14 +385,20 @@ app.listen(PORT, async () => {
   console.log(`${PORT}번호로 서버 실행중...`);
   console.log(moment().format("YYYY-MM-DD HH:mm:ss"));
 
-  let address = "0x46F0F2C4d3EBa4401c5C950aA14cc8337A291003";
+  let address1 = "0x23dbbd24F16Af3edfe4B60381E0F4f9F2c9cB925";
+  let address2 = "0x04A1C21C6485d39345e163E3941448d71b0Cd590";
   let productInfoList = await getProductInfo();
-  for (let i=0; i<productInfoList.length; i++) {
-    let documentName = productInfoList[i]['productId'];
+  for (let i = 0; i < productInfoList.length; i++) {
+    let documentName = productInfoList[i]["productId"];
+    let address = i < productInfoList.length / 2 ? address1 : address2;
     let modifyObj = {
-      address: address
-    }
-    let result = await modifyAddressInfo(DB_COLLECTION['PRODUCT'], documentName, modifyObj);
+      address: address,
+    };
+    let result = await modifyAddressInfo(
+      DB_COLLECTION["PRODUCT"],
+      documentName,
+      modifyObj
+    );
     console.log(`result[${i}] = ${result}`);
   }
 });
