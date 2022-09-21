@@ -31,7 +31,7 @@ router.post("/joinMember/:userid", (req, res) => {
     req.header("user-agent"),
     "/joinMember/:userid"
   );
-  console.log(`### body ${req.body}`);
+
   console.log(`### pwd ${req.body.password}`);
   console.log(`### name ${req.body.name}`);
 
