@@ -32,10 +32,7 @@ router.post("/joinMember/:userid", (req, res) => {
     "/joinMember/:userid"
   );
 
-  console.log(`### pwd ${req.body.password}`);
-  console.log(`### name ${req.body.name}`);
-
-  console.log(`### ${req} ${JSON.stringify(req)}, ${req.body}`);
+  // console.log(`### ${req} ${JSON.stringify(req)}, ${req.body}`);
   const userid = req.params.userid;
   const userpw = req.body["password"];
   const username = req.body["name"];
