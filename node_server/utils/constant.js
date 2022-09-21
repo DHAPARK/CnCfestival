@@ -4,7 +4,8 @@ const path = require("path");
 //Hscoin 관련 정보
 // const HSCOIN_ADDRESS = '0x4551899d1ef9cE15E2bD06589d7a9F7d3df9dc3f'; // hscoin 컨트랙트 주소
 //const HSCOIN_ADDRESS = '0x3C5738f553d33417c327f92581d4EeFAf6237501'; // hscoin 컨트랙트 주소
-const HSCOIN_ADDRESS = "0x0CC19478F98c0b30eE9316c97B45c94Df148AbE0";
+// const HSCOIN_ADDRESS = "0x0CC19478F98c0b30eE9316c97B45c94Df148AbE0";
+const HSCOIN_ADDRESS = "0x3D3ad6a5827f0126Dd5B8b197B223Adf3476d943";
 const HSCOIN_JSON_FILE = path.join(
   __dirname,
   "../../hscoin-contract/build/contracts/Hscoin.json"
