@@ -385,8 +385,8 @@ app.listen(PORT, async () => {
   console.log(`${PORT}번호로 서버 실행중...`);
   console.log(moment().format("YYYY-MM-DD HH:mm:ss"));
 
-  let address1 = "0x23dbbd24F16Af3edfe4B60381E0F4f9F2c9cB925";
-  let address2 = "0x04A1C21C6485d39345e163E3941448d71b0Cd590";
+  let address1 = "0x11699dBe11FA633e3Dd58926dcC60c110712D542";
+  let address2 = "0xF68026e1d8222F3e51a44c25b06dD9E2cAD772C8";
   let productInfoList = await getProductInfo();
   for (let i = 0; i < productInfoList.length; i++) {
     let documentName = productInfoList[i]["productId"];
